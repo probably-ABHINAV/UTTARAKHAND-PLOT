@@ -1,111 +1,91 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
-import Link from "next/link"
+import { SiteHeader } from "@/components/navigation/site-header"
+import { SiteFooter } from "@/components/navigation/footer"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-card/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative w-14 h-14 flex-shrink-0">
-              <Image
-                src="/images/mascot-logo.png"
-                alt="Property in Uttrakhand Mascot"
-                width={56}
-                height={56}
-                className="w-full h-full object-contain rounded-lg"
-                priority
-              />
-            </div>
-            <div className="flex flex-col">
-              <h1 className="font-bold text-lg text-foreground leading-tight">Property in Uttrakhand</h1>
-              <p className="text-xs text-muted-foreground">Premium Hill Station Plots</p>
-            </div>
-          </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="#plots" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-              Our Plots
-            </Link>
-            <Link
-              href="#locations"
-              className="text-foreground hover:text-primary transition-colors font-medium text-sm"
-            >
-              Locations
-            </Link>
-            <Link
-              href="#investment"
-              className="text-foreground hover:text-primary transition-colors font-medium text-sm"
-            >
-              Why Invest
-            </Link>
-            <Link href="#contact" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-              Contact
-            </Link>
-          </nav>
-          <Button className="bg-primary hover:bg-primary/90 shadow-lg text-sm px-4 py-2">📞 Call Now</Button>
-        </div>
-      </header>
+    <div className="min-h-screen scroll-smooth bg-background">
+      <SiteHeader />
 
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center opacity-15"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-5xl mx-auto">
-            <h1 className="font-serif font-black text-5xl md:text-7xl lg:text-8xl text-balance mb-8 leading-tight">
-              Premium Land Plots in
-              <span className="text-primary block mt-2">Uttrakhand Hills</span>
+          <div className="text-center max-w-5xl mx-auto">
+            <Badge className="mb-6 text-sm font-medium px-4 py-2">
+              🏔️ RERA Approved • ISO Certified • Premium Hill Station Plots 2025
+            </Badge>
+            <h1 className="font-serif font-black text-5xl md:text-6xl lg:text-7xl text-balance leading-tight mb-8">
+              Your Dream Plot in
+              <br />
+              <span className="text-accent">Uttrakhand's Hills</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground text-pretty mb-10 max-w-3xl mx-auto leading-relaxed">
-              Secure your piece of paradise in India's spiritual heartland. Invest in carefully selected plots with
-              stunning mountain views, legal clarity, and high growth potential.
+            <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed mb-12 max-w-4xl mx-auto">
+              Discover RERA approved premium land plots in Mussoorie, Rishikesh, and Nainital with guaranteed legal clarity,
+              stunning mountain views, and exceptional ROI potential. Starting from just ₹1,999 per sq yard with flexible EMI options.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-xl px-10 py-4 h-auto shadow-xl">
-                🏔️ View Available Plots
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <Button size="lg" className="text-lg px-8 py-6 min-w-[200px]" onClick={() => scrollToSection('plots')}>
+                Explore Available Plots
               </Button>
               <Button
-                size="lg"
                 variant="outline"
-                className="text-xl px-10 py-4 h-auto bg-background/80 backdrop-blur-sm shadow-xl"
+                size="lg"
+                className="text-lg px-8 py-6 min-w-[200px]"
+                onClick={() => scrollToSection('contact')}
               >
-                🧮 Plot Calculator
+                Schedule Site Visit
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {[
-                { number: "500+", label: "Premium Plots" },
-                { number: "25+", label: "Hill Locations" },
-                { number: "15%", label: "Annual Growth" },
-                { number: "100%", label: "Legal Clarity" },
-              ].map((stat, index) => (
-                <div key={index} className="text-center p-4 bg-card/60 backdrop-blur-sm rounded-xl border shadow-lg">
-                  <div className="font-serif font-black text-2xl md:text-3xl text-primary mb-1">{stat.number}</div>
-                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
+            {/* Trust Indicators */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-accent text-xl">✓</span>
                 </div>
-              ))}
+                <p className="text-sm font-medium text-muted-foreground">RERA Approved</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-accent text-xl">⚖️</span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground">Legal Clarity</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-accent text-xl">📈</span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground">High ROI</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-accent text-xl">🏆</span>
+                </div>
+                <p className="text-sm font-medium text-muted-foreground">Award Winning</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Featured Plots */}
-      <section id="plots" className="py-20 bg-muted/20">
+      <section id="plots" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">Featured Land Plots</h2>
+            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">Featured Dehradun Plots</h2>
             <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
-              Handpicked premium plots in Uttrakhand's most desirable hill station locations with verified legal
-              documents
+              Handpicked premium plots near Shimla Bypass Road with verified legal documents and ready facilities
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["All Plots", "Under ₹50L", "₹50L - ₹1Cr", "Above ₹1Cr", "Mountain View", "Road Access"].map((filter) => (
+            {["All Plots", "Residential", "Investment", "Farm Land", "Near Bypass", "Ready to Build"].map((filter) => (
               <Button key={filter} variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
                 {filter}
               </Button>
@@ -115,31 +95,34 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Mountain View Plot - Mussoorie",
-                price: "₹85 L",
-                location: "Mussoorie Hills, Uttrakhand",
-                size: "2400 sq ft",
-                type: "Residential Plot",
-                features: ["Mountain View", "Road Access", "Electricity", "Water Connection"],
+                title: "Bajrang Vatika",
+                price: "₹16,500/Yard",
+                location: "Badripur, Dehradun",
+                size: "Various Sizes Available",
+                type: "Residential Project",
+                features: ["24x7 Security", "Wide Roads", "Ready Facilities", "80% Business Count"],
+                image: "/images/dehradun-outskirts-plots.jpg",
+                priceOptions: "EMI: ₹17,500-19,000/Yard",
+              },
+              {
+                title: "Nature Green Valley Phase 5",
+                price: "₹15,500/Yard",
+                location: "Ganeshpur, Dehradun",
+                size: "Premium Residential Plots",
+                type: "Residential Project",
+                features: ["Green Parks", "Children's Play Area", "Near Schools & Hospitals", "Clean Air"],
                 image: "/images/plot-mussoorie-mountain-view.jpg",
+                priceOptions: "EMI: ₹16,500-18,000/Yard",
               },
               {
-                title: "Spiritual Valley Plot - Rishikesh",
-                price: "₹65 L",
-                location: "Rishikesh Valley, Uttrakhand",
-                size: "3200 sq ft",
-                type: "Commercial Plot",
-                features: ["Ganga View", "Main Road", "Corner Plot", "High ROI"],
-                image: "/images/plot-rishikesh-valley-land.jpg",
-              },
-              {
-                title: "Lake View Plot - Nainital",
-                price: "₹1.2 Cr",
-                location: "Nainital Lake Area, Uttrakhand",
-                size: "4800 sq ft",
-                type: "Premium Plot",
-                features: ["Lake View", "Prime Location", "Developed Area", "Investment Grade"],
-                image: "/images/plot-nainital-lake-view.jpg",
+                title: "Friend's Colony Phase 1",
+                price: "₹16,000/Yard",
+                location: "Dehradun",
+                size: "Family-Friendly Plots",
+                type: "Residential Project",
+                features: ["Smart Investment", "Excellent Connectivity", "80% Business Count", "Limited Plots"],
+                image: "/images/dehradun-outskirts-plots.jpg",
+                priceOptions: "EMI: ₹17,000-18,500/Yard",
               },
             ].map((plot, index) => (
               <Card
@@ -169,6 +152,12 @@ export default function HomePage() {
                   <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
                     <span className="text-muted-foreground flex items-center gap-2">📏 Plot Size</span>
                     <span className="font-semibold">{plot.size}</span>
+                  </div>
+
+                  <div className="p-3 bg-primary/5 rounded-lg">
+                    <div className="text-sm text-muted-foreground mb-1">Payment Options:</div>
+                    <div className="text-sm font-medium">{plot.priceOptions}</div>
+                    <div className="text-xs text-muted-foreground mt-1">*Booking: 20% • Corner: +10% • Park Facing: +15%</div>
                   </div>
 
                   <div className="space-y-2">
@@ -201,40 +190,40 @@ export default function HomePage() {
       <section id="locations" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">Prime Plot Locations</h2>
+            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">Prime Dehradun Locations</h2>
             <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
-              Discover premium plot opportunities in Uttrakhand's most sought-after hill station destinations
+              Discover premium plot opportunities in Dehradun's most connected and rapidly developing areas
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                name: "Mussoorie Hills",
-                description: "Queen of Hills - Premium Plots",
-                plotsAvailable: "45+ Plots",
-                priceRange: "₹60L - ₹2Cr",
-                image: "/images/mussoorie-hills-plots-available.jpg",
+                name: "Shimla Bypass Road",
+                description: "Main Connectivity Hub",
+                plotsAvailable: "25+ Plots",
+                priceRange: "₹35L - ₹80L",
+                image: "/images/dehradun-outskirts-plots.jpg",
               },
               {
-                name: "Rishikesh Valley",
-                description: "Spiritual Investment Hub",
-                plotsAvailable: "32+ Plots",
-                priceRange: "₹40L - ₹1.5Cr",
-                image: "/images/rishikesh-valley-plots-land.jpg",
+                name: "Near Mussoorie Road",
+                description: "Hill Station Access",
+                plotsAvailable: "15+ Plots",
+                priceRange: "₹40L - ₹90L",
+                image: "/images/dehradun-outskirts-plots.jpg",
               },
               {
-                name: "Nainital Lake Area",
-                description: "Lake View Premium Plots",
-                plotsAvailable: "18+ Plots",
-                priceRange: "₹80L - ₹3Cr",
-                image: "/images/nainital-lake-plots-area.jpg",
+                name: "Delhi Highway Area",
+                description: "Capital Connectivity",
+                plotsAvailable: "20+ Plots",
+                priceRange: "₹45L - ₹1Cr",
+                image: "/images/dehradun-outskirts-plots.jpg",
               },
               {
                 name: "Dehradun Outskirts",
-                description: "Capital City Proximity",
-                plotsAvailable: "65+ Plots",
-                priceRange: "₹35L - ₹1Cr",
+                description: "Peaceful Investment",
+                plotsAvailable: "30+ Plots",
+                priceRange: "₹30L - ₹70L",
                 image: "/images/dehradun-outskirts-plots.jpg",
               },
             ].map((location, index) => (
@@ -266,55 +255,114 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Key Features Section */}
+      <section className="py-20 bg-accent/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">
+              देहरादून का कल यहीं से शुरू होता है!
+            </h2>
+            <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
+              Dehradun's future starts here! Experience premium living with modern amenities
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: "🛣️",
+                title: "चौड़ी सड़कें",
+                subtitle: "Wide Roads",
+                description: "Well-planned infrastructure with wide roads for easy connectivity"
+              },
+              {
+                icon: "🛡️",
+                title: "24x7 सिक्यूरिटी",
+                subtitle: "24x7 Security",
+                description: "Round-the-clock security for complete peace of mind"
+              },
+              {
+                icon: "🌳",
+                title: "हरे-भरे पार्क",
+                subtitle: "Green Parks",
+                description: "Lush green parks and children's play areas for family enjoyment"
+              },
+              {
+                icon: "🏥",
+                title: "स्कूल, हॉस्पिटल पास में",
+                subtitle: "Schools & Hospitals Nearby",
+                description: "Educational institutions and healthcare facilities within reach"
+              },
+            ].map((feature, index) => (
+              <Card key={index} className="text-center p-6 hover:shadow-xl transition-all duration-300 bg-card/80 backdrop-blur-sm">
+                <div className="flex justify-center mb-4 p-3 bg-primary/10 rounded-full w-fit mx-auto">
+                  <span className="text-3xl">{feature.icon}</span>
+                </div>
+                <CardTitle className="font-serif text-lg mb-1 text-balance text-primary">{feature.title}</CardTitle>
+                <p className="text-sm text-muted-foreground font-medium mb-3">{feature.subtitle}</p>
+                <CardDescription className="text-sm leading-relaxed">{feature.description}</CardDescription>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <div className="inline-block bg-primary/10 rounded-lg px-6 py-4 mb-6">
+              <h3 className="text-2xl font-serif font-bold text-primary mb-2">🏃‍♂️ लिमिटेड प्लॉट्स!</h3>
+              <p className="text-muted-foreground">Limited plots available - Book your visit today!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Investment Guide */}
       <section id="investment" className="py-20 bg-primary/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">
-              Why Invest in Uttrakhand Plots?
+              Why Invest in Dehradun Plots?
             </h2>
             <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
-              Discover the compelling reasons to invest in land plots in India's spiritual and scenic paradise
+              Discover the compelling reasons to invest in legally verified plots near Shimla Bypass Road
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
               {
-                icon: "📈",
-                title: "Exceptional Growth Potential",
+                icon: "🛣️",
+                title: "Prime Location Advantage",
                 description:
-                  "Land values in Uttrakhand hill stations have shown consistent 15-25% annual appreciation with strong future prospects",
-              },
-              {
-                icon: "🌲",
-                title: "Tourism & Spiritual Hub",
-                description:
-                  "Growing spiritual tourism and adventure travel creating sustained demand for hospitality and residential development",
+                  "Shimla Bypass Road offers excellent connectivity to Mussoorie, Delhi Highway, and major Dehradun areas with peaceful surroundings",
               },
               {
                 icon: "🛡️",
-                title: "Legal Security & Clarity",
+                title: "Verified and Secure",
                 description:
-                  "All plots come with verified legal documents, clear titles, and government approvals for peace of mind",
+                  "Every plot comes with legally verified documentation and proper titles ensuring full transparency and hassle-free investment",
               },
               {
                 icon: "⚡",
-                title: "Infrastructure Development",
+                title: "Ready-to-Build Facilities",
                 description:
-                  "Rapid infrastructure growth including better roads, connectivity, and utilities enhancing plot values",
+                  "All plots include essential facilities like road access, water supply, and electricity making them ideal for immediate construction",
               },
               {
-                icon: "🏔️",
-                title: "Climate & Lifestyle",
+                icon: "📈",
+                title: "Steady Growth Potential",
                 description:
-                  "Pleasant year-round climate and pristine environment making it ideal for second homes and retirement",
+                  "Dehradun's real estate market shows consistent growth with high demand near Shimla Bypass due to infrastructure development",
               },
               {
-                icon: "🏆",
-                title: "Government Support",
+                icon: "🏠",
+                title: "Multiple Use Options",
                 description:
-                  "State government initiatives promoting hill station development and sustainable tourism growth",
+                  "Perfect for residential homes, farmhouses, rental properties, or long-term investment with flexible usage options",
+              },
+              {
+                icon: "🤝",
+                title: "Complete Guidance",
+                description:
+                  "From consultation to site visits and final registration, our team provides full professional support throughout the process",
               },
             ].map((benefit, index) => (
               <Card
@@ -329,189 +377,288 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-
-          <div className="max-w-4xl mx-auto">
-            <Card className="p-8 bg-card/80 backdrop-blur-sm border-2 border-primary/20">
-              <CardHeader className="text-center pb-6">
-                <CardTitle className="font-serif text-2xl mb-2">Plot Investment Calculator</CardTitle>
-                <CardDescription className="text-base">
-                  Estimate your potential returns on Uttrakhand plot investments
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-6 text-center">
-                  <div className="p-6 bg-muted/50 rounded-xl">
-                    <div className="font-serif font-bold text-3xl text-primary mb-2">₹50L</div>
-                    <div className="text-sm text-muted-foreground mb-2">Average Plot Price</div>
-                    <div className="text-xs text-muted-foreground">2000-3000 sq ft</div>
-                  </div>
-                  <div className="p-6 bg-muted/50 rounded-xl">
-                    <div className="font-serif font-bold text-3xl text-primary mb-2">18%</div>
-                    <div className="text-sm text-muted-foreground mb-2">Expected Annual Growth</div>
-                    <div className="text-xs text-muted-foreground">Based on 5-year trends</div>
-                  </div>
-                  <div className="p-6 bg-muted/50 rounded-xl">
-                    <div className="font-serif font-bold text-3xl text-primary mb-2">₹1.2Cr</div>
-                    <div className="text-sm text-muted-foreground mb-2">Projected Value (5 years)</div>
-                    <div className="text-xs text-muted-foreground">Conservative estimate</div>
-                  </div>
-                </div>
-                <div className="text-center mt-8">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 px-8">
-                    🧮 Get Detailed Analysis
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20">
+      {/* Pricing & Terms Section */}
+      <section id="pricing" className="py-20 bg-muted/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">Plot Owner Success Stories</h2>
-            <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
-              Hear from satisfied plot owners who made smart investments in Uttrakhand
+            <h2 className="font-serif font-black text-4xl md:text-5xl text-balance mb-6">Pricing & Payment Options</h2>
+            <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
+              Flexible payment plans starting September 2025 with transparent pricing and easy EMI options
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Rajesh Sharma",
-                location: "Delhi → Mussoorie Plot Owner",
-                rating: 5,
-                investment: "₹75L Plot → ₹1.1Cr (2 years)",
-                text: "Bought a plot in Mussoorie hills 2 years ago. The value has increased by 47% and I'm planning to build my dream home there soon.",
-              },
-              {
-                name: "Priya Gupta",
-                location: "Mumbai → Rishikesh Plot Owner",
-                rating: 5,
-                investment: "₹45L Plot → ₹68L (18 months)",
-                text: "Perfect investment for my spiritual retreat center. The plot location near Ganga is ideal and the legal process was completely transparent.",
-              },
-              {
-                name: "Amit Kumar",
-                location: "Bangalore → Nainital Plot Owner",
-                rating: 5,
-                investment: "₹90L Plot → ₹1.3Cr (3 years)",
-                text: "Best decision ever! My lake-view plot has appreciated tremendously. Planning to develop a boutique resort there.",
-              },
-            ].map((testimonial, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 bg-card/80 backdrop-blur-sm">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-primary text-lg">
-                      ⭐
-                    </span>
-                  ))}
-                </div>
-                <CardDescription className="text-base mb-6 italic leading-relaxed">
-                  "{testimonial.text}"
-                </CardDescription>
-                <div className="border-t pt-4">
-                  <CardTitle className="text-base font-semibold mb-1">{testimonial.name}</CardTitle>
-                  <CardDescription className="text-sm mb-2">{testimonial.location}</CardDescription>
-                  <Badge variant="secondary" className="text-xs font-medium">
-                    {testimonial.investment}
-                  </Badge>
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {/* Pricing Table */}
+            <div>
+              <h3 className="text-2xl font-serif font-bold mb-6 text-center">Current Pricing (Per Square Yard)</h3>
+              <Card className="overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-primary text-primary-foreground">
+                      <tr>
+                        <th className="p-4 text-left font-medium">Project</th>
+                        <th className="p-4 text-center font-medium">One Time</th>
+                        <th className="p-4 text-center font-medium">3 Months EMI</th>
+                        <th className="p-4 text-center font-medium">6 Months EMI</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      <tr className="hover:bg-muted/50">
+                        <td className="p-4 font-medium">Bajrang Vatika</td>
+                        <td className="p-4 text-center">₹16,500</td>
+                        <td className="p-4 text-center">₹17,500</td>
+                        <td className="p-4 text-center">₹19,000</td>
+                      </tr>
+                      <tr className="hover:bg-muted/50">
+                        <td className="p-4 font-medium">Nature Green Valley</td>
+                        <td className="p-4 text-center">₹15,500</td>
+                        <td className="p-4 text-center">₹16,500</td>
+                        <td className="p-4 text-center">₹18,000</td>
+                      </tr>
+                      <tr className="hover:bg-muted/50">
+                        <td className="p-4 font-medium">Friend's Colony Phase 1</td>
+                        <td className="p-4 text-center">₹16,000</td>
+                        <td className="p-4 text-center">₹17,000</td>
+                        <td className="p-4 text-center">₹18,500</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </Card>
-            ))}
+
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <Card className="p-4 text-center bg-accent/50">
+                  <div className="text-lg font-bold text-primary">Corner Plot</div>
+                  <div className="text-sm text-muted-foreground">+10% Premium</div>
+                </Card>
+                <Card className="p-4 text-center bg-accent/50">
+                  <div className="text-lg font-bold text-primary">Park Facing</div>
+                  <div className="text-sm text-muted-foreground">+15% Premium</div>
+                </Card>
+              </div>
+            </div>
+
+            {/* Terms & Token System */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-serif font-bold mb-4">Booking Terms</h3>
+                <Card className="p-6">
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary">•</span>
+                      <span><strong>Booking Amount:</strong> 20% of plot value</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary">•</span>
+                      <span><strong>Minimum Token:</strong> ₹11,000 to hold plot</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary">•</span>
+                      <span><strong>Business Count:</strong> 80% for Bajrang Vatika & Friend's Colony</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary">•</span>
+                      <span><strong>Payment:</strong> Plan days counted from Token Date</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary">•</span>
+                      <span><strong>Important:</strong> Tokens are now non-refundable</span>
+                    </li>
+                  </ul>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-serif font-bold mb-4">Token Status System</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                    <span className="text-sm"><strong>RED:</strong> Less than 10% of plot value</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+                    <span className="text-sm"><strong>YELLOW:</strong> Minimum 10% of plot value</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm"><strong>BLUE:</strong> Minimum 25% of plot value</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                    <span className="text-sm"><strong>GREEN:</strong> Registry completed</span>
+                  </div>
+                </div>
+              </div>
+
+              <Card className="p-4 bg-primary/5 border-primary/20">
+                <div className="text-center">
+                  <h4 className="font-bold text-primary mb-2">📞 Book Your Visit Today!</h4>
+                  <p className="text-2xl font-bold">+91 7870231314</p>
+                  <p className="text-sm text-muted-foreground mt-1">Call now for site visits and detailed information</p>
+                </div>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="contact" className="bg-primary text-primary-foreground py-16">
+      {/* About Section */}
+      <section id="about" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="mb-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="relative w-12 h-12 flex-shrink-0">
-                    <Image
-                      src="/images/mascot-logo.png"
-                      alt="Property in Uttrakhand"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-contain rounded-lg bg-white/10 p-1"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="font-bold text-base leading-tight">Property in Uttrakhand</h3>
-                    <p className="text-xs opacity-75">Premium Hill Station Plots</p>
-                  </div>
-                </div>
-              </div>
-              <p className="text-sm opacity-90 leading-relaxed">
-                Your trusted partner for premium land plots in Uttrakhand's most beautiful hill stations. Legal clarity,
-                prime locations, exceptional growth potential.
+              <h2 className="text-4xl font-bold mb-6">About Property in Uttarakhand</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                We specialize in providing premium land plots in Uttarakhand's most sought-after locations. 
+                With over 80% business completion rate in our featured projects, we ensure transparent 
+                dealings and legal clarity for all our investors.
               </p>
-            </div>
-
-            <div>
-              <h4 className="font-serif font-bold text-lg mb-6">Plot Services</h4>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Link href="#plots" className="opacity-90 hover:opacity-100 transition-opacity">
-                    Available Plots
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#locations" className="opacity-90 hover:opacity-100 transition-opacity">
-                    Prime Locations
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#investment" className="opacity-90 hover:opacity-100 transition-opacity">
-                    Investment Guide
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#contact" className="opacity-90 hover:opacity-100 transition-opacity">
-                    Site Visits
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-serif font-bold text-lg mb-6">Hill Stations</h4>
-              <ul className="space-y-3 text-sm">
-                <li className="opacity-90">Mussoorie Plots</li>
-                <li className="opacity-90">Rishikesh Plots</li>
-                <li className="opacity-90">Nainital Plots</li>
-                <li className="opacity-90">Dehradun Plots</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-serif font-bold text-lg mb-6">Contact Info</h4>
-              <div className="space-y-4 text-sm">
+              <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  📞 <span className="opacity-90">+91 98765 43210</span>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span>Legal documentation and clear titles</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  📧 <span className="opacity-90">plots@propertyinuttrakhand.com</span>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span>Prime locations near hill stations</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  📍 <span className="opacity-90">Dehradun, Uttrakhand 248001</span>
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span>Flexible payment options</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span>Proven investment growth</span>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="border-t border-primary-foreground/20 pt-8 text-center">
-            <p className="text-sm opacity-90">
-              © 2024 Property in Uttrakhand. All rights reserved. | Invest in your piece of paradise.
-            </p>
+            <div className="relative">
+              <Image
+                src="/images/dehradun-outskirts-plots.jpg"
+                alt="About Property in Uttarakhand"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-xl"
+              />
+            </div>
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Company Achievements & Certifications */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-serif font-black text-3xl md:text-4xl text-balance mb-4">
+              Trusted by Thousands • Certified Excellence
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Leading property developer in Uttrakhand with industry certifications and customer trust since 2020
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <Card className="text-center p-6 border-2 hover:border-primary transition-colors">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary text-2xl font-bold">5000+</span>
+              </div>
+              <h3 className="font-serif font-bold text-lg mb-2">Happy Customers</h3>
+              <p className="text-muted-foreground text-sm">Satisfied plot owners across Uttrakhand</p>
+            </Card>
+
+            <Card className="text-center p-6 border-2 hover:border-primary transition-colors">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary text-2xl font-bold">50+</span>
+              </div>
+              <h3 className="font-serif font-bold text-lg mb-2">Prime Projects</h3>
+              <p className="text-muted-foreground text-sm">RERA approved developments completed</p>
+            </Card>
+
+            <Card className="text-center p-6 border-2 hover:border-primary transition-colors">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary text-2xl font-bold">100%</span>
+              </div>
+              <h3 className="font-serif font-bold text-lg mb-2">Legal Clarity</h3>
+              <p className="text-muted-foreground text-sm">All plots with clear titles and documentation</p>
+            </Card>
+
+            <Card className="text-center p-6 border-2 hover:border-primary transition-colors">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary text-2xl font-bold">4.8★</span>
+              </div>
+              <h3 className="font-serif font-bold text-lg mb-2">Customer Rating</h3>
+              <p className="text-muted-foreground text-sm">Based on 2500+ verified reviews</p>
+            </Card>
+          </div>
+
+          <div className="bg-white rounded-lg p-8 shadow-lg">
+            <h3 className="font-serif font-bold text-2xl text-center mb-8">Our Certifications & Awards</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                  <span className="text-primary text-2xl">🏅</span>
+                </div>
+                <p className="text-sm font-medium">RERA Registered</p>
+                <p className="text-xs text-muted-foreground">UP-RERA-2024-001</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                  <span className="text-primary text-2xl">📜</span>
+                </div>
+                <p className="text-sm font-medium">ISO 9001:2015</p>
+                <p className="text-xs text-muted-foreground">Quality Management</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                  <span className="text-primary text-2xl">🏆</span>
+                </div>
+                <p className="text-sm font-medium">Best Developer</p>
+                <p className="text-xs text-muted-foreground">Uttrakhand 2024</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                  <span className="text-primary text-2xl">🔒</span>
+                </div>
+                <p className="text-sm font-medium">Legal Compliance</p>
+                <p className="text-xs text-muted-foreground">100% Verified</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Invest in Your Future?</h2>
+          <p className="text-lg text-primary-foreground/80 max-w-3xl mx-auto mb-10">
+            Don't miss out on this incredible opportunity to own a piece of Dehradun's serene beauty. 
+            Secure your future with a premium plot today.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="bg-white text-primary hover:bg-white/90 shadow-lg"
+              onClick={() => window.open('tel:+917870231314', '_self')}
+            >
+              📞 Call +91 7870231314
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-primary shadow-lg"
+              onClick={() => window.open('https://maps.google.com/?q=Badripur+Ganeshpur+Dehradun', '_blank')}
+            >
+              📍 Visit Our Plots
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
     </div>
   )
 }

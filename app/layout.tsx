@@ -18,19 +18,38 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Property in Uttrakhand - Premium Hill Station Land Plots",
+  title: "Property in Uttrakhand - Premium Hill Station Land Plots | 2025",
   description:
-    "Invest in premium land plots in Uttrakhand's beautiful hill stations. Legal clarity, prime locations, exceptional growth potential. Mussoorie, Rishikesh, Nainital plots available.",
+    "Leading property developer offering premium land plots in Uttrakhand's pristine hill stations. RERA approved, legal clarity guaranteed, prime locations with exceptional ROI. Mussoorie, Rishikesh, Nainital, Dehradun plots available.",
   keywords:
-    "Uttrakhand plots, hill station land, Mussoorie plots, Rishikesh land, Nainital property, investment plots, mountain view plots",
+    "Uttrakhand plots 2025, RERA approved plots, hill station land investment, Mussoorie plots, Rishikesh land, Nainital property, Dehradun plots, mountain view plots, legal property Uttrakhand, hill station investment",
+  authors: [{ name: "Property in Uttrakhand" }],
+  creator: "Property in Uttrakhand",
+  publisher: "Property in Uttrakhand",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "Property in Uttrakhand - Premium Hill Station Land Plots",
+    title: "Property in Uttrakhand - Premium Hill Station Land Plots | 2025",
     description:
-      "Invest in premium land plots in Uttrakhand's beautiful hill stations with legal clarity and high growth potential.",
+      "Leading property developer in Uttrakhand offering RERA approved plots with guaranteed legal clarity and exceptional growth potential in prime hill station locations.",
     type: "website",
     locale: "en_IN",
+    url: "https://propertyinuttrakhand.com",
+    siteName: "Property in Uttrakhand",
   },
-  generator: "v0.app",
+  twitter: {
+    card: "summary_large_image",
+    title: "Property in Uttrakhand - Premium Hill Station Land Plots",
+    description: "RERA approved plots in Uttrakhand's beautiful hill stations with guaranteed legal clarity.",
+  },
+  verification: {
+    google: "google-site-verification-code",
+  },
+  alternates: {
+    canonical: "https://propertyinuttrakhand.com",
+  },
 }
 
 export default function RootLayout({
