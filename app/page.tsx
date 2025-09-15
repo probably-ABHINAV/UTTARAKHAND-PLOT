@@ -38,6 +38,7 @@ import {
   Zap
 } from "lucide-react"
 
+
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
   if (element) {
