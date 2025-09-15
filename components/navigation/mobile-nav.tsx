@@ -18,46 +18,59 @@ export function MobileNav() {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-80">
-        <nav className="flex flex-col gap-6 mt-6">
-          <Link 
-            href="#plots" 
-            className="text-foreground hover:text-primary transition-colors font-medium text-base"
-            onClick={closeSheet}
-          >
-            Our Plots
-          </Link>
-          <Link
-            href="#locations"
-            className="text-foreground hover:text-primary transition-colors font-medium text-base"
-            onClick={closeSheet}
-          >
-            Locations
-          </Link>
-          <Link
-            href="#investment"
-            className="text-foreground hover:text-primary transition-colors font-medium text-base"
-            onClick={closeSheet}
-          >
-            Why Invest
-          </Link>
-          <Link 
-            href="#about" 
-            className="text-foreground hover:text-primary transition-colors font-medium text-base"
-            onClick={closeSheet}
-          >
-            About Us
-          </Link>
-          <Link 
-            href="#contact" 
-            className="text-foreground hover:text-primary transition-colors font-medium text-base"
-            onClick={closeSheet}
-          >
-            Contact
-          </Link>
-          <Button className="bg-primary hover:bg-primary/90 shadow-lg mt-4" onClick={closeSheet}>
-            📞 Call Now
-          </Button>
+      <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+        <nav className="flex flex-col gap-4">
+          <div className="flex flex-col space-y-3">
+            <Link
+              href="/"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              Home
+            </Link>
+            <Link
+              href="/plots"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              Our Plots
+            </Link>
+            <Link
+              href="/investment"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              Why Invest
+            </Link>
+            <Link
+              href="/calculator"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              Calculator
+            </Link>
+            <Link
+              href="/locations"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              Locations
+            </Link>
+            <Link
+              href="/about"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              About Us
+            </Link>
+            <Link
+              href="/contact"
+              className="text-lg font-medium hover:text-primary transition-colors"
+              onClick={closeSheet}
+            >
+              Contact
+            </Link>
+          </div>
         </nav>
       </SheetContent>
     </Sheet>

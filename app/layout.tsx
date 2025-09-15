@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import { Open_Sans } from "next/font/google"
 import { Suspense } from "react"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${montserrat.variable} ${openSans.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
+        <Toaster />
       </body>
     </html>
   )
