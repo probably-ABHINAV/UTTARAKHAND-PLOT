@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { LogOut } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/hooks/use-api"
 
 interface LogoutButtonProps {
   variant?: "default" | "outline" | "ghost"
@@ -11,11 +12,10 @@ interface LogoutButtonProps {
 
 export function LogoutButton({ variant = "outline", size = "sm" }: LogoutButtonProps) {
   const router = useRouter()
+  const { logout } = useAuth()
 
   const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated")
-    localStorage.removeItem("userRole")
-    localStorage.removeItem("userName")
+    logout()
     router.push("/login")
   }
 

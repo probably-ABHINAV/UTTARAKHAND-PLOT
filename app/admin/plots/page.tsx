@@ -24,6 +24,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { AuthGuard } from "@/components/auth-guard"
 import { LogoutButton } from "@/components/logout-button"
+import { useMutation } from "@/hooks/use-api"
+import { apiClient } from "@/lib/api-client"
 
 // Mock plot data
 const mockPlots = [
@@ -109,33 +111,40 @@ function PlotManagementContent() {
     return matchesSearch && matchesStatus && matchesType
   })
 
-  const handleAddPlot = (formData: FormData) => {
-    const newPlot = {
-      id: `PLT${String(plots.length + 1).padStart(3, "0")}`,
-      title: formData.get("title") as string,
-      location: formData.get("location") as string,
-      area: formData.get("area") as string,
-      price: formData.get("price") as string,
-      pricePerSqFt: formData.get("pricePerSqFt") as string,
-      type: formData.get("type") as string,
-      status: "Available",
-      facing: formData.get("facing") as string,
-      amenities: [],
-      description: formData.get("description") as string,
-      dateAdded: new Date().toISOString().split("T")[0],
-      lastUpdated: new Date().toISOString().split("T")[0],
-      images: [],
-      coordinates: { lat: 0, lng: 0 },
-      nearbyAttractions: [],
-      legalStatus: "Clear Title",
-      approvals: [],
+  const createPlotMutation = useMutation(apiClient.createPlot)
+  const deletePlotMutation = useMutation(apiClient.deletePlot)
+
+  const handleAddPlot = async (formData: FormData) => {
+    try {
+      const plotData = {
+        title: formData.get("title") as string,
+        location: formData.get("location") as string,
+        description: formData.get("description") as string,
+        price: parseFloat((formData.get("price") as string).replace(/₹|L|,/g, '')) * 100000,
+        size_sqyd: parseFloat(formData.get("area") as string),
+        is_published: true,
+        slug: (formData.get("title") as string).toLowerCase().replace(/\s+/g, '-'),
+      }
+      
+      await createPlotMutation.mutate(plotData)
+      // Refresh the page or refetch data
+      window.location.reload()
+    } catch (error) {
+      console.error('Error creating plot:', error)
+      alert('Error creating plot. Please try again.')
     }
-    setPlots([...plots, newPlot])
-    setIsAddDialogOpen(false)
   }
 
-  const handleDeletePlot = (plotId: string) => {
-    setPlots(plots.filter((plot) => plot.id !== plotId))
+  const handleDeletePlot = async (plotId: string) => {
+    if (window.confirm('Are you sure you want to delete this plot?')) {
+      try {
+        await deletePlotMutation.mutate(plotId)
+        setPlots(plots.filter((plot) => plot.id !== plotId))
+      } catch (error) {
+        console.error('Error deleting plot:', error)
+        alert('Error deleting plot. Please try again.')
+      }
+    }
   }
 
   const getStatusColor = (status: string) => {

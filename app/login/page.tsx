@@ -13,6 +13,7 @@ import { Eye, EyeOff, Lock, Mail, User, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/hooks/use-api"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -20,6 +21,7 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
   const router = useRouter()
+  const { login } = useAuth()
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -30,18 +32,16 @@ export default function LoginPage() {
     const email = formData.get("email") as string
     const password = formData.get("password") as string
 
-    // Mock authentication - in real app, this would call an API
-    setTimeout(() => {
-      if (email === "admin@propertyinuttrakhand.com" && password === "admin123") {
-        localStorage.setItem("isAuthenticated", "true")
-        localStorage.setItem("userRole", "admin")
-        localStorage.setItem("userName", "Admin User")
-        router.push("/admin")
-      } else {
-        setError("Invalid email or password")
-      }
+    try {
+      await login(email, password)
+      // Store additional user data for compatibility
+      localStorage.setItem("userRole", "admin")
+      localStorage.setItem("userName", email.split("@")[0] || "Admin User")
+      router.push("/admin")
+    } catch (err: any) {
+      setError(err.message || "Login failed. Please check your credentials.")
       setIsLoading(false)
-    }, 1000)
+    }
   }
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {

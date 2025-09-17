@@ -23,6 +23,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { AuthGuard } from "@/components/auth-guard"
 import { LogoutButton } from "@/components/logout-button"
+import { useMutation } from "@/hooks/use-api"
+import { apiClient } from "@/lib/api-client"
 
 // Mock inquiry data
 const mockInquiries = [
@@ -123,8 +125,17 @@ function InquiryManagementContent() {
     return matchesSearch && matchesStatus && matchesPriority
   })
 
-  const handleStatusChange = (inquiryId: number, newStatus: string) => {
-    setInquiries(inquiries.map((inquiry) => (inquiry.id === inquiryId ? { ...inquiry, status: newStatus } : inquiry)))
+  const updateInquiryMutation = useMutation((data: { id: string; status: string }) => 
+    apiClient.updateInquiry(data.id, { status: data.status })
+  )
+
+  const handleStatusChange = async (inquiryId: number, newStatus: string) => {
+    try {
+      await updateInquiryMutation.mutate({ id: inquiryId.toString(), status: newStatus })
+      setInquiries(inquiries.map((inquiry) => (inquiry.id === inquiryId ? { ...inquiry, status: newStatus } : inquiry)))
+    } catch (error) {
+      console.error('Error updating inquiry status:', error)
+    }
   }
 
   const handleAddNote = (inquiryId: number, note: string) => {

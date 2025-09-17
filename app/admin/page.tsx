@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -31,68 +31,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { AuthGuard } from "@/components/auth-guard"
 import { LogoutButton } from "@/components/logout-button"
+import { usePlots, useInquiries, useMutation } from "@/hooks/use-api"
+import { apiClient } from "@/lib/api-client"
 
-const mockPlots = [
-  {
-    id: 1,
-    title: "Himalayan View Plot - Mussoorie",
-    location: "Mussoorie Hills, Uttrakhand",
-    price: "₹85 L",
-    size: "2400 sq ft",
-    type: "Residential Plot",
-    status: "Available",
-    views: 245,
-    inquiries: 12,
-    dateAdded: "2024-01-15",
-  },
-  {
-    id: 2,
-    title: "Spiritual Valley Plot - Rishikesh",
-    location: "Rishikesh Valley, Uttrakhand",
-    price: "₹65 L",
-    size: "3200 sq ft",
-    type: "Commercial Plot",
-    status: "Sold",
-    views: 189,
-    inquiries: 8,
-    dateAdded: "2024-01-10",
-  },
-  {
-    id: 3,
-    title: "Lake View Plot - Nainital",
-    location: "Nainital Lake Area, Uttrakhand",
-    price: "₹1.2 Cr",
-    size: "4800 sq ft",
-    type: "Premium Plot",
-    status: "Available",
-    views: 156,
-    inquiries: 15,
-    dateAdded: "2024-01-20",
-  },
-]
-
-const mockInquiries = [
-  {
-    id: 1,
-    name: "Rajesh Sharma",
-    email: "rajesh@email.com",
-    phone: "+91 98765 43210",
-    plot: "Himalayan View Plot - Mussoorie",
-    message: "Interested in viewing this plot. Please share soil test reports and legal documents.",
-    date: "2024-01-25",
-    status: "New",
-  },
-  {
-    id: 2,
-    name: "Priya Gupta",
-    email: "priya@email.com",
-    phone: "+91 87654 32109",
-    plot: "Lake View Plot - Nainital",
-    message: "Looking for investment plot near lake. Is this available for immediate purchase?",
-    date: "2024-01-24",
-    status: "Contacted",
-  },
-]
 
 const analyticsData = [
   { month: "Jan", plots: 12, inquiries: 45, sales: 3 },
@@ -114,10 +55,77 @@ function AdminDashboardContent() {
   const [activeTab, setActiveTab] = useState("overview")
   const [userName, setUserName] = useState("")
 
+  // API hooks
+  const { data: plotsData, loading: plotsLoading, error: plotsError, refetch: refetchPlots } = usePlots()
+  const { data: inquiriesData, loading: inquiriesLoading, error: inquiriesError, refetch: refetchInquiries } = useInquiries()
+
+  // Extract data from API responses or provide empty arrays as fallbacks
+  const plots = plotsData?.plots || []
+  const inquiries = inquiriesData?.inquiries || []
+
   useEffect(() => {
     const name = localStorage.getItem("userName") || "Admin User"
     setUserName(name)
   }, [])
+
+  // Transform API data for analytics
+  const generateAnalyticsData = () => {
+    if (plots.length === 0) {
+      return [
+        { month: "Jan", plots: 0, inquiries: 0, sales: 0 },
+        { month: "Feb", plots: 0, inquiries: 0, sales: 0 },
+        { month: "Mar", plots: 0, inquiries: 0, sales: 0 },
+        { month: "Apr", plots: 0, inquiries: 0, sales: 0 },
+        { month: "May", plots: 0, inquiries: 0, sales: 0 },
+        { month: "Jun", plots: 0, inquiries: 0, sales: 0 },
+      ]
+    }
+
+    // Mock analytics based on real data count
+    const totalPlots = plots.length
+    const totalInquiries = inquiries.length
+    return [
+      { month: "Jan", plots: Math.floor(totalPlots * 0.1), inquiries: Math.floor(totalInquiries * 0.15), sales: Math.floor(totalPlots * 0.05) },
+      { month: "Feb", plots: Math.floor(totalPlots * 0.12), inquiries: Math.floor(totalInquiries * 0.18), sales: Math.floor(totalPlots * 0.06) },
+      { month: "Mar", plots: Math.floor(totalPlots * 0.15), inquiries: Math.floor(totalInquiries * 0.12), sales: Math.floor(totalPlots * 0.04) },
+      { month: "Apr", plots: Math.floor(totalPlots * 0.18), inquiries: Math.floor(totalInquiries * 0.22), sales: Math.floor(totalPlots * 0.08) },
+      { month: "May", plots: Math.floor(totalPlots * 0.22), inquiries: Math.floor(totalInquiries * 0.25), sales: Math.floor(totalPlots * 0.09) },
+      { month: "Jun", plots: totalPlots, inquiries: totalInquiries, sales: Math.floor(totalPlots * 0.12) },
+    ]
+  }
+
+  const analyticsData = generateAnalyticsData()
+
+  // Mock data for inquiries tab (fallback when API data not available)
+  const mockInquiries = [
+    {
+      id: 1,
+      name: "Rajesh Sharma",
+      email: "rajesh.sharma@email.com",
+      phone: "+91 98765 43210",
+      plot: "Himalayan Villa in Mussoorie",
+      date: "2024-01-25",
+      status: "New",
+    },
+    {
+      id: 2,
+      name: "Priya Gupta",
+      email: "priya.gupta@email.com",
+      phone: "+91 87654 32109",
+      plot: "Mountain View Cottage in Nainital",
+      date: "2024-01-24",
+      status: "Contacted",
+    },
+    {
+      id: 3,
+      name: "Amit Kumar",
+      email: "amit.kumar@email.com",
+      phone: "+91 76543 21098",
+      plot: "Spiritual Retreat Plot - Rishikesh",
+      date: "2024-01-23",
+      status: "Closed",
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
@@ -207,8 +215,8 @@ function AdminDashboardContent() {
                   <Map className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-primary">142</div>
-                  <p className="text-xs text-muted-foreground">+8 new plots this month</p>
+                  <div className="text-2xl font-bold text-primary">{plotsLoading ? "..." : plots.filter(p => p.is_published).length}</div>
+                  <p className="text-xs text-muted-foreground">Active listings</p>
                 </CardContent>
               </Card>
               <Card className="bg-card/80 backdrop-blur-sm">
@@ -217,28 +225,28 @@ function AdminDashboardContent() {
                   <MessageSquare className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-primary">58</div>
-                  <p className="text-xs text-muted-foreground">+12 from last week</p>
+                  <div className="text-2xl font-bold text-primary">{inquiriesLoading ? "..." : inquiries.length}</div>
+                  <p className="text-xs text-muted-foreground">Total inquiries</p>
                 </CardContent>
               </Card>
               <Card className="bg-card/80 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-sm font-medium">Plots Sold</CardTitle>
+                  <CardTitle className="text-sm font-medium">New Inquiries</CardTitle>
                   <Ruler className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-primary">6</div>
-                  <p className="text-xs text-muted-foreground">This month</p>
+                  <div className="text-2xl font-bold text-primary">{inquiriesLoading ? "..." : inquiries.filter(i => i.status === 'NEW').length}</div>
+                  <p className="text-xs text-muted-foreground">Pending response</p>
                 </CardContent>
               </Card>
               <Card className="bg-card/80 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                  <CardTitle className="text-sm font-medium">Total Plots</CardTitle>
                   <TrendingUp className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-primary">₹4.8 Cr</div>
-                  <p className="text-xs text-muted-foreground">+32% from last month</p>
+                  <div className="text-2xl font-bold text-primary">{plotsLoading ? "..." : plots.length}</div>
+                  <p className="text-xs text-muted-foreground">All plots in system</p>
                 </CardContent>
               </Card>
             </div>
@@ -250,25 +258,35 @@ function AdminDashboardContent() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {mockPlots.slice(0, 3).map((plot) => (
-                      <div key={plot.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                        <div>
-                          <p className="font-medium">{plot.title}</p>
-                          <p className="text-sm text-muted-foreground flex items-center gap-1">
-                            <MapPin className="w-3 h-3" />
-                            {plot.location}
-                          </p>
-                          <p className="text-sm text-muted-foreground flex items-center gap-1">
-                            <Ruler className="w-3 h-3" />
-                            {plot.size}
-                          </p>
+                    {plotsLoading ? (
+                      <div className="text-center py-4 text-muted-foreground">Loading plots...</div>
+                    ) : plotsError ? (
+                      <div className="text-center py-4 text-destructive">Error loading plots: {plotsError}</div>
+                    ) : plots.length === 0 ? (
+                      <div className="text-center py-4 text-muted-foreground">No plots found</div>
+                    ) : (
+                      plots.slice(0, 3).map((plot) => (
+                        <div key={plot.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
+                          <div>
+                            <p className="font-medium">{plot.title}</p>
+                            <p className="text-sm text-muted-foreground flex items-center gap-1">
+                              <MapPin className="w-3 h-3" />
+                              {plot.location}
+                            </p>
+                            <p className="text-sm text-muted-foreground flex items-center gap-1">
+                              <Ruler className="w-3 h-3" />
+                              {plot.size_sqyd} sqyd
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-semibold text-primary">₹{plot.price?.toLocaleString()}</div>
+                            <Badge variant={plot.is_published ? "default" : "secondary"}>
+                              {plot.is_published ? "Published" : "Draft"}
+                            </Badge>
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <div className="font-semibold text-primary">{plot.price}</div>
-                          <Badge variant={plot.status === "Available" ? "default" : "secondary"}>{plot.status}</Badge>
-                        </div>
-                      </div>
-                    ))}
+                      ))
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -279,15 +297,26 @@ function AdminDashboardContent() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {mockInquiries.slice(0, 3).map((inquiry) => (
-                      <div key={inquiry.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                        <div>
-                          <p className="font-medium">{inquiry.name}</p>
-                          <p className="text-sm text-muted-foreground">{inquiry.plot}</p>
+                    {inquiriesLoading ? (
+                      <div className="text-center py-4 text-muted-foreground">Loading inquiries...</div>
+                    ) : inquiriesError ? (
+                      <div className="text-center py-4 text-destructive">Error loading inquiries: {inquiriesError}</div>
+                    ) : inquiries.length === 0 ? (
+                      <div className="text-center py-4 text-muted-foreground">No inquiries found</div>
+                    ) : (
+                      inquiries.slice(0, 3).map((inquiry) => (
+                        <div key={inquiry.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
+                          <div>
+                            <p className="font-medium">{inquiry.name}</p>
+                            <p className="text-sm text-muted-foreground">{inquiry.plots?.title || "General Inquiry"}</p>
+                            <p className="text-xs text-muted-foreground">{new Date(inquiry.created_at).toLocaleDateString()}</p>
+                          </div>
+                          <Badge variant={inquiry.status === "NEW" ? "destructive" : inquiry.status === "CONTACTED" ? "default" : "secondary"}>
+                            {inquiry.status}
+                          </Badge>
                         </div>
-                        <Badge variant={inquiry.status === "New" ? "destructive" : "default"}>{inquiry.status}</Badge>
-                      </div>
-                    ))}
+                      ))
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -324,27 +353,48 @@ function AdminDashboardContent() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {mockPlots.map((plot) => (
-                      <TableRow key={plot.id}>
-                        <TableCell className="font-medium">{plot.title}</TableCell>
-                        <TableCell>{plot.location}</TableCell>
-                        <TableCell className="font-semibold text-primary">{plot.price}</TableCell>
-                        <TableCell>{plot.size}</TableCell>
-                        <TableCell>{plot.type}</TableCell>
-                        <TableCell>
-                          <Badge variant={plot.status === "Available" ? "default" : "secondary"}>{plot.status}</Badge>
+                    {plotsLoading ? (
+                      <TableRow>
+                        <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
+                          Loading plots...
                         </TableCell>
-                        <TableCell>{plot.views}</TableCell>
-                        <TableCell>{plot.inquiries}</TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            <Button size="sm" variant="outline">
-                              <Eye className="w-4 h-4" />
-                            </Button>
-                            <Button size="sm" variant="outline">
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                            <Button size="sm" variant="outline">
+                      </TableRow>
+                    ) : plotsError ? (
+                      <TableRow>
+                        <TableCell colSpan={9} className="text-center py-8 text-destructive">
+                          Error loading plots: {plotsError}
+                        </TableCell>
+                      </TableRow>
+                    ) : plots.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
+                          No plots found. Add your first plot to get started.
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      plots.map((plot) => (
+                        <TableRow key={plot.id}>
+                          <TableCell className="font-medium">{plot.title}</TableCell>
+                          <TableCell>{plot.location}</TableCell>
+                          <TableCell className="font-semibold text-primary">₹{plot.price?.toLocaleString()}</TableCell>
+                          <TableCell>{plot.size_sqyd} sqyd</TableCell>
+                          <TableCell>Plot</TableCell>
+                          <TableCell>
+                            <Badge variant={plot.is_published ? "default" : "secondary"}>
+                              {plot.is_published ? "Published" : "Draft"}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>-</TableCell>
+                          <TableCell>-</TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              <Button size="sm" variant="outline">
+                                <Eye className="w-4 h-4" />
+                              </Button>
+                              <Button size="sm" variant="outline">
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                              <Button size="sm" variant="outline">
                               <Trash2 className="w-4 h-4" />
                             </Button>
                           </div>
