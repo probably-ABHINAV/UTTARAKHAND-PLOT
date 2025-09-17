@@ -1,60 +1,55 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat, Open_Sans } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+import { Montserrat } from "next/font/google"
+import { Open_Sans } from "next/font/google"
 import { Suspense } from "react"
-import AppShell from "@/components/app-shell"
-import { ErrorBoundary } from "@/components/error-boundary"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
-import { LanguageProvider } from "@/hooks/use-language"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "900"],
 })
 
 const openSans = Open_Sans({
   subsets: ["latin"],
   variable: "--font-open-sans",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600"],
 })
 
 export const metadata: Metadata = {
-  title: "AgriNetra - Premium Smart Crop Advisory System",
+  title: "Property in Uttrakhand - Premium Hill Station Land Plots | 2025",
   description:
-    "World-class AI-powered crop recommendations, pest detection, and smart farming solutions for modern agriculture. Transform your farming with cutting-edge technology.",
-  generator: "AgriNetra",
-  keywords: [
-    "agriculture",
-    "farming",
-    "AI",
-    "crop advisory",
-    "smart farming",
-    "pest detection",
-    "IoT sensors",
-    "precision agriculture",
-    "sustainable farming",
-    "agricultural technology",
-  ],
-  authors: [{ name: "AgriNetra Team" }],
-  creator: "AgriNetra",
-  publisher: "AgriNetra",
-  robots: "index, follow",
+    "Leading property developer offering premium land plots in Uttrakhand's pristine hill stations. RERA approved, legal clarity guaranteed, prime locations with exceptional ROI. Mussoorie, Rishikesh, Nainital, Dehradun plots available.",
+  keywords:
+    "Uttrakhand plots 2025, RERA approved plots, hill station land investment, Mussoorie plots, Rishikesh land, Nainital property, Dehradun plots, mountain view plots, legal property Uttrakhand, hill station investment",
+  authors: [{ name: "Property in Uttrakhand" }],
+  creator: "Property in Uttrakhand",
+  publisher: "Property in Uttrakhand",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
+    title: "Property in Uttrakhand - Premium Hill Station Land Plots | 2025",
+    description:
+      "Leading property developer in Uttrakhand offering RERA approved plots with guaranteed legal clarity and exceptional growth potential in prime hill station locations.",
     type: "website",
-    locale: "en_US",
-    url: "https://agrinetra.com",
-    title: "AgriNetra - Premium Smart Crop Advisory System",
-    description: "Transform your farming with world-class AI-powered agricultural solutions",
-    siteName: "AgriNetra",
+    locale: "en_IN",
+    url: "https://propertyinuttrakhand.com",
+    siteName: "Property in Uttrakhand",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AgriNetra - Premium Smart Crop Advisory System",
-    description: "Transform your farming with world-class AI-powered agricultural solutions",
+    title: "Property in Uttrakhand - Premium Hill Station Land Plots",
+    description: "RERA approved plots in Uttrakhand's beautiful hill stations with guaranteed legal clarity.",
+  },
+  verification: {
+    google: "google-site-verification-code",
+  },
+  alternates: {
+    canonical: "https://propertyinuttrakhand.com",
   },
 }
 
@@ -64,16 +59,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${openSans.variable} antialiased`}>
-      <body className="font-sans antialiased">
-        <ErrorBoundary>
-          <LanguageProvider>
-            <AppShell>
-              <Suspense fallback={null}>{children}</Suspense>
-            </AppShell>
-          </LanguageProvider>
-        </ErrorBoundary>
-        <Analytics />
+    <html lang="en">
+      <body className={`font-sans ${montserrat.variable} ${openSans.variable}`}>
+        <Suspense fallback={null}>{children}</Suspense>
+        <Toaster />
       </body>
     </html>
   )

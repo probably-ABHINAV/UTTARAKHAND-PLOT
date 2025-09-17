@@ -7,25 +7,32 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'blob.v0.app',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
     unoptimized: true,
   },
-  // Allow all hosts for Replit proxy environment
+  // Optimize for production deployment
   experimental: {
-    allowedRevalidateHeaderKeys: [],
+    optimizePackageImports: ['lucide-react', 'recharts'],
   },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
-          },
-        ],
-      },
-    ]
-  },
+  // Enable static optimization
+  output: 'standalone',
+  // Compress images
+  compress: true,
+  // Enable SWC minification
+  swcMinify: true,
 }
 
 export default nextConfig

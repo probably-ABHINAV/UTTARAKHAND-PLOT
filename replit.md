@@ -1,92 +1,86 @@
-# AgriNetra - Smart Crop Advisory System
+# Overview
 
-## Project Overview
-AgriNetra is a comprehensive AI-powered agricultural platform that provides intelligent crop recommendations, pest detection, IoT sensor monitoring, and expert consultation services for modern farming operations.
+UTTARAKHAND-PLOT is a modern property marketing website built with Next.js 14, focused on promoting land plots in Uttarakhand's hill stations. The application serves as a comprehensive platform for showcasing residential and investment properties in scenic locations like Mussoorie, Rishikesh, Nainital, and Dehradun. The site features property listings, investment calculators, location guides, and an admin panel for content management.
 
-## Setup Status
-✅ **Completed GitHub Import** - September 17, 2025
-- Fixed TailwindCSS v4 compatibility issues by downgrading to v3.4.0
-- Resolved package.json dependency issues (removed invalid "lib" package)
-- Configured Next.js for Replit environment with proper host settings
-- Development server running successfully on port 5000
-- Frontend compiled and accessible via webview
+## User Preferences
 
-## Project Architecture
+Preferred communication style: Simple, everyday language.
 
-### Frontend (Next.js 14)
-- **Framework**: Next.js 14.2.16 with TypeScript
-- **Styling**: TailwindCSS v3 with custom theme
-- **UI Components**: Radix UI components with custom design system
-- **Authentication**: JWT-based with middleware protection
-- **State Management**: React hooks and server state
+## System Architecture
 
-### Backend APIs
-- **API Routes**: Next.js API routes in `/app/api/`
-- **Authentication**: JWT tokens with 24h expiration
-- **Database**: Currently using in-memory mock data (ready for PostgreSQL migration)
+### Frontend Architecture
+- **Framework**: Next.js 14 with App Router architecture for modern React development and server-side rendering
+- **UI Components**: shadcn/ui component library built on Radix UI primitives for consistent, accessible design
+- **Styling**: Tailwind CSS with custom design system featuring light/dark theme support
+- **Typography**: Montserrat and Open Sans fonts for professional presentation
+- **State Management**: React hooks and local storage for authentication and UI state
+- **Form Handling**: React Hook Form with Zod validation for contact forms and calculators
 
-### Current Database Status
-- **Mock Data**: Using in-memory storage for development
-- **Schema Ready**: Complete PostgreSQL schema available in `/scripts/`
-- **Migration Ready**: Can easily switch to PostgreSQL database when needed
+### Design System
+- **Color Scheme**: Professional blue and neutral palette with HSL CSS variables for theme consistency
+- **Component Variants**: Class Variance Authority (CVA) for systematic component styling
+- **Icons**: Lucide React icon library throughout the application
+- **Responsive Design**: Mobile-first approach with Tailwind responsive utilities
 
-## Key Features
-1. **AI Crop Recommendations** - ML-powered crop selection based on soil, weather, and market data
-2. **Pest Detection** - Image-based AI pest identification with treatment recommendations
-3. **IoT Integration** - Sensor data collection and monitoring
-4. **Weather Intelligence** - Hyperlocal weather forecasts and analytics
-5. **Expert Network** - Connection with agricultural experts
-6. **Analytics Dashboard** - Comprehensive farm performance tracking
+### Authentication System
+- **Client-Side Auth**: Simple localStorage-based authentication for admin access
+- **Route Protection**: AuthGuard component for protecting admin routes
+- **User Roles**: Basic admin/user role differentiation stored in localStorage
 
-## Development Setup
+### Content Management
+- **Property Listings**: Static data structure for plot information with detailed property features
+- **Location Data**: Comprehensive location profiles with investment metrics and demographic data
+- **Blog System**: Admin interface for content creation and management
+- **File Upload**: Component for handling property images and documents
 
-### Current Configuration
-- **Host**: 0.0.0.0 (required for Replit proxy)
-- **Port**: 5000 (required for Replit webview)
-- **Environment**: Development mode with hot reload
-- **Cache Control**: Disabled for proper proxy functionality
+### Page Structure
+- **Public Pages**: Home, plots listing, locations, investment guide, calculator, about, contact
+- **Admin Panel**: Dashboard with analytics, plot management, blog management, and user inquiries
+- **Authentication Pages**: Login/signup and password reset flows
 
-### Mock Credentials
-- **Farmer**: farmer@example.com / password123
-- **Expert**: expert@example.com / password123  
-- **Admin**: admin@example.com / password123
+### Navigation
+- **Header**: Sticky navigation with responsive mobile menu
+- **Footer**: Comprehensive site links and contact information
+- **Mobile Navigation**: Sheet-based mobile menu for optimal mobile experience
 
-### API Endpoints
-- `/api/farms` - Farm management
-- `/api/auth/*` - Authentication
-- `/api/ai/*` - AI services (crop recommendations, pest detection)
-- `/api/iot/*` - IoT sensor data
-- `/api/sensors` - Sensor management
+### Performance Optimizations
+- **Image Optimization**: Next.js Image component for automatic optimization
+- **Font Loading**: Optimized Google Fonts integration
+- **Code Splitting**: Automatic code splitting through Next.js App Router
 
-## Deployment Configuration
-- **Target**: Autoscale (stateless web application)
-- **Build**: `npm run build`
-- **Start**: `npm start`
-- **Environment**: Production-ready with optimized builds
+## External Dependencies
 
-## Recent Changes (Sept 17, 2025)
-1. Fixed TailwindCSS v4 → v3 compatibility issues
-2. Removed invalid package dependencies
-3. Configured Next.js for Replit proxy environment
-4. Set up proper development workflow
-5. Configured deployment settings
-6. Verified frontend functionality and performance
+### Core Framework
+- **Next.js 14**: React framework with App Router for modern web applications
+- **React 18**: Latest React features including Server Components
 
-## Next Steps for Production
-1. Set up PostgreSQL database using provided schema
-2. Replace mock authentication with secure auth system
-3. Add real API integrations for weather and market data
-4. Configure production environment variables
-5. Set up monitoring and analytics
+### UI and Styling
+- **Tailwind CSS**: Utility-first CSS framework for rapid styling
+- **shadcn/ui**: Component library built on Radix UI primitives
+- **Radix UI**: Headless UI components for accessibility and customization
+- **Lucide React**: Comprehensive icon library
+- **next-themes**: Theme switching functionality
 
-## Technology Stack
-- **Frontend**: Next.js 14, TypeScript, TailwindCSS, Radix UI
-- **Backend**: Next.js API Routes, JWT Authentication
-- **Database**: PostgreSQL (schema ready, currently using mocks)
-- **Deployment**: Replit Autoscale
-- **AI/ML**: Ready for integration with crop and pest detection models
-- **IoT**: Sensor data ingestion framework implemented
+### Development Tools
+- **TypeScript**: Type safety and enhanced developer experience
+- **ESLint**: Code linting and style enforcement
 
----
-*Last updated: September 17, 2025*
-*Status: Development environment ready, deployment configured*
+### Utility Libraries
+- **clsx & tailwind-merge**: Conditional CSS class management
+- **date-fns**: Date manipulation and formatting
+- **class-variance-authority**: Type-safe component variants
+
+### Form Management
+- **React Hook Form**: Performant form handling
+- **@hookform/resolvers**: Form validation resolvers
+
+### Charts and Visualization
+- **Recharts**: Chart components for investment calculator and admin analytics
+
+### Analytics
+- **@vercel/analytics**: Web analytics tracking
+
+### Additional Components
+- **embla-carousel-react**: Carousel functionality for image galleries
+- **input-otp**: OTP input components for enhanced security
+- **cmdk**: Command palette functionality
