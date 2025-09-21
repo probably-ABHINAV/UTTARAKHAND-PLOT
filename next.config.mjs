@@ -6,6 +6,20 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Allow all hosts for Replit proxy
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+        ],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
