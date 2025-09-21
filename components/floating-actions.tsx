@@ -2,7 +2,8 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { MessageCircle, Phone } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
+import { SiWhatsapp } from 'react-icons/si'
 import Link from 'next/link'
 
 export function FloatingActions() {
@@ -16,7 +17,7 @@ export function FloatingActions() {
           onClick={() => window.open('https://wa.me/917870231314?text=Hi, I want to know about properties in Uttarakhand', '_blank')}
           title="WhatsApp Us"
         >
-          <MessageCircle className="h-6 w-6" />
+          <SiWhatsapp className="h-6 w-6" />
         </Button>
       </div>
 

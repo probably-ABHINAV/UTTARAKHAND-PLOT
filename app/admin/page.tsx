@@ -125,7 +125,7 @@ function AdminDashboardContent() {
       date: "2024-01-23",
       status: "Closed",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -400,7 +400,8 @@ function AdminDashboardContent() {
                           </div>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))
+                    )}
                   </TableBody>
                 </Table>
               </CardContent>
