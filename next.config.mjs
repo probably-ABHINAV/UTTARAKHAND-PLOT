@@ -20,8 +20,6 @@ const nextConfig = {
       },
     ];
   },
-<<<<<<< Updated upstream
-=======
   // API routes rewrite for production deployment
   async rewrites() {
     // In production, proxy /api requests to backend service
@@ -38,7 +36,6 @@ const nextConfig = {
       },
     ];
   },
->>>>>>> Stashed changes
   images: {
     remotePatterns: [
       {
