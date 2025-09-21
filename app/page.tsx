@@ -37,7 +37,8 @@ import {
   Building,
   Zap
 } from "lucide-react"
-
+import { LocationMap } from "@/components/location-map"
+import { FloatingActions } from "@/components/floating-actions"
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
@@ -118,46 +119,38 @@ const plotData = [
 // Location data
 const locationData = [
   {
-    name: "Dehradun Outskirts",
-    description: "Perfect blend of city convenience and serene environment",
+    name: "Badripur",
+    description: "Premium residential plots with excellent connectivity",
     plotsAvailable: "30+ Plots",
     priceRange: "₹15-45 Lakhs",
-    image: "/images/dehradun-outskirts-plots.jpg",
+    image: "/images/badripur-plots.jpg",
     growth: "+35%",
     connectivity: "Excellent",
     amenities: ["Schools", "Hospitals", "Markets", "Transport"]
   },
   {
-    name: "Rishikesh Region",
-    description: "Spiritual setting with growing infrastructure",
+    name: "Ganeshpur",
+    description: "Serene location with modern amenities and growth potential",
     plotsAvailable: "20+ Plots",
     priceRange: "₹20-50 Lakhs",
-    image: "/images/rishikesh-valley-plots-land.jpg",
+    image: "/images/ganeshpur-plots.jpg",
     growth: "+42%",
     connectivity: "Good",
-    amenities: ["Yoga Centers", "Ashrams", "River Access", "Tourism"]
+    amenities: ["Parks", "Schools", "Medical Facilities", "Public Transport"]
   },
   {
-    name: "Nainital Area",
-    description: "Lake views and mountain tranquility",
-    plotsAvailable: "15+ Plots",
-    priceRange: "₹25-60 Lakhs",
-    image: "/images/nainital-lake-plots-area.jpg",
-    growth: "+38%",
-    connectivity: "Good",
-    amenities: ["Lake View", "Hill Station", "Cool Climate", "Tourism Hub"]
-  },
-  {
-    name: "Mussoorie Hills",
-    description: "Premium mountain locations with scenic beauty",
+    name: "Dehradun Outskirts",
+    description: "Perfect blend of city convenience and serene environment",
     plotsAvailable: "25+ Plots",
-    priceRange: "₹30-80 Lakhs",
-    image: "/images/mussoorie-hills-plots-available.jpg",
-    growth: "+45%",
-    connectivity: "Moderate",
-    amenities: ["Mountain View", "Fresh Air", "Tourist Spot", "Premium Location"]
+    priceRange: "₹25-60 Lakhs",
+    image: "/images/dehradun-outskirts-plots.jpg",
+    growth: "+38%",
+    connectivity: "Excellent",
+    amenities: ["City Access", "Peaceful Environment", "Infrastructure", "Investment Potential"]
   }
 ]
+
+
 
 export default function HomePage() {
   const { toast } = useToast()
@@ -350,6 +343,18 @@ export default function HomePage() {
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Schedule Site Visit
+              </Button>
+            </div>
+
+            <div className="flex justify-center">
+              <Button
+                variant="ghost"
+                size="lg"
+                className="text-lg px-8 py-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
+                onClick={() => scrollToSection('contact')}
+              >
+                Have Questions? Contact Us
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
@@ -601,8 +606,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {locationData.map((location, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {locationData.slice(0, 3).map((location, index) => (
               <Card
                 key={index}
                 className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white border-0 shadow-lg hover:transform hover:scale-105"
@@ -672,7 +677,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enhanced Investment Calculator */}
+      {/* Location Map Section */}
+      <LocationMap />
+
+      {/* Enhanced CTA Section */}
       <section id="calculator" className="py-24 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -842,6 +850,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+
 
       {/* Enhanced Contact Section */}
       <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -1022,6 +1032,7 @@ export default function HomePage() {
       </section>
 
       <SiteFooter />
+      <FloatingActions />
     </div>
   )
 }

@@ -20,6 +20,25 @@ const nextConfig = {
       },
     ];
   },
+<<<<<<< Updated upstream
+=======
+  // API routes rewrite for production deployment
+  async rewrites() {
+    // In production, proxy /api requests to backend service
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${backendUrl}/api/:path*`,
+      },
+      {
+        source: '/health',
+        destination: `${backendUrl}/health`,
+      },
+    ];
+  },
+>>>>>>> Stashed changes
   images: {
     remotePatterns: [
       {

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
+import { LocationMap } from "@/components/location-map"
 import { MapPin, TrendingUp, Car, Hospital, GraduationCap, ShoppingBag, TreePine, Mountain, Star } from "lucide-react"
 
 const locationData = [
@@ -274,6 +275,9 @@ export default function LocationsPage() {
           </div>
         </div>
       </section>
+
+      {/* Location Map Section */}
+      <LocationMap />
 
       <SiteFooter />
     </div>

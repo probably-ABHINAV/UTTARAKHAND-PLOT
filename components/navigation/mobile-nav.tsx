@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -9,6 +8,17 @@ export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
 
   const closeSheet = () => setIsOpen(false)
+
+  const navItems = [
+    { title: "Home", href: "/" },
+    { title: "Properties", href: "/plots" },
+    { title: "Locations", href: "/locations" },
+    { title: "Calculator", href: "/calculator" },
+    { title: "Contact", href: "/contact" },
+    { title: "FAQ", href: "/faq" },
+    { title: "About", href: "/about" },
+    { title: "Blog", href: "/blog" }
+  ]
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -21,55 +31,16 @@ export function MobileNav() {
       <SheetContent side="left" className="w-[300px] sm:w-[400px]">
         <nav className="flex flex-col gap-4">
           <div className="flex flex-col space-y-3">
-            <Link
-              href="/"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              Home
-            </Link>
-            <Link
-              href="/plots"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              Our Plots
-            </Link>
-            <Link
-              href="/investment"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              Why Invest
-            </Link>
-            <Link
-              href="/calculator"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              Calculator
-            </Link>
-            <Link
-              href="/locations"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              Locations
-            </Link>
-            <Link
-              href="/about"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className="text-lg font-medium hover:text-primary transition-colors"
-              onClick={closeSheet}
-            >
-              Contact
-            </Link>
+            {navItems.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="text-lg font-medium hover:text-primary transition-colors"
+                onClick={closeSheet}
+              >
+                {item.title}
+              </Link>
+            ))}
           </div>
         </nav>
       </SheetContent>
