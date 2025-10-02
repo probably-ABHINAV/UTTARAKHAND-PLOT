@@ -1009,41 +1009,32 @@ export default function HomePage() {
   </div>
 
 
-                {/* Quick Actions */}
-                <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
-                  <h4 className="font-bold text-xl mb-4">Quick Actions</h4>
-                  <div className="space-y-3">
-                    <Button 
-                      className="w-full bg-white/20 hover:bg-white/30 border-0"
-                      onClick={() => window.open('https://wa.me/917870231314?text=Hi, I would like to schedule a site visit for plots in Uttarakhand', '_blank')}
-                    >
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Schedule Site Visit via WhatsApp
-                    </Button>
-                    <Button 
-                      className="w-full bg-white/20 hover:bg-white/30 border-0"
-                      onClick={() => scrollToSection('calculator')}
-                    >
-                      <Calculator className="mr-2 h-4 w-4" />
-                      Calculate Investment Returns
-                    </Button>
-                    <Button 
-                      className="w-full bg-white/20 hover:bg-white/30 border-0"
-                      onClick={() => scrollToSection('plots')}
-                    >
-                      <Search className="mr-2 h-4 w-4" />
-                      Browse Available Plots
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <SiteFooter />
-      <FloatingActions />
+           {/* Quick Actions */}
+<Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
+  <CardContent className="p-0">
+    <h4 className="font-bold text-xl mb-4">Quick Actions</h4>
+    <div className="space-y-3">
+      <Button 
+        className="w-full bg-white/20 hover:bg-white/30 border-0"
+        onClick={() => window.open('https://wa.me/917870231314?text=Hi, I would like to schedule a site visit for plots in Uttarakhand', '_blank')}
+      >
+        <Calendar className="mr-2 h-4 w-4" />
+        Schedule Site Visit via WhatsApp
+      </Button>
+      <Button 
+        className="w-full bg-white/20 hover:bg-white/30 border-0"
+        onClick={() => scrollToSection('calculator')}
+      >
+        <Calculator className="mr-2 h-4 w-4" />
+        Calculate Investment Returns
+      </Button>
+      <Button 
+        className="w-full bg-white/20 hover:bg-white/30 border-0"
+        onClick={() => scrollToSection('plots')}
+      >
+        <Search className="mr-2 h-4 w-4" />
+        Browse Available Plots
+      </Button>
     </div>
-  )
-}
+  </CardContent>
+</Card>
