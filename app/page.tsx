@@ -950,58 +950,64 @@ export default function HomePage() {
 </section>
 
               {/* Contact Information */}
-              <div className="space-y-8">
-             
-                  <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h3>
-                  <div className="grid gap-6">
-                    {[
-                      {
-                        icon: Phone,
-                        title: "Phone / WhatsApp",
-                        description: "Call or message us anytime",
-                        action: "7870231314",
-                        href: "tel:+917870231314",
-                        color: "from-green-500 to-blue-500"
-                      },
-                      {
-                        icon: Mail,
-                        title: "Email",
-                        description: "Send us your queries",
-                        action: "info@propertyinuttarakhand.com",
-                        href: "mailto:info@propertyinuttarakhand.com",
-                        color: "from-blue-500 to-purple-500"
-                      },
-                      {
-                        icon: MapPin,
-                        title: "Office Location",
-                        description: "Visit our office",
-                        action: "Badripur & Ganeshpur, Dehradun",
-                        href: "#",
-                        color: "from-purple-500 to-pink-500"
-                      }
-                    ].map((contact, index) => (
-                      <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md">
-                        <div className="flex items-center gap-4">
-                          <div className={`w-12 h-12 bg-gradient-to-r ${contact.color} rounded-full flex items-center justify-center`}>
-                            <contact.icon className="h-6 w-6 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-lg mb-1">{contact.title}</h4>
-                            <p className="text-gray-600 text-sm mb-2">{contact.description}</p>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => window.open(contact.href, contact.href.startsWith('tel:') || contact.href.startsWith('mailto:') ? '_self' : '_blank')}
-                              className="text-blue-600 border-blue-500 hover:bg-blue-50"
-                            >
-                              {contact.action}
-                            </Button>
-                          </div>
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
+            
+  <div className="space-y-8">
+    <div>
+      <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h3>
+      <div className="grid gap-6">
+        {[
+          {
+            icon: Phone,
+            title: "Phone / WhatsApp",
+            description: "Call or message us anytime",
+            action: "7870231314",
+            href: "tel:+917870231314",
+            color: "from-green-500 to-blue-500"
+          },
+          {
+            icon: Mail,
+            title: "Email",
+            description: "Send us your queries",
+            action: "info@propertyinuttarakhand.com",
+            href: "mailto:info@propertyinuttarakhand.com",
+            color: "from-blue-500 to-purple-500"
+          },
+          {
+            icon: MapPin,
+            title: "Office Location",
+            description: "Visit our office",
+            action: "Badripur & Ganeshpur, Dehradun",
+            href: "#",
+            color: "from-purple-500 to-pink-500"
+          }
+        ].map((contact, index) => {
+          const Icon = contact.icon;
+          return (
+            <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+              <div className="flex items-center gap-4">
+                <div className={`w-12 h-12 bg-gradient-to-r ${contact.color} rounded-full flex items-center justify-center`}>
+                  <Icon className="h-6 w-6 text-white" />
                 </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-lg mb-1">{contact.title}</h4>
+                  <p className="text-gray-600 text-sm mb-2">{contact.description}</p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => window.open(contact.href, contact.href.startsWith('tel:') || contact.href.startsWith('mailto:') ? '_self' : '_blank')}
+                    className="text-blue-600 border-blue-500 hover:bg-blue-50"
+                  >
+                    {contact.action}
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+
 
                 {/* Quick Actions */}
                 <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
