@@ -126,11 +126,11 @@ const plotData = [
         "Well-connected road network"
       ],
       nearbyFacilities: [
-        "Primary School - 800m",
-        "Healthcare Center - 1.2 km",
-        "Local Market - 1 km",
-        "Temple - 500m",
-        "Post Office - 1.5 km"
+       " Hospital - 10 minutes",
+        "Private Schools - 5 minutes",
+        "Shopping Complex - 15 minutes",
+        "Highway (connectivity) - 15 minutes",
+        "Restaurants & Cafes - 5 minutes"
       ],
       legalCompliance: [
         "Approved residential layout",
@@ -186,11 +186,11 @@ const plotData = [
         "Multiple transportation options"
       ],
       nearbyFacilities: [
-        "Convent School - 1 km",
-        "District Hospital - 2 km",
-        "Paltan Bazaar - 3 km",
-        "Police Station - 1.5 km",
-        "Fire Station - 2 km"
+      " Hospital - 10 minutes",
+        "Private Schools - 5 minutes",
+        "Shopping Complex - 15 minutes",
+        "\Highway (connectivity) - 10 minutes",
+        "Restaurants & Cafes - 5 minutes"
       ],
       legalCompliance: [
         "Municipal corporation approved",
