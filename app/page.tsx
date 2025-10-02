@@ -278,23 +278,23 @@ export default function HomePage() {
   }
 
   // Auto-rotate plot images
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex(prev => {
-        const newIndex = { ...prev }
-        plotData.forEach(plot => {
-          newIndex[plot.id] = ((prev[plot.id] || 0) + 1) % plot.images.length
-        })
-        return newIndex
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentImageIndex(prev => {
+      const newIndex = { ...prev }
+      plotData.forEach(plot => {
+        newIndex[plot.id] = plot.images.length > 0 
+          ? ((prev[plot.id] || 0) + 1) % plot.images.length
+          : 0
       })
-    }, 4000)
+      return newIndex
+    })
+  }, 4000)
 
-    return () => clearInterval(interval)
-  }, [])
+  return () => clearInterval(interval)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
 
-  return (
-    <div className="min-h-screen scroll-smooth bg-gradient-to-br from-blue-50 via-white to-blue-50">
-      <SiteHeader />
 
       {/* Hero Section with Dynamic Elements */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
