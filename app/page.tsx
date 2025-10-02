@@ -1008,7 +1008,6 @@ export default function HomePage() {
     </div>
   </div>
 
- <div>
       {/* Enhanced Contact Section */}
       <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
