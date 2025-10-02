@@ -102,7 +102,7 @@ const plotData = [
   {
     id: 3,
     title: "Friend's Colony Phase 1",
-    location: "Dehradun",
+    location: "Sundarpur, Dehradun",
     size: "800-1500 sq ft",
     type: "Residential Project",
     price: "₹16500 per sq/yard",
@@ -311,7 +311,7 @@ export default function HomePage() {
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-6xl mx-auto">
             <Badge className="mb-8 text-lg font-semibold px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce">
-              🏔️ Premium Residential Plots • Hill Station Locations 2025
+                Premium Verified Plots in Uttarakhand
             </Badge>
 
             <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl leading-tight mb-8 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent animate-fade-in">
@@ -323,7 +323,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-gray-600 text-2xl md:text-3xl leading-relaxed mb-12 max-w-5xl mx-auto font-light">
-              Discover premium land plots in Uttarakhand's most beautiful locations. Clear titles, prime locations, and exceptional growth potential for your dream home or smart investment.
+             Freehold plots with verified documents, ready infrastructure and confident investment potential.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
@@ -386,7 +386,7 @@ export default function HomePage() {
               Premium Residential Plots
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
-              Handpicked plots in Uttarakhand's most beautiful locations. Each property offers excellent connectivity, utility access, and guaranteed legal clarity.
+             Property in Uttarakhand helps serious buyers and investors find well-located, verified plots across Uttarakhand’s most promising pockets. We list only freehold plots after strict checks for title, boundaries and basic infrastructure.
             </p>
           </div>
 
@@ -602,8 +602,7 @@ export default function HomePage() {
               Prime Locations Across Uttarakhand
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
-              From bustling Dehradun outskirts to serene Himalayan foothills, discover locations that combine natural beauty with modern connectivity.
-            </p>
+             Prime locations across Uttarakhand offer well-connected, verified plots near major highways and urban hubs. These pockets provide easy access to schools, hospitals, markets and transport, making them ideal for secure investments or building a family home with long-term appreciation.
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
