@@ -603,7 +603,7 @@ export default function HomePage() {
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
              Prime locations across Uttarakhand offer well-connected, verified plots near major highways and urban hubs. These pockets provide easy access to schools, hospitals, markets and transport, making them ideal for secure investments or building a family home with long-term appreciation.
-          </div>
+          </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {locationData.slice(0, 3).map((location, index) => (
