@@ -52,11 +52,11 @@ const plotData = [
     description: "Bajrang Vatika is a calm, family-friendly residential layout designed for buyers who want everyday convenience without the city rush. The roads are motorable and well-defined, plot boundaries are clear, and basic utilities are accessible- making it straightforward to plan and build. The neighbourhood has local shops, primary schools, and public transport within short distance, so daily needs are easy to meet. Because the area is still growing, you can buy at an attractive price now and benefit from steady appreciation as infrastructure improves.",
     detailedFeatures: {
       infrastructure: [
-        "40-foot wide main roads with proper drainage system",
-        "Underground electricity cables for aesthetic appeal",
-        "24x7 water supply with backup systems",
-        "Street lighting with solar panel integration",
-        "Sewage treatment plant for environmental sustainability"
+        "Gated community entry",
+        "24×7 security & CCTV",
+        "Paved internal roads",
+        "Underground utilities (power, sewer)",
+        "Treated water supply & drainage"
       ],
       connectivity: [
         "Dehradun ISBT (Inter-State Bus Terminal): ~15  minutes.",
@@ -66,11 +66,11 @@ const plotData = [
         "Nearby schools & colleges:Doon Global School,Shubharti Medical College 5–20 minutes."
       ],
       nearbyFacilities: [
-        "Government Hospital - 2 km",
-        "Private Schools - 1.5 km",
-        "Shopping Complex - 3 km",
-        "Banks & ATMs - 1 km",
-        "Restaurants & Cafes - 2 km"
+        " Hospital - 10 minutes",
+        "Private Schools - 5 minutes",
+        "Shopping Complex - 15 minutes",
+        "Shimla–Dehradun National Highway (connectivity) - 1 minutes",
+        "Restaurants & Cafes - 5 minutes"
       ],
       legalCompliance: [
         "Approved by Uttarakhand Urban Planning Department",
