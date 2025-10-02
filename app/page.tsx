@@ -1008,36 +1008,178 @@ export default function HomePage() {
     </div>
   </div>
 
+ <div>
+      {/* Enhanced Contact Section */}
+      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Ready to Start Your Journey?
+              </h2>
+              <p className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto">
+                Connect with our property experts for personalized guidance, site visits, and complete assistance from selection to registration.
+              </p>
+            </div>
 
-           {/* Quick Actions */}
-  <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
-  <CardContent className="p-0">
-    <h4 className="font-bold text-xl mb-4">Quick Actions</h4>
-    <div className="space-y-3">
-      <Button 
-        className="w-full bg-white/20 hover:bg-white/30 border-0"
-        onClick={() => window.open('https://wa.me/917870231314?text=Hi, I would like to schedule a site visit for plots in Uttarakhand', '_blank')}
-      >
-        <Calendar className="mr-2 h-4 w-4" />
-        Schedule Site Visit via WhatsApp
-      </Button>
-      <Button 
-        className="w-full bg-white/20 hover:bg-white/30 border-0"
-        onClick={() => scrollToSection('calculator')}
-      >
-        <Calculator className="mr-2 h-4 w-4" />
-        Calculate Investment Returns
-      </Button>
-      <Button 
-        className="w-full bg-white/20 hover:bg-white/30 border-0"
-        onClick={() => scrollToSection('plots')}
-      >
-        <Search className="mr-2 h-4 w-4" />
-        Browse Available Plots
-      </Button>
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <Card className="p-8 bg-white shadow-2xl border-0">
+                <h3 className="text-2xl font-bold mb-6 text-gray-800">Get in Touch</h3>
+                <form onSubmit={submitContactForm} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Full Name *</Label>
+                      <Input
+                        placeholder="Your full name"
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))}
+                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Phone Number *</Label>
+                      <Input
+                        placeholder="Your phone number"
+                        value={contactForm.phone}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, phone: e.target.value }))}
+                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Email Address</Label>
+                    <Input
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))}
+                      className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Interested Plot</Label>
+                    <Select
+                      value={contactForm.plotInterest}
+                      onValueChange={(value) => setContactForm((prev) => ({ ...prev, plotInterest: value }))}
+                    >
+                      <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                        <SelectValue placeholder="Select a plot or location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {plotData.map((plot) => (
+                          <SelectItem key={plot.id} value={plot.title}>
+                            {plot.title} - {plot.location}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Message</Label>
+                    <Textarea
+                      placeholder="Tell us about your requirements, preferred location, budget range, or any questions you have..."
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))}
+                      className="p-3 border-2 focus:border-blue-500 rounded-lg min-h-[100px]"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  >
+                    <Mail className="mr-2 h-5 w-5" />
+                    Send Message
+                  </Button>
+                </form>
+              </Card>
+
+              {/* Right column: Contact Info + Quick Actions */}
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h3>
+                  <div className="grid gap-6">
+                    {contacts.map((contact, index) => {
+                      const Icon = contact.icon;
+                      return (
+                        <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                          <div className="flex items-center gap-4">
+                            <div className={`w-12 h-12 bg-gradient-to-r ${contact.color} rounded-full flex items-center justify-center`}>
+                              <Icon className="h-6 w-6 text-white" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-lg mb-1">{contact.title}</h4>
+                              <p className="text-gray-600 text-sm mb-2">{contact.description}</p>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() =>
+                                  window.open(
+                                    contact.href,
+                                    contact.href.startsWith("tel:") || contact.href.startsWith("mailto:") ? "_self" : "_blank"
+                                  )
+                                }
+                                className="text-blue-600 border-blue-500 hover:bg-blue-50"
+                              >
+                                {contact.action}
+                              </Button>
+                            </div>
+                          </div>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
+                  <div className="p-0">
+                    <h4 className="font-bold text-xl mb-4">Quick Actions</h4>
+                    <div className="space-y-3">
+                      <Button
+                        className="w-full bg-white/20 hover:bg-white/30 border-0"
+                        onClick={() =>
+                          window.open(
+                            "https://wa.me/917870231314?text=Hi, I would like to schedule a site visit for plots in Uttarakhand",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Schedule Site Visit via WhatsApp
+                      </Button>
+
+                      <Button
+                        className="w-full bg-white/20 hover:bg-white/30 border-0"
+                        onClick={() => scrollToSection("calculator")}
+                      >
+                        <Calculator className="mr-2 h-4 w-4" />
+                        Calculate Investment Returns
+                      </Button>
+
+                      <Button
+                        className="w-full bg-white/20 hover:bg-white/30 border-0"
+                        onClick={() => scrollToSection("plots")}
+                      >
+                        <Search className="mr-2 h-4 w-4" />
+                        Browse Available Plots
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </CardContent>
-</Card>
-
-
-
+  );
+}
+           {/* Quick Actions */}
+ 
