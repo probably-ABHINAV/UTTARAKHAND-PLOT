@@ -16,12 +16,12 @@ import { useState } from "react"
 const blogPosts = [
   {
     id: 1,
-    title: "Top 5 Investment Opportunities in Uttrakhand Hill Stations",
-    slug: "top-5-investment-opportunities-uttrakhand",
+    title: "Land Near Highways: Buy Today, Profit Tomorrow!",
+    slug: "Land-Near-Highways-Buy-Today-Profit-Tomorrow!",
     excerpt:
-      "Discover the most promising investment opportunities in Uttrakhand's scenic hill stations, from Mussoorie to Nainital.",
+      "Real estate investment in India is no longer just about buying a home-it has become a long-term source of financial security. Especially when it comes to land located near highways, investors see it as a golden opportunity. The reasons are clear: better connectivity, rapid development, and strong price appreciation in the future. In this article, we’ll explore in detail why investing in land near highways is a smart and safe decision.",
     content:
-      "Uttrakhand's hill stations offer incredible investment potential with their growing tourism industry and spiritual significance...",
+      "Land near highways is always well-connected to transport and infrastructure. Areas along national and state highways develop quickly because both the government and private companies prioritize such locations. Shopping complexes, hospitals, schools, and industrial parks emerge faster, pushing up property values. Additionally, basic amenities like road lighting, drainage, water supply, and electricity infrastructure are developed swiftly in these regions, making them even more attractive. This is why highway-adjacent land has become a safe and profitable option for investors....",
     category: "Investment",
     tags: ["Investment", "Hill Stations", "Real Estate", "Tourism"],
     author: "Admin User",
