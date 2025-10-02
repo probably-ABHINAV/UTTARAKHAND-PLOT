@@ -111,7 +111,7 @@ const plotData = [
     features: [
       "24x7 Security",
       "Wide Roads",
-      "Ready Facilities",
+      "Gated Community",
       "Premium Location",
     ],
     images: ["/images/bajrang-vatika-premium.jpg", "/images/badripur-plots.jpg"],
@@ -130,9 +130,9 @@ const plotData = [
     price: "₹16800 per sq/yard",
     features: [
       "Green Parks",
-      "Children's Play Area",
-      "Near Schools & Hospitals",
-      "Clean Air",
+      "24x7 Security",
+      "Wide Roads",
+      "Modern Infrastructure",
     ],
     images: [
       "/images/nature-green-valley-phase5.jpg",
@@ -155,7 +155,7 @@ const plotData = [
       "Smart Investment",
       "Excellent Connectivity",
       "Premium Community",
-      "Limited Plots",
+      "24x7 Security",
     ],
     images: [
       "/images/friends-colony-phase1.jpg",
