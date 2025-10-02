@@ -87,11 +87,11 @@ const plotData = [
       infrastructure: "40% built-up area"
     },
     investmentHighlights: [
-      "Expected 25-30% annual appreciation",
-      "Prime location with upcoming infrastructure",
-      "Limited availability - only 12 plots left",
-      "Easy EMI options available",
-      "Buy-back guarantee after 5 years"
+       "Affordable pricing with high potential",
+      "Eco-friendly development approach",
+      "Community-focused living",
+      "Flexible payment plans",
+      "Strong resale value prospects"
     ]
   },
   {
@@ -112,11 +112,11 @@ const plotData = [
     description: "Nature Green Valley Phase 5 is a thoughtfully planned residential project in Ganeshpur, designed for families who value nature and community living. With abundant green spaces and modern amenities, this project offers the perfect blend of urban convenience and natural serenity.",
     detailedFeatures: {
       infrastructure: [
-        "30-foot main roads with landscaped sidewalks",
-        "Central park with jogging track",
-        "Children's playground with modern equipment",
-        "Community center for social gatherings",
-        "Rainwater harvesting system"
+        "Gated community entry",
+        "24×7 security & CCTV",
+        "Paved internal roads",
+        "Underground utilities (power, sewer)",
+        "Treated water supply & drainage"
       ],
       connectivity: [
         "8 minutes to National Highway",
@@ -172,11 +172,11 @@ const plotData = [
     description: "Friends Colony Phase-1 is a well-organized residential pocket that balances community living with easy connectivity. Plots are laid out along clear streets with good access to main roads and public transport. The area is practical for families who value quick commutes and nearby conveniences- markets, clinics, and schools are all within easy reach. Because the layout is clean and construction-ready, many buyers can begin building right away, making it a favourite for those who want a faster move-in timeline.",
     detailedFeatures: {
       infrastructure: [
-        "25-foot internal roads with proper grading",
-        "Community hall for events and gatherings",
-        "LED street lighting throughout",
-        "Proper stormwater drainage system",
-        "Boundary wall with security gates"
+        "Gated community entry",
+        "24×7 security & CCTV",
+        "Paved internal roads",
+        "Underground utilities (power, sewer)",
+        "Treated water supply & drainage"
       ],
       connectivity: [
         "Nearest major expressway / approach: ~5 minutes to Delhi–Dehradun Expressway.",
@@ -207,11 +207,11 @@ const plotData = [
       infrastructure: "60% developed area"
     },
     investmentHighlights: [
-      "Established community with proven growth",
-      "Central location advantage",
-      "Strong rental potential",
-      "Immediate possession available",
-      "High liquidity investment"
+       "Affordable pricing with high potential",
+      "Eco-friendly development approach",
+      "Community-focused living",
+      "Flexible payment plans",
+      "Strong resale value prospects"
     ]
   }
 ]
