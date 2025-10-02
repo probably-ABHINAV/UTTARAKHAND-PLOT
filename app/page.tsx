@@ -194,7 +194,7 @@ const locationData = [
     amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
-    name: "Dehradun Outskirts",
+    name: "Sundarpur",
     description: "Perfect blend of city convenience and serene environment",
     plotsAvailable: "25+ Plots",
     priceRange: "₹16800 per sq/yard",
