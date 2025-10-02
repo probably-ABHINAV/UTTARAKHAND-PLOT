@@ -122,7 +122,7 @@ const locationData = [
     name: "Badripur",
     description: "Premium residential plots with excellent connectivity",
     plotsAvailable: "30+ Plots",
-    priceRange: "₹₹16800 per sq/yard",
+    priceRange: "₹16800 per sq/yard",
     image: "/images/badripur-plots.jpg",
     growth: "+35%",
     connectivity: "Excellent",
