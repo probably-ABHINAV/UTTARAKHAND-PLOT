@@ -21,12 +21,12 @@ const locationData = [
     connectivity: "Excellent",
     amenities: ["Schools", "Hospitals", "Markets", "Transport"],
     detailedInfo: {
-      overview: "Badripur stands out as one of Dehradun’s most promising localities, combining convenience, infrastructure, and growth potential. Located strategically, it offers quick access to city centers, educational hubs, and healthcare facilities, making it ideal for both living and investment. The area is experiencing rapid development with modern residential and commercial projects, attracting young professionals and families. Its balanced lifestyle offering—peaceful surroundings with urban connectivity—adds to its appeal. For those looking at long-term gains, Badripur presents high prospects for property appreciation, making it a hotspot in Dehradun’s real estate market.",
+      overview: "Badripur stands out as one of Dehradun’s most promising localities, combining convenience, infrastructure, and growth potential. Located strategically, it offers quick access to city centers, educational hubs, and healthcare facilities, making it ideal for both living and investment. The area is experiencing rapid development with modern residential and commercial projects, attracting young professionals and families. Its balanced lifestyle offering—peaceful surroundings with urban connectivity-adds to its appeal. For those looking at long-term gains, Badripur presents high prospects for property appreciation, making it a hotspot in Dehradun’s real estate market.",
       keyHighlights: [
         "Rapid urbanization and infrastructure growth",
-        "Proximity to Jolly Grant Airport (15 minutes)",
+        "Excellent long-term investment potential",
         "Direct highway connectivity",
-        "Upcoming metro corridor development",
+        "Close to educational and healthcare institutions",
         "Government policy support for planned development"
       ],
       demographics: {
@@ -53,11 +53,11 @@ const locationData = [
     detailedInfo: {
       overview: "Sundarpur in Dehradun is quickly becoming a preferred choice for families and investors seeking a blend of natural beauty and modern amenities. Nestled amidst greenery yet close to city conveniences, Sundarpur offers a serene living environment with excellent road connectivity. The area is witnessing growth in residential projects, ensuring options for both affordable and premium housing. Its proximity to educational institutions, healthcare centers, and markets makes it a practical location for a comfortable lifestyle. For investors, Sundarpur promises steady value appreciation, making it a smart real estate destination in Dehradun.",
       keyHighlights: [
-        "UNESCO World Heritage site proximity",
-        "International yoga and wellness tourism",
-        "Ganga Aarti and spiritual significance",
-        "Adventure sports hub development",
-        "Luxury hotel and resort investments"
+        "Easy access to schools, hospitals, and daily needs",
+        "Affordable and premium housing options available",
+        "Strong connectivity with major city routes",
+        "Promising real estate investment growth",
+        "Serene and eco-friendly surroundings"
       ],
       demographics: {
         population: "Tourist influx of 2+ million annually",
