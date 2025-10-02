@@ -62,8 +62,7 @@ const plotData = [
         "Dehradun ISBT (Inter-State Bus Terminal): ~15  minutes.",
         "Dehradun Railway Station: ~20 minutes .",
         "Jolly Grant Airport (Dehradun): ~30 minutes",
-        "Nearest hospitals / healthcare:Kailash Hospital ,Graphic Era Hospital ~ 5–20 minutes.
-",
+        "Nearest hospitals / healthcare:Kailash Hospital ,Graphic Era Hospital ~ 5–20 minutes.",
         "Nearby schools & colleges:Doon Global School,Shubharti Medical College 5–20 minutes."
       ],
       nearbyFacilities: [
