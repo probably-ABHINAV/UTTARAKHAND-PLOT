@@ -1007,17 +1007,3 @@ export default function HomePage() {
       </div>
     </div>
   </div>
-
-     <div>
-      {/* Enhanced Contact Section */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Ready to Start Your Journey?
-              </h2>
-              <p className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto">
-                Connect with our property experts for personalized guidance, site visits, and complete assistance from selection to registration.
-              </p>
-            </div>
