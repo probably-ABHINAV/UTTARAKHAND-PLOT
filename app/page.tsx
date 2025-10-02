@@ -951,7 +951,7 @@ export default function HomePage() {
 
               {/* Contact Information */}
               <div className="space-y-8">
-                <div>
+             
                   <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h3>
                   <div className="grid gap-6">
                     {[
