@@ -22,48 +22,22 @@ const blogPosts = [
       <h2>1. Locations That Invite Development</h2>
       <p>Land near highways is always well-connected to transport and infrastructure. Areas along national and state highways develop quickly because both the government and private companies prioritize such locations. Shopping complexes, hospitals, schools, and industrial parks emerge faster, pushing up property values.
 Additionally, basic amenities like road lighting, drainage, water supply, and electricity infrastructure are developed swiftly in these regions, making them even more attractive. This is why highway-adjacent land has become a safe and profitable option for investors.</p>
-      <ul>
-        <li>Average ROI: 12-15% annually</li>
-        <li>Best for: Resort developments and vacation homes</li>
-        <li>Key areas: Mall Road, Kempty Falls vicinity</li>
-      </ul>
-
-      <h2>2. Returns Powered by Connectivity</h2>
+     <h2>2. Returns Powered by Connectivity</h2>
       <p>Better connectivity is the biggest advantage of highway-connected areas. Such locations get access to roads, railways, and airports more quickly. This connectivity transforms the area into a hub in just a few years. The result? Land prices rise rapidly, offering great returns in a short span.
 Furthermore, once connected to a highway, areas benefit from public transport, trucking routes, and logistics networks-boosting commercial activity. This leads to a spike in both demand and rates of properties.</p>
-      <ul>
-        <li>Average ROI: 10-13% annually</li>
-        <li>Best for: Hospitality and residential projects</li>
-        <li>Key areas: Mallital, Bhimtal</li>
-      </ul>
-
+     
       <h2>3. Rapid Increase in Rental Demand</h2>
       <p>When an area gets connected to a highway, both residential and commercial activities expand. This directly increases rental demand. Land or homes you invest in start generating regular rental income.
 In such locations, the demand for offices, warehouses, shops, and small flats surges. Hence, investors here don't just buy land-they secure a steady source of rental income. Some investors even build hostels or guesthouses on plots in these areas to earn a monthly income.</p>
-      <ul>
-        <li>Average ROI: 14-18% annually</li>
-        <li>Best for: Ashrams, yoga retreats, wellness centers</li>
-        <li>Key areas: Laxman Jhula, Ram Jhula areas</li>
-      </ul>
-
+     
       <h2>4. A Future-Proof Investment</h2>
       <p>The biggest advantage of investing in land near highways is the guarantee of development. Whether it’s a new bypass, industrial corridor, or smart city project-areas near highways are often at the center of development. As a result, such investments are protected from future economic fluctuations.
 Sometimes, the government converts these regions into SEZs (Special Economic Zones) or smart towns, which causes property values to multiply. An investment made once continues to offer secure and growing returns for years to come.</p>
-      <ul>
-        <li>Average ROI: 8-11% annually</li>
-        <li>Best for: Residential and commercial properties</li>
-        <li>Key areas: Rajpur Road, Sahastradhara Road</li>
-      </ul>
-
+    
       <h2>5. Boost from Government Projects</h2>
       <p>Governments often launch smart city, industrial zone, and logistics park projects along highways. These projects significantly increase land value. Investors who buy land early benefit from low purchase prices and high returns.
 Such government initiatives also enhance nearby infrastructure-like schools, colleges, hospitals, electricity, and water-making the area ideal for living and doing business. This ensures consistent appreciation in property value year after year.</p>
-      <ul>
-        <li>Average ROI: 11-14% annually</li>
-        <li>Best for: Hotels, dharamshalas, commercial properties</li>
-        <li>Key areas: Har Ki Pauri, Upper Road</li>
-      </ul>
-
+      
       <h2>Investment Tips</h2>
       <p>When investing in Uttrakhand hill stations, consider factors like accessibility, local regulations, environmental clearances, and seasonal variations in tourism. Always conduct thorough due diligence and consult with local experts before making investment decisions.</p>
     `,
