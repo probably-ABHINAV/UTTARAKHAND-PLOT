@@ -1008,6 +1008,7 @@ export default function HomePage() {
     </div>
   </div>
 
+     <div>
       {/* Enhanced Contact Section */}
       <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
@@ -1138,7 +1139,7 @@ export default function HomePage() {
 
                 {/* Quick Actions */}
                 <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
-                  <div className="p-0">
+                  <CardContent className="p-0">
                     <h4 className="font-bold text-xl mb-4">Quick Actions</h4>
                     <div className="space-y-3">
                       <Button
@@ -1170,7 +1171,7 @@ export default function HomePage() {
                         Browse Available Plots
                       </Button>
                     </div>
-                  </div>
+                  </CardContent>
                 </Card>
               </div>
             </div>
@@ -1180,5 +1181,3 @@ export default function HomePage() {
     </div>
   );
 }
-           {/* Quick Actions */}
- 
