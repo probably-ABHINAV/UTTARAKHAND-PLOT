@@ -594,89 +594,87 @@ export default function HomePage() {
         </div>
       </section>
   
+ {/* Enhanced Locations Section */}
+      <section id="locations" className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              Prime Locations Across Uttarakhand
+            </h2>
+            <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
+             Prime locations across Uttarakhand offer well-connected, verified plots near major highways and urban hubs. These pockets provide easy access to schools, hospitals, markets and transport, making them ideal for secure investments or building a family home with long-term appreciation.
+          </p>
 
-    {/* Enhanced Locations Section */}
-<section id="locations" className="py-24 bg-white">
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-16">
-      <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-        Prime Locations Across Uttarakhand
-      </h2>
-      <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
-        Prime locations across Uttarakhand offer well-connected, verified plots near major highways and urban hubs. These pockets provide easy access to schools, hospitals, markets and transport, making them ideal for secure investments or building a family home with long-term appreciation.
-      </p>
-    </div>  {/* ✅ closing for text-center */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {locationData.slice(0, 3).map((location, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white border-0 shadow-lg hover:transform hover:scale-105"
+              >
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={location.image}
+                    alt={location.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {locationData.slice(0, 3).map((location, index) => (
-        <Card
-          key={index}
-          className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white border-0 shadow-lg hover:transform hover:scale-105"
-        >
-          <div className="relative overflow-hidden">
-            <Image
-              src={location.image}
-              alt={location.name}
-              width={400}
-              height={300}
-              className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <Badge className="bg-green-500/90 mb-2">{location.plotsAvailable}</Badge>
+                    <h3 className="font-bold text-xl">{location.name}</h3>
+                  </div>
 
-            <div className="absolute bottom-4 left-4 text-white">
-              <Badge className="bg-green-500/90 mb-2">{location.plotsAvailable}</Badge>
-              <h3 className="font-bold text-xl">{location.name}</h3>
-            </div>
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-white/90 text-green-600 font-semibold">
+                      <TrendingUp className="mr-1 h-3 w-3" />
+                      {location.growth}
+                    </Badge>
+                  </div>
+                </div>
+                  <CardHeader className="text-center space-y-4">
+                  <CardDescription className="text-base">{location.description}</CardDescription>
 
-            <div className="absolute top-4 right-4">
-              <Badge className="bg-white/90 text-green-600 font-semibold">
-                <TrendingUp className="mr-1 h-3 w-3" />
-                {location.growth}
-              </Badge>
-            </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Price Range</span>
+                      <span className="font-semibold text-blue-600">{location.priceRange}</span>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Connectivity</span>
+                      <Badge variant={location.connectivity === 'Excellent' ? 'default' : 'secondary'}>
+                        {location.connectivity}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-sm">Key Amenities</h4>
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {location.amenities.map((amenity, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {amenity}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Button 
+                    className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600"
+                    onClick={() => scrollToSection('contact')}
+                  >
+                    <MapPin className="mr-2 h-4 w-4" />
+                    Explore This Location
+                  </Button>
+                </CardHeader>
+              </Card>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <CardHeader className="text-center space-y-4">
-            <CardDescription className="text-base">{location.description}</CardDescription>
-
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Price Range</span>
-                <span className="font-semibold text-blue-600">{location.priceRange}</span>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Connectivity</span>
-                <Badge variant={location.connectivity === 'Excellent' ? 'default' : 'secondary'}>
-                  {location.connectivity}
-                </Badge>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <h4 className="font-semibold text-sm">Key Amenities</h4>
-              <div className="flex flex-wrap gap-1 justify-center">
-                {location.amenities.map((amenity, idx) => (
-                  <Badge key={idx} variant="outline" className="text-xs">
-                    {amenity}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <Button 
-              className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600"
-              onClick={() => scrollToSection('contact')}
-            >
-              <MapPin className="mr-2 h-4 w-4" />
-              Explore This Location
-            </Button>
-          </CardHeader>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
 
       {/* Location Map Section */}
       <LocationMap />
@@ -1007,3 +1005,98 @@ export default function HomePage() {
       </div>
     </div>
   </div>
+
+         {/* Enhanced Contact Section */}
+      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Ready to Start Your Journey?
+              </h2>
+              <p className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto">
+                Connect with our property experts for personalized guidance, site visits, and complete assistance from selection to registration.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <Card className="p-8 bg-white shadow-2xl border-0">
+                <h3 className="text-2xl font-bold mb-6 text-gray-800">Get in Touch</h3>
+                <form onSubmit={submitContactForm} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Full Name *</Label>
+                      <Input
+                        placeholder="Your full name"
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Phone Number *</Label>
+                      <Input
+                        placeholder="Your phone number"
+                        value={contactForm.phone}
+                        onChange={(e) => setContactForm(prev => ({ ...prev, phone: e.target.value }))}
+                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Email Address</Label>
+                    <Input
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
+                      className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Interested Plot</Label>
+                    <Select
+                      value={contactForm.plotInterest}
+                      onValueChange={(value) => setContactForm(prev => ({ ...prev, plotInterest: value }))}
+                    >
+                      <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                        <SelectValue placeholder="Select a plot or location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {plotData.map((plot) => (
+                          <SelectItem key={plot.id} value={plot.title}>
+                            {plot.title} - {plot.location}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Message</Label>
+                    <Textarea
+                      placeholder="Tell us about your requirements, preferred location, budget range, or any questions you have..."
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+                      className="p-3 border-2 focus:border-blue-500 rounded-lg min-h-[100px]"
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  >
+                    <Mail className="mr-2 h-5 w-5" />
+                    Send Message
+                  </Button>
+                </form>
+              </Card>
+
+
+
+
