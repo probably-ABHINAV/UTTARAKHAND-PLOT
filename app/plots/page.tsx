@@ -40,9 +40,9 @@ const plotData = [
     id: 1,
     title: "Bajrang Vatika Premium",
     location: "Badripur, Dehradun",
-    size: "1200-2400 sq ft",
+    size: "900-2400 sq ft",
     type: "Residential Project",
-    price: "₹25-45 Lakhs",
+    price: "₹16800 per sq/yard",
     pricePerSqFt: "₹2,083 - ₹1,875",
     features: ["24x7 Security", "Wide Roads", "Ready Facilities", "Premium Location"],
     images: ["/images/bajrang-vatika-premium.jpg", "/images/bajrang-vatika-premium.jpg"],
@@ -51,7 +51,7 @@ const plotData = [
     available: 12,
     isPopular: true,
     amenities: ["Water Supply", "Electricity", "Road Access", "Legal Documents"],
-    description: "Bajrang Vatika Premium offers an exceptional residential experience in the heart of Badripur, Dehradun. This premium project features spacious plots ranging from 1200 to 2400 sq ft, perfect for building your dream home. The location provides excellent connectivity to major city centers while maintaining the tranquility of suburban living.",
+    description: "Bajrang Vatika is a calm, family-friendly residential layout designed for buyers who want everyday convenience without the city rush. The roads are motorable and well-defined, plot boundaries are clear, and basic utilities are accessible- making it straightforward to plan and build. The neighbourhood has local shops, primary schools, and public transport within short distance, so daily needs are easy to meet. Because the area is still growing, you can buy at an attractive price now and benefit from steady appreciation as infrastructure improves.",
     detailedFeatures: {
       infrastructure: [
         "40-foot wide main roads with proper drainage system",
@@ -61,11 +61,12 @@ const plotData = [
         "Sewage treatment plant for environmental sustainability"
       ],
       connectivity: [
-        "5 minutes from Dehradun-Rishikesh Highway",
-        "15 minutes to Jolly Grant Airport",
-        "20 minutes to Railway Station",
-        "Direct bus connectivity to city center",
-        "Proximity to upcoming metro corridor"
+        "Dehradun ISBT (Inter-State Bus Terminal): ~15  minutes.",
+        "Dehradun Railway Station: ~20 minutes .",
+        "Jolly Grant Airport (Dehradun): ~30 minutes",
+        "Nearest hospitals / healthcare:Kailash Hospital ,Graphic Era Hospital ~ 5–20 minutes.
+",
+        "Nearby schools & colleges:Doon Global School,Shubharti Medical College 5–20 minutes."
       ],
       nearbyFacilities: [
         "Government Hospital - 2 km",
@@ -102,7 +103,7 @@ const plotData = [
     location: "Ganeshpur, Dehradun",
     size: "1000-1800 sq ft",
     type: "Residential Project",
-    price: "₹18-32 Lakhs",
+    price: "₹16800 per sq/yd",
     pricePerSqFt: "₹1,800 - ₹1,778",
     features: ["Green Parks", "Children's Play Area", "Near Schools & Hospitals", "Clean Air"],
     images: ["/images/nature-green-valley-phase5.jpg", "/images/nature-green-valley-phase5.jpg"],
@@ -162,7 +163,7 @@ const plotData = [
     location: "Dehradun",
     size: "800-1500 sq ft",
     type: "Residential Project",
-    price: "₹15-28 Lakhs",
+    price: "₹16800 per sq/yd",
     pricePerSqFt: "₹1,875 - ₹1,867",
     features: ["Smart Investment", "Excellent Connectivity", "Premium Community", "Limited Plots"],
     images: ["/images/friends-colony-phase1.jpg", "/images/friends-colony-phase1.jpg"],
@@ -171,7 +172,7 @@ const plotData = [
     available: 5,
     isPopular: false,
     amenities: ["Community Hall", "Street Lights", "Drainage", "Bus Stop Nearby"],
-    description: "Friend's Colony Phase 1 represents smart urban living in Dehradun with excellent connectivity and modern infrastructure. This established community offers a perfect investment opportunity with proven track record and strong appreciation potential.",
+    description: "Friends Colony Phase-1 is a well-organized residential pocket that balances community living with easy connectivity. Plots are laid out along clear streets with good access to main roads and public transport. The area is practical for families who value quick commutes and nearby conveniences- markets, clinics, and schools are all within easy reach. Because the layout is clean and construction-ready, many buyers can begin building right away, making it a favourite for those who want a faster move-in timeline.",
     detailedFeatures: {
       infrastructure: [
         "25-foot internal roads with proper grading",
@@ -181,10 +182,10 @@ const plotData = [
         "Boundary wall with security gates"
       ],
       connectivity: [
-        "Direct access to main road",
-        "10 minutes to Clock Tower",
-        "15 minutes to ISBT",
-        "Easy access to Mussoorie road",
+        "Nearest major expressway / approach: ~5 minutes to Delhi–Dehradun Expressway.",
+        "Dehradun ISBT / central bus hub: ~25-30 minutes",
+        "Dehradun Railway Station: ~25 minutes",
+        "Jolly Grant Airport: ~35 minutes",
         "Multiple transportation options"
       ],
       nearbyFacilities: [
