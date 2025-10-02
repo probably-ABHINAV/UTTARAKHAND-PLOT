@@ -119,7 +119,7 @@ const plotData = [
     reviews: 156,
     available: 12,
     isPopular: true,
-    amenities: ["Water Supply", "Electricity", "Road Access", "Legal Documents"],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     id: 2,
@@ -142,7 +142,7 @@ const plotData = [
     reviews: 89,
     available: 8,
     isPopular: false,
-    amenities: ["Playground", "Garden", "Security", "Paved Roads"],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     id: 3,
@@ -165,7 +165,7 @@ const plotData = [
     reviews: 67,
     available: 5,
     isPopular: false,
-    amenities: ["Community Hall", "Street Lights", "Drainage", "Bus Stop Nearby"],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
 ] as const;
 
@@ -181,7 +181,7 @@ const locationData = [
     image: "/images/badripur-plots.jpg",
     growth: "+35%",
     connectivity: "Excellent",
-    amenities: ["Schools", "Hospitals", "Markets", "Transport"],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     name: "Ganeshpur",
@@ -191,7 +191,7 @@ const locationData = [
     image: "/images/ganeshpur-plots.jpg",
     growth: "+42%",
     connectivity: "Good",
-    amenities: ["Parks", "Schools", "Medical Facilities", "Public Transport"],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     name: "Dehradun Outskirts",
