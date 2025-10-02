@@ -12,16 +12,16 @@ import { MapPin, TrendingUp, Car, Hospital, GraduationCap, ShoppingBag, TreePine
 
 const locationData = [
   {
-    name: "Dehradun Outskirts",
-    description: "Perfect blend of city convenience and serene environment with excellent growth potential",
+    name: "Badripur",
+    description: "Badripur, Dehradun – A Growing Investment Destination",
     plotsAvailable: "30+ Plots",
-    priceRange: "₹15-45 Lakhs",
+    priceRange: "₹16800 per sq/yd",
     image: "/images/dehradun-outskirts-plots.jpg",
     growth: "+35%",
     connectivity: "Excellent",
     amenities: ["Schools", "Hospitals", "Markets", "Transport"],
     detailedInfo: {
-      overview: "Dehradun outskirts represent the perfect investment opportunity combining urban amenities with peaceful suburban living. The area has seen significant infrastructure development and offers excellent connectivity to major city centers.",
+      overview: "Badripur stands out as one of Dehradun’s most promising localities, combining convenience, infrastructure, and growth potential. Located strategically, it offers quick access to city centers, educational hubs, and healthcare facilities, making it ideal for both living and investment. The area is experiencing rapid development with modern residential and commercial projects, attracting young professionals and families. Its balanced lifestyle offering—peaceful surroundings with urban connectivity—adds to its appeal. For those looking at long-term gains, Badripur presents high prospects for property appreciation, making it a hotspot in Dehradun’s real estate market.",
       keyHighlights: [
         "Rapid urbanization and infrastructure growth",
         "Proximity to Jolly Grant Airport (15 minutes)",
@@ -42,16 +42,16 @@ const locationData = [
     }
   },
   {
-    name: "Rishikesh Region",
-    description: "Spiritual setting with growing infrastructure and tourism development",
+    name: "Sundarpur",
+    description: "Sundarpur, Dehradun – A Peaceful Residential Hub",
     plotsAvailable: "20+ Plots",
-    priceRange: "₹20-50 Lakhs",
+    priceRange: "₹16800 per sq/yd",
     image: "/images/rishikesh-valley-plots-land.jpg",
     growth: "+42%",
     connectivity: "Good",
     amenities: ["Yoga Centers", "Ashrams", "River Access", "Tourism"],
     detailedInfo: {
-      overview: "Rishikesh region offers unique investment opportunities in the spiritual tourism capital of India. With growing infrastructure and international recognition, property values are appreciating rapidly.",
+      overview: "Sundarpur in Dehradun is quickly becoming a preferred choice for families and investors seeking a blend of natural beauty and modern amenities. Nestled amidst greenery yet close to city conveniences, Sundarpur offers a serene living environment with excellent road connectivity. The area is witnessing growth in residential projects, ensuring options for both affordable and premium housing. Its proximity to educational institutions, healthcare centers, and markets makes it a practical location for a comfortable lifestyle. For investors, Sundarpur promises steady value appreciation, making it a smart real estate destination in Dehradun.",
       keyHighlights: [
         "UNESCO World Heritage site proximity",
         "International yoga and wellness tourism",
@@ -71,66 +71,6 @@ const locationData = [
       }
     }
   },
-  {
-    name: "Nainital Area",
-    description: "Lake views and mountain tranquility with premium tourism appeal",
-    plotsAvailable: "15+ Plots",
-    priceRange: "₹25-60 Lakhs",
-    image: "/images/nainital-lake-plots-area.jpg",
-    growth: "+38%",
-    connectivity: "Good",
-    amenities: ["Lake View", "Hill Station", "Cool Climate", "Tourism Hub"],
-    detailedInfo: {
-      overview: "Nainital area represents premium hill station investment with consistent tourism demand and excellent appreciation potential. The lake proximity and mountain views make it highly desirable.",
-      keyHighlights: [
-        "Naini Lake proximity and scenic beauty",
-        "Year-round pleasant climate",
-        "Established tourism infrastructure",
-        "Premium resort and hotel development",
-        "Strong rental income potential"
-      ],
-      demographics: {
-        population: "Tourist season brings 500K+ visitors",
-        literacy: "94% literacy rate - highest in region",
-        employment: "Tourism, education, and services"
-      },
-      investmentPotential: {
-        appreciation: "30-40% annual growth for lake-view properties",
-        rental: "₹15,000-30,000 per month in peak season",
-        infrastructure: "All-weather road connectivity improvements"
-      }
-    }
-  },
-  {
-    name: "Mussoorie Hills",
-    description: "Premium mountain locations with scenic beauty and luxury appeal",
-    plotsAvailable: "25+ Plots",
-    priceRange: "₹30-80 Lakhs",
-    image: "/images/mussoorie-hills-plots-available.jpg",
-    growth: "+45%",
-    connectivity: "Moderate",
-    amenities: ["Mountain View", "Fresh Air", "Tourist Spot", "Premium Location"],
-    detailedInfo: {
-      overview: "Mussoorie hills offer the most premium investment opportunity in Uttarakhand with luxury tourism appeal and consistently high property appreciation rates.",
-      keyHighlights: [
-        "Queen of Hills - premium destination status",
-        "Himalayan range panoramic views",
-        "Colonial architecture heritage",
-        "Luxury resort and villa developments",
-        "International tourist destination"
-      ],
-      demographics: {
-        population: "Elite residential community",
-        literacy: "96% literacy rate",
-        employment: "Premium tourism and hospitality"
-      },
-      investmentPotential: {
-        appreciation: "40-50% annual growth for premium plots",
-        rental: "₹20,000-50,000 per month for luxury properties",
-        infrastructure: "Cable car and modern transport development"
-      }
-    }
-  }
 ]
 
 export default function LocationsPage() {
