@@ -71,6 +71,36 @@ const locationData = [
       }
     }
   },
+  {
+    name: "Ganeshpur",
+    description: "Ganeshpur, Dehradun – Home to Nature Green Valley Phase 5",
+    plotsAvailable: "15+ Plots",
+    priceRange: "₹15800 per sq/yd",
+    image: "/images/nature-green-valley-phase5.jpg",
+    growth: "+38%",
+    connectivity: "Excellent",
+    amenities: ["Schools", "Markets", "Transport", "Green Spaces"],
+    detailedInfo: {
+      overview: "Ganeshpur is emerging as a prime residential area in Dehradun, home to the popular Nature Green Valley Phase 5 project. This location offers the perfect blend of urban convenience and natural tranquility. With excellent connectivity to major city areas, educational institutions, and commercial centers, Ganeshpur provides an ideal environment for families and investors alike. The area is experiencing rapid development with modern infrastructure projects, making it an attractive investment destination with strong appreciation potential.",
+      keyHighlights: [
+        "Home to Nature Green Valley Phase 5 premium plots",
+        "Excellent connectivity to city center and highways",
+        "Growing residential and commercial development",
+        "Close proximity to schools and healthcare facilities",
+        "Peaceful environment with modern amenities"
+      ],
+      demographics: {
+        population: "Steadily growing residential community",
+        literacy: "91% literacy rate",
+        employment: "Mixed residential and commercial employment base"
+      },
+      investmentPotential: {
+        appreciation: "30-38% annual growth in prime areas",
+        rental: "₹10,000-18,000 per month for residential",
+        infrastructure: "Major infrastructure projects planned for the region"
+      }
+    }
+  },
 ]
 
 export default function LocationsPage() {

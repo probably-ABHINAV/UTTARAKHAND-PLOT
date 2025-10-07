@@ -21,7 +21,10 @@ import {
   Calendar,
   CheckCircle,
   Headphones,
-  Navigation
+  Navigation,
+  Facebook,
+  Instagram,
+  Youtube
 } from "lucide-react"
 
 export default function ContactPage() {
@@ -399,6 +402,44 @@ export default function ContactPage() {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Media Section */}
+      <section className="py-12 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="container mx-auto px-4">
+          <div className="text-center text-white">
+            <h2 className="font-bold text-3xl mb-4">Connect With Us on Social Media</h2>
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+              Follow us for property updates, investment tips, and beautiful Uttarakhand destinations
+            </p>
+            <div className="flex justify-center gap-6">
+              <Button
+                size="lg"
+                className="bg-white/20 hover:bg-white/30 border-2 border-white text-white"
+                onClick={() => window.open('https://facebook.com', '_blank')}
+              >
+                <Facebook className="mr-2 h-5 w-5" />
+                Facebook
+              </Button>
+              <Button
+                size="lg"
+                className="bg-white/20 hover:bg-white/30 border-2 border-white text-white"
+                onClick={() => window.open('https://instagram.com', '_blank')}
+              >
+                <Instagram className="mr-2 h-5 w-5" />
+                Instagram
+              </Button>
+              <Button
+                size="lg"
+                className="bg-white/20 hover:bg-white/30 border-2 border-white text-white"
+                onClick={() => window.open('https://youtube.com', '_blank')}
+              >
+                <Youtube className="mr-2 h-5 w-5" />
+                YouTube
+              </Button>
             </div>
           </div>
         </div>

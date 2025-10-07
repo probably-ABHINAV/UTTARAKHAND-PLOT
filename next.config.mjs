@@ -20,9 +20,8 @@ const nextConfig = {
       },
     ];
   },
-  // API routes rewrite for production deployment
+  // API routes rewrite
   async rewrites() {
-    // In production, proxy /api requests to backend service
     const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
     
     return [

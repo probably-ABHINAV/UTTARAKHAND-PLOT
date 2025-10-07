@@ -1,9 +1,15 @@
 // API Client for backend communication
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '' // Use Next.js API routes proxy in production
-  : process.env.REPLIT_DEV_DOMAIN 
-    ? `https://${process.env.REPLIT_DEV_DOMAIN}:8000`
-    : 'http://localhost:8000';
+const getApiBaseUrl = () => {
+  // Use environment variable if set, otherwise default to localhost
+  if (typeof window !== 'undefined') {
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  }
+  
+  // Server-side
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 class ApiClient {
   private baseURL: string;
@@ -30,6 +36,8 @@ class ApiClient {
         ...options.headers,
       },
       ...options,
+      // Add timeout and error handling
+      signal: AbortSignal.timeout(30000), // 30 second timeout
     };
 
     try {
@@ -44,7 +52,22 @@ class ApiClient {
 
       return await response.json();
     } catch (error) {
-      console.error('API Request failed:', error);
+      console.error('API Request failed:', {
+        url,
+        error: error instanceof Error ? error.message : 'Unknown error',
+        baseURL: this.baseURL
+      });
+      
+      // Provide more specific error messages
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          throw new Error('Request timeout - please check your connection');
+        }
+        if (error.message.includes('Failed to fetch')) {
+          throw new Error('Cannot connect to server - please check if backend is running');
+        }
+      }
+      
       throw error;
     }
   }

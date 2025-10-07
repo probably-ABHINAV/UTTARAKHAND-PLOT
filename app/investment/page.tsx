@@ -25,10 +25,10 @@ const investmentReasons = [
     title: "Legal Security",
     description: "All properties with clear titles and proper documentation",
     details: [
-      "RERA approved projects where applicable",
       "Clear land records and ownership",
       "All NOCs from relevant authorities",
-      "Legal due diligence completed"
+      "Legal due diligence completed",
+      "Transparent documentation process"
     ]
   },
   {

@@ -13,10 +13,11 @@ import { useState } from "react"
 import { Calculator, TrendingUp, Zap, DollarSign, Home, Calendar } from "lucide-react"
 
 const locationData = [
-  { name: "Dehradun Outskirts", baseRate: 1500, growthRate: 0.25 },
-  { name: "Rishikesh Region", baseRate: 2000, growthRate: 0.30 },
-  { name: "Nainital Area", baseRate: 2500, growthRate: 0.28 },
-  { name: "Mussoorie Hills", baseRate: 3000, growthRate: 0.35 }
+  { name: "Bajrang Vatika Premium - Badripur", baseRate: 1867, growthRate: 0.35 },
+  { name: "Nature Green Valley Phase 5 - Ganeshpur", baseRate: 1867, growthRate: 0.38 },
+  { name: "Friends Colony Phase 1 - Dehradun", baseRate: 1867, growthRate: 0.30 },
+  { name: "Badripur", baseRate: 1867, growthRate: 0.35 },
+  { name: "Sundarpur", baseRate: 1867, growthRate: 0.42 }
 ]
 
 export default function CalculatorPage() {
