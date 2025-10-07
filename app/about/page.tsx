@@ -125,13 +125,15 @@ export default function AboutPage() {
                 <h2 className="font-bold text-4xl mb-6 text-gray-800">Our Story</h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p className="text-lg">
-                    Founded in 2008, Property in Uttarakhand began with a simple vision: to help people find their perfect piece of paradise in the beautiful hill stations of Uttarakhand. What started as a small family business has grown into one of the region's most trusted property developers.
+                    Property in Uttarakhand is your trusted real estate partner dedicated to helping you find the perfect land, plots, and properties across the most promising locations in Uttarakhand. We specialize in offering affordable, legally verified, and investment-worthy plots that fit every budget — whether you’re looking for a peaceful residential site or a high-return investment opportunity.
                   </p>
                   <p>
-                    Over the years, we've helped thousands of families realize their dreams of owning premium plots in locations like Dehradun, Rishikesh, Nainital, and Mussoorie. Our commitment to transparency, legal clarity, and customer satisfaction has made us the go-to choice for property investment in Uttarakhand.
+                    With years of experience in the real estate industry, we understand that buying property isn’t just a transaction — it’s an emotional and financial milestone. That’s why our focus is on transparency, trust, and customer satisfaction. From the first consultation to the final registration, our team ensures a smooth, secure, and hassle-free experience for every client.
                   </p>
                   <p>
-                    Today, we continue to uphold our founding principles while embracing modern technology and sustainable development practices to create value for our customers and the communities we serve.
+                   At Property in Uttarakhand, we take pride in our honest guidance, clear documentation, and ethical business practices. Our aim is not just to sell plots, but to build long-term relationships and help you make the best decision for your future.
+
+Whether you’re planning to build your dream home, invest in growing areas like Friends Colony Phase 1 or Bajrang Vatika, or simply want expert advice — we’re here to guide you every step of the way.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">
