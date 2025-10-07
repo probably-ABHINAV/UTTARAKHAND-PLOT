@@ -26,21 +26,21 @@ import {
 
 const teamMembers = [
   {
-    name: "Rajesh Kumar",
+    name: "------",
     position: "Founder & CEO",
     experience: "15+ Years",
     expertise: "Property Development & Investment",
     description: "Leading property developer in Uttarakhand with deep knowledge of hill station markets."
   },
   {
-    name: "Priya Sharma", 
+    name: "------", 
     position: "Head of Sales",
     experience: "10+ Years",
     expertise: "Customer Relations & Sales",
     description: "Expert in helping families find their perfect plot with personalized guidance."
   },
   {
-    name: "Amit Patel",
+    name: "------",
     position: "Legal Advisor",
     experience: "12+ Years", 
     expertise: "Property Law & Documentation",
@@ -125,15 +125,15 @@ export default function AboutPage() {
                 <h2 className="font-bold text-4xl mb-6 text-gray-800">Our Story</h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p className="text-lg">
-                    Property in Uttarakhand is your trusted real estate partner dedicated to helping you find the perfect land, plots, and properties across the most promising locations in Uttarakhand. We specialize in offering affordable, legally verified, and investment-worthy plots that fit every budget — whether you’re looking for a peaceful residential site or a high-return investment opportunity.
+                    Property in Uttarakhand is your trusted real estate partner dedicated to helping you find the perfect land, plots, and properties across the most promising locations in Uttarakhand. We specialize in offering affordable, legally verified, and investment-worthy plots that fit every budget - whether you’re looking for a peaceful residential site or a high-return investment opportunity.
                   </p>
                   <p>
-                    With years of experience in the real estate industry, we understand that buying property isn’t just a transaction — it’s an emotional and financial milestone. That’s why our focus is on transparency, trust, and customer satisfaction. From the first consultation to the final registration, our team ensures a smooth, secure, and hassle-free experience for every client.
+                    With years of experience in the real estate industry, we understand that buying property isn’t just a transaction - it’s an emotional and financial milestone. That’s why our focus is on transparency, trust, and customer satisfaction. From the first consultation to the final registration, our team ensures a smooth, secure, and hassle-free experience for every client.
                   </p>
                   <p>
                    At Property in Uttarakhand, we take pride in our honest guidance, clear documentation, and ethical business practices. Our aim is not just to sell plots, but to build long-term relationships and help you make the best decision for your future.
 
-Whether you’re planning to build your dream home, invest in growing areas like Friends Colony Phase 1 or Bajrang Vatika, or simply want expert advice — we’re here to guide you every step of the way.
+Whether you’re planning to build your dream home, invest in growing areas like Friends Colony Phase 1 or Bajrang Vatika, or simply want expert advice - we’re here to guide you every step of the way.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">
