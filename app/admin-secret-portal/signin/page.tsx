@@ -22,7 +22,7 @@ export default function AdminSignInPage() {
     setLoading(true)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin-auth/signin`, {
+      const response = await fetch(`/api/admin-auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

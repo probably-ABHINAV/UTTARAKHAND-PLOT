@@ -49,11 +49,11 @@ export default function AdminDashboard() {
       }
 
       const [statsRes, plotsRes, inquiriesRes, usersRes, messagesRes] = await Promise.all([
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin/stats`, { headers }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin/plots`, { headers }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin/inquiries`, { headers }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin/users`, { headers }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin/contact-messages`, { headers }),
+        fetch(`/api/admin/stats`, { headers }),
+        fetch(`/api/admin/plots`, { headers }),
+        fetch(`/api/admin/inquiries`, { headers }),
+        fetch(`/api/admin/users`, { headers }),
+        fetch(`/api/admin/contact-messages`, { headers }),
       ])
 
       if (statsRes.ok) setStats(await statsRes.json())
@@ -82,7 +82,7 @@ export default function AdminDashboard() {
   const updateInquiryStatus = async (id: number, status: string) => {
     const token = localStorage.getItem('adminToken')
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/admin/inquiries/${id}`, {
+      const response = await fetch(`/api/admin/inquiries/${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
