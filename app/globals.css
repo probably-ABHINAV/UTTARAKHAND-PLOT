@@ -5,15 +5,15 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1f2937;
+  --foreground: #ff6633;
   --card: #ffffff;
-  --card-foreground: #1f2937;
+  --card-foreground: #ff6633;
   --popover: #ffffff;
-  --popover-foreground: #1f2937;
+  --popover-foreground: #ff6633;
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
-  --secondary-foreground: #1f2937;
+  --secondary-foreground: #ff6633;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
   --accent: #e11d48;
