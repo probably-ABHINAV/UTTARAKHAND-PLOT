@@ -1,53 +1,61 @@
-
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
+/* ------------------------------
+   THEME COLORS – ORANGE TO RED
+--------------------------------*/
 :root {
   --background: #ffffff;
-  --foreground: #ff6633;
+  --foreground: #ff4d00;
   --card: #ffffff;
-  --card-foreground: #ff6633;
+  --card-foreground: #ff4d00;
   --popover: #ffffff;
-  --popover-foreground: #ff6633;
-  --primary: #3b82f6;
+  --popover-foreground: #ff4d00;
+  --primary: #ff6600;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #ff6633;
-  --muted: #f8fafc;
-  --muted-foreground: #64748b;
-  --accent: #e11d48;
+  --secondary: #fff2ec;
+  --secondary-foreground: #ff4d00;
+  --muted: #fff8f4;
+  --muted-foreground: #b45309;
+  --accent: #ff3b3b;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #f8fafc;
-  --ring: #3b82f6;
+  --border: #ffe0d0;
+  --input: #fff8f4;
+  --ring: #ff6600;
   --radius: 0.75rem;
 }
 
+/* ------------------------------
+   DARK MODE VARIANT
+--------------------------------*/
 .dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --card: #1e293b;
-  --card-foreground: #f8fafc;
-  --popover: #0f172a;
-  --popover-foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-foreground: #0f172a;
-  --secondary: #1e293b;
-  --secondary-foreground: #f8fafc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #e11d48;
-  --accent-foreground: #f8fafc;
+  --background: #1c1c1c;
+  --foreground: #ff9966;
+  --card: #2a2a2a;
+  --card-foreground: #ffffff;
+  --popover: #1c1c1c;
+  --popover-foreground: #ffffff;
+  --primary: #ff6600;
+  --primary-foreground: #0f0f0f;
+  --secondary: #333333;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #ffccaa;
+  --accent: #ff3b3b;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
-  --destructive-foreground: #f8fafc;
-  --border: #334155;
-  --input: #1e293b;
-  --ring: #3b82f6;
+  --destructive-foreground: #ffffff;
+  --border: #3a3a3a;
+  --input: #2a2a2a;
+  --ring: #ff6600;
 }
 
+/* ------------------------------
+   THEME TOKENS
+--------------------------------*/
 @theme inline {
   --font-sans: ui-sans-serif, system-ui, sans-serif;
   --font-serif: ui-serif, Georgia, serif;
@@ -77,6 +85,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ------------------------------
+   BASE STYLES
+--------------------------------*/
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -86,7 +97,9 @@
   }
 }
 
-/* Custom animations */
+/* ------------------------------
+   CUSTOM ANIMATIONS
+--------------------------------*/
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -148,110 +161,98 @@
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out;
-}
+.animate-fade-in { animation: fade-in 0.6s ease-out; }
+.animate-slide-in-left { animation: slide-in-left 0.6s ease-out; }
+.animate-slide-in-right { animation: slide-in-right 0.6s ease-out; }
+.animate-scale-in { animation: scale-in 0.4s ease-out; }
+.animate-bounce-in { animation: bounce-in 0.6s ease-out; }
 
-.animate-slide-in-left {
-  animation: slide-in-left 0.6s ease-out;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.4s ease-out;
-}
-
-.animate-bounce-in {
-  animation: bounce-in 0.6s ease-out;
-}
-
-/* Gradient text */
+/* ------------------------------
+   GRADIENT TEXT & ELEMENTS
+--------------------------------*/
 .text-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #ff6600, #ff3b3b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Smooth scrolling */
+/* ------------------------------
+   CUSTOM SCROLLBAR
+--------------------------------*/
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #fff2ec;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #ff9966;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+  background: #ff7b33;
 }
 
-/* Animation delays */
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
+/* ------------------------------
+   ANIMATION DELAYS
+--------------------------------*/
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* Glassmorphism effect */
+/* ------------------------------
+   GLASS EFFECT
+--------------------------------*/
 .glass {
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Hover effects */
+/* ------------------------------
+   HOVER EFFECTS
+--------------------------------*/
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(255, 102, 51, 0.25);
 }
 
-/* Loading states */
+/* ------------------------------
+   LOADING EFFECT
+--------------------------------*/
 .loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #fff0e6 25%, #ffe5d1 50%, #fff0e6 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 }
 
 @keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-/* Responsive typography */
+/* ------------------------------
+   RESPONSIVE TYPOGRAPHY
+--------------------------------*/
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem !important;
-  }
-  h2 {
-    font-size: 2rem !important;
-  }
+  h1 { font-size: 2.25rem !important; }
+  h2 { font-size: 1.75rem !important; }
 }
 
-/* Button hover effects */
+/* ------------------------------
+   BUTTON GLOW EFFECT
+--------------------------------*/
 .btn-glow {
   position: relative;
   overflow: hidden;
@@ -264,10 +265,49 @@ html {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
   transition: left 0.5s;
 }
 
 .btn-glow:hover::before {
   left: 100%;
+}
+
+/* ------------------------------
+   CONSTRUCTION COST CARD
+--------------------------------*/
+.construction-cost-card {
+  background: linear-gradient(90deg, #ff6600, #ff3b3b);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  color: #fff;
+  font-family: var(--font-sans);
+  box-shadow: 0 4px 20px rgba(255, 102, 51, 0.25);
+  max-width: 420px;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.construction-cost-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 102, 51, 0.35);
+}
+
+.construction-cost-card h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.95;
+  margin-bottom: 0.75rem;
+}
+
+.construction-cost-card .price {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.construction-cost-card .rate {
+  font-size: 1rem;
+  opacity: 0.9;
 }
