@@ -105,7 +105,7 @@ const plotData = [
     id: 1,
     title: "Bajrang Vatika Premium",
     location: "Badripur, Dehradun",
-    size: "900-2400 sq ft",
+    size: "900-2400 sq yd",
     type: "Residential Project",
     price: "₹16800 per sq/yd",
     features: [
@@ -125,7 +125,7 @@ const plotData = [
     id: 2,
     title: "Nature Green Valley Phase 5",
     location: "Ganeshpur, Dehradun",
-    size: "1000-1800 sq ft",
+    size: "1000-1800 sq yd",
     type: "Residential Project",
     price: "₹16800 per sq/yard",
     features: [
@@ -148,7 +148,7 @@ const plotData = [
     id: 3,
     title: "Friend's Colony Phase 1",
     location: "Sundarpur, Dehradun",
-    size: "800-1500 sq ft",
+    size: "800-1500 sq yd",
     type: "Residential Project",
     price: "₹16500 per sq/yard",
     features: [
