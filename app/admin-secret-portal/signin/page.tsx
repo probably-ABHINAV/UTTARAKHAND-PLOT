@@ -58,10 +58,10 @@ export default function AdminSignInPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md border-blue-500/20 bg-gray-800/50 backdrop-blur">
+      <Card className="w-full max-w-md border-[#FF6B35]/20 bg-gray-800/50 backdrop-blur">
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] rounded-full flex items-center justify-center">
               <Shield className="h-8 w-8 text-white" />
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function AdminSignInPage() {
             </div>
             <Button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
+              className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-700 hover:to-purple-700" 
               disabled={loading}
             >
               {loading ? "Signing in..." : "Access Admin Panel"}

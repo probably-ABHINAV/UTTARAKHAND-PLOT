@@ -1,7 +1,36 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+/* ------------------------------
+   THEME COLORS – ORANGE TO RED GRADIENT (MATCHING LOGO)
+   Primary: #FF6B35 (Orange-Red from logo)
+   Secondary: #F7931E (Orange from logo)
+--------------------------------*/
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #1a1a1a;
+  --color-primary: #FF6B35;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #F7931E;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #FF6B35;
+  --color-accent-foreground: #ffffff;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #FF6B35;
+  --radius: 0.5rem;
+}
+
+/* ------------------------------
+=======
+>>>>>>> Stashed changes
 /* ------------------------------
    THEME COLORS – ORANGE TO RED
 --------------------------------*/
@@ -98,6 +127,10 @@
 }
 
 /* ------------------------------
+<<<<<<< Updated upstream
+=======
+>>>>>>> 8ecb354ff463fff582d1d7772608d0b0b65adb3d
+>>>>>>> Stashed changes
    CUSTOM ANIMATIONS
 --------------------------------*/
 @keyframes fade-in {

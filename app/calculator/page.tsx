@@ -99,13 +99,13 @@ export default function CalculatorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-[#F7931E] 50">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600/20 via-purple-400/10 to-green-600/20">
+      <section className="relative py-24 bg-gradient-to-br from-blue-600/20 via-purple-400/10 to-[#FF6B35]/60/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
             Smart Investment Calculator
           </h1>
           <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8">
@@ -124,7 +124,7 @@ export default function CalculatorPage() {
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
-                      <Calculator className="h-6 w-6 text-blue-500" />
+                      <Calculator className="h-6 w-6 text-[#FF6B35]" />
                       Investment Details
                     </h3>
                     <div className="space-y-6">
@@ -135,7 +135,7 @@ export default function CalculatorPage() {
                           placeholder="Enter plot size (e.g., 1200)"
                           value={calculatorData.plotSize}
                           onChange={(e) => setCalculatorData(prev => ({ ...prev, plotSize: e.target.value }))}
-                          className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl"
+                          className="text-lg p-4 border-2 focus:border-[#FF6B35] rounded-xl"
                         />
                       </div>
                       
@@ -145,7 +145,7 @@ export default function CalculatorPage() {
                           value={calculatorData.location}
                           onValueChange={(value) => setCalculatorData(prev => ({ ...prev, location: value }))}
                         >
-                          <SelectTrigger className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl">
+                          <SelectTrigger className="text-lg p-4 border-2 focus:border-[#FF6B35] rounded-xl">
                             <SelectValue placeholder="Select Location" />
                           </SelectTrigger>
                           <SelectContent>
@@ -164,7 +164,7 @@ export default function CalculatorPage() {
                           value={calculatorData.investmentType}
                           onValueChange={(value) => setCalculatorData(prev => ({ ...prev, investmentType: value }))}
                         >
-                          <SelectTrigger className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl">
+                          <SelectTrigger className="text-lg p-4 border-2 focus:border-[#FF6B35] rounded-xl">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -180,7 +180,7 @@ export default function CalculatorPage() {
                           value={calculatorData.timeline}
                           onValueChange={(value) => setCalculatorData(prev => ({ ...prev, timeline: value }))}
                         >
-                          <SelectTrigger className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl">
+                          <SelectTrigger className="text-lg p-4 border-2 focus:border-[#FF6B35] rounded-xl">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -195,7 +195,7 @@ export default function CalculatorPage() {
                       <div className="flex gap-4">
                         <Button 
                           onClick={calculateInvestment}
-                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                          className="flex-1 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-600 hover:to-purple-600 text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                         >
                           <Calculator className="mr-2 h-5 w-5" />
                           Calculate Returns
@@ -216,11 +216,11 @@ export default function CalculatorPage() {
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
-                      <TrendingUp className="h-6 w-6 text-green-500" />
+                      <TrendingUp className="h-6 w-6 text-[#F7931E]" />
                       Projected Returns
                     </h3>
                     <div className="space-y-6">
-                      <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
+                      <Card className="p-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0">
                         <div className="text-center">
                           <div className="text-sm opacity-90 mb-2 flex items-center justify-center gap-2">
                             <DollarSign className="h-4 w-4" />
@@ -252,7 +252,7 @@ export default function CalculatorPage() {
                         </Card>
                       )}
 
-                      <Card className="p-6 bg-gradient-to-r from-green-500 to-blue-500 text-white border-0">
+                      <Card className="p-6 bg-gradient-to-r from-[#F7931E] to-[#FF6B35] text-white border-0">
                         <div className="text-center">
                           <div className="text-sm opacity-90 mb-2 flex items-center justify-center gap-2">
                             <Calendar className="h-4 w-4" />
@@ -286,7 +286,7 @@ export default function CalculatorPage() {
                             </div>
                             <div className="flex justify-between border-t border-yellow-300 pt-2 mt-2">
                               <span className="font-semibold">Net Gain:</span>
-                              <span className="font-bold text-green-700">
+                              <span className="font-bold text-[#F7931E] 700">
                                 ₹{((calculatorData.potentialReturn - calculatorData.totalInvestment)/100000).toFixed(1)} Lakhs
                               </span>
                             </div>
@@ -303,7 +303,7 @@ export default function CalculatorPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-bold text-4xl mb-6">Ready to Start Your Investment Journey?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
@@ -312,7 +312,7 @@ export default function CalculatorPage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-blue-600 hover:bg-gray-100 text-xl px-8 py-4 shadow-xl"
+              className="bg-white text-[#FF6B35] hover:bg-gray-100 text-xl px-8 py-4 shadow-xl"
               onClick={() => window.open('tel:+917870231314', '_self')}
             >
               Speak to Expert

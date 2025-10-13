@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function SiteFooter() {
   return (
-    <footer id="footer" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+    <footer id="footer" className="bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white py-20">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
@@ -12,16 +12,16 @@ export function SiteFooter() {
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative w-12 h-12 flex-shrink-0">
                   <Image
-                    src="/images/mascot-logo.png"
-                    alt="Property in Uttarakhand"
+                    src="/property-in-uk-logo.png"
+                    alt="Property in UK"
                     width={48}
                     height={48}
-                    className="w-full h-full object-contain rounded-lg bg-white/10 p-1"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="font-bold text-lg leading-tight">Property in Uttarakhand</h3>
-                  <p className="text-sm opacity-80">Premium Hill Station Plots</p>
+                  <h3 className="font-bold text-lg leading-tight">Property in UK</h3>
+                  <p className="text-sm opacity-80">Premium Property Solutions</p>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export function SiteFooter() {
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm opacity-90 text-center md:text-left">
-              © 2025 Property in Uttarakhand. All rights reserved.
+              © 2025 Property in UK. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm opacity-90">
               <span>Trusted Plots</span>

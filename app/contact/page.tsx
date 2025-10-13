@@ -83,7 +83,7 @@ export default function ContactPage() {
       description: "Call or message us anytime",
       action: "+91 7870231314",
       href: "tel:+917870231314",
-      color: "from-green-500 to-blue-500",
+      color: "from-[#F7931E] to-[#FF6B35]",
       available: "24/7 Available"
     },
     {
@@ -92,7 +92,7 @@ export default function ContactPage() {
       description: "Send us your queries",
       action: "info@propertyinuttarakhand.com",
       href: "mailto:info@propertyinuttarakhand.com",
-      color: "from-blue-500 to-purple-500",
+      color: "from-[#FF6B35] to-[#F7931E]",
       available: "Response within 6 hours"
     },
     {
@@ -123,13 +123,13 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 via-white to-[#F7931E]/10">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600/20 via-green-400/10 to-purple-600/20">
+      <section className="relative py-24 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 bg-clip-text text-transparent">
             Get in Touch
           </h1>
           <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8">
@@ -162,7 +162,7 @@ export default function ContactPage() {
                 >
                   {method.action}
                 </Button>
-                <div className="text-xs text-green-600 font-medium">
+                <div className="text-xs text-[#F7931E] font-medium">
                   <Clock className="h-3 w-3 inline mr-1" />
                   {method.available}
                 </div>
@@ -173,7 +173,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-[#F7931E] 50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
@@ -181,7 +181,7 @@ export default function ContactPage() {
               <Card className="p-8 bg-white shadow-2xl border-0">
                 <CardHeader className="px-0">
                   <CardTitle className="text-2xl flex items-center gap-2">
-                    <Send className="h-6 w-6 text-blue-500" />
+                    <Send className="h-6 w-6 text-[#FF6B35]" />
                     Send Us a Message
                   </CardTitle>
                   <CardDescription className="text-lg">
@@ -197,7 +197,7 @@ export default function ContactPage() {
                         placeholder="Enter your full name"
                         value={contactForm.name}
                         onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
-                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        className="p-3 border-2 focus:border-[#FF6B35] rounded-lg"
                         required
                       />
                     </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                         placeholder="Your phone number"
                         value={contactForm.phone}
                         onChange={(e) => setContactForm(prev => ({ ...prev, phone: e.target.value }))}
-                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        className="p-3 border-2 focus:border-[#FF6B35] rounded-lg"
                         required
                       />
                     </div>
@@ -220,7 +220,7 @@ export default function ContactPage() {
                       placeholder="your.email@example.com"
                       value={contactForm.email}
                       onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
-                      className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                      className="p-3 border-2 focus:border-[#FF6B35] rounded-lg"
                     />
                   </div>
 
@@ -230,7 +230,7 @@ export default function ContactPage() {
                       value={contactForm.subject}
                       onValueChange={(value) => setContactForm(prev => ({ ...prev, subject: value }))}
                     >
-                      <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                      <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
                         <SelectValue placeholder="Select inquiry type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -250,7 +250,7 @@ export default function ContactPage() {
                         value={contactForm.plotInterest}
                         onValueChange={(value) => setContactForm(prev => ({ ...prev, plotInterest: value }))}
                       >
-                        <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                        <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
                           <SelectValue placeholder="Select location" />
                         </SelectTrigger>
                         <SelectContent>
@@ -268,7 +268,7 @@ export default function ContactPage() {
                         value={contactForm.budget}
                         onValueChange={(value) => setContactForm(prev => ({ ...prev, budget: value }))}
                       >
-                        <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                        <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
@@ -288,7 +288,7 @@ export default function ContactPage() {
                       value={contactForm.preferredContact}
                       onValueChange={(value) => setContactForm(prev => ({ ...prev, preferredContact: value }))}
                     >
-                      <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                      <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -305,14 +305,14 @@ export default function ContactPage() {
                       placeholder="Tell us about your requirements, preferred location, timeline, or any questions you have..."
                       value={contactForm.message}
                       onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
-                      className="p-3 border-2 focus:border-blue-500 rounded-lg min-h-[120px]"
+                      className="p-3 border-2 focus:border-[#FF6B35] rounded-lg min-h-[120px]"
                     />
                   </div>
                   
                   <Button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-600 hover:to-green-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <>Sending Message...</>
@@ -332,7 +332,7 @@ export default function ContactPage() {
                 <Card className="p-6 border-0 shadow-lg">
                   <CardHeader className="px-0">
                     <CardTitle className="flex items-center gap-2 text-xl">
-                      <Clock className="h-5 w-5 text-blue-500" />
+                      <Clock className="h-5 w-5 text-[#FF6B35]" />
                       Office Hours
                     </CardTitle>
                   </CardHeader>
@@ -349,7 +349,7 @@ export default function ContactPage() {
                 </Card>
 
                 {/* Quick Actions */}
-                <Card className="p-6 bg-gradient-to-r from-blue-500 to-green-500 text-white border-0">
+                <Card className="p-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0">
                   <CardHeader className="px-0">
                     <CardTitle className="text-xl">Quick Actions</CardTitle>
                   </CardHeader>
@@ -408,11 +408,11 @@ export default function ContactPage() {
       </section>
 
       {/* Social Media Section */}
-      <section className="py-12 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-12 bg-gradient-to-r from-[#FF6B35] to-[#F7931E]">
         <div className="container mx-auto px-4">
           <div className="text-center text-white">
             <h2 className="font-bold text-3xl mb-4">Connect With Us on Social Media</h2>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-[#FF6B35] 100 mb-8 max-w-2xl mx-auto">
               Follow us for property updates, investment tips, and beautiful Uttarakhand destinations
             </p>
             <div className="flex justify-center gap-6">
@@ -483,7 +483,7 @@ export default function ContactPage() {
               }
             ].map((faq, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300">
-                <h3 className="font-bold text-lg mb-3 text-blue-600">{faq.question}</h3>
+                <h3 className="font-bold text-lg mb-3 text-[#FF6B35]">{faq.question}</h3>
                 <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
               </Card>
             ))}

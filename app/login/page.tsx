@@ -81,15 +81,15 @@ export default function LoginPage() {
           <div className="flex items-center justify-center mb-6">
             <div className="flex items-center gap-3">
               <Image
-                src="/images/mascot-logo.png"
-                alt="Property in Uttrakhand Mascot"
+                src="/property-in-uk-logo.png"
+                alt="Property in UK"
                 width={60}
                 height={60}
                 className="h-14 w-14"
               />
               <div className="flex flex-col text-left">
-                <h1 className="font-bold text-xl text-foreground leading-tight">Property in Uttrakhand</h1>
-                <p className="text-sm text-muted-foreground">Premium Hill Station Plots</p>
+                <h1 className="font-bold text-xl text-foreground leading-tight">Property in UK</h1>
+                <p className="text-sm text-muted-foreground">Premium Property Solutions</p>
               </div>
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function LoginPage() {
         </Card>
 
         <div className="text-center mt-8 text-sm text-muted-foreground">
-          <p>© 2024 Property in Uttrakhand. All rights reserved.</p>
+          <p>© 2024 Property in UK. All rights reserved.</p>
           <p className="mt-1">Secure plot management for hill station investments</p>
         </div>
       </div>

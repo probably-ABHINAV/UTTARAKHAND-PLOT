@@ -386,26 +386,26 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-blue-400/10 to-purple-600/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20" />
         <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center opacity-20" />
 
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-          <div className="absolute top-40 right-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-          <div className="absolute -bottom-32 left-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+          <div className="absolute top-40 right-10 w-96 h-96 bg-[#F7931E]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+          <div className="absolute -bottom-32 left-20 w-80 h-80 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-6xl mx-auto">
-            <Badge className="mb-8 text-lg font-semibold px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce">
+            <Badge className="mb-8 text-lg font-semibold px-6 py-3 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce">
               Premium Verified Plots in Uttarakhand
             </Badge>
 
-            <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl leading-tight mb-8 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+            <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl leading-tight mb-8 bg-gradient-to-r from-[#FF6B35] via-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
               Premium Plots in
               <br />
-              <span className="text-gradient bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+              <span className="text-gradient bg-gradient-to-r from-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
                 Uttarakhand's Paradise
               </span>
             </h1>
@@ -417,7 +417,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <Button
                 size="lg"
-                className="text-xl px-10 py-6 min-w-[250px] bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="text-xl px-10 py-6 min-w-[250px] bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35] shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                 onClick={() => scrollToSection("plots")}
               >
                 <Search className="mr-2 h-5 w-5" />
@@ -426,7 +426,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-xl px-10 py-6 min-w-[250px] border-2 border-blue-500 text-blue-600 hover:bg-blue-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="text-xl px-10 py-6 min-w-[250px] border-2 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 onClick={() => scrollToSection("contact")}
               >
                 <Calendar className="mr-2 h-5 w-5" />
@@ -438,7 +438,7 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="text-lg px-8 py-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
+                className="text-lg px-8 py-4 text-gray-700 hover:text-[#FF6B35] hover:bg-[#FF6B35]/10"
                 onClick={() => scrollToSection("contact")}
               >
                 Have Questions? Contact Us
@@ -449,10 +449,10 @@ export default function HomePage() {
             {/* Animated Trust Indicators */}
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { icon: CheckCircle, title: "Approved Plots", color: "text-green-500" },
-                { icon: Shield, title: "Legal Clarity", color: "text-blue-500" },
-                { icon: TrendingUp, title: "High ROI", color: "text-purple-500" },
-                { icon: Award, title: "Award Winning", color: "text-orange-500" },
+                { icon: CheckCircle, title: "Approved Plots", color: "text-[#FF6B35]" },
+                { icon: Shield, title: "Legal Clarity", color: "text-[#F7931E]" },
+                { icon: TrendingUp, title: "High ROI", color: "text-[#FF6B35]" },
+                { icon: Award, title: "Award Winning", color: "text-[#F7931E]" },
               ].map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -473,10 +473,10 @@ export default function HomePage() {
       </section>
 
       {/* Plots Section */}
-      <section id="plots" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="plots" className="py-24 bg-gradient-to-br from-gray-50 to-[#FF6B35]/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
               Premium Residential Plots
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
@@ -492,7 +492,7 @@ export default function HomePage() {
                 placeholder="Search plots by name or location..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-3 text-lg border-2 focus:border-blue-500 rounded-xl"
+                className="pl-10 py-3 text-lg border-2 focus:border-[#FF6B35] rounded-xl"
               />
             </div>
 
@@ -687,7 +687,7 @@ export default function HomePage() {
       <section id="locations" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
               Prime Locations Across Uttarakhand
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
@@ -749,7 +749,7 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600" onClick={() => scrollToSection("contact")}>
+                  <Button className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35]" onClick={() => scrollToSection("contact")}>
                     <MapPin className="mr-2 h-4 w-4" />
                     Explore This Location
                   </Button>
@@ -764,10 +764,10 @@ export default function HomePage() {
       <LocationMap />
 
       {/* Calculator */}
-      <section id="calculator" className="py-24 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section id="calculator" className="py-24 bg-gradient-to-br from-[#FF6B35]/10 to-[#F7931E]/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
               Smart Investment Calculator
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
@@ -824,7 +824,7 @@ export default function HomePage() {
                         </Select>
                       </div>
 
-                      <Button onClick={calculateInvestment} className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                      <Button onClick={calculateInvestment} className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35] text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                         <Calculator className="mr-2 h-5 w-5" />
                         Calculate Investment Returns
                       </Button>
@@ -836,14 +836,14 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-2xl font-bold mb-6 text-gray-800">Projected Returns</h3>
                     <div className="space-y-6">
-                      <Card className="p-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0">
+                      <Card className="p-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0">
                         <div className="text-center">
                           <div className="text-sm opacity-90 mb-2">Current Plot Value</div>
                           <div className="text-3xl font-bold">₹{calculatorData.plotValue ? (calculatorData.plotValue / 100000).toFixed(1) : "0"} Lakhs</div>
                         </div>
                       </Card>
 
-                      <Card className="p-6 bg-gradient-to-r from-green-500 to-blue-500 text-white border-0">
+                      <Card className="p-6 bg-gradient-to-r from-[#F7931E] to-[#FF6B35] text-white border-0">
                         <div className="text-center">
                           <div className="text-sm opacity-90 mb-2">Expected Value in {calculatorData.timeline} Years</div>
                           <div className="text-3xl font-bold">₹{calculatorData.expectedGrowth ? (calculatorData.expectedGrowth / 100000).toFixed(1) : "0"} Lakhs</div>
@@ -884,7 +884,7 @@ export default function HomePage() {
       </section>
 
       {/* Statistics */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-24 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-bold text-5xl md:text-6xl mb-8">Trusted by Thousands</h2>
@@ -919,11 +919,11 @@ export default function HomePage() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-[#FF6B35]/10">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
                 Ready to Start Your Journey?
               </h2>
               <p className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto">
@@ -996,7 +996,7 @@ export default function HomePage() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                  <Button type="submit" className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-600 hover:to-purple-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                     <Mail className="mr-2 h-5 w-5" />
                     Send Message
                   </Button>
@@ -1014,7 +1014,7 @@ export default function HomePage() {
                       description: "Call or message us anytime",
                       action: "7870231314",
                       href: "tel:+917870231314",
-                      color: "from-green-500 to-blue-500",
+                      color: "from-[#F7931E] to-[#FF6B35]",
                     },
                     {
                       icon: Mail,
@@ -1022,7 +1022,7 @@ export default function HomePage() {
                       description: "Send us your queries",
                       action: "info@propertyinuttarakhand.com",
                       href: "mailto:info@propertyinuttarakhand.com",
-                      color: "from-blue-500 to-purple-500",
+                      color: "from-[#FF6B35] to-[#F7931E]",
                     },
                     {
                       icon: MapPin,
@@ -1030,7 +1030,7 @@ export default function HomePage() {
                       description: "Visit our office",
                       action: "Badripur & Ganeshpur, Dehradun",
                       href: "#",
-                      color: "from-purple-500 to-pink-500",
+                      color: "from-[#FF6B35] to-[#F7931E]",
                     },
                   ].map((contact, index) => {
                     const Icon = contact.icon;

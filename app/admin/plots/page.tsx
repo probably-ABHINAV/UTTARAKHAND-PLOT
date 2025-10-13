@@ -170,7 +170,7 @@ function PlotManagementContent() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Image
-              src="/images/logo.jpg"
+              src="/property-in-uk-logo.png"
               alt="Property in Uttrakhand"
               width={140}
               height={45}

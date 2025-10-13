@@ -26,7 +26,7 @@ export function FloatingActions() {
         <Link href="/chatbot">
           <Button
             size="lg"
-            className="bg-blue-500 hover:bg-blue-600 text-white shadow-xl rounded-full w-16 h-16 p-0 transition-all duration-300 transform hover:scale-110"
+            className="bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35] text-white shadow-xl rounded-full w-16 h-16 p-0 transition-all duration-300 transform hover:scale-110"
             title="Chat Assistant"
           >
             <MessageCircle className="h-6 w-6" />

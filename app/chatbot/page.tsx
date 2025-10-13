@@ -165,13 +165,13 @@ export default function ChatbotPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 to-[#F7931E]/10">
       <SiteHeader />
       
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="font-bold text-4xl mb-4 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+            <h1 className="font-bold text-4xl mb-4 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 bg-clip-text text-transparent">
               Property Assistant
             </h1>
             <p className="text-gray-600 text-lg">
@@ -181,7 +181,7 @@ export default function ChatbotPage() {
 
           <Card className="h-[600px] flex flex-col bg-white shadow-xl">
             {/* Chat Header */}
-            <div className="p-4 border-b bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-t-lg">
+            <div className="p-4 border-b bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white rounded-t-lg">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <Bot className="h-6 w-6" />
@@ -201,7 +201,7 @@ export default function ChatbotPage() {
                   className={`flex gap-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {message.sender === 'bot' && (
-                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-[#FF6B35] rounded-full flex items-center justify-center flex-shrink-0">
                       <Bot className="h-4 w-4 text-white" />
                     </div>
                   )}
@@ -210,7 +210,7 @@ export default function ChatbotPage() {
                     <div
                       className={`p-3 rounded-lg ${
                         message.sender === 'user'
-                          ? 'bg-blue-500 text-white rounded-br-sm'
+                          ? 'bg-[#FF6B35] text-white rounded-br-sm'
                           : 'bg-white text-gray-800 rounded-bl-sm shadow-sm border'
                       }`}
                     >
@@ -244,7 +244,7 @@ export default function ChatbotPage() {
 
               {isTyping && (
                 <div className="flex gap-3 justify-start">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#FF6B35] rounded-full flex items-center justify-center">
                     <Bot className="h-4 w-4 text-white" />
                   </div>
                   <div className="bg-white text-gray-800 p-3 rounded-lg rounded-bl-sm shadow-sm border">
@@ -293,7 +293,7 @@ export default function ChatbotPage() {
                 <Button
                   onClick={() => handleSendMessage()}
                   disabled={!inputMessage.trim() || isTyping}
-                  className="bg-blue-500 hover:bg-blue-600"
+                  className="bg-[#FF6B35] hover:bg-[#F7931E]"
                 >
                   <Send className="h-4 w-4" />
                 </Button>
@@ -304,21 +304,21 @@ export default function ChatbotPage() {
           {/* Quick Actions */}
           <div className="grid md:grid-cols-4 gap-4 mt-8">
             <Button 
-              className="p-4 h-auto flex-col gap-2 bg-green-500 hover:bg-green-600"
+              className="p-4 h-auto flex-col gap-2 bg-[#F7931E] hover:bg-[#FF6B35]"
               onClick={() => window.open('https://wa.me/917870231314', '_blank')}
             >
               <Phone className="h-6 w-6" />
               <span>Call Now</span>
             </Button>
             <Button 
-              className="p-4 h-auto flex-col gap-2 bg-blue-500 hover:bg-blue-600"
+              className="p-4 h-auto flex-col gap-2 bg-[#FF6B35] hover:bg-[#F7931E]"
               onClick={() => window.location.href = '/locations'}
             >
               <MapPin className="h-6 w-6" />
               <span>View Locations</span>
             </Button>
             <Button 
-              className="p-4 h-auto flex-col gap-2 bg-purple-500 hover:bg-purple-600"
+              className="p-4 h-auto flex-col gap-2 bg-[#F7931E] hover:bg-[#FF6B35]"
               onClick={() => window.location.href = '/calculator'}
             >
               <Calculator className="h-6 w-6" />

@@ -280,13 +280,13 @@ export default function PlotsPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-[#F7931E] 50">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600/20 via-blue-400/10 to-purple-600/20">
+      <section className="relative py-24 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
             Premium Residential Plots
           </h1>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed mb-8">
@@ -305,7 +305,7 @@ export default function PlotsPage() {
                 placeholder="Search plots by name or location..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-3 text-lg border-2 focus:border-blue-500 rounded-xl"
+                className="pl-10 py-3 text-lg border-2 focus:border-[#FF6B35] rounded-xl"
               />
             </div>
             
@@ -355,7 +355,7 @@ export default function PlotsPage() {
 
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <Badge className="bg-blue-500 shadow-lg">{plot.type}</Badge>
+                    <Badge className="bg-[#FF6B35] shadow-lg">{plot.type}</Badge>
                     {plot.isPopular && (
                       <Badge className="bg-orange-500 shadow-lg">Popular</Badge>
                     )}
@@ -392,7 +392,7 @@ export default function PlotsPage() {
 
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl group-hover:text-blue-600 transition-colors">
+                    <CardTitle className="text-xl group-hover:text-[#FF6B35] transition-colors">
                       {plot.title}
                     </CardTitle>
                     <div className="flex items-center gap-1">
@@ -402,7 +402,7 @@ export default function PlotsPage() {
                     </div>
                   </div>
                   <CardDescription className="flex items-center gap-2 text-base">
-                    <MapPin className="h-4 w-4 text-blue-500" />
+                    <MapPin className="h-4 w-4 text-[#FF6B35]" />
                     {plot.location}
                   </CardDescription>
                 </CardHeader>
@@ -416,7 +416,7 @@ export default function PlotsPage() {
                     </div>
                     <div className="p-3 bg-blue-50 rounded-lg">
                       <span className="text-sm text-gray-600">Price Range</span>
-                      <div className="font-semibold text-blue-600">{plot.price}</div>
+                      <div className="font-semibold text-[#FF6B35]">{plot.price}</div>
                     </div>
                   </div>
 
@@ -441,7 +441,7 @@ export default function PlotsPage() {
                   <div className="flex gap-3 pt-2">
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg">
+                        <Button className="flex-1 bg-[#FF6B35] hover:bg-[#F7931E] shadow-lg">
                           View Details
                         </Button>
                       </DialogTrigger>
@@ -449,7 +449,7 @@ export default function PlotsPage() {
                         <DialogHeader>
                           <DialogTitle className="text-2xl">{plot.title}</DialogTitle>
                           <DialogDescription className="flex items-center gap-2 text-lg">
-                            <MapPin className="h-5 w-5 text-blue-500" />
+                            <MapPin className="h-5 w-5 text-[#FF6B35]" />
                             {plot.location}
                           </DialogDescription>
                         </DialogHeader>
@@ -470,11 +470,11 @@ export default function PlotsPage() {
 
                           <div className="grid md:grid-cols-3 gap-6">
                             <div className="p-4 bg-blue-50 rounded-lg text-center">
-                              <div className="text-2xl font-bold text-blue-600">{plot.price}</div>
+                              <div className="text-2xl font-bold text-[#FF6B35]">{plot.price}</div>
                               <div className="text-sm text-gray-600">Price Range</div>
                             </div>
                             <div className="p-4 bg-green-50 rounded-lg text-center">
-                              <div className="text-2xl font-bold text-green-600">{plot.size}</div>
+                              <div className="text-2xl font-bold text-[#F7931E]">{plot.size}</div>
                               <div className="text-sm text-gray-600">Plot Size</div>
                             </div>
                             <div className="p-4 bg-orange-50 rounded-lg text-center">
@@ -491,13 +491,13 @@ export default function PlotsPage() {
                           <div className="grid md:grid-cols-2 gap-6">
                             <div>
                               <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                                <Building className="h-5 w-5 text-blue-500" />
+                                <Building className="h-5 w-5 text-[#FF6B35]" />
                                 Infrastructure
                               </h4>
                               <ul className="space-y-2">
                                 {plot.detailedFeatures.infrastructure.map((item, idx) => (
                                   <li key={idx} className="flex items-start gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
                                     {item}
                                   </li>
                                 ))}
@@ -506,13 +506,13 @@ export default function PlotsPage() {
 
                             <div>
                               <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                                <Car className="h-5 w-5 text-green-500" />
+                                <Car className="h-5 w-5 text-[#F7931E]" />
                                 Connectivity
                               </h4>
                               <ul className="space-y-2">
                                 {plot.detailedFeatures.connectivity.map((item, idx) => (
                                   <li key={idx} className="flex items-start gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
                                     {item}
                                   </li>
                                 ))}
@@ -521,13 +521,13 @@ export default function PlotsPage() {
 
                             <div>
                               <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                                <MapPin className="h-5 w-5 text-purple-500" />
+                                <MapPin className="h-5 w-5 text-[#FF6B35]" />
                                 Nearby Facilities
                               </h4>
                               <ul className="space-y-2">
                                 {plot.detailedFeatures.nearbyFacilities.map((item, idx) => (
                                   <li key={idx} className="flex items-start gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
                                     {item}
                                   </li>
                                 ))}
@@ -542,7 +542,7 @@ export default function PlotsPage() {
                               <ul className="space-y-2">
                                 {plot.detailedFeatures.legalCompliance.map((item, idx) => (
                                   <li key={idx} className="flex items-start gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
                                     {item}
                                   </li>
                                 ))}
@@ -550,7 +550,7 @@ export default function PlotsPage() {
                             </div>
                           </div>
 
-                          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
+                          <div className="bg-gradient-to-r from-[#FF6B35]/10 to-[#F7931E]/10 p-6 rounded-lg">
                             <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
                               <Zap className="h-5 w-5 text-yellow-500" />
                               Investment Highlights
@@ -585,7 +585,7 @@ export default function PlotsPage() {
                           </div>
 
                           <div className="flex gap-4 pt-4">
-                            <Button className="flex-1 bg-green-500 hover:bg-green-600" onClick={() => window.open('tel:+917870231314', '_self')}>
+                            <Button className="flex-1 bg-[#F7931E] hover:bg-[#FF6B35]" onClick={() => window.open('tel:+917870231314', '_self')}>
                               <Phone className="mr-2 h-4 w-4" />
                               Call Now
                             </Button>
@@ -600,7 +600,7 @@ export default function PlotsPage() {
                     
                     <Button 
                       variant="outline" 
-                      className="flex-1 border-blue-500 text-blue-600 hover:bg-blue-50"
+                      className="flex-1 border-[#FF6B35] text-[#FF6B35] hover:bg-blue-50"
                       onClick={() => window.open('tel:+917870231314', '_self')}
                     >
                       <Phone className="mr-2 h-4 w-4" />

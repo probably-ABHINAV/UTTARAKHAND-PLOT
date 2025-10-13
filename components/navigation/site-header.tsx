@@ -15,16 +15,16 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative w-14 h-14 flex-shrink-0">
             <Image
-              src="/images/mascot-logo.png"
-              alt="Property in Uttrakhand Mascot"
+              src="/property-in-uk-logo.png"
+              alt="Property in UK"
               width={56}
               height={56}
-              className="w-full h-full object-contain rounded-lg"
+              className="w-full h-full object-contain"
               priority
             />
           </div>
           <div className="flex flex-col">
-            <h1 className="font-bold text-lg text-foreground leading-tight">Property in Uttrakhand</h1>
+            <h1 className="font-bold text-lg text-foreground leading-tight">Property in UK</h1>
           </div>
         </Link>
         

@@ -100,13 +100,13 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 via-white to-[#F7931E]/10">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600/20 via-green-400/10 to-purple-600/20">
+      <section className="relative py-24 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 bg-clip-text text-transparent">
             About Property in Uttarakhand
           </h1>
           <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8">
@@ -137,9 +137,9 @@ Whether you’re planning to build your dream home, invest in growing areas like
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Badge className="bg-blue-500 text-white px-4 py-2 text-sm">Est. 2008</Badge>
-                  <Badge className="bg-green-500 text-white px-4 py-2 text-sm">15+ Years Experience</Badge>
-                  <Badge className="bg-purple-500 text-white px-4 py-2 text-sm">5000+ Happy Customers</Badge>
+                  <Badge className="bg-[#FF6B35] text-white px-4 py-2 text-sm">Est. 2008</Badge>
+                  <Badge className="bg-[#F7931E] text-white px-4 py-2 text-sm">15+ Years Experience</Badge>
+                  <Badge className="bg-[#F7931E] text-white px-4 py-2 text-sm">5000+ Happy Customers</Badge>
                 </div>
               </div>
               <div className="relative">
@@ -151,7 +151,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
                   className="w-full h-80 object-cover rounded-2xl shadow-2xl"
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
-                  <div className="text-3xl font-bold text-blue-600">15+</div>
+                  <div className="text-3xl font-bold text-[#FF6B35]">15+</div>
                   <div className="text-sm text-gray-600">Years of Excellence</div>
                 </div>
               </div>
@@ -161,7 +161,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Our Values Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-[#F7931E] 50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-bold text-4xl mb-6">Our Core Values</h2>
@@ -173,7 +173,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] rounded-full flex items-center justify-center mx-auto mb-4">
                   <value.icon className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-bold text-xl mb-3">{value.title}</h3>
@@ -185,11 +185,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Achievements Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-bold text-4xl mb-6">Our Achievements</h2>
-            <p className="text-blue-100 text-lg max-w-3xl mx-auto">
+            <p className="text-[#FF6B35] 100 text-lg max-w-3xl mx-auto">
               Milestones that reflect our commitment to excellence and customer satisfaction
             </p>
           </div>
@@ -202,7 +202,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
                 </div>
                 <div className="text-4xl font-bold mb-2">{achievement.number}</div>
                 <div className="text-xl font-semibold mb-2">{achievement.label}</div>
-                <p className="text-blue-100 text-sm">{achievement.description}</p>
+                <p className="text-[#FF6B35] 100 text-sm">{achievement.description}</p>
               </Card>
             ))}
           </div>
@@ -222,17 +222,17 @@ Whether you’re planning to build your dream home, invest in growing areas like
           <div className="grid md:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="w-24 h-24 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-gradient-to-r from-[#FF6B35] 400 to-[#F7931E] 400 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="h-12 w-12 text-white" />
                 </div>
                 <h3 className="font-bold text-xl mb-2">{member.name}</h3>
-                <Badge className="bg-blue-500 mb-3">{member.position}</Badge>
+                <Badge className="bg-[#FF6B35] mb-3">{member.position}</Badge>
                 <div className="space-y-2 text-sm text-gray-600 mb-4">
                   <div className="flex items-center justify-center gap-2">
                     <Clock className="h-4 w-4" />
                     {member.experience}
                   </div>
-                  <div className="font-medium text-blue-600">{member.expertise}</div>
+                  <div className="font-medium text-[#FF6B35]">{member.expertise}</div>
                 </div>
                 <p className="text-gray-700 leading-relaxed">{member.description}</p>
               </Card>
@@ -242,7 +242,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-green-50">
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-[#FF6B35] 50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-bold text-4xl mb-6">Why Choose Us?</h2>
@@ -285,7 +285,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
               }
             ].map((feature, index) => (
               <Card key={index} className="p-6 hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mb-4">
+                <div className="w-14 h-14 bg-gradient-to-r from-[#F7931E] to-[#FF6B35] rounded-full flex items-center justify-center mb-4">
                   <feature.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="font-bold text-xl mb-3">{feature.title}</h3>
@@ -297,7 +297,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-bold text-4xl mb-6">Ready to Start Your Journey?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
@@ -306,7 +306,7 @@ Whether you’re planning to build your dream home, invest in growing areas like
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-green-600 hover:bg-gray-100 text-xl px-8 py-4 shadow-xl"
+              className="bg-white text-[#F7931E] hover:bg-gray-100 text-xl px-8 py-4 shadow-xl"
               onClick={() => window.open('tel:+917870231314', '_self')}
             >
               <Phone className="mr-2 h-6 w-6" />

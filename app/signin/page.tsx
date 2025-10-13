@@ -60,14 +60,14 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 via-white to-[#F7931E]/10">
       <SiteHeader />
       
       <div className="container mx-auto px-4 py-16 flex items-center justify-center min-h-[80vh]">
         <Card className="w-full max-w-md">
           <CardHeader className="space-y-1">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-green-600 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 rounded-full flex items-center justify-center">
                 <LogIn className="h-6 w-6 text-white" />
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function SignInPage() {
           <CardFooter className="flex flex-col space-y-4">
             <div className="text-sm text-center text-gray-600">
               Don't have an account?{" "}
-              <Link href="/signup" className="text-blue-600 hover:underline font-medium">
+              <Link href="/signup" className="text-[#FF6B35] hover:underline font-medium">
                 Sign up
               </Link>
             </div>

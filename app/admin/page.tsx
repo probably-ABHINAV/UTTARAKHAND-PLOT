@@ -134,7 +134,7 @@ function AdminDashboardContent() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Image
-              src="/images/logo.jpg"
+              src="/property-in-uk-logo.png"
               alt="Property in Uttrakhand"
               width={140}
               height={45}

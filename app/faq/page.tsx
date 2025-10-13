@@ -95,14 +95,14 @@ const faqData = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 via-white to-[#F7931E]/10">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600/20 via-green-400/10 to-purple-600/20">
+      <section className="relative py-24 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20">
         <div className="container mx-auto px-4 text-center">
-          <HelpCircle className="mx-auto h-16 w-16 text-blue-600 mb-6" />
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+          <HelpCircle className="mx-auto h-16 w-16 text-[#FF6B35] mb-6" />
+          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 bg-clip-text text-transparent">
             Frequently Asked Questions
           </h1>
           <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8">
@@ -110,9 +110,9 @@ export default function FAQPage() {
             Get clarity on our processes, legal requirements, and support services.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Badge className="bg-blue-500 text-white px-4 py-2 text-sm">15+ Common Questions</Badge>
-            <Badge className="bg-green-500 text-white px-4 py-2 text-sm">Detailed Answers</Badge>
-            <Badge className="bg-purple-500 text-white px-4 py-2 text-sm">Expert Guidance</Badge>
+            <Badge className="bg-[#FF6B35] text-white px-4 py-2 text-sm">15+ Common Questions</Badge>
+            <Badge className="bg-[#F7931E] text-white px-4 py-2 text-sm">Detailed Answers</Badge>
+            <Badge className="bg-[#F7931E] text-white px-4 py-2 text-sm">Expert Guidance</Badge>
           </div>
         </div>
       </section>
@@ -121,7 +121,7 @@ export default function FAQPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-blue-50/30">
+            <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-[#F7931E] 50/30">
               <CardHeader className="text-center pb-8">
                 <CardTitle className="text-3xl font-bold text-gray-800 mb-2">
                   Everything You Need to Know
@@ -138,7 +138,7 @@ export default function FAQPage() {
                       value={faq.id}
                       className="border border-gray-200 rounded-lg px-6 py-2 bg-white shadow-sm hover:shadow-md transition-shadow"
                     >
-                      <AccordionTrigger className="text-left font-semibold text-gray-800 hover:text-blue-600 transition-colors">
+                      <AccordionTrigger className="text-left font-semibold text-gray-800 hover:text-[#FF6B35] transition-colors">
                         {faq.question}
                       </AccordionTrigger>
                       <AccordionContent className="text-gray-600 leading-relaxed pt-4 pb-2">
@@ -154,7 +154,7 @@ export default function FAQPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+      <section className="py-16 bg-gradient-to-br from-[#FF6B35]/10 to-[#F7931E]/10">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-bold text-3xl mb-6 text-gray-800">
             Still Have Questions?
@@ -176,7 +176,7 @@ export default function FAQPage() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
+              className="border-blue-600 text-[#FF6B35] hover:bg-blue-50 px-8 py-3"
               asChild
             >
               <Link href="/contact">
@@ -187,7 +187,7 @@ export default function FAQPage() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3"
+              className="border-green-600 text-[#F7931E] hover:bg-green-50 px-8 py-3"
               asChild
             >
               <Link href="/chatbot">
