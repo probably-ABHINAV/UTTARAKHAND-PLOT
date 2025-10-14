@@ -24,7 +24,7 @@ export function SiteHeader() {
             />
           </div>
           <div className="flex flex-col">
-            <h1 className="font-bold text-lg text-foreground leading-tight">Property in UK</h1>
+            <h1 className="font-bold text-lg text-foreground leading-tight">Property in Uttarakhand</h1>
           </div>
         </Link>
         
