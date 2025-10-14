@@ -10,17 +10,17 @@ export function SiteFooter() {
           <div>
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="relative w-12 h-12 flex-shrink-0">
+                <div className="relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-1">
                   <Image
                     src="/property-in-uk-logo.png"
-                    alt="Property in UK"
-                    width={48}
-                    height={48}
+                    alt="Property in Uttarakhand"
+                    width={64}
+                    height={64}
                     className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="font-bold text-lg leading-tight">Property in UK</h3>
+                  <h3 className="font-bold text-lg leading-tight">Property in Uttarakhand</h3>
                   <p className="text-sm opacity-80">Premium Property Solutions</p>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export function SiteFooter() {
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm opacity-90 text-center md:text-left">
-              © 2025 Property in UK. All rights reserved.
+              © 2025 Property in Uttarakhand. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm opacity-90">
               <span>Trusted Plots</span>
