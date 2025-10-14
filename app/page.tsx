@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -237,6 +237,7 @@ const locationData = [
  */
 export default function HomePage() {
   const { toast } = useToast();
+  const router = useRouter();
 
   // UI states
   const [selectedFilter, setSelectedFilter] = useState<string>("All Plots");
@@ -408,20 +409,12 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Optional header */}
       <SiteHeader />
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20" />
         <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center opacity-20" />
-
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-          <div className="absolute top-40 right-10 w-96 h-96 bg-[#F7931E]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-          <div className="absolute -bottom-32 left-20 w-80 h-80 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-        </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-6xl mx-auto">
@@ -649,13 +642,14 @@ export default function HomePage() {
 
                   <div className="space-y-3 pt-2">
                     <div className="flex gap-3">
-                      {/* REPLACED: Link to dedicated plot page using slug */}
+                      {/* REPLACED: router.push to dedicated plot page using slug */}
                       <div className="flex-1">
-                        <Link href={`/plots/${plot.slug}`} className="block w-full">
-                          <Button className="w-full bg-blue-500 hover:bg-blue-600 shadow-lg">
-                            View Details
-                          </Button>
-                        </Link>
+                        <Button
+                          className="w-full bg-blue-500 hover:bg-blue-600 shadow-lg"
+                          onClick={() => router.push(`/plots/${plot.slug}`)}
+                        >
+                          View Details
+                        </Button>
                       </div>
 
                       <Button
@@ -977,4 +971,151 @@ export default function HomePage() {
                 Ready to Start Your Journey?
               </h2>
               <p className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto">
-                Connect with our property experts for personalized guidance, site visits,
+                Connect with our property experts for personalized guidance, site visits, and complete assistance from selection to registration.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <Card className="p-8 bg-white shadow-2xl border-0">
+                <h3 className="text-2xl font-bold mb-6 text-gray-800">Get in Touch</h3>
+                <form onSubmit={submitContactForm} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Full Name *</Label>
+                      <Input
+                        placeholder="Your full name"
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))}
+                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Phone Number *</Label>
+                      <Input
+                        placeholder="Your phone number"
+                        value={contactForm.phone}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, phone: e.target.value }))}
+                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Email Address</Label>
+                    <Input
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))}
+                      className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Interested Plot</Label>
+                    <Select value={contactForm.plotInterest} onValueChange={(value) => setContactForm((prev) => ({ ...prev, plotInterest: value }))}>
+                      <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                        <SelectValue placeholder="Select a plot or location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {plotData.map((plot) => (
+                          <SelectItem key={plot.id} value={plot.title}>
+                            {plot.title} - {plot.location}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Message</Label>
+                    <Textarea
+                      placeholder="Tell us about your requirements, preferred location, budget range, or any questions you have..."
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))}
+                      className="p-3 border-2 focus:border-blue-500 rounded-lg min-h-[100px]"
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-600 hover:to-purple-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    <Mail className="mr-2 h-5 w-5" />
+                    Send Message
+                  </Button>
+                </form>
+              </Card>
+
+              {/* Contact information / quick actions */}
+              <div className="space-y-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h3>
+                <div className="grid gap-6">
+                  {[
+                    {
+                      icon: Phone,
+                      title: "Phone / WhatsApp",
+                      description: "Call or message us anytime",
+                      action: "7870231314",
+                      href: "tel:+917870231314",
+                      color: "from-[#F7931E] to-[#FF6B35]",
+                    },
+                    {
+                      icon: Mail,
+                      title: "Email",
+                      description: "Send us your queries",
+                      action: "info@propertyinuttarakhand.com",
+                      href: "mailto:info@propertyinuttarakhand.com",
+                      color: "from-[#FF6B35] to-[#F7931E]",
+                    },
+                    {
+                      icon: MapPin,
+                      title: "Office Location",
+                      description: "Visit our office",
+                      action: "Badripur & Ganeshpur, Dehradun",
+                      href: "#",
+                      color: "from-[#FF6B35] to-[#F7931E]",
+                    },
+                  ].map((contact, index) => {
+                    const Icon = contact.icon;
+                    return (
+                      <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-12 h-12 bg-gradient-to-r ${contact.color} rounded-full flex items-center justify-center`}>
+                            <Icon className="h-6 w-6 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-lg mb-1">{contact.title}</h4>
+                            <p className="text-gray-600 text-sm mb-2">{contact.description}</p>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                if (contact.href.startsWith("tel:") || contact.href.startsWith("mailto:")) {
+                                  window.location.href = contact.href;
+                                } else {
+                                  window.open(contact.href, "_blank");
+                                }
+                              }}
+                              className="text-blue-600 border-blue-500 hover:bg-blue-50"
+                            >
+                              {contact.action}
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Floating actions / footer */}
+      <FloatingActions />
+      <SiteFooter />
+    </>
+  );
+}
