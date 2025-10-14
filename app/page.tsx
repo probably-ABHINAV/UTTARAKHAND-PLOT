@@ -105,6 +105,7 @@ const plotData = [
     id: 1,
     title: "Bajrang Vatika Premium",
     location: "Badripur, Dehradun",
+    locationLink: "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
     size: "900-2400 sq yd",
     type: "Residential Project",
     price: "₹16800 per sq/yd",
@@ -125,6 +126,7 @@ const plotData = [
     id: 2,
     title: "Nature Green Valley Phase 5",
     location: "Ganeshpur, Dehradun",
+    locationLink: "https://www.google.com/maps/search/Nature+Green+Valley+Ganeshpur+Dehradun",
     size: "1000-1800 sq yd",
     type: "Residential Project",
     price: "₹16800 per sq/yard",
@@ -148,6 +150,7 @@ const plotData = [
     id: 3,
     title: "Friend's Colony Phase 1",
     location: "Sundarpur, Dehradun",
+    locationLink: "https://goo.gl/maps/eVZJvUNkMXLGmDKe8",
     size: "800-1500 sq yd",
     type: "Residential Project",
     price: "₹16500 per sq/yard",
@@ -405,8 +408,8 @@ export default function HomePage() {
             <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl leading-tight mb-8 bg-gradient-to-r from-[#FF6B35] via-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
               Premium Plots in
               <br />
-              <span className="text-gradient bg-gradient-to-r from-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
-                Uttarakhand's Paradise
+              <span className="bg-gradient-to-r from-[#FF6B35] via-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
+                Uttarakhand's
               </span>
             </h1>
 
@@ -620,61 +623,74 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-3 pt-2">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg">View Details</Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl">
-                        <DialogHeader>
-                          <DialogTitle>{plot.title}</DialogTitle>
-                          <p className="text-sm text-muted-foreground">{plot.location}</p>
-                        </DialogHeader>
+                  <div className="space-y-3 pt-2">
+                    <div className="flex gap-3">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg">View Details</Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-2xl">
+                          <DialogHeader>
+                            <DialogTitle>{plot.title}</DialogTitle>
+                            <p className="text-sm text-muted-foreground">{plot.location}</p>
+                          </DialogHeader>
 
-                        <div className="space-y-4">
-                          <Image
-                            src={plot.images[0]}
-                            alt={plot.title}
-                            width={600}
-                            height={300}
-                            className="w-full h-64 object-cover rounded-lg"
-                          />
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <h4 className="font-semibold mb-2">Amenities</h4>
-                              <ul className="space-y-1">
-                                {plot.amenities.map((amenity, idx) => (
-                                  <li key={idx} className="flex items-center gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-green-500" />
-                                    {amenity}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div>
-                              <h4 className="font-semibold mb-2">Features</h4>
-                              <ul className="space-y-1">
-                                {plot.features.map((feature, idx) => (
-                                  <li key={idx} className="flex items-center gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-blue-500" />
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
+                          <div className="space-y-4">
+                            <Image
+                              src={plot.images[0]}
+                              alt={plot.title}
+                              width={600}
+                              height={300}
+                              className="w-full h-64 object-cover rounded-lg"
+                            />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <h4 className="font-semibold mb-2">Amenities</h4>
+                                <ul className="space-y-1">
+                                  {plot.amenities.map((amenity, idx) => (
+                                    <li key={idx} className="flex items-center gap-2 text-sm">
+                                      <CheckCircle className="h-4 w-4 text-green-500" />
+                                      {amenity}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="font-semibold mb-2">Features</h4>
+                                <ul className="space-y-1">
+                                  {plot.features.map((feature, idx) => (
+                                    <li key={idx} className="flex items-center gap-2 text-sm">
+                                      <CheckCircle className="h-4 w-4 text-blue-500" />
+                                      {feature}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                        </DialogContent>
+                      </Dialog>
 
-                    <Button
-                      variant="outline"
-                      className="flex-1 border-blue-500 text-blue-600 hover:bg-blue-50"
-                      onClick={() => scrollToSection("contact")}
-                    >
-                      <Phone className="mr-2 h-4 w-4" />
-                      Contact Us
-                    </Button>
+                      <Button
+                        variant="outline"
+                        className="flex-1 border-blue-500 text-blue-600 hover:bg-blue-50"
+                        onClick={() => scrollToSection("contact")}
+                      >
+                        <Phone className="mr-2 h-4 w-4" />
+                        Contact Us
+                      </Button>
+                    </div>
+                    
+                    {plot.locationLink && (
+                      <Button
+                        variant="outline"
+                        className="w-full border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10"
+                        onClick={() => window.open(plot.locationLink, '_blank')}
+                      >
+                        <MapPin className="mr-2 h-4 w-4" />
+                        View Location on Map
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -683,8 +699,55 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Plots Gallery Section */}
+      <section id="gallery" className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
+              Plots Gallery
+            </h2>
+            <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
+              Explore our collection of premium plots across Uttarakhand's most desirable locations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {[
+              { src: "/images/A_1760471281370.jpg", title: "Plot View", mapLink: "https://goo.gl/maps/eVZJvUNkMXLGmDKe8" },
+              { src: "/images/B_1760471281370.jpg", title: "Open Plot Area", mapLink: "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" },
+              { src: "/images/C_1760471281370.jpg", title: "Plot with Amenities", mapLink: "https://www.google.com/maps/search/Ganeshpur+Dehradun" },
+              { src: "/images/D_1760471281369.jpg", title: "Developed Plot", mapLink: "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" },
+              { src: "/images/E_1760471281368.jpg", title: "Gated Community", mapLink: "https://goo.gl/maps/eVZJvUNkMXLGmDKe8" },
+              { src: "/images/F_1760471281369.jpg", title: "Aerial View", mapLink: "https://www.google.com/maps/search/Badripur+Dehradun" },
+            ].map((image, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                onClick={() => window.open(image.mapLink, '_blank')}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.title}
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-white font-semibold text-sm">{image.title}</p>
+                  </div>
+                  <div className="bg-white/90 rounded-full p-3">
+                    <MapPin className="h-6 w-6 text-[#FF6B35]" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Locations Section */}
-      <section id="locations" className="py-24 bg-white">
+      <section id="locations" className="py-24 bg-gradient-to-br from-gray-50 to-[#FF6B35]/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
