@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,6 +20,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -92,16 +98,14 @@ const AnimatedCounter = ({
 };
 
 /**
- * Static plot data (example) - added slug for each
+ * Static plot data (example)
  */
 const plotData = [
   {
     id: 1,
-    slug: "bajrang-vatika",
     title: "Bajrang Vatika Premium",
     location: "Badripur, Dehradun",
-    locationLink:
-      "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
+    locationLink: "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
     size: "900-2400 sq yd",
     type: "Residential Project",
     price: "₹16800 per sq/yd",
@@ -116,20 +120,13 @@ const plotData = [
     reviews: 156,
     available: 12,
     isPopular: true,
-    amenities: [
-      "24×7 security & CCTV surveillance",
-      "Wide internal paved roads",
-      "Children’s play area",
-      "Direct Highway Access",
-    ],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     id: 2,
-    slug: "nature-green-valley-phase5",
     title: "Nature Green Valley Phase 5",
     location: "Ganeshpur, Dehradun",
-    locationLink:
-      "https://www.google.com/maps/search/Nature+Green+Valley+Ganeshpur+Dehradun",
+    locationLink: "https://www.google.com/maps/search/Nature+Green+Valley+Ganeshpur+Dehradun",
     size: "1000-1800 sq yd",
     type: "Residential Project",
     price: "₹16800 per sq/yard",
@@ -147,16 +144,10 @@ const plotData = [
     reviews: 89,
     available: 8,
     isPopular: false,
-    amenities: [
-      "24×7 security & CCTV surveillance",
-      "Wide internal paved roads",
-      "Children’s play area",
-      "Direct Highway Access",
-    ],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     id: 3,
-    slug: "friends-colony-phase-1",
     title: "Friend's Colony Phase 1",
     location: "Sundarpur, Dehradun",
     locationLink: "https://goo.gl/maps/eVZJvUNkMXLGmDKe8",
@@ -177,12 +168,7 @@ const plotData = [
     reviews: 67,
     available: 5,
     isPopular: false,
-    amenities: [
-      "24×7 security & CCTV surveillance",
-      "Wide internal paved roads",
-      "Children’s play area",
-      "Direct Highway Access",
-    ],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
 ] as const;
 
@@ -198,12 +184,7 @@ const locationData = [
     image: "/images/badripur-plots.jpg",
     growth: "+35%",
     connectivity: "Excellent",
-    amenities: [
-      "24×7 security & CCTV surveillance",
-      "Wide internal paved roads",
-      "Children’s play area",
-      "Direct Highway Access",
-    ],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     name: "Ganeshpur",
@@ -213,12 +194,7 @@ const locationData = [
     image: "/images/ganeshpur-plots.jpg",
     growth: "+42%",
     connectivity: "Good",
-    amenities: [
-      "24×7 security & CCTV surveillance",
-      "Wide internal paved roads",
-      "Children’s play area",
-      "Direct Highway Access",
-    ],
+    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
   },
   {
     name: "Sundarpur",
@@ -237,7 +213,6 @@ const locationData = [
  */
 export default function HomePage() {
   const { toast } = useToast();
-  const router = useRouter();
 
   // UI states
   const [selectedFilter, setSelectedFilter] = useState<string>("All Plots");
@@ -277,7 +252,7 @@ export default function HomePage() {
     return matchesSearch && matchesFilter;
   });
 
-  // Toggle favorite
+  // Toggle favorite (fix: read current before updating, then show toast based on previous state)
   const toggleFavorite = (plotId: number) => {
     const currentlyFavorite = favorites.includes(plotId);
     if (currentlyFavorite) {
@@ -409,12 +384,20 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Optional header */}
       <SiteHeader />
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20" />
         <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center opacity-20" />
+
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+          <div className="absolute top-40 right-10 w-96 h-96 bg-[#F7931E]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+          <div className="absolute -bottom-32 left-20 w-80 h-80 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+        </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-6xl mx-auto">
@@ -642,15 +625,51 @@ export default function HomePage() {
 
                   <div className="space-y-3 pt-2">
                     <div className="flex gap-3">
-                      {/* REPLACED: router.push to dedicated plot page using slug */}
-                      <div className="flex-1">
-                        <Button
-                          className="w-full bg-blue-500 hover:bg-blue-600 shadow-lg"
-                          onClick={() => router.push(`/plots/${plot.slug}`)}
-                        >
-                          View Details
-                        </Button>
-                      </div>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg">View Details</Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-2xl">
+                          <DialogHeader>
+                            <DialogTitle>{plot.title}</DialogTitle>
+                            <p className="text-sm text-muted-foreground">{plot.location}</p>
+                          </DialogHeader>
+
+                          <div className="space-y-4">
+                            <Image
+                              src={plot.images[0]}
+                              alt={plot.title}
+                              width={600}
+                              height={300}
+                              className="w-full h-64 object-cover rounded-lg"
+                            />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <h4 className="font-semibold mb-2">Amenities</h4>
+                                <ul className="space-y-1">
+                                  {plot.amenities.map((amenity, idx) => (
+                                    <li key={idx} className="flex items-center gap-2 text-sm">
+                                      <CheckCircle className="h-4 w-4 text-green-500" />
+                                      {amenity}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="font-semibold mb-2">Features</h4>
+                                <ul className="space-y-1">
+                                  {plot.features.map((feature, idx) => (
+                                    <li key={idx} className="flex items-center gap-2 text-sm">
+                                      <CheckCircle className="h-4 w-4 text-blue-500" />
+                                      {feature}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
 
                       <Button
                         variant="outline"
@@ -661,12 +680,12 @@ export default function HomePage() {
                         Contact Us
                       </Button>
                     </div>
-
+                    
                     {plot.locationLink && (
                       <Button
                         variant="outline"
                         className="w-full border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10"
-                        onClick={() => window.open(plot.locationLink, "_blank")}
+                        onClick={() => window.open(plot.locationLink, '_blank')}
                       >
                         <MapPin className="mr-2 h-4 w-4" />
                         View Location on Map
@@ -704,7 +723,7 @@ export default function HomePage() {
               <div
                 key={index}
                 className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                onClick={() => window.open(image.mapLink, "_blank")}
+                onClick={() => window.open(image.mapLink, '_blank')}
               >
                 <Image
                   src={image.src}
@@ -942,7 +961,7 @@ export default function HomePage() {
               { number: 5000, suffix: "+", label: "Happy Customers", icon: Users },
               { number: 50, suffix: "+", label: "Prime Projects", icon: Building },
               { number: 100, suffix: "%", label: "Legal Clarity", icon: Shield },
-              { number: 48, suffix: "", label: "Customer Rating (x10)", icon: Star },
+              { number: 48, suffix: "", label: "Customer Rating (x10)", icon: Star }, // numeric tweak for counter
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
