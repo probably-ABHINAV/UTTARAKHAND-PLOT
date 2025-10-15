@@ -18,9 +18,9 @@ export default function FriendsColonyPage() {
       <header className="relative bg-white">
         <div className="container mx-auto px-4 py-16 grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">Friends Colony — Phase 1</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">Friends Colony - Phase 1</h1>
             <p className="mt-4 text-gray-700 text-lg max-w-2xl">
-              Friends Colony Phase-1 offers ready-to-build residential plots on the Delhi–Dehradun corridor — a planned, gated community designed for comfortable family living and strong capital appreciation.
+              Friends Colony Phase-1 offers ready-to-build residential plots on the Delhi–Dehradun corridor - a planned, gated community designed for comfortable family living and strong capital appreciation.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -31,7 +31,7 @@ export default function FriendsColonyPage() {
 
             <div className="mt-8 flex gap-4">
               <Button className="bg-[#1E90FF] text-white px-6 py-3" onClick={() => window.open('tel:+917870231314','_self')}>
-                <Phone className="mr-2 h-4 w-4" /> Call SastaPlots
+                <Phone className="mr-2 h-4 w-4" /> Call Now
               </Button>
               <Button variant="outline" className="px-6 py-3" onClick={() => window.open('mailto:info@propertyinuttarakhand.com','_self')}>
                 <Mail className="mr-2 h-4 w-4" /> Request Brochure
@@ -41,7 +41,7 @@ export default function FriendsColonyPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/images/friends-colony-phase1.jpg"
+              src="/images/WhatsApp Image 2025-10-13 at 23.57.03_02316e06.jpg"
               alt="Friends Colony Phase 1"
               width={1200}
               height={800}
@@ -59,7 +59,7 @@ export default function FriendsColonyPage() {
             <Card className="p-6">
               <h2 className="text-2xl font-bold mb-4">Overview</h2>
               <p className="text-gray-700 leading-relaxed">
-                Friends Colony Phase-1 is presented as an affordable, ready-to-build plotting project positioned to benefit from major highway-driven growth in the Dehradun region. The developer markets it as a practical choice for those seeking weekend homes, retirement living, or long-term investment — offering easy highway access while remaining close to essential services. Plots are laid out to simplify house design and construction, and the community plan focuses on a peaceful residential environment with green open spaces and basic civic utilities.
+                Friends Colony Phase-1 is presented as an affordable, ready-to-build plotting project positioned to benefit from major highway-driven growth in the Dehradun region. The developer markets it as a practical choice for those seeking weekend homes, retirement living, or long-term investment - offering easy highway access while remaining close to essential services. Plots are laid out to simplify house design and construction, and the community plan focuses on a peaceful residential environment with green open spaces and basic civic utilities.
               </p>
             </Card>
 
@@ -95,14 +95,14 @@ export default function FriendsColonyPage() {
             <Card className="p-6">
               <h3 className="text-xl font-semibold mb-4">Legal, plot sizes & finance</h3>
               <p className="text-gray-700 leading-relaxed">
-                Plot sizes and exact availability vary — contact the sales team for a current inventory, detailed layout plan and verified documents. The project pages indicate that plots are offered with typical approvals for this region; however, prospective buyers are advised to verify the latest approvals, title documents and possession schedule, and to check loan/finance options with their bank or the developer's sales partner before booking.
+                Plot sizes and exact availability vary -contact the sales team for a current inventory, detailed layout plan and verified documents. The project pages indicate that plots are offered with typical approvals for this region; however, prospective buyers are advised to verify the latest approvals, title documents and possession schedule, and to check loan/finance options with their bank or the developer's sales partner before booking.
               </p>
             </Card>
 
             <Card className="p-6 bg-blue-50">
               <h3 className="text-xl font-semibold mb-4">Quick call to action</h3>
               <p className="text-gray-800 mb-4">
-                Interested in Friends Colony Phase-1? Request the latest price list, layout map and site-visit schedule from SastaPlots today — we can also help arrange finance options and support you with legal document checks to make a confident purchase.
+                Interested in Friends Colony Phase-1? Request the latest price list, layout map and site-visit schedule from Property in Uttarakhand today - we can also help arrange finance options and support you with legal document checks to make a confident purchase.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -144,7 +144,7 @@ export default function FriendsColonyPage() {
 
             <Card className="p-6">
               <h4 className="font-semibold mb-3">Need help with finance?</h4>
-              <p className="text-gray-700 text-sm mb-3">Contact SastaPlots for assistance with finance options, loan pre-approvals and document verification before you book.</p>
+              <p className="text-gray-700 text-sm mb-3">Contact Property in Uttarakhand for assistance with finance options, loan pre-approvals and document verification before you book.</p>
               <Button className="bg-[#1E90FF] text-white w-full" onClick={() => window.open('mailto:info@propertyinuttarakhand.com','_self')}>
                 <Mail className="mr-2 h-4 w-4" /> Contact Sales
               </Button>
@@ -174,10 +174,10 @@ export default function FriendsColonyPage() {
           <Card className="p-6">
             <h3 className="text-xl font-semibold mb-4">Gallery</h3>
             <div className="grid grid-cols-2 gap-3">
-              <Image src="/images/friends-colony-phase1.jpg" alt="Friends 1" width={600} height={400} className="w-full h-40 object-cover rounded" />
-              <Image src="/images/dehradun-outskirts-plots.jpg" alt="Friends 2" width={600} height={400} className="w-full h-40 object-cover rounded" />
-              <Image src="/images/friends-colony-phase1.jpg" alt="Friends 3" width={600} height={400} className="w-full h-40 object-cover rounded" />
-              <Image src="/images/dehradun-outskirts-plots.jpg" alt="Friends 4" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/WhatsApp Image 2025-10-13 at 23.57.03_02316e06.jpg" alt="Friends 1" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg" alt="Friends 2" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/WhatsApp Image 2025-10-13 at 23.57.03_4315efdb.jpg" alt="Friends 3" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/WhatsApp Image 2025-10-13 at 23.57.03_af26fc11.jpg" alt="Friends 4" width={600} height={400} className="w-full h-40 object-cover rounded" />
             </div>
             <p className="text-sm text-gray-600 mt-3">Contact us for more project images and site photos</p>
           </Card>
