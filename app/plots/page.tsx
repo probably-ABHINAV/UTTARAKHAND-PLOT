@@ -103,7 +103,7 @@ const plotData = [
     price: "₹16500 per sq/yd",
     pricePerSqFt: "₹1,800 - ₹1,778",
     features: ["Green Parks", "Children's Play Area", "Near Schools & Hospitals", "Clean Air"],
-    images: ["/images/design1.png","/images/naturegreenvalley6.jpeg",
+    images: ["/images/design1.png","/images/naturegreenvalley6.jpeg"],
     rating: 4.7,
     reviews: 89,
     available: 8,
