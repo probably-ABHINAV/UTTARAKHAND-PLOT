@@ -412,7 +412,7 @@ export default function PlotsPage() {
                     <div className="p-3 bg-gray-50 rounded-lg">
                       <span className="text-sm text-gray-600">Plot Size</span>
                       <div className="font-semibold">{plot.size}</div>
-                      <div className="text-xs text-gray-500">{plot.pricePerSqFt}/sq ft</div>
+                      <div className="text-xs text-gray-500">{plot.pricePerSqFt}/sq yd</div>
                     </div>
                     <div className="p-3 bg-blue-50 rounded-lg">
                       <span className="text-sm text-gray-600">Price Range</span>
