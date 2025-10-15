@@ -138,8 +138,8 @@ const plotData = [
       "Modern Infrastructure",
     ],
     images: [
-      "/images/nature-green-valley-phase5.jpg",
-      "/images/ganeshpur-plots.jpg",
+      "/images/design1.png",
+      "/images/naturegreenvalley6.jpeg",
     ],
     rating: 4.7,
     reviews: 89,
@@ -162,8 +162,8 @@ const plotData = [
       "24x7 Security",
     ],
     images: [
-      "/images/friends-colony-phase1.jpg",
-      "/images/dehradun-outskirts-plots.jpg",
+      "/images/WhatsApp Image 2025-10-13 at 23.57.03_02316e06.jpg",
+      "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
     ],
     rating: 4.6,
     reviews: 67,
