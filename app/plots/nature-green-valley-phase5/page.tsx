@@ -18,9 +18,9 @@ export default function NatureGreenValleyPage() {
       <header className="relative bg-white">
         <div className="container mx-auto px-4 py-16 grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">Nature Green Valley — Phase 5</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">Nature Green Valley - Phase 5</h1>
             <p className="mt-4 text-gray-700 text-lg max-w-2xl">
-              Nature Green Valley Phase-5 (Ganeshpur, Dehradun) — a gated, ready-to-build plotted development on the Delhi–Dehradun corridor that combines pollution-free surroundings near Rajaji National Park with practical infrastructure for quick construction and good investment potential.
+              Nature Green Valley Phase-5 (Ganeshpur, Dehradun) - a gated, ready-to-build plotted development on the Delhi–Dehradun corridor that combines pollution-free surroundings near Rajaji National Park with practical infrastructure for quick construction and good investment potential.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -31,7 +31,7 @@ export default function NatureGreenValleyPage() {
 
             <div className="mt-8 flex gap-4">
               <Button className="bg-[#10B981] text-white px-6 py-3" onClick={() => window.open('tel:+917870231314','_self')}>
-                <Phone className="mr-2 h-4 w-4" /> Call SastaPlots
+                <Phone className="mr-2 h-4 w-4" /> Call Now
               </Button>
               <Button variant="outline" className="px-6 py-3" onClick={() => window.open('mailto:info@propertyinuttarakhand.com','_self')}>
                 <Mail className="mr-2 h-4 w-4" /> Request Brochure
@@ -41,9 +41,9 @@ export default function NatureGreenValleyPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/images/nature-green-valley-phase5.jpg"
+              src="/images/design1.png"
               alt="Nature Green Valley Phase 5"
-              width={1200}
+              width={1100}
               height={800}
               className="w-full h-72 object-cover"
               priority
@@ -66,9 +66,9 @@ export default function NatureGreenValleyPage() {
             <Card className="p-6">
               <h3 className="text-xl font-semibold mb-4">Connectivity</h3>
               <ul className="text-gray-700 space-y-3 list-disc list-inside">
-                <li>Located at Ganeshpur / Shivalik (Dehradun) on the Delhi–Dehradun / Dehradun–Saharanpur highway (NH-307) corridor.</li>
-                <li>Close proximity to the Rajaji National Park and surrounding forest belt — a major natural landmark that shapes the area's clean-air appeal.</li>
-                <li>Easy road access to Dehradun ISBT and other local hubs (typical travel times marketed from the project).</li>
+                <li>Located at Ganeshpur (Dehradun) on the Dehradun–Saharanpur highway (NH-307) corridor.</li>
+                <li>Close proximity to the Rajaji National Park and surrounding forest belt - a major natural landmark that shapes the area's clean-air appeal.</li>
+                <li>Easy road access to Dehradun ISBT and other local hubs .</li>
                 <li>Positioned within a growing residential & institutional belt (near Graphic Era / local education nodes) that supports future demand.</li>
               </ul>
             </Card>
@@ -102,7 +102,7 @@ export default function NatureGreenValleyPage() {
             <Card className="p-6 bg-green-50">
               <h3 className="text-xl font-semibold mb-4">Quick call to action</h3>
               <p className="text-gray-800 mb-4">
-                Interested in Nature Green Valley Phase-5? Request the latest price list, full layout plan and site-visit from SastaPlots — we'll also share verified documents and help with financing options so you can evaluate plots confidently.
+                Interested in Nature Green Valley Phase-5? Request the latest price list, full layout plan and site-visit from Property in Uttarakhand - we'll also share verified documents and help with financing options so you can evaluate plots confidently.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -174,10 +174,10 @@ export default function NatureGreenValleyPage() {
           <Card className="p-6">
             <h3 className="text-xl font-semibold mb-4">Gallery</h3>
             <div className="grid grid-cols-2 gap-3">
-              <Image src="/images/nature-green-valley-phase5.jpg" alt="Nature 1" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/design1.png" alt="Nature 1" width={600} height={400} className="w-full h-40 object-cover rounded" />
               <Image src="/images/ganeshpur-plots.jpg" alt="Nature 2" width={600} height={400} className="w-full h-40 object-cover rounded" />
-              <Image src="/images/nature-green-valley-phase5.jpg" alt="Nature 3" width={600} height={400} className="w-full h-40 object-cover rounded" />
-              <Image src="/images/ganeshpur-plots.jpg" alt="Nature 4" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/naturegreenvalley6.jpeg" alt="Nature 3" width={600} height={400} className="w-full h-40 object-cover rounded" />
+              <Image src="/images/badripur-plots.jpg" alt="Nature 4" width={600} height={400} className="w-full h-40 object-cover rounded" />
             </div>
             <p className="text-sm text-gray-600 mt-3">Contact us for more project images and site photos</p>
           </Card>
