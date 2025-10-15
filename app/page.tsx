@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -625,51 +626,19 @@ export default function HomePage() {
 
                   <div className="space-y-3 pt-2">
                     <div className="flex gap-3">
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg">View Details</Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-2xl">
-                          <DialogHeader>
-                            <DialogTitle>{plot.title}</DialogTitle>
-                            <p className="text-sm text-muted-foreground">{plot.location}</p>
-                          </DialogHeader>
-
-                          <div className="space-y-4">
-                            <Image
-                              src={plot.images[0]}
-                              alt={plot.title}
-                              width={600}
-                              height={300}
-                              className="w-full h-64 object-cover rounded-lg"
-                            />
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <h4 className="font-semibold mb-2">Amenities</h4>
-                                <ul className="space-y-1">
-                                  {plot.amenities.map((amenity, idx) => (
-                                    <li key={idx} className="flex items-center gap-2 text-sm">
-                                      <CheckCircle className="h-4 w-4 text-green-500" />
-                                      {amenity}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div>
-                                <h4 className="font-semibold mb-2">Features</h4>
-                                <ul className="space-y-1">
-                                  {plot.features.map((feature, idx) => (
-                                    <li key={idx} className="flex items-center gap-2 text-sm">
-                                      <CheckCircle className="h-4 w-4 text-blue-500" />
-                                      {feature}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
+                      <Button 
+                        className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg" 
+                        asChild
+                      >
+                        <Link href={
+                          plot.id === 1 ? "/plots/bajrang-vatika" :
+                          plot.id === 2 ? "/plots/nature-green-valley-phase5" :
+                          plot.id === 3 ? "/plots/friends-colony-phase-1" :
+                          "#"
+                        }>
+                          View Details
+                        </Link>
+                      </Button>
 
                       <Button
                         variant="outline"

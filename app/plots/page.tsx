@@ -439,10 +439,23 @@ export default function PlotsPage() {
                   </div>
 
                   <div className="flex gap-3 pt-2">
+                    <Button 
+                      className="flex-1 bg-[#FF6B35] hover:bg-[#F7931E] shadow-lg"
+                      onClick={() => {
+                        const slugMap: Record<number, string> = {
+                          1: '/plots/bajrang-vatika',
+                          2: '/plots/nature-green-valley-phase5',
+                          3: '/plots/friends-colony-phase-1'
+                        }
+                        window.location.href = slugMap[plot.id] || '#'
+                      }}
+                    >
+                      View Details
+                    </Button>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button className="flex-1 bg-[#FF6B35] hover:bg-[#F7931E] shadow-lg">
-                          View Details
+                        <Button variant="outline" className="flex-1">
+                          Quick View
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
