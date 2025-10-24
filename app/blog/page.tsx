@@ -43,7 +43,7 @@ const blogPosts = [
       "रियल एस्टेट केवल एक घर या संपत्ति खरीदने और बेचने का जरिया नहीं है, बल्कि यह एक ऐसा क्षेत्र है जो आपको दीर्घकालिक वित्तीय स्वतंत्रता दिला सकता है। सही समय, सही जगह और समझदारी से लिया गया निर्णय आपको अच्छा रिटर्न और स्थिर आय दे सकता है। आइए विस्तार से जानते हैं कि कैसे आप रियल एस्टेट के विभिन्न तरीकों से पैसा कमा सकते हैं।",
     content: "Rishikesh, known as the Yoga Capital of the World, has seen a massive surge in spiritual tourism...",
     category: "Market Trends",
-    tags: ["Rishikesh", "Spiritual Tourism", "Property Demand", "Yoga"],
+    tags: ["High-profit", "Market trend", "Property Demand", "investment"],
     author: "Property Manager",
     status: "Published",
     publishedDate: "2024-01-18",
@@ -53,7 +53,7 @@ const blogPosts = [
     metaTitle: "Rishikesh Property Investment: Spiritual Tourism Boom 2024",
     metaDescription:
       "Why Rishikesh properties are in high demand due to the spiritual tourism boom. Investment insights and market analysis.",
-    image: "/images/rishikesh-valley-plots-land.jpg",
+    image: "/images/design1.png",
   },
   {
     id: 3,
@@ -72,7 +72,7 @@ const blogPosts = [
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
       "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/nainital-lake-plots-area.jpg",
+    image: "/images/friends-colony-phase1.jpg",
   },
 ]
 
