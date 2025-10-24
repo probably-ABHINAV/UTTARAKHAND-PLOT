@@ -52,7 +52,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     metaTitle: "Best Investment Opportunities in Uttrakhand Hill Stations 2024",
     metaDescription:
       "Explore top investment opportunities in Uttrakhand's hill stations. Complete guide to real estate investment in Mussoorie, Nainital, and more.",
-    image: "/images/mussoorie-hills-plots-available.jpg",
+    image: "/images/E_1760471281368.jpg",
   },
   {
     id: 2,
@@ -90,7 +90,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     metaTitle: "Rishikesh Property Investment: Spiritual Tourism Boom 2024",
     metaDescription:
       "Why Rishikesh properties are in high demand due to the spiritual tourism boom. Investment insights and market analysis.",
-    image: "/images/rishikesh-valley-plots-land.jpg",
+    image: "/images/design1.png",
   },
   {
     id: 3,
@@ -145,7 +145,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
       "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/nainital-lake-plots-area.jpg",
+    image: "/images/friends-colony-phase1.jpg",
   },
 ]
 
