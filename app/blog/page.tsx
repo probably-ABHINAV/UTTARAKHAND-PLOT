@@ -33,14 +33,14 @@ const blogPosts = [
     metaTitle: "Best Investment Opportunities in Uttrakhand Hill Stations 2024",
     metaDescription:
       "Explore top investment opportunities in Uttrakhand's hill stations. Complete guide to real estate investment in Mussoorie, Nainital, and more.",
-    image: "/images/mussoorie-hills-plots-available.jpg",
+    image: "/images/E_1760471281368.jpg",
   },
   {
     id: 2,
-    title: "Spiritual Tourism Boom: Why Rishikesh Properties Are in High Demand",
+    title: "Real Estate से पैसा कैसे कमाएं: पूरी रणनीति",
     slug: "spiritual-tourism-boom-rishikesh-properties",
     excerpt:
-      "The spiritual tourism industry in Rishikesh is experiencing unprecedented growth, making it a hotspot for property investment.",
+      "रियल एस्टेट केवल एक घर या संपत्ति खरीदने और बेचने का जरिया नहीं है, बल्कि यह एक ऐसा क्षेत्र है जो आपको दीर्घकालिक वित्तीय स्वतंत्रता दिला सकता है। सही समय, सही जगह और समझदारी से लिया गया निर्णय आपको अच्छा रिटर्न और स्थिर आय दे सकता है। आइए विस्तार से जानते हैं कि कैसे आप रियल एस्टेट के विभिन्न तरीकों से पैसा कमा सकते हैं।",
     content: "Rishikesh, known as the Yoga Capital of the World, has seen a massive surge in spiritual tourism...",
     category: "Market Trends",
     tags: ["Rishikesh", "Spiritual Tourism", "Property Demand", "Yoga"],
@@ -57,10 +57,10 @@ const blogPosts = [
   },
   {
     id: 3,
-    title: "Hill Station Property Market Trends: What to Expect in 2024",
+    title: "सही प्रॉपर्टी पहचानने के 5 दमदार तरीके – एक समझदार निवेशक बनने की गाइड",
     slug: "hill-station-property-market-trends-2024",
-    excerpt: "An in-depth analysis of the hill station property market trends and predictions for 2024.",
-    content: "The hill station property market in Uttrakhand is showing strong growth indicators...",
+    excerpt: "आज की तेज़ रफ्तार ज़िंदगी में हर कोई अपने सपनों का घर चाहता है या फिर किसी ऐसी प्रॉपर्टी में निवेश करना चाहता है, जो भविष्य में बड़ा रिटर्न दे सके। लेकिन प्रॉपर्टी खरीदना एक आम लेन-देन नहीं होता। यह आपके जीवन की सबसे बड़ी खरीद में से एक होती है। इसलिए जरूरी है कि आप हर कदम सोच-समझकर उठाएं।",
+    content: "लोकेशन – प्रॉपर्टी की जान होती है",
     category: "Market Analysis",
     tags: ["Market Trends", "2024 Predictions", "Hill Stations", "Property Market"],
     author: "Admin User",
