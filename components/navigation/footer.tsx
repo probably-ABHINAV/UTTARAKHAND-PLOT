@@ -117,7 +117,7 @@ export function SiteFooter() {
               
               <div className="flex items-center gap-4">
                 <a 
-                  href="https://www.instagram.com/propertyinuttarakhand07?igsh=NHplbXRrdGE0bXM3"
+                  href="https://www.instagram.com/property_in_uttrakhand?igsh=cmsyM25rMjNyZ2t0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:scale-110 transition-transform duration-200"
@@ -128,7 +128,7 @@ export function SiteFooter() {
                   </svg>
                 </a>
                 <a 
-                  href="https://www.facebook.com/share/1MTVorUQ2z/"
+                  href="https://www.facebook.com/share/16FP4Zas9L/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:scale-110 transition-transform duration-200"
