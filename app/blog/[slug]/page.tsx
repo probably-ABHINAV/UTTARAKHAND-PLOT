@@ -280,7 +280,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Article Body */}
           <div
-  className="prose prose-lg mx-auto text-black"
+  className="mx-auto text-black text-center max-w-3xl px-4"
   style={{
     textAlign: "center",
     maxWidth: "800px",
