@@ -178,19 +178,19 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
   },
 ]
+export default function BlogArticles() {
+  const [likedPosts, setLikedPosts] = useState<number[]>([])
 
-
-export default function BlogArticle() {
-  const [liked, setLiked] = useState(false)
-
-  const handleLike = () => {
-    setLiked(!liked)
+  const handleLike = (id: number) => {
+    setLikedPosts((prev) =>
+      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
+    )
   }
 
-  const handleShare = () => {
+  const handleShare = (title: string) => {
     if (navigator.share) {
       navigator.share({
-        title: post.title,
+        title,
         url: window.location.href,
       })
     } else {
@@ -200,298 +200,125 @@ export default function BlogArticle() {
   }
 
   return (
-    <article className="container py-12 text-center text-black">
-      <div className="max-w-4xl mx-auto">
-        {/* Article Header */}
-        <header className="mb-8">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary">{post.category}</Badge>
-            <div className="flex items-center text-sm text-gray-600">
-              <Eye className="w-3 h-3 mr-1" />
-              {post.views.toLocaleString()} views
-            </div>
-            {post.featured && (
-              <Badge className="bg-primary text-primary-foreground">
-                Featured
-              </Badge>
-            )}
-          </div>
-
-          <h1 className="text-3xl md:text-5xl font-serif font-black mb-6">
-            {post.title}
-          </h1>
-
-          <p className="text-lg text-gray-700 mb-6">{post.excerpt}</p>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <div className="flex items-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center">
-                <User className="w-4 h-4 mr-2" />
-                {post.author}
-              </div>
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
-                {formatDate(post.publishedDate)}
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-2" />
-                5 min read
-              </div>
-            </div>
-
-            {/* Like & Share Buttons */}
-            <div className="flex items-center gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleLike}
-                className={`${
-                  liked ? "bg-red-500 text-white hover:bg-red-600" : ""
-                } transition-all`}
-              >
-                <Heart className="w-4 h-4 mr-2" />
-                {liked ? "Liked" : "Like"}
-              </Button>
-
-              <Button size="sm" variant="outline" onClick={handleShare}>
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
-              </Button>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
-            {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </header>
-
-    {/* Article Header */}
-    <header className="mb-8">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4">
-        <Badge variant="secondary">{post.category}</Badge>
-        <div className="flex items-center text-sm text-gray-600">
-          <Eye className="w-3 h-3 mr-1" />
-          {post.views.toLocaleString()} views
-        </div>
-        {post.featured && (
-          <Badge className="bg-primary text-primary-foreground">Featured</Badge>
-        )}
-      </div>
-
-      <h1 className="text-3xl md:text-5xl font-serif font-black mb-6">
-        {post.title}
+    <section className="container py-16 text-center text-black">
+      <h1 className="text-4xl md:text-5xl font-bold mb-10">
+        Uttarakhand Real Estate Blogs
       </h1>
 
-      <p className="text-lg text-gray-700 mb-6">
-        {post.excerpt}
-      </p>
-
-      <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-        <div className="flex items-center gap-4 text-sm text-gray-600">
-          <div className="flex items-center">
-            <User className="w-4 h-4 mr-2" />
-            {post.author}
-          </div>
-          <div className="flex items-center">
-            <Calendar className="w-4 h-4 mr-2" />
-            {formatDate(post.publishedDate)}
-          </div>
-          <div className="flex items-center">
-            <Clock className="w-4 h-4 mr-2" />
-            5 min read
-          </div>
-        </div>
-
-        {/* Interactive Buttons */}
-        <div className="flex items-center gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => {
-              const btn = document.getElementById("likeBtn")
-              btn?.classList.toggle("bg-red-500")
-              btn?.classList.toggle("text-white")
-            }}
-            id="likeBtn"
+      <div className="grid gap-16">
+        {blogs.map((post) => (
+          <Card
+            key={post.id}
+            className="max-w-4xl mx-auto shadow-md border border-gray-200"
           >
-            <Heart className="w-4 h-4 mr-2" />
-            Like
-          </Button>
-
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: post.title,
-                  url: window.location.href,
-                })
-              } else {
-                navigator.clipboard.writeText(window.location.href)
-                alert("Link copied to clipboard!")
-              }
-            }}
-          >
-            <Share2 className="w-4 h-4 mr-2" />
-            Share
-          </Button>
-        </div>
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-2 mt-4">
-        {post.tags.map((tag) => (
-          <Badge key={tag} variant="outline">
-            {tag}
-          </Badge>
-        ))}
-      </div>
-    </header>
-
-    {/* Article Body */}
-    <div className="prose prose-lg mx-auto text-black text-center">
-      <div
-        className="blog-content"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-        style={{
-          lineHeight: "1.8",
-          fontSize: "1.1rem",
-        }}
-      />
-    </div>
-
-    {/* Call to Action */}
-    <Card className="mt-12 bg-primary/5 border-primary/20">
-      <CardContent className="p-8 text-center">
-        <h3 className="text-2xl font-serif font-bold mb-4">
-          Ready to Invest in Uttrakhand Properties?
-        </h3>
-        <p className="text-gray-700 mb-6">
-          Explore our curated selection of premium plots in Uttrakhand's most sought-after locations.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/plots">View Available Plots</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/contact">Get Expert Consultation</Link>
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  </div>
-</article>
-
-          {/* Call to Action */}
-          <Card className="mt-12 bg-primary/5 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-serif font-bold mb-4">
-                Ready to Invest in Uttrakhand Properties?
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Explore our curated selection of premium plots in Uttrakhand's most sought-after locations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link href="/plots">
-                    View Available Plots
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">
-                    Get Expert Consultation
-                  </Link>
-                </Button>
+            <CardContent className="p-8">
+              {/* Header */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4">
+                <Badge variant="secondary">{post.category}</Badge>
+                <div className="flex items-center text-sm text-gray-600">
+                  <Eye className="w-3 h-3 mr-1" />
+                  {post.views.toLocaleString()} views
+                </div>
+                {post.featured && (
+                  <Badge className="bg-primary text-primary-foreground">
+                    Featured
+                  </Badge>
+                )}
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </article>
 
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="bg-muted/30 py-16">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-serif font-bold mb-8">Related Articles</h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {relatedPosts.map((relatedPost) => (
-                  <Card key={relatedPost.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div className="aspect-video relative overflow-hidden">
-                      <Image
-                        src={relatedPost.image}
-                        alt={relatedPost.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="secondary">{relatedPost.category}</Badge>
-                      </div>
-                      <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                        {relatedPost.title}
-                      </CardTitle>
-                      <CardDescription className="line-clamp-2">
-                        {relatedPost.excerpt}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button asChild variant="outline" size="sm" className="w-full">
-                        <Link href={`/blog/${relatedPost.slug}`}>
-                          Read More
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
+              <h2 className="text-3xl font-serif font-black mb-4">
+                {post.title}
+              </h2>
+
+              <p className="text-lg text-gray-700 mb-6">{post.excerpt}</p>
+
+              {/* Meta Info */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center">
+                    <User className="w-4 h-4 mr-2" />
+                    {post.author}
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    {formatDate(post.publishedDate)}
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="w-4 h-4 mr-2" />
+                    5 min read
+                  </div>
+                </div>
+
+                {/* Like and Share */}
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleLike(post.id)}
+                    className={`${
+                      likedPosts.includes(post.id)
+                        ? "bg-red-500 text-white hover:bg-red-600"
+                        : ""
+                    } transition-all`}
+                  >
+                    <Heart className="w-4 h-4 mr-2" />
+                    {likedPosts.includes(post.id) ? "Liked" : "Like"}
+                  </Button>
+
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleShare(post.title)}
+                  >
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Share
+                  </Button>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {post.tags.map((tag) => (
+                  <Badge key={tag} variant="outline">
+                    {tag}
+                  </Badge>
                 ))}
               </div>
-            </div>
+
+              {/* Content */}
+              <div
+                className="prose prose-lg mx-auto text-black text-center"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+                style={{
+                  lineHeight: "1.8",
+                  fontSize: "1.1rem",
+                }}
+              />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* CTA Section */}
+      <Card className="mt-20 bg-primary/5 border-primary/20">
+        <CardContent className="p-10 text-center">
+          <h3 className="text-2xl font-serif font-bold mb-4">
+            Looking to Buy a Plot in Uttarakhand?
+          </h3>
+          <p className="text-gray-700 mb-6">
+            Discover verified properties and premium plots in Haridwar,
+            Rishikesh, and Dehradun with trusted guidance from SastaPlots.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg">
+              <Link href="/plots">View Available Plots</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/contact">Get Expert Consultation</Link>
+            </Button>
           </div>
-        </section>
-      )}
-
-      <SiteFooter />
-    </div>
+        </CardContent>
+      </Card>
+    </section>
   )
-}
-
-// Generate static paths for all published blog posts
-export async function generateStaticParams() {
-  return blogPosts
-    .filter((post) => post.status === "Published")
-    .map((post) => ({
-      slug: post.slug,
-    }))
-}
-
-// Generate metadata for each blog post
-export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    }
-  }
-
-  return {
-    title: post.metaTitle,
-    description: post.metaDescription,
-    keywords: post.tags.join(', '),
-    openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
-      images: [post.image],
-      type: 'article',
-      publishedTime: post.publishedDate,
-      modifiedTime: post.lastModified,
-      authors: [post.author],
-      tags: post.tags,
-    },
-  }
 }
