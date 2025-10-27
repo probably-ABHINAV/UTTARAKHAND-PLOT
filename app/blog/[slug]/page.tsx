@@ -148,7 +148,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     image: "/images/friends-colony-phase1.jpg",
   },
   {
-    id: 3,
+    id: 4,
     title: "Why Buying a Plot Is Better Than Buying a Flat in 2025",
     slug: "hill-station-property-market-trends-2024",
     excerpt: "",
@@ -175,7 +175,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
       "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/friends-colony-phase1.jpg",
+    image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
   },
 ]
 
