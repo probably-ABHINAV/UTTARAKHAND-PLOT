@@ -150,7 +150,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
   {
     id: 4,
     title: "Why Buying a Plot Is Better Than Buying a Flat in 2025",
-    slug: "hill-station-property-market-trends-2024",
+    slug: "hill-station-property-market-trends-2025",
     excerpt: "",
     content: `
      <h2>1. The Growing Trend of Plot Investment in 2025</h2>
@@ -227,78 +227,124 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
 
-      {/* Article Content */}
-      <article className="container py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Article Header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <Badge variant="secondary">{post.category}</Badge>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Eye className="w-3 h-3 mr-1" />
-                {post.views.toLocaleString()} views
-              </div>
-              {post.featured && (
-                <Badge className="bg-primary text-primary-foreground">Featured</Badge>
-              )}
-            </div>
-            
-            <h1 className="text-3xl md:text-5xl font-serif font-black text-foreground mb-6">
-              {post.title}
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-6">
-              {post.excerpt}
-            </p>
+<article className="container py-12 text-center text-black">
+  <div className="max-w-4xl mx-auto">
+    {/* Article Header */}
+    <header className="mb-8">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4">
+        <Badge variant="secondary">{post.category}</Badge>
+        <div className="flex items-center text-sm text-gray-600">
+          <Eye className="w-3 h-3 mr-1" />
+          {post.views.toLocaleString()} views
+        </div>
+        {post.featured && (
+          <Badge className="bg-primary text-primary-foreground">Featured</Badge>
+        )}
+      </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <User className="w-4 h-4 mr-2" />
-                  {post.author}
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  {formatDate(post.publishedDate)}
-                </div>
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  5 min read
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <Button size="sm" variant="outline">
-                  <Heart className="w-4 h-4 mr-2" />
-                  Like
-                </Button>
-                <Button size="sm" variant="outline">
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Share
-                </Button>
-              </div>
-            </div>
+      <h1 className="text-3xl md:text-5xl font-serif font-black mb-6">
+        {post.title}
+      </h1>
 
-            <div className="flex flex-wrap gap-2 mt-4">
-              {post.tags.map((tag) => (
-                <Badge key={tag} variant="outline">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </header>
+      <p className="text-lg text-gray-700 mb-6">
+        {post.excerpt}
+      </p>
 
-          {/* Article Body */}
-          <div className="prose prose-lg max-w-none">
-            <div 
-              className="blog-content"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-              style={{
-                lineHeight: '1.8',
-                fontSize: '1.1rem'
-              }}
-            />
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+        <div className="flex items-center gap-4 text-sm text-gray-600">
+          <div className="flex items-center">
+            <User className="w-4 h-4 mr-2" />
+            {post.author}
           </div>
+          <div className="flex items-center">
+            <Calendar className="w-4 h-4 mr-2" />
+            {formatDate(post.publishedDate)}
+          </div>
+          <div className="flex items-center">
+            <Clock className="w-4 h-4 mr-2" />
+            5 min read
+          </div>
+        </div>
+
+        {/* Interactive Buttons */}
+        <div className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              const btn = document.getElementById("likeBtn")
+              btn?.classList.toggle("bg-red-500")
+              btn?.classList.toggle("text-white")
+            }}
+            id="likeBtn"
+          >
+            <Heart className="w-4 h-4 mr-2" />
+            Like
+          </Button>
+
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              if (navigator.share) {
+                navigator.share({
+                  title: post.title,
+                  url: window.location.href,
+                })
+              } else {
+                navigator.clipboard.writeText(window.location.href)
+                alert("Link copied to clipboard!")
+              }
+            }}
+          >
+            <Share2 className="w-4 h-4 mr-2" />
+            Share
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-2 mt-4">
+        {post.tags.map((tag) => (
+          <Badge key={tag} variant="outline">
+            {tag}
+          </Badge>
+        ))}
+      </div>
+    </header>
+
+    {/* Article Body */}
+    <div className="prose prose-lg mx-auto text-black text-center">
+      <div
+        className="blog-content"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+        style={{
+          lineHeight: "1.8",
+          fontSize: "1.1rem",
+        }}
+      />
+    </div>
+
+    {/* Call to Action */}
+    <Card className="mt-12 bg-primary/5 border-primary/20">
+      <CardContent className="p-8 text-center">
+        <h3 className="text-2xl font-serif font-bold mb-4">
+          Ready to Invest in Uttrakhand Properties?
+        </h3>
+        <p className="text-gray-700 mb-6">
+          Explore our curated selection of premium plots in Uttrakhand's most sought-after locations.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button asChild size="lg">
+            <Link href="/plots">View Available Plots</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/contact">Get Expert Consultation</Link>
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</article>
 
           {/* Call to Action */}
           <Card className="mt-12 bg-primary/5 border-primary/20">
