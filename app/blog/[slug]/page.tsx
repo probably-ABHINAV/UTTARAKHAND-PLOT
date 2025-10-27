@@ -279,19 +279,19 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           {/* Article Body */}
-          <div className="prose prose-lg mx-auto text-black text-center">
-  <div
-    className="blog-content"
-    dangerouslySetInnerHTML={{ __html: post.content }}
-    style={{
-      textAlign: "center",
-      margin: "0 auto",
-      lineHeight: "1.8",
-      fontSize: "1.1rem",
-      maxWidth: "800px",
-    }}
-  />
+          <div
+  className="prose prose-lg mx-auto text-black"
+  style={{
+    textAlign: "center",
+    maxWidth: "800px",
+    margin: "0 auto",
+    lineHeight: "1.8",
+    fontSize: "1.1rem",
+  }}
+>
+  <div dangerouslySetInnerHTML={{ __html: post.content }} />
 </div>
+
 
 
           {/* Call to Action */}
