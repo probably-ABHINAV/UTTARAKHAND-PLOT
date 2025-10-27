@@ -179,56 +179,96 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
   },
 ]
 
-interface BlogPostPageProps {
-  params: {
-    slug: string
-  }
-}
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
+export default function BlogArticle() {
+  const [liked, setLiked] = useState(false)
 
-  if (!post) {
-    notFound()
+  const handleLike = () => {
+    setLiked(!liked)
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: post.title,
+        url: window.location.href,
+      })
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      alert("Link copied to clipboard!")
+    }
   }
-
-  const relatedPosts = blogPosts
-    .filter((p) => p.id !== post.id && p.status === "Published" && p.category === post.category)
-    .slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-background">
-      <SiteHeader />
-      
-      {/* Hero Image */}
-      <div className="relative h-64 md:h-96 overflow-hidden">
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute bottom-4 left-4">
-          <Button asChild variant="secondary" size="sm">
-            <Link href="/blog">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Blog
-            </Link>
-          </Button>
-        </div>
-      </div>
+    <article className="container py-12 text-center text-black">
+      <div className="max-w-4xl mx-auto">
+        {/* Article Header */}
+        <header className="mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary">{post.category}</Badge>
+            <div className="flex items-center text-sm text-gray-600">
+              <Eye className="w-3 h-3 mr-1" />
+              {post.views.toLocaleString()} views
+            </div>
+            {post.featured && (
+              <Badge className="bg-primary text-primary-foreground">
+                Featured
+              </Badge>
+            )}
+          </div>
 
-<article className="container py-12 text-center text-black">
-  <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-serif font-black mb-6">
+            {post.title}
+          </h1>
+
+          <p className="text-lg text-gray-700 mb-6">{post.excerpt}</p>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <div className="flex items-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center">
+                <User className="w-4 h-4 mr-2" />
+                {post.author}
+              </div>
+              <div className="flex items-center">
+                <Calendar className="w-4 h-4 mr-2" />
+                {formatDate(post.publishedDate)}
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-4 h-4 mr-2" />
+                5 min read
+              </div>
+            </div>
+
+            {/* Like & Share Buttons */}
+            <div className="flex items-center gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleLike}
+                className={`${
+                  liked ? "bg-red-500 text-white hover:bg-red-600" : ""
+                } transition-all`}
+              >
+                <Heart className="w-4 h-4 mr-2" />
+                {liked ? "Liked" : "Like"}
+              </Button>
+
+              <Button size="sm" variant="outline" onClick={handleShare}>
+                <Share2 className="w-4 h-4 mr-2" />
+                Share
+              </Button>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2 mt-4">
+            {post.tags.map((tag) => (
+              <Badge key={tag} variant="outline">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </header>
+
     {/* Article Header */}
     <header className="mb-8">
       <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4">
