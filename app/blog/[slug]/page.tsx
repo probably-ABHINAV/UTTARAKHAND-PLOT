@@ -268,39 +268,14 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               
               <div className="flex items-center gap-2">
-                <Button
-  size="sm"
-  variant="outline"
-  onClick={() => {
-    const btn = document.getElementById("likeBtn")
-    btn?.classList.toggle("bg-red-500")
-    btn?.classList.toggle("text-white")
-  }}
-  id="likeBtn"
->
-  <Heart className="w-4 h-4 mr-2" />
-  Like
-</Button>
-
-<Button
-  size="sm"
-  variant="outline"
-  onClick={() => {
-    if (navigator.share) {
-      navigator.share({
-        title: document.title,
-        url: window.location.href,
-      })
-    } else {
-      navigator.clipboard.writeText(window.location.href)
-      alert("Link copied to clipboard!")
-    }
-  }}
->
-  <Share2 className="w-4 h-4 mr-2" />
-  Share
-</Button>
-
+                <Button size="sm" variant="outline">
+                  <Heart className="w-4 h-4 mr-2" />
+                  Like
+                </Button>
+                <Button size="sm" variant="outline">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share
+                </Button>
               </div>
             </div>
 
