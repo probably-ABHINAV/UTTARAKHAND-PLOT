@@ -77,7 +77,7 @@ const blogPosts = [
   {
     id: 4,
     title: "Why Buying a Plot Is Better Than Buying a Flat in 2025",
-    slug: "hill-station-property-market-trends-2024",
+    slug: "hill-station-property-market-trends-2025",
     excerpt: "The Growing Trend of Plot Investment in 2025",
     content: "Complete Freedom to Design and Build Your Dream Home",
     category: "Market Analysis",
