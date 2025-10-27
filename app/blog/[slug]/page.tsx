@@ -289,7 +289,15 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     fontSize: "1.1rem",
   }}
 >
-  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+  <div
+  dangerouslySetInnerHTML={{ __html: post.content }}
+  style={{
+    textAlign: "center",
+    margin: "0 auto",
+    lineHeight: "1.8",
+    fontSize: "1.1rem",
+  }}
+/>
 </div>
 
 
