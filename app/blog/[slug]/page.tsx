@@ -266,17 +266,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   5 min read
                 </div>
               </div>
-              
-              <div className="flex items-center gap-2">
-                <Button size="sm" variant="outline">
-                  <Heart className="w-4 h-4 mr-2" />
-                  Like
-                </Button>
-                <Button size="sm" variant="outline">
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Share
-                </Button>
-              </div>
+            
             </div>
 
             <div className="flex flex-wrap gap-2 mt-4">
