@@ -243,10 +243,10 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       {/* Blog Content */}
-      <article className="flex-grow container mx-auto px-4 md:px-6 py-12 max-w-4xl text-center">
+      <article className="flex-grow container mx-auto px-4 md:px-6 py-12 max-w-4xl text-left">
         {/* Header */}
         <header className="mb-10">
-          <div className="flex flex-wrap justify-center items-center gap-3 mb-4 text-sm text-gray-600">
+          <div className="flex flex-wrap justify-start items-center gap-3 mb-4 text-sm text-gray-600">
             <Badge variant="secondary">{post.category}</Badge>
             <div className="flex items-center">
               <Eye className="w-4 h-4 mr-1" /> {post.views.toLocaleString()} views
@@ -267,12 +267,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           </h1>
 
           {post.excerpt && (
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
               {post.excerpt}
             </p>
           )}
 
-          <div className="flex flex-wrap justify-center gap-2 mt-5">
+          <div className="flex flex-wrap gap-2 mt-5">
             {post.tags.map((tag) => (
               <Badge key={tag} variant="outline" className="text-gray-700">
                 {tag}
@@ -283,21 +283,20 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Article Body */}
         <div
-          className="prose prose-lg md:prose-xl mx-auto text-center leading-relaxed prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-black"
+          className="prose prose-lg md:prose-xl mx-auto text-left leading-relaxed prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-black"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
         {/* Call to Action */}
         <Card className="mt-16 bg-orange-50 border border-orange-200 shadow-sm">
-          <CardContent className="p-8 text-center">
+          <CardContent className="p-8 text-left">
             <h3 className="text-2xl font-semibold mb-4 text-gray-900">
               Ready to Invest in Uttarakhand Properties?
             </h3>
             <p className="text-gray-700 mb-6">
-              Explore our curated selection of premium plots in Uttarakhand's most
-              sought-after hill locations.
+              Explore our curated selection of premium plots in Uttarakhand's most sought-after hill locations.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg">
                 <Link href="/plots">View Available Plots</Link>
               </Button>
