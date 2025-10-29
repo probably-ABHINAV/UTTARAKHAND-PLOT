@@ -93,6 +93,25 @@ const blogPosts = [
       "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
     image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
   },
+  {
+    id: 5,
+    title: "How to Choose the Right Plot in Uttarakhand: A Practical Checklist",
+    slug: "hill-station-property-market-trends-2027",
+    excerpt: "Legal Title & Encumbrances",
+    content: "Land-Use & Zoning",
+    category: "Market Analysis",
+    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2025-10-29",
+    lastModified: "2025-10-29",
+    views: 645,
+    featured: false,
+    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
+    metaDescription:
+      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
+    image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
+  },
 ]
 
 const categories = ["All", "Investment", "Market Trends", "Market Analysis", "Property Tips", "Location Guide"]
