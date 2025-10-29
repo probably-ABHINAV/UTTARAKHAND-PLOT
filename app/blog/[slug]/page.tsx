@@ -216,38 +216,24 @@ interface BlogPostPageProps {
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
+  if (!post) notFound()
 
-  if (!post) {
-    notFound()
-  }
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+  const formatDate = (dateString: string) =>
+    new Date(dateString).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     })
-  }
-
-  const relatedPosts = blogPosts
-    .filter((p) => p.id !== post.id && p.status === "Published" && p.category === post.category)
-    .slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col">
       <SiteHeader />
-      
-      {/* Hero Image */}
-      <div className="relative h-64 md:h-96 overflow-hidden">
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute bottom-4 left-4">
-          <Button asChild variant="secondary" size="sm">
+
+      {/* Hero Section */}
+      <div className="relative w-full h-64 md:h-[28rem]">
+        <Image src={post.image} alt={post.title} fill className="object-cover" />
+        <div className="absolute inset-0 bg-black/50 flex items-end justify-start p-6 md:p-12">
+          <Button asChild variant="secondary" size="sm" className="z-10">
             <Link href="/blog">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Blog
@@ -256,183 +242,97 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
 
-      {/* Article Content */}
-      <article className="container py-12 text-center text-black">
-        <div className="max-w-4xl mx-auto">
-          {/* Article Header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <Badge variant="secondary">{post.category}</Badge>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Eye className="w-3 h-3 mr-1" />
-                {post.views.toLocaleString()} views
-              </div>
-              {post.featured && (
-                <Badge className="bg-primary text-primary-foreground">Featured</Badge>
-              )}
+      {/* Blog Content */}
+      <article className="flex-grow container mx-auto px-4 md:px-6 py-12 max-w-4xl text-center">
+        {/* Header */}
+        <header className="mb-10">
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-4 text-sm text-gray-600">
+            <Badge variant="secondary">{post.category}</Badge>
+            <div className="flex items-center">
+              <Eye className="w-4 h-4 mr-1" /> {post.views.toLocaleString()} views
             </div>
-            
-            <h1 className="text-3xl md:text-5xl font-serif font-black text-foreground mb-6">
-              {post.title}
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-6">
-              {post.excerpt}
-            </p>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <User className="w-4 h-4 mr-2" />
-                  {post.author}
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  {formatDate(post.publishedDate)}
-                </div>
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  5 min read
-                </div>
-              </div>
-            
+            <div className="flex items-center">
+              <User className="w-4 h-4 mr-1" /> {post.author}
             </div>
-
-            <div className="flex flex-wrap gap-2 mt-4">
-              {post.tags.map((tag) => (
-                <Badge key={tag} variant="outline">
-                  {tag}
-                </Badge>
-              ))}
+            <div className="flex items-center">
+              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.publishedDate)}
             </div>
-          </header>
-
-          {/* Article Body */}
-          <div
-  className="mx-auto text-black text-center max-w-3xl px-4"
-  style={{
-    textAlign: "center",
-    maxWidth: "800px",
-    margin: "0 auto",
-    lineHeight: "1.8",
-    fontSize: "1.1rem",
-  }}
->
-  <div
-  dangerouslySetInnerHTML={{ __html: post.content }}
-  style={{
-    textAlign: "center",
-    margin: "0 auto",
-    lineHeight: "1.8",
-    fontSize: "1.1rem",
-  }}
-/>
-</div>
-
-
-
-          {/* Call to Action */}
-          <Card className="mt-12 bg-primary/5 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-serif font-bold mb-4">
-                Ready to Invest in Uttrakhand Properties?
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Explore our curated selection of premium plots in Uttrakhand's most sought-after locations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link href="/plots">
-                    View Available Plots
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">
-                    Get Expert Consultation
-                  </Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </article>
-
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="bg-muted/30 py-16">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-serif font-bold mb-8">Related Articles</h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {relatedPosts.map((relatedPost) => (
-                  <Card key={relatedPost.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div className="aspect-video relative overflow-hidden">
-                      <Image
-                        src={relatedPost.image}
-                        alt={relatedPost.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="secondary">{relatedPost.category}</Badge>
-                      </div>
-                      <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                        {relatedPost.title}
-                      </CardTitle>
-                      <CardDescription className="line-clamp-2">
-                        {relatedPost.excerpt}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button asChild variant="outline" size="sm" className="w-full">
-                        <Link href={`/blog/${relatedPost.slug}`}>
-                          Read More
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+            <div className="flex items-center">
+              <Clock className="w-4 h-4 mr-1" /> 5 min read
             </div>
           </div>
-        </section>
-      )}
+
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900">
+            {post.title}
+          </h1>
+
+          {post.excerpt && (
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              {post.excerpt}
+            </p>
+          )}
+
+          <div className="flex flex-wrap justify-center gap-2 mt-5">
+            {post.tags.map((tag) => (
+              <Badge key={tag} variant="outline" className="text-gray-700">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </header>
+
+        {/* Article Body */}
+        <div
+          className="prose prose-lg md:prose-xl mx-auto text-center leading-relaxed prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-black"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+
+        {/* Call to Action */}
+        <Card className="mt-16 bg-orange-50 border border-orange-200 shadow-sm">
+          <CardContent className="p-8 text-center">
+            <h3 className="text-2xl font-semibold mb-4 text-gray-900">
+              Ready to Invest in Uttarakhand Properties?
+            </h3>
+            <p className="text-gray-700 mb-6">
+              Explore our curated selection of premium plots in Uttarakhand's most
+              sought-after hill locations.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link href="/plots">View Available Plots</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/contact">Get Expert Consultation</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </article>
 
       <SiteFooter />
     </div>
   )
 }
 
-// Generate static paths for all published blog posts
 export async function generateStaticParams() {
   return blogPosts
     .filter((post) => post.status === "Published")
-    .map((post) => ({
-      slug: post.slug,
-    }))
+    .map((post) => ({ slug: post.slug }))
 }
 
-// Generate metadata for each blog post
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    }
-  }
+  if (!post) return { title: "Post Not Found" }
 
   return {
     title: post.metaTitle,
     description: post.metaDescription,
-    keywords: post.tags.join(', '),
+    keywords: post.tags.join(", "),
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
       images: [post.image],
-      type: 'article',
+      type: "article",
       publishedTime: post.publishedDate,
       modifiedTime: post.lastModified,
       authors: [post.author],
@@ -440,4 +340,3 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     },
   }
 }
-
