@@ -204,7 +204,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
       "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
+    image: "/images/C_1760471281370.jpg",
   },
 ]
 
