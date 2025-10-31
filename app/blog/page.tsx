@@ -112,6 +112,34 @@ const blogPosts = [
       "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
     image: "/images/C_1760471281370.jpg",
   },
+  {
+  id: 6,
+  title: "How to Choose the Right Plot in Uttarakhand: A Practical Checklist",
+  slug: "choose-right-plot-uttarakhand-checklist-2025",
+  excerpt: "Legal Title & Encumbrances",
+  content: `
+    <p><strong>How to Choose the Right Plot in Uttarakhand: A Practical Checklist</strong></p>
+    <p>Buying a plot in Uttarakhand can be one of the most fulfilling investments you make — combining natural beauty with strong appreciation potential. But success depends on careful planning and awareness of local factors that impact property value and legality. This practical checklist will help you evaluate plots effectively and avoid costly mistakes.</p>
+    <p><strong>1. Legal Title & Encumbrances:</strong> Start by verifying the land title thoroughly. Request certified copies of ownership documents, mutation records, and the latest tax receipts. Ensure there are no encumbrances, disputes, or pending litigations attached to the property. A clear title is essential for loan eligibility and resale in the future.</p>
+    <p><strong>2. Land-Use & Zoning:</strong> Uttarakhand has distinct land-use regulations depending on the district and proximity to forest or eco-sensitive areas. Confirm the plot’s zoning with the local development authority or Tehsil office. Agricultural, residential, and commercial lands have different permissions, and misclassification can lead to legal complications later.</p>
+    <p><strong>3. Connectivity & Infrastructure:</strong> Always assess the approach road, water supply, power connection, and drainage facilities. Proximity to highways, schools, and hospitals enhances usability and resale value. Areas around Dehradun, Nainital, and Ranikhet are particularly promising due to ongoing infrastructure improvements and tourism-driven growth.</p>
+    <p><strong>4. Terrain & Soil Suitability:</strong> In hill regions, plot gradient, soil stability, and drainage are crucial. Hire a local civil engineer or surveyor to check for erosion risk and slope strength. Proper site evaluation ensures safe construction and prevents foundation issues or landslide risks later.</p>
+    <p><strong>5. Work with Verified Platforms:</strong> To simplify your search, use trusted property platforms like <strong>Property in Uttarakhand</strong>. They list verified plots, provide clarity on legal documents, and connect you with experts who understand local terrain and regulations. This saves time and minimizes risk while helping you find a plot that truly fits your goals.</p>
+  `,
+  category: "Market Analysis",
+  tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-10-31",
+  lastModified: "2025-10 -31",
+  views: 645,
+  featured: false,
+  metaTitle: "How to Choose the Right Plot in Uttarakhand – Complete Buyer’s Checklist 2025",
+  metaDescription:
+    "A detailed buyer’s checklist for selecting the right plot in Uttarakhand. Learn about legal verification, zoning, terrain evaluation, and infrastructure factors before investing.",
+  image: "/images/design1.png",
+}
+
 ]
 
 const categories = ["All", "Investment", "Market Trends", "Market Analysis", "Property Tips", "Location Guide"]
