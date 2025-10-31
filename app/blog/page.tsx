@@ -67,7 +67,7 @@ const blogPosts = [
     status: "Published",
     publishedDate: "2025-10-24",
     lastModified: "2025-10-24",
-    views: 645,
+    views: 945,
     featured: false,
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
@@ -86,7 +86,7 @@ const blogPosts = [
     status: "Published",
     publishedDate: "2025-10-27",
     lastModified: "2025-10-27",
-    views: 645,
+    views: 1202,
     featured: false,
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
@@ -105,7 +105,7 @@ const blogPosts = [
     status: "Published",
     publishedDate: "2025-10-29",
     lastModified: "2025-10-29",
-    views: 645,
+    views: 780,
     featured: false,
     metaTitle: "Hill Station Property Market Trends & Predictions 2024",
     metaDescription:
@@ -132,7 +132,7 @@ const blogPosts = [
   status: "Published",
   publishedDate: "2025-10-31",
   lastModified: "2025-10 -31",
-  views: 645,
+  views: 598,
   featured: false,
   metaTitle: "How to Choose the Right Plot in Uttarakhand – Complete Buyer’s Checklist 2025",
   metaDescription:
