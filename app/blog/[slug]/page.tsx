@@ -10,6 +10,58 @@ import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
+
+{
+  id: 1,
+  title: "Property in Uttarakhand: Invest Wisely in Hill Plots",
+  slug: "property-in-uttarakhand-invest-wisely-in-hill-plots",
+  excerpt: "Why Uttarakhand is a smart property bet",
+  content: `
+    <p>Uttarakhand’s scenic valleys, cool climate and rising tourism make it one of India’s most attractive regions for property investment. From weekend getaways near Dehradun and Nainital to development pockets around Rishikesh and Haridwar, buying land or a plot in this Himalayan state can offer both lifestyle value and strong long-term returns—if you do it right. This article walks you through the key reasons to invest in Uttarakhand, the local risks to watch for, and a practical checklist to buy safely.</p>
+
+    <h2>1. Why Uttarakhand? Beauty, tourism and steady demand</h2>
+    <p>Uttarakhand combines natural beauty with growing tourist footfall: hill stations such as Mussoorie, Nainital, Kausani, and emerging destinations near Haridwar and Rishikesh attract domestic and international visitors. Post-pandemic demand for second homes, wellness retreats, and short-stay rentals has strengthened. Moreover, improved road connectivity and interest in micro‑town developments draw builders and buyers, helping land values appreciate steadily in many corridors.</p>
+
+    <h2>2. Location matters: micro-markets to prioritise</h2>
+    <p>Not all Uttarakhand land is equal. Prioritise plots close to: (a) major access roads or state highways, (b) established town centres with utilities, (c) reliable public transport nodes, and (d) popular tourist circuits. Proximity to an all-weather road and a nearby market vastly increases resale and rental potential compared to remote mountain plots that face seasonal access issues.</p>
+
+    <h2>3. Seasonal and environmental realities</h2>
+    <p>Hill properties come with seasonal realities—monsoon risks, landslides, and snow in higher altitudes. Check slope gradient, drainage, soil stability and local history of landslides. For plots on steep slopes, prefer terraces or reinforced foundations and avoid cutting into natural contour lines which increases erosion risk.</p>
+
+    <h2>4. Crucial legal & ecological checks</h2>
+    <p>Uttarakhand has strict laws regarding forest land, river setbacks and environmental clearances. Always verify the land’s classification: agricultural, revenue, private, or forest. Get the 7/12 or equivalent revenue records, mutation history, and an up-to-date encumbrance certificate. Confirm there’s no pending litigation or revenue demand. For plots near protected areas or rivers, ensure compliance with environmental norms and watch for notifications that may restrict construction.</p>
+
+    <h2>5. Infrastructure & utility readiness</h2>
+    <p>Ensure basic services—electricity, potable water, approach road, and broadband—are either present or scheduled in municipal plans. Properties with assured utility connections attract better short-term rental guests and reduce development surprises. Confirm whether septic, rainwater harvesting, and wastewater management are feasible on site.</p>
+
+    <h2>6. Short-term income and tourism rentals</h2>
+    <p>Well-located plots near tourist nodes can be developed into homestays, guesthouses or serviced cottages. With proper design and local permits, short-term rentals can produce attractive yields while you wait for capital appreciation—especially in areas with steady weekend demand from nearby metros like Delhi and Dehradun.</p>
+
+    <h2>7. Practical checklist before buying</h2>
+    <ul>
+      <li>Verify title chain, obtain encumbrance certificate; confirm no forest or revenue disputes.</li>
+      <li>Survey slope, soil and drainage; consult a geotechnical engineer for steep plots.</li>
+      <li>Confirm access roads remain public and aren’t private tracks that can be blocked.</li>
+      <li>Check local zoning and FAR rules; verify building permissions and likely timelines for approvals.</li>
+      <li>Understand seasonal access and maintenance costs (roads, retaining walls, water supply).</li>
+      <li>Engage a local lawyer and a trusted surveyor—local expertise is invaluable.</li>
+    </ul>
+
+    <h2>Final thoughts</h2>
+    <p>Property in Uttarakhand offers a rare mix of lifestyle and investment upside—but success depends on disciplined due diligence. Focus on accessible micro-markets, respect environmental and slope constraints, and prioritise clear titles and infrastructure-ready plots. With careful selection and professional help, buying in Uttarakhand can be both a smart financial move and a gateway to a peaceful mountain life.</p>
+  `,
+  category: "Investment",
+  tags: ["Uttarakhand", "Hill Stations", "Real Estate", "Investment"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-11-03",
+  lastModified: "2025-11-03",
+  views: 0,
+  featured: true,
+  metaTitle: "Smart Guide to Buying Property in Uttarakhand 2025",
+  metaDescription: "Comprehensive checklist and practical advice for buying land and plots in Uttarakhand — legal checks, environmental risks, location tips and rental potential.",
+  image: "/images/friends-colony-phase1.jpg"
+},
   {
     id: 1,
     title: "Land Near Highways: Buy Today, Profit Tomorrow!",
