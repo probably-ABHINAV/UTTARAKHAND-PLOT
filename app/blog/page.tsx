@@ -59,7 +59,7 @@ const blogPosts = [
   status: "Published",
   publishedDate: "2025-11-03",
   lastModified: "2025-11-03",
-  views: 0,
+  views: 208,
   featured: true,
   metaTitle: "Smart Guide to Buying Property in Uttarakhand 2025",
   metaDescription: "Comprehensive checklist and practical advice for buying land and plots in Uttarakhand — legal checks, environmental risks, location tips and rental potential.",
