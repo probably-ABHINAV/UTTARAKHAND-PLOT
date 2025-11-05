@@ -1,85 +1,88 @@
 @import "tailwindcss";
 
 /* ------------------------------
-   THEME COLORS – ORANGE TO RED GRADIENT (MATCHING LOGO)
-   Primary: #FF6B35 (Orange-Red from logo)
-   Secondary: #F7931E (Orange from logo)
+   THEME COLORS – ORANGE + LIME (image-matched)
+   Primary (Orange): #FF7A00
+   Highlight (Lime): #C6EC2A
 --------------------------------*/
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-@theme {
-  --color-background: #ffffff;
-  --color-foreground: #1a1a1a;
-  --color-primary: #FF6B35;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #F7931E;
-  --color-secondary-foreground: #ffffff;
-  --color-accent: #FF6B35;
-  --color-accent-foreground: #ffffff;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #737373;
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #ffffff;
-  --color-border: #e5e5e5;
-  --color-input: #e5e5e5;
-  --color-ring: #FF6B35;
-  --radius: 0.5rem;
-}
-
 /* ------------------------------
-=======
->>>>>>> Stashed changes
-/* ------------------------------
-   THEME COLORS – ORANGE TO RED
+   LIGHT THEME
 --------------------------------*/
 :root {
   --background: #ffffff;
-  --foreground: #ff4d00;
+  --foreground: #272211;                /* deep warm neutral */
   --card: #ffffff;
-  --card-foreground: #ff4d00;
+  --card-foreground: #272211;
   --popover: #ffffff;
-  --popover-foreground: #ff4d00;
-  --primary: #ff6600;
+  --popover-foreground: #272211;
+
+  --primary: #FF7A00;                   /* Orange */
   --primary-foreground: #ffffff;
-  --secondary: #fff2ec;
-  --secondary-foreground: #ff4d00;
-  --muted: #fff8f4;
-  --muted-foreground: #b45309;
-  --accent: #ff3b3b;
-  --accent-foreground: #ffffff;
+
+  --secondary: #C6EC2A;                 /* Lime (from image) */
+  --secondary-foreground: #1b1b1b;
+
+  --muted: #fff7ef;                     /* soft warm bg */
+  --muted-foreground: #7a5a2a;
+
+  --accent: #C6EC2A;                    /* use lime as accent too */
+  --accent-foreground: #1b1b1b;
+
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #ffe0d0;
-  --input: #fff8f4;
-  --ring: #ff6600;
+
+  --border: #f5d9c2;                    /* warm border */
+  --input: #ffeede;
+  --ring: #FF7A00;
+
   --radius: 0.75rem;
+
+  /* Chart palette */
+  --chart-1: #FF7A00;   /* orange */
+  --chart-2: #C6EC2A;   /* lime */
+  --chart-3: #FFA54D;   /* orange-light */
+  --chart-4: #FF5500;   /* deep orange */
+  --chart-5: #E6FF66;   /* lime-light */
 }
 
 /* ------------------------------
-   DARK MODE VARIANT
+   DARK MODE
 --------------------------------*/
 .dark {
-  --background: #1c1c1c;
-  --foreground: #ff9966;
-  --card: #2a2a2a;
-  --card-foreground: #ffffff;
-  --popover: #1c1c1c;
-  --popover-foreground: #ffffff;
-  --primary: #ff6600;
+  --background: #14110b;
+  --foreground: #f5ffe0;                /* warm-lime tint for text */
+  --card: #1a1710;
+  --card-foreground: #f5ffe0;
+  --popover: #14110b;
+  --popover-foreground: #f5ffe0;
+
+  --primary: #FF8A26;                   /* brighter orange for dark bg */
   --primary-foreground: #0f0f0f;
-  --secondary: #333333;
-  --secondary-foreground: #ffffff;
-  --muted: #2a2a2a;
-  --muted-foreground: #ffccaa;
-  --accent: #ff3b3b;
-  --accent-foreground: #ffffff;
+
+  --secondary: #BFE83A;                 /* dimmed lime */
+  --secondary-foreground: #0f0f0f;
+
+  --muted: #1e1a12;
+  --muted-foreground: #dfeeb3;
+
+  --accent: #BFE83A;
+  --accent-foreground: #0f0f0f;
+
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #3a3a3a;
-  --input: #2a2a2a;
-  --ring: #ff6600;
+
+  --border: #2a251a;
+  --input: #221e15;
+  --ring: #FF8A26;
+
+  --radius: 0.75rem;
+
+  --chart-1: #FF8A26;
+  --chart-2: #BFE83A;
+  --chart-3: #FFB066;
+  --chart-4: #FF6A1A;
+  --chart-5: #D8FF66;
 }
 
 /* ------------------------------
@@ -89,6 +92,7 @@
   --font-sans: ui-sans-serif, system-ui, sans-serif;
   --font-serif: ui-serif, Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -108,6 +112,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -118,80 +123,38 @@
    BASE STYLES
 --------------------------------*/
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; }
 }
 
 /* ------------------------------
-<<<<<<< Updated upstream
-=======
->>>>>>> 8ecb354ff463fff582d1d7772608d0b0b65adb3d
->>>>>>> Stashed changes
    CUSTOM ANIMATIONS
 --------------------------------*/
 @keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes bounce-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  0%   { opacity: 0; transform: scale(0.3); }
+  50%  { transform: scale(1.05); }
+  70%  { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .animate-fade-in { animation: fade-in 0.6s ease-out; }
@@ -202,9 +165,10 @@
 
 /* ------------------------------
    GRADIENT TEXT & ELEMENTS
+   (Orange → Lime)
 --------------------------------*/
 .text-gradient {
-  background: linear-gradient(90deg, #ff6600, #ff3b3b);
+  background: linear-gradient(90deg, #FF7A00, #C6EC2A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -213,26 +177,12 @@
 /* ------------------------------
    CUSTOM SCROLLBAR
 --------------------------------*/
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #fff2ec;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ff9966;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ff7b33;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f7ffe0; }          /* pale lime */
+::-webkit-scrollbar-thumb { background: #ff9966; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #FF7A00; }
 
 /* ------------------------------
    ANIMATION DELAYS
@@ -255,21 +205,19 @@ html {
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 102, 51, 0.25);
+  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.25); /* orange glow */
 }
 
 /* ------------------------------
    LOADING EFFECT
 --------------------------------*/
 .loading {
-  background: linear-gradient(90deg, #fff0e6 25%, #ffe5d1 50%, #fff0e6 75%);
+  background: linear-gradient(90deg, #fff6ec 25%, #fff0e0 50%, #fff6ec 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 }
-
 @keyframes loading {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
@@ -286,61 +234,38 @@ html {
 /* ------------------------------
    BUTTON GLOW EFFECT
 --------------------------------*/
-.btn-glow {
-  position: relative;
-  overflow: hidden;
-}
-
+.btn-glow { position: relative; overflow: hidden; }
 .btn-glow::before {
   content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
   transition: left 0.5s;
 }
-
-.btn-glow:hover::before {
-  left: 100%;
-}
+.btn-glow:hover::before { left: 100%; }
 
 /* ------------------------------
    CONSTRUCTION COST CARD
+   (Orange → Lime gradient)
 --------------------------------*/
 .construction-cost-card {
-  background: linear-gradient(90deg, #ff6600, #ff3b3b);
+  background: linear-gradient(90deg, #FF7A00, #C6EC2A);
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;
-  color: #fff;
+  color: #111;
   font-family: var(--font-sans);
-  box-shadow: 0 4px 20px rgba(255, 102, 51, 0.25);
+  box-shadow: 0 4px 20px rgba(255, 122, 0, 0.25);
   max-width: 420px;
   margin: 0 auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .construction-cost-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 102, 51, 0.35);
+  box-shadow: 0 10px 30px rgba(255, 122, 0, 0.35);
 }
-
 .construction-cost-card h3 {
-  font-size: 1rem;
-  font-weight: 500;
-  opacity: 0.95;
-  margin-bottom: 0.75rem;
+  font-size: 1rem; font-weight: 500; opacity: 0.95; margin-bottom: 0.75rem;
 }
-
-.construction-cost-card .price {
-  font-size: 2.25rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-
-.construction-cost-card .rate {
-  font-size: 1rem;
-  opacity: 0.9;
-}
+.construction-cost-card .price { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+.construction-cost-card .rate { font-size: 1rem; opacity: 0.9; }
