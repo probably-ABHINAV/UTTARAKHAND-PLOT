@@ -10,6 +10,50 @@ import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
+{
+  id: 2,
+  title: "Top Mistakes to Avoid When Buying Land in Uttarakhand",
+  slug: "top-mistakes-to-avoid-when-buying-land-in-uttarakhand",
+  excerpt: "Avoid these costly mistakes before investing in Uttarakhand plots",
+  content: `
+    <p>Buying land in Uttarakhand can be one of the most rewarding decisions you make—both emotionally and financially. However, many buyers jump in without understanding the regional laws, terrain challenges, and hidden costs. To help you make a secure and profitable purchase, here’s a list of the most common mistakes investors and homebuyers make when buying property in the hills, and how to avoid them.</p>
+
+    <h2>1. Ignoring Land Classification and Use Restrictions</h2>
+    <p>Not every piece of land in Uttarakhand is legally buildable. Many areas fall under agricultural, forest, or restricted eco-zones where residential construction is prohibited. Before paying an advance, confirm the land’s classification through the local revenue office. Ensure you have clear permission for residential or commercial use—especially in protected or green-belt zones.</p>
+
+    <h2>2. Skipping Proper Title and Legal Verification</h2>
+    <p>Buyers often rely on verbal assurances or incomplete documentation. Always demand original title deeds, mutation entries, and the encumbrance certificate for the past 30 years. Cross-check records at the tehsil office and verify there are no liens, inheritance disputes, or government notifications. Legal verification through a local property lawyer is non-negotiable in hill regions.</p>
+
+    <h2>3. Overlooking Slope, Drainage and Access Roads</h2>
+    <p>Plots in hilly areas can look beautiful but may pose construction challenges. A steep or uneven slope may require expensive retaining walls or soil stabilization. Also, some plots have approach roads that are private or seasonal. Inspect access routes personally and confirm they remain open to the public throughout the year, including during monsoon.</p>
+
+    <h2>4. Underestimating Environmental and Climate Factors</h2>
+    <p>In Uttarakhand, environmental conditions vary drastically with altitude. Landslide-prone zones, unstable slopes, and water scarcity are real issues. Always check the site’s drainage, soil quality, and previous flood or slide records. Avoid heavy cutting into hillsides, and follow eco-friendly construction guidelines to stay compliant and safe.</p>
+
+    <h2>5. Forgetting to Budget for Hidden Costs</h2>
+    <p>Land cost is just the beginning. Buyers often forget about stamp duty, registration fees, boundary fencing, site leveling, and road access charges. In some areas, connecting water or electricity lines can also cost significantly. Add at least 10–15% of the property value to cover these extras so you don’t strain your budget later.</p>
+
+    <h2>6. Not Conducting a Site Visit or Local Inquiry</h2>
+    <p>Never finalize a deal without visiting the plot in person. Photos can be misleading, and sellers may omit issues like poor road access or nearby encroachments. Speak to neighbours, check the terrain after rain, and observe sunlight direction. Local feedback is the most reliable way to confirm if a plot is genuinely suitable for your needs.</p>
+
+    <h2>7. Ignoring Government Notifications and Future Projects</h2>
+    <p>Uttarakhand’s development plans often include new highways, eco-zones, and restricted belts. Overlooking these can affect construction rights or resale value. Check district master plans and ongoing infrastructure projects before purchase. Proximity to upcoming roads or tourism corridors can raise land value, while being too close to restricted zones can limit usage.</p>
+
+    <h2>Final Takeaway</h2>
+    <p>Buying land in Uttarakhand is an exciting opportunity, but success depends on awareness and due diligence. Avoid emotional decisions, verify every document, and understand the geography before committing funds. With professional legal and engineering advice, your investment in the hills can remain both safe and profitable for years to come.</p>
+  `,
+  category: "Real Estate",
+  tags: ["Uttarakhand", "Property Buying", "Land Investment", "Legal Tips"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-11-06",
+  lastModified: "2025-11-06",
+  views: 0,
+  featured: true,
+  metaTitle: "Top Mistakes to Avoid When Buying Land in Uttarakhand — 2025 Guide",
+  metaDescription: "Learn the key mistakes to avoid before buying plots or land in Uttarakhand. Covers legal checks, slope evaluation, road access, and environmental safety tips.",
+  image: "/images/badripur-plots.jpg"
+},
 
 {
   id: 1,
