@@ -90,6 +90,17 @@ router.put('/inquiries/:id', authenticateAdmin, async (req: AuthRequest, res) =>
   }
 });
 
+router.delete('/inquiries/:id', authenticateAdmin, async (req: AuthRequest, res) => {
+  try {
+    const { id } = req.params;
+    await db.delete(inquiries).where(eq(inquiries.id, parseInt(id)));
+    res.json({ message: 'Inquiry deleted successfully' });
+  } catch (error) {
+    console.error('Delete inquiry error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 router.get('/contact-messages', authenticateAdmin, async (req: AuthRequest, res) => {
   try {
     const messages = await db.select().from(contactMessages).orderBy(desc(contactMessages.createdAt));
