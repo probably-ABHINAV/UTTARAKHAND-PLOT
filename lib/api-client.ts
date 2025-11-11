@@ -1,11 +1,11 @@
 // API Client for backend communication
 const getApiBaseUrl = () => {
-  // Use environment variable if set, otherwise default to localhost
+  // Client-side: use empty string for relative URLs (proxied through Next.js rewrites)
   if (typeof window !== 'undefined') {
-    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    return process.env.NEXT_PUBLIC_API_URL || '';
   }
   
-  // Server-side
+  // Server-side: use localhost for internal communication
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 };
 

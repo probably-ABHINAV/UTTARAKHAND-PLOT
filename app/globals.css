@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ------------------------------
    THEME COLORS – ORANGE + LIME (image-matched)

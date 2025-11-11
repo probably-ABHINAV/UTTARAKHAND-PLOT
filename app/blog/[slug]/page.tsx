@@ -11,6 +11,51 @@ import { notFound } from "next/navigation"
 // Blog posts data (same as admin section)
 const blogPosts = [
 {
+  id: 3,
+  title: "Best Locations to Buy Land in Uttarakhand for 2025 – Where Nature Meets Opportunity",
+  slug: "best-locations-to-buy-land-in-uttarakhand-2025",
+  excerpt: "Discover Uttarakhand’s most promising areas for property investment in 2025",
+  content: `
+    <p>Uttarakhand is emerging as one of India’s most sought-after real estate destinations. Whether you want a peaceful retreat, a holiday home, or a long-term investment, choosing the right location is crucial. With growing tourism, infrastructure upgrades, and improved road connectivity, several regions across the state are seeing rapid appreciation in property value. Here’s a detailed look at the best locations to buy land in Uttarakhand in 2025.</p>
+
+    <h2>1. Dehradun — The Evergreen Capital</h2>
+    <p>Dehradun offers the perfect balance between city convenience and natural charm. It’s well-connected to Delhi via the new expressway and has strong educational and healthcare infrastructure. Areas like Sahastradhara Road, Raipur, and Bhauwala are witnessing rising demand due to affordable rates and upcoming residential developments.</p>
+
+    <h2>2. Nainital — The Lake District’s Investment Appeal</h2>
+    <p>Known for its scenic lakes and cool climate, Nainital remains a timeless choice for property buyers. Surrounding areas such as Bhimtal, Bhowali, and Pangot are ideal for vacation homes, boutique resorts, or Airbnb rentals. With consistent tourism and limited land availability, Nainital plots hold excellent long-term appreciation potential.</p>
+
+    <h2>3. Rishikesh & Haridwar — Spiritual Hubs with Strong Returns</h2>
+    <p>These twin cities combine spirituality with real estate opportunity. The growing demand for yoga retreats, homestays, and wellness centers has made outskirts like Raiwala and Motichur popular among investors. Improved connectivity and rising international tourism further enhance property value in this belt.</p>
+
+    <h2>4. Mukteshwar & Almora — Quiet Escapes for Premium Buyers</h2>
+    <p>For those looking to escape the crowd and invest in serene hilltop properties, Mukteshwar and Almora are ideal. Their panoramic Himalayan views and eco-friendly development policies attract buyers seeking sustainable living or boutique resort ventures. Land prices are still reasonable here, but appreciation is steady and dependable.</p>
+
+    <h2>5. Tehri & Kanatal — The Rising Stars of Hill Tourism</h2>
+    <p>With the Tehri Lake becoming a water-sports hub and Kanatal gaining popularity for weekend stays, this region is fast evolving into a tourism hotspot. Investors are eyeing plots for cottages and resorts as government initiatives push eco-tourism and road upgrades across the district.</p>
+
+    <h2>6. Pauri & Lansdowne — Underrated but Promising</h2>
+    <p>These lesser-known gems offer peaceful surroundings and affordability. Pauri’s improving connectivity and Lansdowne’s colonial charm are drawing attention from urban professionals seeking retirement or holiday homes. With lower entry costs and potential for tourism growth, these are hidden investment treasures.</p>
+
+    <h2>7. Champawat & Lohaghat — Future Potential Zones</h2>
+    <p>Once considered remote, Champawat and Lohaghat are gaining traction due to new road links and eco-friendly development schemes. Investors with a long-term vision can secure large plots at comparatively low prices here, ideal for farmhouses or organic living projects.</p>
+
+    <h2>Final Takeaway</h2>
+    <p>Uttarakhand’s real estate market in 2025 offers opportunities for every type of buyer—whether you want quick returns, rental income, or a peaceful retirement retreat. Choose your location based on accessibility, legal clarity, and development scope. With proper planning and reliable assistance, your investment in the hills can bring both serenity and steady financial growth.</p>
+  `,
+  category: "Real Estate",
+  tags: ["Uttarakhand", "Property Investment", "Location Guide", "2025 Real Estate Trends"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-11-09",
+  lastModified: "2025-11-09",
+  views: 0,
+  featured: true,
+  metaTitle: "Best Locations to Buy Land in Uttarakhand for 2025 – Property Investment Guide",
+  metaDescription: "Explore the top areas to buy land in Uttarakhand in 2025, including Dehradun, Nainital, Rishikesh, Mukteshwar, and more. Learn which locations offer the best returns.",
+  image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_e87110ff.jpg"
+},
+
+  {
   id: 2,
   title: "Top Mistakes to Avoid When Buying Land in Uttarakhand",
   slug: "top-mistakes-to-avoid-when-buying-land-in-uttarakhand",
