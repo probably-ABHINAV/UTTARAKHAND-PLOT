@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -16,89 +16,34 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Plus, Edit, Trash2, Eye, MapPin, Home, IndianRupee, Search, Download, Upload, ArrowLeft } from "lucide-react"
+import { Plus, Edit, Trash2, Eye, MapPin, Home, IndianRupee, Search, Download, Upload, ArrowLeft, Save } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { AuthGuard } from "@/components/auth-guard"
 import { LogoutButton } from "@/components/logout-button"
-import { useMutation } from "@/hooks/use-api"
+import { toast } from "sonner"
 import { apiClient } from "@/lib/api-client"
-
-// Mock plot data
-const mockPlots = [
-  {
-    id: "PLT001",
-    title: "Himalayan View Plot - Mussoorie",
-    location: "Mussoorie Hills, Uttrakhand",
-    area: "2500 sq ft",
-    price: "₹45 L",
-    pricePerSqFt: "₹1,800",
-    type: "Residential",
-    status: "Available",
-    facing: "North-East",
-    amenities: ["Mountain View", "Road Access", "Electricity", "Water Supply"],
-    description: "Premium plot with stunning Himalayan views, perfect for building your dream home.",
-    dateAdded: "2024-01-15",
-    lastUpdated: "2024-01-20",
-    images: ["/luxury-villa-mountains-mussoorie.jpg"],
-    coordinates: { lat: 30.4598, lng: 78.0664 },
-    nearbyAttractions: ["Mall Road - 2km", "Kempty Falls - 15km", "Gun Hill - 3km"],
-    legalStatus: "Clear Title",
-    approvals: ["Municipal Approval", "Environmental Clearance"],
-  },
-  {
-    id: "PLT002",
-    title: "Spiritual Retreat Plot - Rishikesh",
-    location: "Rishikesh Valley, Uttrakhand",
-    area: "3200 sq ft",
-    price: "₹58 L",
-    pricePerSqFt: "₹1,812",
-    type: "Commercial",
-    status: "Reserved",
-    facing: "East",
-    amenities: ["River View", "Temple Nearby", "Yoga Centers", "Ashram Access"],
-    description: "Ideal for spiritual retreat center or wellness resort near the holy Ganges.",
-    dateAdded: "2024-01-10",
-    lastUpdated: "2024-01-22",
-    images: ["/spiritual-retreat-rishikesh-ganges.jpg"],
-    coordinates: { lat: 30.0869, lng: 78.2676 },
-    nearbyAttractions: ["Laxman Jhula - 1km", "Beatles Ashram - 2km", "Triveni Ghat - 3km"],
-    legalStatus: "Clear Title",
-    approvals: ["Tourism Board Approval", "Municipal Approval"],
-  },
-  {
-    id: "PLT003",
-    title: "Lake View Plot - Nainital",
-    location: "Nainital Lake Side, Uttrakhand",
-    area: "1800 sq ft",
-    price: "₹72 L",
-    pricePerSqFt: "₹4,000",
-    type: "Residential",
-    status: "Available",
-    facing: "South-West",
-    amenities: ["Lake View", "Boat Club Access", "Mall Road Nearby", "Parking"],
-    description: "Exclusive lakeside plot with direct access to Naini Lake and premium location.",
-    dateAdded: "2024-01-20",
-    lastUpdated: "2024-01-25",
-    images: ["/cottage-nainital-lake-mountains.jpg"],
-    coordinates: { lat: 29.3919, lng: 79.4542 },
-    nearbyAttractions: ["Naini Lake - 100m", "Snow View Point - 2km", "Naina Devi Temple - 500m"],
-    legalStatus: "Clear Title",
-    approvals: ["Hill Station Development Authority", "Environmental Clearance"],
-  },
-]
+import { useQuery, useMutation } from "@/hooks/use-api"
 
 function PlotManagementContent() {
-  const [plots, setPlots] = useState(mockPlots)
-  const [selectedPlot, setSelectedPlot] = useState<(typeof mockPlots)[0] | null>(null)
+  const { data: plots = [], refetch } = useQuery(apiClient.getPlots)
+  const [selectedPlot, setSelectedPlot] = useState<any>(null)
+  const [editingPlot, setEditingPlot] = useState<any>(null)
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [typeFilter, setTypeFilter] = useState("all")
+
+  const createPlotMutation = useMutation(apiClient.createPlot)
+  const updatePlotMutation = useMutation((data: { id: string; plot: any }) => 
+    apiClient.updatePlot(data.id, data.plot)
+  )
+  const deletePlotMutation = useMutation(apiClient.deletePlot)
 
   const filteredPlots = plots.filter((plot) => {
     const matchesSearch =
@@ -111,40 +56,79 @@ function PlotManagementContent() {
     return matchesSearch && matchesStatus && matchesType
   })
 
-  const createPlotMutation = useMutation(apiClient.createPlot)
-  const deletePlotMutation = useMutation(apiClient.deletePlot)
-
   const handleAddPlot = async (formData: FormData) => {
     try {
-      const plotData = {
+      const newPlot = {
         title: formData.get("title") as string,
         location: formData.get("location") as string,
+        area: formData.get("area") as string,
+        price: formData.get("price") as string,
+        price_per_sqft: formData.get("pricePerSqFt") as string,
+        type: formData.get("type") as string,
+        status: "Available",
+        facing: formData.get("facing") as string,
+        amenities: ["Road Access", "Electricity"], // Default amenities
         description: formData.get("description") as string,
-        price: parseFloat((formData.get("price") as string).replace(/₹|L|,/g, '')) * 100000,
-        size_sqyd: parseFloat(formData.get("area") as string),
-        is_published: true,
-        slug: (formData.get("title") as string).toLowerCase().replace(/\s+/g, '-'),
+        images: ["/placeholder.jpg"],
+        coordinates: { lat: 30.0, lng: 78.0 },
+        nearby_attractions: [],
+        legal_status: "Pending",
+        approvals: [],
       }
       
-      await createPlotMutation.mutate(plotData)
-      // Refresh the page or refetch data
-      window.location.reload()
+      await createPlotMutation.mutateAsync(newPlot)
+      refetch()
+      setIsAddDialogOpen(false)
+      toast.success("Plot added successfully")
     } catch (error) {
       console.error('Error creating plot:', error)
-      alert('Error creating plot. Please try again.')
+      toast.error('Error creating plot. Please try again.')
+    }
+  }
+
+  const handleEditPlot = async (formData: FormData) => {
+    if (!editingPlot) return
+
+    try {
+      const updatedPlot = {
+        title: formData.get("title") as string,
+        location: formData.get("location") as string,
+        area: formData.get("area") as string,
+        price: formData.get("price") as string,
+        price_per_sqft: formData.get("pricePerSqFt") as string,
+        type: formData.get("type") as string,
+        facing: formData.get("facing") as string,
+        status: formData.get("status") as string,
+        description: formData.get("description") as string,
+      }
+
+      await updatePlotMutation.mutateAsync({ id: editingPlot.id, plot: updatedPlot })
+      refetch()
+      setIsEditDialogOpen(false)
+      setEditingPlot(null)
+      toast.success("Plot updated successfully")
+    } catch (error) {
+      console.error('Error updating plot:', error)
+      toast.error('Error updating plot. Please try again.')
     }
   }
 
   const handleDeletePlot = async (plotId: string) => {
     if (window.confirm('Are you sure you want to delete this plot?')) {
       try {
-        await deletePlotMutation.mutate(plotId)
-        setPlots(plots.filter((plot) => plot.id !== plotId))
+        await deletePlotMutation.mutateAsync(plotId)
+        refetch()
+        toast.success("Plot deleted successfully")
       } catch (error) {
         console.error('Error deleting plot:', error)
-        alert('Error deleting plot. Please try again.')
+        toast.error('Error deleting plot. Please try again.')
       }
     }
+  }
+
+  const openEditDialog = (plot: any) => {
+    setEditingPlot(plot)
+    setIsEditDialogOpen(true)
   }
 
   const getStatusColor = (status: string) => {
@@ -162,7 +146,6 @@ function PlotManagementContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -191,7 +174,6 @@ function PlotManagementContent() {
       </header>
 
       <div className="container mx-auto px-4 py-6">
-        {/* Filters and Actions */}
         <div className="flex flex-col lg:flex-row gap-4 mb-6">
           <div className="flex-1 flex gap-4">
             <div className="relative flex-1">
@@ -234,6 +216,7 @@ function PlotManagementContent() {
               <Upload className="w-4 h-4 mr-2" />
               Import
             </Button>
+            
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
                 <Button className="bg-primary hover:bg-primary/90">
@@ -324,10 +307,110 @@ function PlotManagementContent() {
                 </form>
               </DialogContent>
             </Dialog>
+
+            <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>Edit Plot</DialogTitle>
+                  <DialogDescription>Update the details for {editingPlot?.title}</DialogDescription>
+                </DialogHeader>
+                {editingPlot && (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      handleEditPlot(new FormData(e.currentTarget))
+                    }}
+                    className="space-y-4"
+                  >
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="edit-title">Plot Title</Label>
+                        <Input id="edit-title" name="title" defaultValue={editingPlot.title} required />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-location">Location</Label>
+                        <Input id="edit-location" name="location" defaultValue={editingPlot.location} required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="edit-area">Area</Label>
+                        <Input id="edit-area" name="area" defaultValue={editingPlot.area} required />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-price">Price</Label>
+                        <Input id="edit-price" name="price" defaultValue={editingPlot.price} required />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-pricePerSqFt">Price per Sq Ft</Label>
+                        <Input id="edit-pricePerSqFt" name="pricePerSqFt" defaultValue={editingPlot.price_per_sqft} required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="edit-type">Type</Label>
+                        <Select name="type" defaultValue={editingPlot.type} required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Residential">Residential</SelectItem>
+                            <SelectItem value="Commercial">Commercial</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-facing">Facing</Label>
+                        <Select name="facing" defaultValue={editingPlot.facing} required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select facing" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="North">North</SelectItem>
+                            <SelectItem value="South">South</SelectItem>
+                            <SelectItem value="East">East</SelectItem>
+                            <SelectItem value="West">West</SelectItem>
+                            <SelectItem value="North-East">North-East</SelectItem>
+                            <SelectItem value="North-West">North-West</SelectItem>
+                            <SelectItem value="South-East">South-East</SelectItem>
+                            <SelectItem value="South-West">South-West</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-status">Status</Label>
+                        <Select name="status" defaultValue={editingPlot.status} required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select status" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Available">Available</SelectItem>
+                            <SelectItem value="Reserved">Reserved</SelectItem>
+                            <SelectItem value="Sold">Sold</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-description">Description</Label>
+                      <Textarea id="edit-description" name="description" defaultValue={editingPlot.description} rows={3} required />
+                    </div>
+                    <div className="flex justify-end gap-2">
+                      <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                        Cancel
+                      </Button>
+                      <Button type="submit" className="bg-primary hover:bg-primary/90">
+                        <Save className="w-4 h-4 mr-2" />
+                        Save Changes
+                      </Button>
+                    </div>
+                  </form>
+                )}
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <Card>
             <CardContent className="p-4">
@@ -383,7 +466,6 @@ function PlotManagementContent() {
           </Card>
         </div>
 
-        {/* Plots Table */}
         <Card>
           <CardHeader>
             <CardTitle>Plot Listings ({filteredPlots.length})</CardTitle>
@@ -404,9 +486,9 @@ function PlotManagementContent() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredPlots.map((plot) => (
+                {filteredPlots.map((plot: any) => (
                   <TableRow key={plot.id}>
-                    <TableCell className="font-mono text-sm">{plot.id}</TableCell>
+                    <TableCell className="font-mono text-sm">{plot.id.substring(0, 8)}...</TableCell>
                     <TableCell className="font-medium">{plot.title}</TableCell>
                     <TableCell className="text-sm text-muted-foreground">{plot.location}</TableCell>
                     <TableCell>{plot.area}</TableCell>
@@ -452,7 +534,7 @@ function PlotManagementContent() {
                                     </div>
                                     <div>
                                       <Label>Price per Sq Ft</Label>
-                                      <p className="text-sm">{selectedPlot.pricePerSqFt}</p>
+                                      <p className="text-sm">{selectedPlot.price_per_sqft}</p>
                                     </div>
                                     <div>
                                       <Label>Type</Label>
@@ -472,7 +554,7 @@ function PlotManagementContent() {
                                   <div>
                                     <Label>Available Amenities</Label>
                                     <div className="grid grid-cols-2 gap-2 mt-2">
-                                      {selectedPlot.amenities.map((amenity, index) => (
+                                      {selectedPlot.amenities.map((amenity: string, index: number) => (
                                         <div key={index} className="flex items-center gap-2">
                                           <Checkbox checked readOnly />
                                           <span className="text-sm">{amenity}</span>
@@ -485,7 +567,7 @@ function PlotManagementContent() {
                                   <div>
                                     <Label>Nearby Attractions</Label>
                                     <ul className="mt-2 space-y-1">
-                                      {selectedPlot.nearbyAttractions.map((attraction, index) => (
+                                      {selectedPlot.nearby_attractions.map((attraction: string, index: number) => (
                                         <li key={index} className="text-sm flex items-center gap-2">
                                           <MapPin className="w-3 h-3 text-primary" />
                                           {attraction}
@@ -503,12 +585,12 @@ function PlotManagementContent() {
                                 <TabsContent value="legal" className="space-y-4">
                                   <div>
                                     <Label>Legal Status</Label>
-                                    <p className="text-sm">{selectedPlot.legalStatus}</p>
+                                    <p className="text-sm">{selectedPlot.legal_status}</p>
                                   </div>
                                   <div>
                                     <Label>Approvals</Label>
                                     <ul className="mt-2 space-y-1">
-                                      {selectedPlot.approvals.map((approval, index) => (
+                                      {selectedPlot.approvals.map((approval: string, index: number) => (
                                         <li key={index} className="text-sm flex items-center gap-2">
                                           <div className="w-2 h-2 rounded-full bg-green-500"></div>
                                           {approval}
@@ -519,11 +601,11 @@ function PlotManagementContent() {
                                   <div className="grid grid-cols-2 gap-4">
                                     <div>
                                       <Label>Date Added</Label>
-                                      <p className="text-sm">{selectedPlot.dateAdded}</p>
+                                      <p className="text-sm">{selectedPlot.date_added}</p>
                                     </div>
                                     <div>
                                       <Label>Last Updated</Label>
-                                      <p className="text-sm">{selectedPlot.lastUpdated}</p>
+                                      <p className="text-sm">{selectedPlot.last_updated}</p>
                                     </div>
                                   </div>
                                 </TabsContent>
@@ -531,7 +613,7 @@ function PlotManagementContent() {
                             )}
                           </DialogContent>
                         </Dialog>
-                        <Button size="sm" variant="outline">
+                        <Button size="sm" variant="outline" onClick={() => openEditDialog(plot)}>
                           <Edit className="w-4 h-4" />
                         </Button>
                         <Button

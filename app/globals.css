@@ -5,7 +5,7 @@
 /* ------------------------------
    THEME COLORS – ORANGE + LIME (image-matched)
    Primary (Orange): #FF7A00
-   Highlight (Lime): #C6EC2A
+   Highlight (Lime): #b4e61d
 --------------------------------*/
 
 /* ------------------------------
@@ -22,13 +22,13 @@
   --primary: #FF7A00;                   /* Orange */
   --primary-foreground: #ffffff;
 
-  --secondary: #C6EC2A;                 /* Lime (from image) */
+  --secondary: #b4e61d;                 /* Lime (updated) */
   --secondary-foreground: #1b1b1b;
 
   --muted: #fff7ef;                     /* soft warm bg */
   --muted-foreground: #7a5a2a;
 
-  --accent: #C6EC2A;                    /* use lime as accent too */
+  --accent: #b4e61d;                    /* use lime as accent too */
   --accent-foreground: #1b1b1b;
 
   --destructive: #ef4444;
@@ -42,7 +42,7 @@
 
   /* Chart palette */
   --chart-1: #FF7A00;   /* orange */
-  --chart-2: #C6EC2A;   /* lime */
+  --chart-2: #b4e61d;   /* lime */
   --chart-3: #FFA54D;   /* orange-light */
   --chart-4: #FF5500;   /* deep orange */
   --chart-5: #E6FF66;   /* lime-light */
@@ -62,13 +62,13 @@
   --primary: #FF8A26;                   /* brighter orange for dark bg */
   --primary-foreground: #0f0f0f;
 
-  --secondary: #BFE83A;                 /* dimmed lime */
+  --secondary: #b4e61d;                 /* Lime (updated) */
   --secondary-foreground: #0f0f0f;
 
   --muted: #1e1a12;
   --muted-foreground: #dfeeb3;
 
-  --accent: #BFE83A;
+  --accent: #b4e61d;
   --accent-foreground: #0f0f0f;
 
   --destructive: #ef4444;
@@ -81,7 +81,7 @@
   --radius: 0.75rem;
 
   --chart-1: #FF8A26;
-  --chart-2: #BFE83A;
+  --chart-2: #b4e61d;
   --chart-3: #FFB066;
   --chart-4: #FF6A1A;
   --chart-5: #D8FF66;
@@ -170,7 +170,7 @@
    (Orange → Lime)
 --------------------------------*/
 .text-gradient {
-  background: linear-gradient(90deg, #FF7A00, #C6EC2A);
+  background: linear-gradient(90deg, #FF7A00, #b4e61d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -251,7 +251,7 @@ html { scroll-behavior: smooth; }
    (Orange → Lime gradient)
 --------------------------------*/
 .construction-cost-card {
-  background: linear-gradient(90deg, #FF7A00, #C6EC2A);
+  background: linear-gradient(90deg, #FF7A00, #b4e61d);
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;

@@ -142,6 +142,39 @@ class ApiClient {
       method: 'DELETE',
     });
   }
+
+  // Blog API
+  async getBlogs() {
+    return this.request<{ blogs: any[] }>('/api/blogs');
+  }
+
+  async getBlog(id: string) {
+    return this.request<{ blog: any }>(`/api/blogs/${id}`);
+  }
+
+  async getBlogBySlug(slug: string) {
+    return this.request<{ blog: any }>(`/api/blogs/slug/${slug}`);
+  }
+
+  async createBlog(blogData: any) {
+    return this.request<{ blog: any }>('/api/blogs', {
+      method: 'POST',
+      body: JSON.stringify(blogData),
+    });
+  }
+
+  async updateBlog(id: string, blogData: any) {
+    return this.request<{ blog: any }>(`/api/blogs/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(blogData),
+    });
+  }
+
+  async deleteBlog(id: string) {
+    return this.request<{ message: string }>(`/api/blogs/${id}`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 // Export singleton instance
@@ -182,4 +215,15 @@ export interface AuthSession {
     id: string;
     email: string;
   };
+}
+
+export interface Blog {
+  id: number;
+  title: string;
+  slug: string;
+  content: string;
+  author: string;
+  created_at: string;
+  updated_at: string;
+  blog_images?: { url: string }[];
 }

@@ -7,280 +7,12 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { Calendar, Clock, Eye, User, Search, Filter } from "lucide-react"
+import { Calendar, Clock, Eye, User, Search, Filter } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-
-// Blog posts data (same as admin section)
-const blogPosts = [
- {
-  id: 3,
-  title: "Best Locations to Buy Land in Uttarakhand for 2025 – Where Nature Meets Opportunity",
-  slug: "best-locations-to-buy-land-in-uttarakhand-2025",
-  excerpt: "Discover Uttarakhand’s most promising areas for property investment in 2025",
-  content: `
-    <p>Uttarakhand is emerging as one of India’s most sought-after real estate destinations. Whether you want a peaceful retreat, a holiday home, or a long-term investment, choosing the right location is crucial. With growing tourism, infrastructure upgrades, and improved road connectivity, several regions across the state are seeing rapid appreciation in property value. Here’s a detailed look at the best locations to buy land in Uttarakhand in 2025.</p>
-
-    <h2>1. Dehradun — The Evergreen Capital</h2>
-    <p>Dehradun offers the perfect balance between city convenience and natural charm. It’s well-connected to Delhi via the new expressway and has strong educational and healthcare infrastructure. Areas like Sahastradhara Road, Raipur, and Bhauwala are witnessing rising demand due to affordable rates and upcoming residential developments.</p>
-
-    <h2>2. Nainital — The Lake District’s Investment Appeal</h2>
-    <p>Known for its scenic lakes and cool climate, Nainital remains a timeless choice for property buyers. Surrounding areas such as Bhimtal, Bhowali, and Pangot are ideal for vacation homes, boutique resorts, or Airbnb rentals. With consistent tourism and limited land availability, Nainital plots hold excellent long-term appreciation potential.</p>
-
-    <h2>3. Rishikesh & Haridwar — Spiritual Hubs with Strong Returns</h2>
-    <p>These twin cities combine spirituality with real estate opportunity. The growing demand for yoga retreats, homestays, and wellness centers has made outskirts like Raiwala and Motichur popular among investors. Improved connectivity and rising international tourism further enhance property value in this belt.</p>
-
-    <h2>4. Mukteshwar & Almora — Quiet Escapes for Premium Buyers</h2>
-    <p>For those looking to escape the crowd and invest in serene hilltop properties, Mukteshwar and Almora are ideal. Their panoramic Himalayan views and eco-friendly development policies attract buyers seeking sustainable living or boutique resort ventures. Land prices are still reasonable here, but appreciation is steady and dependable.</p>
-
-    <h2>5. Tehri & Kanatal — The Rising Stars of Hill Tourism</h2>
-    <p>With the Tehri Lake becoming a water-sports hub and Kanatal gaining popularity for weekend stays, this region is fast evolving into a tourism hotspot. Investors are eyeing plots for cottages and resorts as government initiatives push eco-tourism and road upgrades across the district.</p>
-
-    <h2>6. Pauri & Lansdowne — Underrated but Promising</h2>
-    <p>These lesser-known gems offer peaceful surroundings and affordability. Pauri’s improving connectivity and Lansdowne’s colonial charm are drawing attention from urban professionals seeking retirement or holiday homes. With lower entry costs and potential for tourism growth, these are hidden investment treasures.</p>
-
-    <h2>7. Champawat & Lohaghat — Future Potential Zones</h2>
-    <p>Once considered remote, Champawat and Lohaghat are gaining traction due to new road links and eco-friendly development schemes. Investors with a long-term vision can secure large plots at comparatively low prices here, ideal for farmhouses or organic living projects.</p>
-
-    <h2>Final Takeaway</h2>
-    <p>Uttarakhand’s real estate market in 2025 offers opportunities for every type of buyer—whether you want quick returns, rental income, or a peaceful retirement retreat. Choose your location based on accessibility, legal clarity, and development scope. With proper planning and reliable assistance, your investment in the hills can bring both serenity and steady financial growth.</p>
-  `,
-  category: "Real Estate",
-  tags: ["Uttarakhand", "Property Investment", "Location Guide", "2025 Real Estate Trends"],
-  author: "Admin User",
-  status: "Published",
-  publishedDate: "2025-11-09",
-  lastModified: "2025-11-09",
-  views: 0,
-  featured: true,
-  metaTitle: "Best Locations to Buy Land in Uttarakhand for 2025 – Property Investment Guide",
-  metaDescription: "Explore the top areas to buy land in Uttarakhand in 2025, including Dehradun, Nainital, Rishikesh, Mukteshwar, and more. Learn which locations offer the best returns.",
-  image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_e87110ff.jpg"
-},
- {
-  id: 2,
-  title: "Top Mistakes to Avoid When Buying Land in Uttarakhand",
-  slug: "top-mistakes-to-avoid-when-buying-land-in-uttarakhand",
-  excerpt: "Avoid these costly mistakes before investing in Uttarakhand plots",
-  content: `
-    <p>Buying land in Uttarakhand can be one of the most rewarding decisions you make—both emotionally and financially. However, many buyers jump in without understanding the regional laws, terrain challenges, and hidden costs. To help you make a secure and profitable purchase, here’s a list of the most common mistakes investors and homebuyers make when buying property in the hills, and how to avoid them.</p>
-
-    <h2>1. Ignoring Land Classification and Use Restrictions</h2>
-    <p>Not every piece of land in Uttarakhand is legally buildable. Many areas fall under agricultural, forest, or restricted eco-zones where residential construction is prohibited. Before paying an advance, confirm the land’s classification through the local revenue office. Ensure you have clear permission for residential or commercial use—especially in protected or green-belt zones.</p>
-
-    <h2>2. Skipping Proper Title and Legal Verification</h2>
-    <p>Buyers often rely on verbal assurances or incomplete documentation. Always demand original title deeds, mutation entries, and the encumbrance certificate for the past 30 years. Cross-check records at the tehsil office and verify there are no liens, inheritance disputes, or government notifications. Legal verification through a local property lawyer is non-negotiable in hill regions.</p>
-
-    <h2>3. Overlooking Slope, Drainage and Access Roads</h2>
-    <p>Plots in hilly areas can look beautiful but may pose construction challenges. A steep or uneven slope may require expensive retaining walls or soil stabilization. Also, some plots have approach roads that are private or seasonal. Inspect access routes personally and confirm they remain open to the public throughout the year, including during monsoon.</p>
-
-    <h2>4. Underestimating Environmental and Climate Factors</h2>
-    <p>In Uttarakhand, environmental conditions vary drastically with altitude. Landslide-prone zones, unstable slopes, and water scarcity are real issues. Always check the site’s drainage, soil quality, and previous flood or slide records. Avoid heavy cutting into hillsides, and follow eco-friendly construction guidelines to stay compliant and safe.</p>
-
-    <h2>5. Forgetting to Budget for Hidden Costs</h2>
-    <p>Land cost is just the beginning. Buyers often forget about stamp duty, registration fees, boundary fencing, site leveling, and road access charges. In some areas, connecting water or electricity lines can also cost significantly. Add at least 10–15% of the property value to cover these extras so you don’t strain your budget later.</p>
-
-    <h2>6. Not Conducting a Site Visit or Local Inquiry</h2>
-    <p>Never finalize a deal without visiting the plot in person. Photos can be misleading, and sellers may omit issues like poor road access or nearby encroachments. Speak to neighbours, check the terrain after rain, and observe sunlight direction. Local feedback is the most reliable way to confirm if a plot is genuinely suitable for your needs.</p>
-
-    <h2>7. Ignoring Government Notifications and Future Projects</h2>
-    <p>Uttarakhand’s development plans often include new highways, eco-zones, and restricted belts. Overlooking these can affect construction rights or resale value. Check district master plans and ongoing infrastructure projects before purchase. Proximity to upcoming roads or tourism corridors can raise land value, while being too close to restricted zones can limit usage.</p>
-
-    <h2>Final Takeaway</h2>
-    <p>Buying land in Uttarakhand is an exciting opportunity, but success depends on awareness and due diligence. Avoid emotional decisions, verify every document, and understand the geography before committing funds. With professional legal and engineering advice, your investment in the hills can remain both safe and profitable for years to come.</p>
-  `,
-  category: "Real Estate",
-  tags: ["Uttarakhand", "Property Buying", "Land Investment", "Legal Tips"],
-  author: "Admin User",
-  status: "Published",
-  publishedDate: "2025-11-06",
-  lastModified: "2025-11-06",
-  views: 0,
-  featured: true,
-  metaTitle: "Top Mistakes to Avoid When Buying Land in Uttarakhand — 2025 Guide",
-  metaDescription: "Learn the key mistakes to avoid before buying plots or land in Uttarakhand. Covers legal checks, slope evaluation, road access, and environmental safety tips.",
-  image: "/images/badripur-plots.jpg"
-},
-
- {
-  id: 1,
-  title: "Property in Uttarakhand: Invest Wisely in Hill Plots",
-  slug: "property-in-uttarakhand-invest-wisely-in-hill-plots",
-  excerpt: "Why Uttarakhand is a smart property bet",
-  content: `
-    <p>Uttarakhand’s scenic valleys, cool climate and rising tourism make it one of India’s most attractive regions for property investment. From weekend getaways near Dehradun and Nainital to development pockets around Rishikesh and Haridwar, buying land or a plot in this Himalayan state can offer both lifestyle value and strong long-term returns—if you do it right. This article walks you through the key reasons to invest in Uttarakhand, the local risks to watch for, and a practical checklist to buy safely.</p>
-
-    <h2>1. Why Uttarakhand? Beauty, tourism and steady demand</h2>
-    <p>Uttarakhand combines natural beauty with growing tourist footfall: hill stations such as Mussoorie, Nainital, Kausani, and emerging destinations near Haridwar and Rishikesh attract domestic and international visitors. Post-pandemic demand for second homes, wellness retreats, and short-stay rentals has strengthened. Moreover, improved road connectivity and interest in micro‑town developments draw builders and buyers, helping land values appreciate steadily in many corridors.</p>
-
-    <h2>2. Location matters: micro-markets to prioritise</h2>
-    <p>Not all Uttarakhand land is equal. Prioritise plots close to: (a) major access roads or state highways, (b) established town centres with utilities, (c) reliable public transport nodes, and (d) popular tourist circuits. Proximity to an all-weather road and a nearby market vastly increases resale and rental potential compared to remote mountain plots that face seasonal access issues.</p>
-
-    <h2>3. Seasonal and environmental realities</h2>
-    <p>Hill properties come with seasonal realities—monsoon risks, landslides, and snow in higher altitudes. Check slope gradient, drainage, soil stability and local history of landslides. For plots on steep slopes, prefer terraces or reinforced foundations and avoid cutting into natural contour lines which increases erosion risk.</p>
-
-    <h2>4. Crucial legal & ecological checks</h2>
-    <p>Uttarakhand has strict laws regarding forest land, river setbacks and environmental clearances. Always verify the land’s classification: agricultural, revenue, private, or forest. Get the 7/12 or equivalent revenue records, mutation history, and an up-to-date encumbrance certificate. Confirm there’s no pending litigation or revenue demand. For plots near protected areas or rivers, ensure compliance with environmental norms and watch for notifications that may restrict construction.</p>
-
-    <h2>5. Infrastructure & utility readiness</h2>
-    <p>Ensure basic services—electricity, potable water, approach road, and broadband—are either present or scheduled in municipal plans. Properties with assured utility connections attract better short-term rental guests and reduce development surprises. Confirm whether septic, rainwater harvesting, and wastewater management are feasible on site.</p>
-
-    <h2>6. Short-term income and tourism rentals</h2>
-    <p>Well-located plots near tourist nodes can be developed into homestays, guesthouses or serviced cottages. With proper design and local permits, short-term rentals can produce attractive yields while you wait for capital appreciation—especially in areas with steady weekend demand from nearby metros like Delhi and Dehradun.</p>
-
-    <h2>7. Practical checklist before buying</h2>
-    <ul>
-      <li>Verify title chain, obtain encumbrance certificate; confirm no forest or revenue disputes.</li>
-      <li>Survey slope, soil and drainage; consult a geotechnical engineer for steep plots.</li>
-      <li>Confirm access roads remain public and aren’t private tracks that can be blocked.</li>
-      <li>Check local zoning and FAR rules; verify building permissions and likely timelines for approvals.</li>
-      <li>Understand seasonal access and maintenance costs (roads, retaining walls, water supply).</li>
-      <li>Engage a local lawyer and a trusted surveyor—local expertise is invaluable.</li>
-    </ul>
-
-    <h2>Final thoughts</h2>
-    <p>Property in Uttarakhand offers a rare mix of lifestyle and investment upside—but success depends on disciplined due diligence. Focus on accessible micro-markets, respect environmental and slope constraints, and prioritise clear titles and infrastructure-ready plots. With careful selection and professional help, buying in Uttarakhand can be both a smart financial move and a gateway to a peaceful mountain life.</p>
-  `,
-  category: "Investment",
-  tags: ["Uttarakhand", "Hill Stations", "Real Estate", "Investment"],
-  author: "Admin User",
-  status: "Published",
-  publishedDate: "2025-11-03",
-  lastModified: "2025-11-03",
-  views: 208,
-  featured: true,
-  metaTitle: "Smart Guide to Buying Property in Uttarakhand 2025",
-  metaDescription: "Comprehensive checklist and practical advice for buying land and plots in Uttarakhand — legal checks, environmental risks, location tips and rental potential.",
-  image: "/images/friends-colony-phase1.jpg"
-},
-  {
-    id: 1,
-    title: "Land Near Highways: Buy Today, Profit Tomorrow!",
-    slug: "Land-Near-Highways-Buy-Today-Profit-Tomorrow!",
-    excerpt:
-      "Real estate investment in India is no longer just about buying a home-it has become a long-term source of financial security. Especially when it comes to land located near highways, investors see it as a golden opportunity. The reasons are clear: better connectivity, rapid development, and strong price appreciation in the future. In this article, we’ll explore in detail why investing in land near highways is a smart and safe decision.",
-    content:
-      "Land near highways is always well-connected to transport and infrastructure. Areas along national and state highways develop quickly because both the government and private companies prioritize such locations. Shopping complexes, hospitals, schools, and industrial parks emerge faster, pushing up property values. Additionally, basic amenities like road lighting, drainage, water supply, and electricity infrastructure are developed swiftly in these regions, making them even more attractive. This is why highway-adjacent land has become a safe and profitable option for investors....",
-    category: "Investment",
-    tags: ["Investment", "Hill Stations", "Real Estate", "Tourism"],
-    author: "Admin User",
-    status: "Published",
-    publishedDate: "2025-10-24",
-    lastModified: "2025-10-24",
-    views: 1250,
-    featured: true,
-    metaTitle: "Best Investment Opportunities in Uttrakhand Hill Stations 2024",
-    metaDescription:
-      "Explore top investment opportunities in Uttrakhand's hill stations. Complete guide to real estate investment in Mussoorie, Nainital, and more.",
-    image: "/images/E_1760471281368.jpg",
-  },
-  {
-    id: 2,
-    title: "Real Estate से पैसा कैसे कमाएं: पूरी रणनीति",
-    slug: "spiritual-tourism-boom-rishikesh-properties",
-    excerpt:
-      "रियल एस्टेट केवल एक घर या संपत्ति खरीदने और बेचने का जरिया नहीं है, बल्कि यह एक ऐसा क्षेत्र है जो आपको दीर्घकालिक वित्तीय स्वतंत्रता दिला सकता है। सही समय, सही जगह और समझदारी से लिया गया निर्णय आपको अच्छा रिटर्न और स्थिर आय दे सकता है। आइए विस्तार से जानते हैं कि कैसे आप रियल एस्टेट के विभिन्न तरीकों से पैसा कमा सकते हैं।",
-    content: "Rishikesh, known as the Yoga Capital of the World, has seen a massive surge in spiritual tourism...",
-    category: "Market Trends",
-    tags: ["High-profit", "Market trend", "Property Demand", "investment"],
-    author: "Property Manager",
-    status: "Published",
-    publishedDate: "2025-10-24",
-    lastModified: "2025-10-24",
-    views: 890,
-    featured: false,
-    metaTitle: "Rishikesh Property Investment: Spiritual Tourism Boom 2024",
-    metaDescription:
-      "Why Rishikesh properties are in high demand due to the spiritual tourism boom. Investment insights and market analysis.",
-    image: "/images/design1.png",
-  },
-  {
-    id: 3,
-    title: "सही प्रॉपर्टी पहचानने के 5 दमदार तरीके – एक समझदार निवेशक बनने की गाइड",
-    slug: "hill-station-property-market-trends-2024",
-    excerpt: "आज की तेज़ रफ्तार ज़िंदगी में हर कोई अपने सपनों का घर चाहता है या फिर किसी ऐसी प्रॉपर्टी में निवेश करना चाहता है, जो भविष्य में बड़ा रिटर्न दे सके। लेकिन प्रॉपर्टी खरीदना एक आम लेन-देन नहीं होता। यह आपके जीवन की सबसे बड़ी खरीद में से एक होती है। इसलिए जरूरी है कि आप हर कदम सोच-समझकर उठाएं।",
-    content: "लोकेशन – प्रॉपर्टी की जान होती है",
-    category: "Market Analysis",
-    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
-    author: "Admin User",
-    status: "Published",
-    publishedDate: "2025-10-24",
-    lastModified: "2025-10-24",
-    views: 945,
-    featured: false,
-    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
-    metaDescription:
-      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/friends-colony-phase1.jpg",
-  },
-  {
-    id: 4,
-    title: "Why Buying a Plot Is Better Than Buying a Flat in 2025",
-    slug: "hill-station-property-market-trends-2025",
-    excerpt: "The Growing Trend of Plot Investment in 2025",
-    content: "Complete Freedom to Design and Build Your Dream Home",
-    category: "Market Analysis",
-    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
-    author: "Admin User",
-    status: "Published",
-    publishedDate: "2025-10-27",
-    lastModified: "2025-10-27",
-    views: 1202,
-    featured: false,
-    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
-    metaDescription:
-      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
-  },
-  {
-    id: 5,
-    title: "How to Choose the Right Plot in Uttarakhand: A Practical Checklist",
-    slug: "hill-station-property-market-trends-2027",
-    excerpt: "Legal Title & Encumbrances",
-    content: "Land-Use & Zoning",
-    category: "Market Analysis",
-    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
-    author: "Admin User",
-    status: "Published",
-    publishedDate: "2025-10-29",
-    lastModified: "2025-10-29",
-    views: 780,
-    featured: false,
-    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
-    metaDescription:
-      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-    image: "/images/C_1760471281370.jpg",
-  },
-  {
-  id: 6,
-  title: "How to Choose the Right Plot in Uttarakhand: A Practical Checklist",
-  slug: "choose-right-plot-uttarakhand-checklist-2025",
-  excerpt: "Legal Title & Encumbrances",
-  content: `
-    <p><strong>How to Choose the Right Plot in Uttarakhand: A Practical Checklist</strong></p>
-    <p>Buying a plot in Uttarakhand can be one of the most fulfilling investments you make — combining natural beauty with strong appreciation potential. But success depends on careful planning and awareness of local factors that impact property value and legality. This practical checklist will help you evaluate plots effectively and avoid costly mistakes.</p>
-    <p><strong>1. Legal Title & Encumbrances:</strong> Start by verifying the land title thoroughly. Request certified copies of ownership documents, mutation records, and the latest tax receipts. Ensure there are no encumbrances, disputes, or pending litigations attached to the property. A clear title is essential for loan eligibility and resale in the future.</p>
-    <p><strong>2. Land-Use & Zoning:</strong> Uttarakhand has distinct land-use regulations depending on the district and proximity to forest or eco-sensitive areas. Confirm the plot’s zoning with the local development authority or Tehsil office. Agricultural, residential, and commercial lands have different permissions, and misclassification can lead to legal complications later.</p>
-    <p><strong>3. Connectivity & Infrastructure:</strong> Always assess the approach road, water supply, power connection, and drainage facilities. Proximity to highways, schools, and hospitals enhances usability and resale value. Areas around Dehradun, Nainital, and Ranikhet are particularly promising due to ongoing infrastructure improvements and tourism-driven growth.</p>
-    <p><strong>4. Terrain & Soil Suitability:</strong> In hill regions, plot gradient, soil stability, and drainage are crucial. Hire a local civil engineer or surveyor to check for erosion risk and slope strength. Proper site evaluation ensures safe construction and prevents foundation issues or landslide risks later.</p>
-    <p><strong>5. Work with Verified Platforms:</strong> To simplify your search, use trusted property platforms like <strong>Property in Uttarakhand</strong>. They list verified plots, provide clarity on legal documents, and connect you with experts who understand local terrain and regulations. This saves time and minimizes risk while helping you find a plot that truly fits your goals.</p>
-  `,
-  category: "Market Analysis",
-  tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
-  author: "Admin User",
-  status: "Published",
-  publishedDate: "2025-10-31",
-  lastModified: "2025-10 -31",
-  views: 598,
-  featured: false,
-  metaTitle: "How to Choose the Right Plot in Uttarakhand – Complete Buyer’s Checklist 2025",
-  metaDescription:
-    "A detailed buyer’s checklist for selecting the right plot in Uttarakhand. Learn about legal verification, zoning, terrain evaluation, and infrastructure factors before investing.",
-  image: "/images/design1.png",
-}
-
-]
+import { useQuery } from "@/hooks/use-api"
+import { apiClient } from "@/lib/api-client"
 
 const categories = ["All", "Investment", "Market Trends", "Market Analysis", "Property Tips", "Location Guide"]
 
@@ -288,22 +20,26 @@ export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
 
+  const { data: blogsData, isLoading } = useQuery(apiClient.getBlogs)
+  const blogPosts = blogsData?.blogs || []
+
   // Filter posts
-  const filteredPosts = blogPosts.filter((post) => {
+  const filteredPosts = blogPosts.filter((post: any) => {
     const matchesSearch = 
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (post.tags && post.tags.some((tag: string) => tag.toLowerCase().includes(searchTerm.toLowerCase())))
     
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory // Note: Backend might need to return category name or join
     
-    return matchesSearch && matchesCategory && post.status === "Published"
+    return matchesSearch && matchesCategory && post.status === "published"
   })
 
-  const featuredPosts = filteredPosts.filter(post => post.featured)
-  const regularPosts = filteredPosts.filter(post => !post.featured)
+  const featuredPosts = filteredPosts.filter((post: any) => post.is_featured)
+  const regularPosts = filteredPosts.filter((post: any) => !post.is_featured)
 
   const formatDate = (dateString: string) => {
+    if (!dateString) return ""
     return new Date(dateString).toLocaleDateString('en-IN', {
       year: 'numeric',
       month: 'long',
@@ -359,141 +95,147 @@ export default function BlogPage() {
           </Select>
         </div>
 
-        {/* Featured Posts */}
-        {featuredPosts.length > 0 && (
-          <div className="mb-16">
-            <h2 className="text-3xl font-serif font-bold mb-8">Featured Articles</h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {featuredPosts.map((post) => (
-                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                  <div className="aspect-video relative overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-primary text-primary-foreground">Featured</Badge>
-                    </div>
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="secondary">{post.category}</Badge>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Eye className="w-3 h-3 mr-1" />
-                        {post.views.toLocaleString()}
+        {isLoading ? (
+          <div className="text-center py-12">Loading articles...</div>
+        ) : (
+          <>
+            {/* Featured Posts */}
+            {featuredPosts.length > 0 && (
+              <div className="mb-16">
+                <h2 className="text-3xl font-serif font-bold mb-8">Featured Articles</h2>
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  {featuredPosts.map((post: any) => (
+                    <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                      <div className="aspect-video relative overflow-hidden">
+                        <Image
+                          src={post.featured_image || "/placeholder.jpg"}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-4 left-4">
+                          <Badge className="bg-primary text-primary-foreground">Featured</Badge>
+                        </div>
                       </div>
-                    </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                      {post.title}
-                    </CardTitle>
-                    <CardDescription className="line-clamp-3">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center">
-                        <User className="w-3 h-3 mr-1" />
-                        {post.author}
-                      </div>
-                      <div className="flex items-center">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {formatDate(post.publishedDate)}
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {post.tags.slice(0, 3).map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Button asChild className="w-full">
-                      <Link href={`/blog/${post.slug}`}>
-                        Read More
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Regular Posts */}
-        <div>
-          <h2 className="text-3xl font-serif font-bold mb-8">
-            {featuredPosts.length > 0 ? "All Articles" : "Latest Articles"}
-          </h2>
-          
-          {filteredPosts.length === 0 ? (
-            <Card className="p-12 text-center">
-              <CardContent>
-                <div className="text-muted-foreground">
-                  <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <h3 className="text-xl font-semibold mb-2">No articles found</h3>
-                  <p>Try adjusting your search terms or category filter.</p>
+                      <CardHeader>
+                        <div className="flex items-center gap-2 mb-2">
+                          {/* <Badge variant="secondary">{post.category}</Badge> */}
+                          <div className="flex items-center text-sm text-muted-foreground">
+                            <Eye className="w-3 h-3 mr-1" />
+                            {(post.views_count || 0).toLocaleString()}
+                          </div>
+                        </div>
+                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                          {post.title}
+                        </CardTitle>
+                        <CardDescription className="line-clamp-3">
+                          {post.excerpt}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center">
+                            <User className="w-3 h-3 mr-1" />
+                            Admin
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="w-3 h-3 mr-1" />
+                            {formatDate(post.published_at)}
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {post.tags && post.tags.slice(0, 3).map((tag: string) => (
+                            <Badge key={tag} variant="outline" className="text-xs">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                        <Button asChild className="w-full">
+                          <Link href={`/blog/${post.slug}`}>
+                            Read More
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {(featuredPosts.length > 0 ? regularPosts : filteredPosts).map((post) => (
-                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                  <div className="aspect-video relative overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="secondary">{post.category}</Badge>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Eye className="w-3 h-3 mr-1" />
-                        {post.views.toLocaleString()}
-                      </div>
-                    </div>
-                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                      {post.title}
-                    </CardTitle>
-                    <CardDescription className="line-clamp-3">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardHeader>
+              </div>
+            )}
+
+            {/* Regular Posts */}
+            <div>
+              <h2 className="text-3xl font-serif font-bold mb-8">
+                {featuredPosts.length > 0 ? "All Articles" : "Latest Articles"}
+              </h2>
+              
+              {filteredPosts.length === 0 ? (
+                <Card className="p-12 text-center">
                   <CardContent>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center">
-                        <User className="w-3 h-3 mr-1" />
-                        {post.author}
-                      </div>
-                      <div className="flex items-center">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {formatDate(post.publishedDate)}
-                      </div>
+                    <div className="text-muted-foreground">
+                      <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                      <h3 className="text-xl font-semibold mb-2">No articles found</h3>
+                      <p>Try adjusting your search terms or category filter.</p>
                     </div>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {post.tags.slice(0, 3).map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href={`/blog/${post.slug}`}>
-                        Read More
-                      </Link>
-                    </Button>
                   </CardContent>
                 </Card>
-              ))}
+              ) : (
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  {(featuredPosts.length > 0 ? regularPosts : filteredPosts).map((post: any) => (
+                    <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                      <div className="aspect-video relative overflow-hidden">
+                        <Image
+                          src={post.featured_image || "/placeholder.jpg"}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <CardHeader>
+                        <div className="flex items-center gap-2 mb-2">
+                          {/* <Badge variant="secondary">{post.category}</Badge> */}
+                          <div className="flex items-center text-sm text-muted-foreground">
+                            <Eye className="w-3 h-3 mr-1" />
+                            {(post.views_count || 0).toLocaleString()}
+                          </div>
+                        </div>
+                        <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                          {post.title}
+                        </CardTitle>
+                        <CardDescription className="line-clamp-3">
+                          {post.excerpt}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center">
+                            <User className="w-3 h-3 mr-1" />
+                            Admin
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="w-3 h-3 mr-1" />
+                            {formatDate(post.published_at)}
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {post.tags && post.tags.slice(0, 3).map((tag: string) => (
+                            <Badge key={tag} variant="outline" className="text-xs">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                        <Button asChild variant="outline" className="w-full">
+                          <Link href={`/blog/${post.slug}`}>
+                            Read More
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
 
       <SiteFooter />

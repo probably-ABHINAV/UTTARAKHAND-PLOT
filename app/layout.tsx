@@ -5,6 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Property in Uttrakhand - Premium Hill Station Land Plots",
   description: "Leading property developer offering premium land plots in Uttrakhand's pristine hill stations.",
+    generator: 'v0.app'
 };
 
 export default function RootLayout({

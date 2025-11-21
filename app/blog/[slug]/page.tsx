@@ -3,10 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { Calendar, Clock, Eye, User, ArrowLeft, Share2, Heart } from "lucide-react"
+import { Calendar, Clock, Eye, User, ArrowLeft, Share2, Heart } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
-import { notFound } from "next/navigation"
+import { notFound } from 'next/navigation'
+import { apiClient } from "@/lib/api-client"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
@@ -384,9 +385,17 @@ interface BlogPostPageProps {
   }
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  if (!post) notFound()
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  let post;
+  try {
+    const { blog } = await apiClient.getBlogBySlug(params.slug);
+    post = blog;
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
+    notFound();
+  }
+
+  if (!post || post.status !== 'published') notFound()
 
   const formatDate = (dateString: string) =>
     new Date(dateString).toLocaleDateString("en-IN", {
@@ -401,7 +410,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Hero Section */}
       <div className="relative w-full h-64 md:h-[28rem]">
-        <Image src={post.image} alt={post.title} fill className="object-cover" />
+        <Image src={post.featured_image || "/placeholder.jpg"} alt={post.title} fill className="object-cover" />
         <div className="absolute inset-0 bg-black/50 flex items-end justify-start p-6 md:p-12">
           <Button asChild variant="secondary" size="sm" className="z-10">
             <Link href="/blog">
@@ -417,15 +426,15 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Header */}
         <header className="mb-10">
           <div className="flex flex-wrap justify-start items-center gap-3 mb-4 text-sm text-gray-600">
-            <Badge variant="secondary">{post.category}</Badge>
+            {/* <Badge variant="secondary">{post.category}</Badge> */}
             <div className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" /> {post.views.toLocaleString()} views
+              <Eye className="w-4 h-4 mr-1" /> {(post.views_count || 0).toLocaleString()} views
             </div>
             <div className="flex items-center">
-              <User className="w-4 h-4 mr-1" /> {post.author}
+              <User className="w-4 h-4 mr-1" /> Admin
             </div>
             <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.publishedDate)}
+              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.published_at)}
             </div>
             <div className="flex items-center">
               <Clock className="w-4 h-4 mr-1" /> 5 min read
@@ -443,7 +452,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           <div className="flex flex-wrap gap-2 mt-5">
-            {post.tags.map((tag) => (
+            {post.tags && post.tags.map((tag: string) => (
               <Badge key={tag} variant="outline" className="text-gray-700">
                 {tag}
               </Badge>
@@ -483,29 +492,27 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   )
 }
 
-export async function generateStaticParams() {
-  return blogPosts
-    .filter((post) => post.status === "Published")
-    .map((post) => ({ slug: post.slug }))
-}
-
 export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  if (!post) return { title: "Post Not Found" }
+  try {
+    const { blog: post } = await apiClient.getBlogBySlug(params.slug);
+    if (!post) return { title: "Post Not Found" }
 
-  return {
-    title: post.metaTitle,
-    description: post.metaDescription,
-    keywords: post.tags.join(", "),
-    openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
-      images: [post.image],
-      type: "article",
-      publishedTime: post.publishedDate,
-      modifiedTime: post.lastModified,
-      authors: [post.author],
-      tags: post.tags,
-    },
+    return {
+      title: post.meta_title || post.title,
+      description: post.meta_description || post.excerpt,
+      keywords: post.tags ? post.tags.join(", ") : "",
+      openGraph: {
+        title: post.meta_title || post.title,
+        description: post.meta_description || post.excerpt,
+        images: [post.featured_image],
+        type: "article",
+        publishedTime: post.published_at,
+        modifiedTime: post.updated_at,
+        authors: ["Admin"],
+        tags: post.tags,
+      },
+    }
+  } catch (error) {
+    return { title: "Error" }
   }
 }
