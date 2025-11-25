@@ -3,103 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { Calendar, Clock, Eye, User, ArrowLeft, Share2, Heart } from 'lucide-react'
+import { Calendar, Clock, Eye, User, ArrowLeft, Share2, Heart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { notFound } from 'next/navigation'
-import { apiClient } from "@/lib/api-client"
+import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
-{
-  id: 3,
-  title: "Best Locations to Buy Land in Uttarakhand for 2025 – Where Nature Meets Opportunity",
-  slug: "best-locations-to-buy-land-in-uttarakhand-2025",
-  excerpt: "Discover Uttarakhand’s most promising areas for property investment in 2025",
-  content: `
-    <p>Uttarakhand is emerging as one of India’s most sought-after real estate destinations. Whether you want a peaceful retreat, a holiday home, or a long-term investment, choosing the right location is crucial. With growing tourism, infrastructure upgrades, and improved road connectivity, several regions across the state are seeing rapid appreciation in property value. Here’s a detailed look at the best locations to buy land in Uttarakhand in 2025.</p>
-
-    <h2>1. Dehradun — The Evergreen Capital</h2>
-    <p>Dehradun offers the perfect balance between city convenience and natural charm. It’s well-connected to Delhi via the new expressway and has strong educational and healthcare infrastructure. Areas like Sahastradhara Road, Raipur, and Bhauwala are witnessing rising demand due to affordable rates and upcoming residential developments.</p>
-
-    <h2>2. Nainital — The Lake District’s Investment Appeal</h2>
-    <p>Known for its scenic lakes and cool climate, Nainital remains a timeless choice for property buyers. Surrounding areas such as Bhimtal, Bhowali, and Pangot are ideal for vacation homes, boutique resorts, or Airbnb rentals. With consistent tourism and limited land availability, Nainital plots hold excellent long-term appreciation potential.</p>
-
-    <h2>3. Rishikesh & Haridwar — Spiritual Hubs with Strong Returns</h2>
-    <p>These twin cities combine spirituality with real estate opportunity. The growing demand for yoga retreats, homestays, and wellness centers has made outskirts like Raiwala and Motichur popular among investors. Improved connectivity and rising international tourism further enhance property value in this belt.</p>
-
-    <h2>4. Mukteshwar & Almora — Quiet Escapes for Premium Buyers</h2>
-    <p>For those looking to escape the crowd and invest in serene hilltop properties, Mukteshwar and Almora are ideal. Their panoramic Himalayan views and eco-friendly development policies attract buyers seeking sustainable living or boutique resort ventures. Land prices are still reasonable here, but appreciation is steady and dependable.</p>
-
-    <h2>5. Tehri & Kanatal — The Rising Stars of Hill Tourism</h2>
-    <p>With the Tehri Lake becoming a water-sports hub and Kanatal gaining popularity for weekend stays, this region is fast evolving into a tourism hotspot. Investors are eyeing plots for cottages and resorts as government initiatives push eco-tourism and road upgrades across the district.</p>
-
-    <h2>6. Pauri & Lansdowne — Underrated but Promising</h2>
-    <p>These lesser-known gems offer peaceful surroundings and affordability. Pauri’s improving connectivity and Lansdowne’s colonial charm are drawing attention from urban professionals seeking retirement or holiday homes. With lower entry costs and potential for tourism growth, these are hidden investment treasures.</p>
-
-    <h2>7. Champawat & Lohaghat — Future Potential Zones</h2>
-    <p>Once considered remote, Champawat and Lohaghat are gaining traction due to new road links and eco-friendly development schemes. Investors with a long-term vision can secure large plots at comparatively low prices here, ideal for farmhouses or organic living projects.</p>
-
-    <h2>Final Takeaway</h2>
-    <p>Uttarakhand’s real estate market in 2025 offers opportunities for every type of buyer—whether you want quick returns, rental income, or a peaceful retirement retreat. Choose your location based on accessibility, legal clarity, and development scope. With proper planning and reliable assistance, your investment in the hills can bring both serenity and steady financial growth.</p>
-  `,
-  category: "Real Estate",
-  tags: ["Uttarakhand", "Property Investment", "Location Guide", "2025 Real Estate Trends"],
-  author: "Admin User",
-  status: "Published",
-  publishedDate: "2025-11-09",
-  lastModified: "2025-11-09",
-  views: 0,
-  featured: true,
-  metaTitle: "Best Locations to Buy Land in Uttarakhand for 2025 – Property Investment Guide",
-  metaDescription: "Explore the top areas to buy land in Uttarakhand in 2025, including Dehradun, Nainital, Rishikesh, Mukteshwar, and more. Learn which locations offer the best returns.",
-  image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_e87110ff.jpg"
-},
-
-  {
-  id: 2,
-  title: "Top Mistakes to Avoid When Buying Land in Uttarakhand",
-  slug: "top-mistakes-to-avoid-when-buying-land-in-uttarakhand",
-  excerpt: "Avoid these costly mistakes before investing in Uttarakhand plots",
-  content: `
-    <p>Buying land in Uttarakhand can be one of the most rewarding decisions you make—both emotionally and financially. However, many buyers jump in without understanding the regional laws, terrain challenges, and hidden costs. To help you make a secure and profitable purchase, here’s a list of the most common mistakes investors and homebuyers make when buying property in the hills, and how to avoid them.</p>
-
-    <h2>1. Ignoring Land Classification and Use Restrictions</h2>
-    <p>Not every piece of land in Uttarakhand is legally buildable. Many areas fall under agricultural, forest, or restricted eco-zones where residential construction is prohibited. Before paying an advance, confirm the land’s classification through the local revenue office. Ensure you have clear permission for residential or commercial use—especially in protected or green-belt zones.</p>
-
-    <h2>2. Skipping Proper Title and Legal Verification</h2>
-    <p>Buyers often rely on verbal assurances or incomplete documentation. Always demand original title deeds, mutation entries, and the encumbrance certificate for the past 30 years. Cross-check records at the tehsil office and verify there are no liens, inheritance disputes, or government notifications. Legal verification through a local property lawyer is non-negotiable in hill regions.</p>
-
-    <h2>3. Overlooking Slope, Drainage and Access Roads</h2>
-    <p>Plots in hilly areas can look beautiful but may pose construction challenges. A steep or uneven slope may require expensive retaining walls or soil stabilization. Also, some plots have approach roads that are private or seasonal. Inspect access routes personally and confirm they remain open to the public throughout the year, including during monsoon.</p>
-
-    <h2>4. Underestimating Environmental and Climate Factors</h2>
-    <p>In Uttarakhand, environmental conditions vary drastically with altitude. Landslide-prone zones, unstable slopes, and water scarcity are real issues. Always check the site’s drainage, soil quality, and previous flood or slide records. Avoid heavy cutting into hillsides, and follow eco-friendly construction guidelines to stay compliant and safe.</p>
-
-    <h2>5. Forgetting to Budget for Hidden Costs</h2>
-    <p>Land cost is just the beginning. Buyers often forget about stamp duty, registration fees, boundary fencing, site leveling, and road access charges. In some areas, connecting water or electricity lines can also cost significantly. Add at least 10–15% of the property value to cover these extras so you don’t strain your budget later.</p>
-
-    <h2>6. Not Conducting a Site Visit or Local Inquiry</h2>
-    <p>Never finalize a deal without visiting the plot in person. Photos can be misleading, and sellers may omit issues like poor road access or nearby encroachments. Speak to neighbours, check the terrain after rain, and observe sunlight direction. Local feedback is the most reliable way to confirm if a plot is genuinely suitable for your needs.</p>
-
-    <h2>7. Ignoring Government Notifications and Future Projects</h2>
-    <p>Uttarakhand’s development plans often include new highways, eco-zones, and restricted belts. Overlooking these can affect construction rights or resale value. Check district master plans and ongoing infrastructure projects before purchase. Proximity to upcoming roads or tourism corridors can raise land value, while being too close to restricted zones can limit usage.</p>
-
-    <h2>Final Takeaway</h2>
-    <p>Buying land in Uttarakhand is an exciting opportunity, but success depends on awareness and due diligence. Avoid emotional decisions, verify every document, and understand the geography before committing funds. With professional legal and engineering advice, your investment in the hills can remain both safe and profitable for years to come.</p>
-  `,
-  category: "Real Estate",
-  tags: ["Uttarakhand", "Property Buying", "Land Investment", "Legal Tips"],
-  author: "Admin User",
-  status: "Published",
-  publishedDate: "2025-11-06",
-  lastModified: "2025-11-06",
-  views: 0,
-  featured: true,
-  metaTitle: "Top Mistakes to Avoid When Buying Land in Uttarakhand — 2025 Guide",
-  metaDescription: "Learn the key mistakes to avoid before buying plots or land in Uttarakhand. Covers legal checks, slope evaluation, road access, and environmental safety tips.",
-  image: "/images/badripur-plots.jpg"
-},
 
 {
   id: 1,
@@ -385,17 +295,9 @@ interface BlogPostPageProps {
   }
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  let post;
-  try {
-    const { blog } = await apiClient.getBlogBySlug(params.slug);
-    post = blog;
-  } catch (error) {
-    console.error("Error fetching blog post:", error);
-    notFound();
-  }
-
-  if (!post || post.status !== 'published') notFound()
+export default function BlogPostPage({ params }: BlogPostPageProps) {
+  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
+  if (!post) notFound()
 
   const formatDate = (dateString: string) =>
     new Date(dateString).toLocaleDateString("en-IN", {
@@ -410,7 +312,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Hero Section */}
       <div className="relative w-full h-64 md:h-[28rem]">
-        <Image src={post.featured_image || "/placeholder.jpg"} alt={post.title} fill className="object-cover" />
+        <Image src={post.image} alt={post.title} fill className="object-cover" />
         <div className="absolute inset-0 bg-black/50 flex items-end justify-start p-6 md:p-12">
           <Button asChild variant="secondary" size="sm" className="z-10">
             <Link href="/blog">
@@ -426,15 +328,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Header */}
         <header className="mb-10">
           <div className="flex flex-wrap justify-start items-center gap-3 mb-4 text-sm text-gray-600">
-            {/* <Badge variant="secondary">{post.category}</Badge> */}
+            <Badge variant="secondary">{post.category}</Badge>
             <div className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" /> {(post.views_count || 0).toLocaleString()} views
+              <Eye className="w-4 h-4 mr-1" /> {post.views.toLocaleString()} views
             </div>
             <div className="flex items-center">
-              <User className="w-4 h-4 mr-1" /> Admin
+              <User className="w-4 h-4 mr-1" /> {post.author}
             </div>
             <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.published_at)}
+              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.publishedDate)}
             </div>
             <div className="flex items-center">
               <Clock className="w-4 h-4 mr-1" /> 5 min read
@@ -452,7 +354,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           <div className="flex flex-wrap gap-2 mt-5">
-            {post.tags && post.tags.map((tag: string) => (
+            {post.tags.map((tag) => (
               <Badge key={tag} variant="outline" className="text-gray-700">
                 {tag}
               </Badge>
@@ -492,27 +394,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   )
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
-  try {
-    const { blog: post } = await apiClient.getBlogBySlug(params.slug);
-    if (!post) return { title: "Post Not Found" }
+export async function generateStaticParams() {
+  return blogPosts
+    .filter((post) => post.status === "Published")
+    .map((post) => ({ slug: post.slug }))
+}
 
-    return {
-      title: post.meta_title || post.title,
-      description: post.meta_description || post.excerpt,
-      keywords: post.tags ? post.tags.join(", ") : "",
-      openGraph: {
-        title: post.meta_title || post.title,
-        description: post.meta_description || post.excerpt,
-        images: [post.featured_image],
-        type: "article",
-        publishedTime: post.published_at,
-        modifiedTime: post.updated_at,
-        authors: ["Admin"],
-        tags: post.tags,
-      },
-    }
-  } catch (error) {
-    return { title: "Error" }
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
+  if (!post) return { title: "Post Not Found" }
+
+  return {
+    title: post.metaTitle,
+    description: post.metaDescription,
+    keywords: post.tags.join(", "),
+    openGraph: {
+      title: post.metaTitle,
+      description: post.metaDescription,
+      images: [post.image],
+      type: "article",
+      publishedTime: post.publishedDate,
+      modifiedTime: post.lastModified,
+      authors: [post.author],
+      tags: post.tags,
+    },
   }
 }

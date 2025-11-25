@@ -10,9 +10,211 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { apiClient } from "@/lib/api-client"
-import { useQuery } from "@/hooks/use-api"
-import { MapPin, Phone, Calendar, Star, CheckCircle, Heart, Share2, Filter, Search, Play, Users, Building, Zap, Car, Wifi, Shield, TreePine, Hospital, GraduationCap } from 'lucide-react'
+import { 
+  MapPin, 
+  Phone, 
+  Calendar,
+  Star,
+  CheckCircle,
+  Heart,
+  Share2,
+  Filter,
+  Search,
+  Play,
+  Users,
+  Building,
+  Zap,
+  Car,
+  Wifi,
+  Shield,
+  TreePine,
+  Hospital,
+  GraduationCap
+} from "lucide-react"
+
+// Enhanced plot data with detailed descriptions
+const plotData = [
+  {
+    id: 1,
+    title: "Bajrang Vatika Premium",
+    location: "Badripur, Dehradun",
+    size: "900-2400 sq yd",
+    type: "Residential Project",
+    price: "₹16500 per sq/yard",
+    pricePerSqFt: "₹2,083 - ₹1,875",
+    features: ["24x7 Security", "Wide Roads", "Ready Facilities", "Premium Location"],
+    images: ["/images/D_1760471281369.jpg", "/images/E_1760471281368.jpg"],
+    rating: 4.8,
+    reviews: 156,
+    available: 12,
+    isPopular: true,
+    amenities: ["Water Supply", "Electricity", "Road Access", "Legal Documents"],
+    description: "Bajrang Vatika is a calm, family-friendly residential layout designed for buyers who want everyday convenience without the city rush. The roads are motorable and well-defined, plot boundaries are clear, and basic utilities are accessible- making it straightforward to plan and build. The neighbourhood has local shops, primary schools, and public transport within short distance, so daily needs are easy to meet. Because the area is still growing, you can buy at an attractive price now and benefit from steady appreciation as infrastructure improves.",
+    detailedFeatures: {
+      infrastructure: [
+        "Gated community entry",
+        "24×7 security & CCTV",
+        "Paved internal roads",
+        "Underground utilities (power, sewer)",
+        "Treated water supply & drainage"
+      ],
+      connectivity: [
+        "Dehradun ISBT (Inter-State Bus Terminal): ~15  minutes.",
+        "Dehradun Railway Station: ~20 minutes .",
+        "Jolly Grant Airport (Dehradun): ~30 minutes",
+        "Nearest hospitals / healthcare:Kailash Hospital ,Graphic Era Hospital ~ 5–20 minutes.",
+        "Nearby schools & colleges:Doon Global School,Shubharti Medical College 5–20 minutes."
+      ],
+      nearbyFacilities: [
+        " Hospital - 10 minutes",
+        "Private Schools - 5 minutes",
+        "Shopping Complex - 15 minutes",
+        "Shimla–Dehradun National Highway (connectivity) - 1 minutes",
+        "Restaurants & Cafes - 5 minutes"
+      ],
+      legalCompliance: [
+        "Approved by Uttarakhand Urban Planning Department",
+        "Clear land titles with no disputes",
+        "Environmental clearance obtained",
+        "All NOCs from relevant authorities",
+        "Ready for immediate registration"
+      ]
+    },
+    masterPlan: {
+      totalArea: "50 acres",
+      plotsAvailable: "200+ plots",
+      openSpaces: "60% green coverage",
+      infrastructure: "40% built-up area"
+    },
+    investmentHighlights: [
+       "Affordable pricing with high potential",
+      "Eco-friendly development approach",
+      "Community-focused living",
+      "Flexible payment plans",
+      "Strong resale value prospects"
+    ]
+  },
+  {
+    id: 2,
+    title: "Nature Green Valley Phase 5",
+    location: "Ganeshpur, Dehradun",
+    size: "1000-1800 sq yd",
+    type: "Residential Project",
+    price: "₹16500 per sq/yd",
+    pricePerSqFt: "₹1,800 - ₹1,778",
+    features: ["Green Parks", "Children's Play Area", "Near Schools & Hospitals", "Clean Air"],
+    images: ["/images/design1.png","/images/naturegreenvalley6.jpeg"],
+    rating: 4.7,
+    reviews: 89,
+    available: 8,
+    isPopular: false,
+    amenities: ["Playground", "Garden", "Security", "Paved Roads"],
+    description: "Nature Green Valley Phase 5 is a thoughtfully planned residential project in Ganeshpur, designed for families who value nature and community living. With abundant green spaces and modern amenities, this project offers the perfect blend of urban convenience and natural serenity.",
+    detailedFeatures: {
+      infrastructure: [
+        "Gated community entry",
+        "24×7 security & CCTV",
+        "Paved internal roads",
+        "Underground utilities (power, sewer)",
+        "Treated water supply & drainage"
+      ],
+      connectivity: [
+        "8 minutes to National Highway",
+        "25 minutes to city center",
+        "Direct auto-rickshaw connectivity",
+        "Nearby bus stops for public transport",
+        "Well-connected road network"
+      ],
+      nearbyFacilities: [
+       " Hospital - 10 minutes",
+        "Private Schools - 5 minutes",
+        "Shopping Complex - 15 minutes",
+        "Highway (connectivity) - 15 minutes",
+        "Restaurants & Cafes - 5 minutes"
+      ],
+      legalCompliance: [
+        "Approved residential layout",
+        "Clear property documents",
+        "Municipality approved water connection",
+        "Electricity board approvals",
+        "Environmental impact assessment completed"
+      ]
+    },
+    masterPlan: {
+      totalArea: "35 acres",
+      plotsAvailable: "150+ plots",
+      openSpaces: "70% green coverage",
+      infrastructure: "30% built-up area"
+    },
+    investmentHighlights: [
+      "Affordable pricing with high potential",
+      "Eco-friendly development approach",
+      "Community-focused living",
+      "Flexible payment plans",
+      "Strong resale value prospects"
+    ]
+  },
+  {
+    id: 3,
+    title: "Friend's Colony Phase 1",
+    location: "Dehradun",
+    size: "800-1500 sq yd",
+    type: "Residential Project",
+    price: "₹16000 per sq/yd",
+    pricePerSqFt: "₹1,875 - ₹1,867",
+    features: ["Smart Investment", "Excellent Connectivity", "Premium Community", "Limited Plots"],
+    images: [ "/images/WhatsApp Image 2025-10-13 at 23.57.03_02316e06.jpg","/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg"],
+    rating: 4.6,
+    reviews: 67,
+    available: 5,
+    isPopular: false,
+    amenities: ["Community Hall", "Street Lights", "Drainage", "Bus Stop Nearby"],
+    description: "Friends Colony Phase-1 is a well-organized residential pocket that balances community living with easy connectivity. Plots are laid out along clear streets with good access to main roads and public transport. The area is practical for families who value quick commutes and nearby conveniences- markets, clinics, and schools are all within easy reach. Because the layout is clean and construction-ready, many buyers can begin building right away, making it a favourite for those who want a faster move-in timeline.",
+    detailedFeatures: {
+      infrastructure: [
+        "Gated community entry",
+        "24×7 security & CCTV",
+        "Paved internal roads",
+        "Underground utilities (power, sewer)",
+        "Treated water supply & drainage"
+      ],
+      connectivity: [
+        "Nearest major expressway / approach: ~5 minutes to Delhi–Dehradun Expressway.",
+        "Dehradun ISBT / central bus hub: ~25-30 minutes",
+        "Dehradun Railway Station: ~25 minutes",
+        "Jolly Grant Airport: ~35 minutes",
+        "Multiple transportation options"
+      ],
+      nearbyFacilities: [
+      " Hospital - 10 minutes",
+        "Private Schools - 5 minutes",
+        "Shopping Complex - 15 minutes",
+        "\Highway (connectivity) - 10 minutes",
+        "Restaurants & Cafes - 5 minutes"
+      ],
+      legalCompliance: [
+        "Municipal corporation approved",
+        "All utility connections ready",
+        "Clear land records",
+        "No legal disputes",
+        "Ready for construction"
+      ]
+    },
+    masterPlan: {
+      totalArea: "25 acres",
+      plotsAvailable: "100+ plots",
+      openSpaces: "40% green coverage",
+      infrastructure: "60% developed area"
+    },
+    investmentHighlights: [
+       "Affordable pricing with high potential",
+      "Eco-friendly development approach",
+      "Community-focused living",
+      "Flexible payment plans",
+      "Strong resale value prospects"
+    ]
+  }
+]
 
 export default function PlotsPage() {
   const { toast } = useToast()
@@ -22,14 +224,12 @@ export default function PlotsPage() {
   const [favorites, setFavorites] = useState<number[]>([])
   const [currentImageIndex, setCurrentImageIndex] = useState<{[key: number]: number}>({})
 
-  const { data: plots = [], isLoading } = useQuery(apiClient.getPlots)
-
   // Filter plots based on search and filter
-  const filteredPlots = plots.filter((plot: any) => {
+  const filteredPlots = plotData.filter(plot => {
     const matchesSearch = plot.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          plot.location.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesFilter = selectedFilter === "All Plots" || 
-                         (selectedFilter === "Popular" && plot.is_popular) ||
+                         (selectedFilter === "Popular" && plot.isPopular) ||
                          plot.type.includes(selectedFilter)
     return matchesSearch && matchesFilter
   })
@@ -69,21 +269,15 @@ export default function PlotsPage() {
     const interval = setInterval(() => {
       setCurrentImageIndex(prev => {
         const newIndex = { ...prev }
-        plots.forEach((plot: any) => {
-          if (plot.images && plot.images.length > 0) {
-            newIndex[plot.id] = ((prev[plot.id] || 0) + 1) % plot.images.length
-          }
+        plotData.forEach(plot => {
+          newIndex[plot.id] = ((prev[plot.id] || 0) + 1) % plot.images.length
         })
         return newIndex
       })
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [plots])
-
-  if (isLoading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading plots...</div>
-  }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-[#F7931E] 50">
@@ -132,14 +326,14 @@ export default function PlotsPage() {
 
           {/* Plots Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPlots.map((plot: any) => (
+            {filteredPlots.map((plot) => (
               <Card
                 key={plot.id}
                 className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white border-0 shadow-lg hover:transform hover:scale-105"
               >
                 <div className="relative overflow-hidden">
                   <Image
-                    src={plot.images && plot.images.length > 0 ? plot.images[currentImageIndex[plot.id] || 0] : "/placeholder.jpg"}
+                    src={plot.images[currentImageIndex[plot.id] || 0]}
                     alt={plot.title}
                     width={500}
                     height={350}
@@ -162,7 +356,7 @@ export default function PlotsPage() {
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <Badge className="bg-[#FF6B35] shadow-lg">{plot.type}</Badge>
-                    {plot.is_popular && (
+                    {plot.isPopular && (
                       <Badge className="bg-orange-500 shadow-lg">Popular</Badge>
                     )}
                   </div>
@@ -191,7 +385,7 @@ export default function PlotsPage() {
                   <div className="absolute bottom-4 left-4">
                     <Badge variant="secondary" className="bg-white/90">
                       <Users className="mr-1 h-3 w-3" />
-                      {plot.status === 'Available' ? 'Available' : plot.status}
+                      {plot.available} plots left
                     </Badge>
                   </div>
                 </div>
@@ -201,6 +395,11 @@ export default function PlotsPage() {
                     <CardTitle className="text-xl group-hover:text-[#FF6B35] transition-colors">
                       {plot.title}
                     </CardTitle>
+                    <div className="flex items-center gap-1">
+                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm font-medium">{plot.rating}</span>
+                      <span className="text-xs text-gray-500">({plot.reviews})</span>
+                    </div>
                   </div>
                   <CardDescription className="flex items-center gap-2 text-base">
                     <MapPin className="h-4 w-4 text-[#FF6B35]" />
@@ -212,8 +411,8 @@ export default function PlotsPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-3 bg-gray-50 rounded-lg">
                       <span className="text-sm text-gray-600">Plot Size</span>
-                      <div className="font-semibold">{plot.area}</div>
-                      <div className="text-xs text-gray-500">{plot.price_per_sqft}/sq ft</div>
+                      <div className="font-semibold">{plot.size}</div>
+                      <div className="text-xs text-gray-500">{plot.pricePerSqFt}/sq yd</div>
                     </div>
                     <div className="p-3 bg-blue-50 rounded-lg">
                       <span className="text-sm text-gray-600">Price Range</span>
@@ -226,14 +425,14 @@ export default function PlotsPage() {
                       Key Features
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {plot.amenities && plot.amenities.slice(0, 3).map((feature: string, idx: number) => (
+                      {plot.features.slice(0, 3).map((feature, idx) => (
                         <Badge key={idx} variant="secondary" className="text-xs">
                           {feature}
                         </Badge>
                       ))}
-                      {plot.amenities && plot.amenities.length > 3 && (
+                      {plot.features.length > 3 && (
                         <Badge variant="secondary" className="text-xs">
-                          +{plot.amenities.length - 3} more
+                          +{plot.features.length - 3} more
                         </Badge>
                       )}
                     </div>
@@ -270,10 +469,10 @@ export default function PlotsPage() {
                         
                         <div className="space-y-6">
                           <div className="grid md:grid-cols-2 gap-4">
-                            {plot.images && plot.images.map((image: string, idx: number) => (
+                            {plot.images.map((image, idx) => (
                               <Image
                                 key={idx}
-                                src={image || "/placeholder.svg"}
+                                src={image}
                                 alt={`${plot.title} view ${idx + 1}`}
                                 width={400}
                                 height={250}
@@ -288,18 +487,125 @@ export default function PlotsPage() {
                               <div className="text-sm text-gray-600">Price Range</div>
                             </div>
                             <div className="p-4 bg-green-50 rounded-lg text-center">
-                              <div className="text-2xl font-bold text-[#F7931E]">{plot.area}</div>
+                              <div className="text-2xl font-bold text-[#F7931E]">{plot.size}</div>
                               <div className="text-sm text-gray-600">Plot Size</div>
                             </div>
                             <div className="p-4 bg-orange-50 rounded-lg text-center">
-                              <div className="text-2xl font-bold text-orange-600">{plot.status}</div>
-                              <div className="text-sm text-gray-600">Status</div>
+                              <div className="text-2xl font-bold text-orange-600">{plot.available}</div>
+                              <div className="text-sm text-gray-600">Available Plots</div>
                             </div>
                           </div>
 
                           <div>
                             <h3 className="text-xl font-bold mb-3">Project Description</h3>
                             <p className="text-gray-700 leading-relaxed">{plot.description}</p>
+                          </div>
+
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                              <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                <Building className="h-5 w-5 text-[#FF6B35]" />
+                                Infrastructure
+                              </h4>
+                              <ul className="space-y-2">
+                                {plot.detailedFeatures.infrastructure.map((item, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm">
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                <Car className="h-5 w-5 text-[#F7931E]" />
+                                Connectivity
+                              </h4>
+                              <ul className="space-y-2">
+                                {plot.detailedFeatures.connectivity.map((item, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm">
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                <MapPin className="h-5 w-5 text-[#FF6B35]" />
+                                Nearby Facilities
+                              </h4>
+                              <ul className="space-y-2">
+                                {plot.detailedFeatures.nearbyFacilities.map((item, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm">
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                <Shield className="h-5 w-5 text-red-500" />
+                                Legal Compliance
+                              </h4>
+                              <ul className="space-y-2">
+                                {plot.detailedFeatures.legalCompliance.map((item, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm">
+                                    <CheckCircle className="h-4 w-4 text-[#F7931E] mt-0.5 flex-shrink-0" />
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div className="bg-gradient-to-r from-[#FF6B35]/10 to-[#F7931E]/10 p-6 rounded-lg">
+                            <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                              <Zap className="h-5 w-5 text-yellow-500" />
+                              Investment Highlights
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-3">
+                              {plot.investmentHighlights.map((highlight, idx) => (
+                                <div key={idx} className="flex items-center gap-2 text-sm">
+                                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                                  {highlight}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="grid md:grid-cols-4 gap-4 text-center">
+                            <div className="p-3 bg-gray-50 rounded">
+                              <div className="font-bold">{plot.masterPlan.totalArea}</div>
+                              <div className="text-sm text-gray-600">Total Area</div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded">
+                              <div className="font-bold">{plot.masterPlan.plotsAvailable}</div>
+                              <div className="text-sm text-gray-600">Total Plots</div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded">
+                              <div className="font-bold">{plot.masterPlan.openSpaces}</div>
+                              <div className="text-sm text-gray-600">Green Coverage</div>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded">
+                              <div className="font-bold">{plot.masterPlan.infrastructure}</div>
+                              <div className="text-sm text-gray-600">Infrastructure</div>
+                            </div>
+                          </div>
+
+                          <div className="flex gap-4 pt-4">
+                            <Button className="flex-1 bg-[#F7931E] hover:bg-[#FF6B35]" onClick={() => window.open('tel:+917870231314', '_self')}>
+                              <Phone className="mr-2 h-4 w-4" />
+                              Call Now
+                            </Button>
+                            <Button className="flex-1" onClick={() => window.open('https://wa.me/917870231314?text=Hi, I am interested in ' + plot.title, '_blank')}>
+                              <Calendar className="mr-2 h-4 w-4" />
+                              Schedule Visit
+                            </Button>
                           </div>
                         </div>
                       </DialogContent>

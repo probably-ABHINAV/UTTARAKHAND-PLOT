@@ -36,9 +36,28 @@ import { LocationMap } from "@/components/location-map";
 import { FloatingActions } from "@/components/floating-actions";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { SiteFooter } from "@/components/navigation/footer";
-import { createClient } from "@/lib/supabase/client";
 
-import { MapPin, TrendingUp, Shield, Award, Phone, Mail, Calendar, Calculator, Star, CheckCircle, ArrowRight, Heart, Share2, Filter, Search, Play, Users, Building, Zap } from 'lucide-react';
+import {
+  MapPin,
+  TrendingUp,
+  Shield,
+  Award,
+  Phone,
+  Mail,
+  Calendar,
+  Calculator,
+  Star,
+  CheckCircle,
+  ArrowRight,
+  Heart,
+  Share2,
+  Filter,
+  Search,
+  Play,
+  Users,
+  Building,
+  Zap,
+} from "lucide-react";
 
 /**
  * Helper: smooth scroll to section
@@ -195,7 +214,6 @@ const locationData = [
  */
 export default function HomePage() {
   const { toast } = useToast();
-  const supabase = createClient();
 
   // UI states
   const [selectedFilter, setSelectedFilter] = useState<string>("All Plots");
@@ -323,7 +341,7 @@ export default function HomePage() {
   };
 
   // Contact form submit
-  const submitContactForm = async (e: React.FormEvent) => {
+  const submitContactForm = (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.phone) {
       toast({
@@ -333,42 +351,19 @@ export default function HomePage() {
       return;
     }
 
-    try {
-      const { error } = await supabase
-        .from('enquiries')
-        .insert([
-          {
-            name: contactForm.name,
-            phone: contactForm.phone,
-            email: contactForm.email,
-            message: contactForm.message,
-            plot_interest: contactForm.plotInterest,
-            status: 'New'
-          }
-        ]);
+    // Simulate success
+    toast({
+      title: "Form submitted successfully!",
+      description: "Our team will contact you within 24 hours.",
+    });
 
-      if (error) throw error;
-
-      toast({
-        title: "Form submitted successfully!",
-        description: "Our team will contact you within 24 hours.",
-      });
-
-      setContactForm({
-        name: "",
-        phone: "",
-        email: "",
-        message: "",
-        plotInterest: "",
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Error submitting form",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    }
+    setContactForm({
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      plotInterest: "",
+    });
   };
 
   // Auto-rotate images for each plot
@@ -700,7 +695,7 @@ export default function HomePage() {
                 onClick={() => window.open(image.mapLink, '_blank')}
               >
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={image.src}
                   alt={image.title}
                   width={400}
                   height={300}
@@ -737,7 +732,7 @@ export default function HomePage() {
               <Card key={index} className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white border-0 shadow-lg hover:transform hover:scale-105">
                 <div className="relative overflow-hidden">
                   <Image
-                    src={location.image || "/placeholder.svg"}
+                    src={location.image}
                     alt={location.name}
                     width={400}
                     height={300}

@@ -6,20 +6,15 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  staticPageGenerationTimeout: 1000,
-  onDemandEntries: {
-    maxInactiveAge: 15 * 60 * 1000,
-    pagesBufferLength: 4,
-  },
-  // Headers for Replit environment
+  // Allow all hosts for Replit proxy
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'no-store, must-revalidate',
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
           },
         ],
       },
@@ -27,7 +22,7 @@ const nextConfig = {
   },
   // API routes rewrite
   async rewrites() {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://0.0.0.0:8000';
     
     return [
       {

@@ -18,131 +18,143 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Plus, Edit, Trash2, Eye, Search, ArrowLeft, FileText, Globe, Clock } from 'lucide-react'
+import { Plus, Edit, Trash2, Eye, Search, ArrowLeft, FileText, Globe, Clock } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { AuthGuard } from "@/components/auth-guard"
 import { LogoutButton } from "@/components/logout-button"
-import { useQuery, useMutation } from "@/hooks/use-api"
-import { apiClient } from "@/lib/api-client"
-import { toast } from "sonner"
+
+// Mock blog data
+const mockBlogPosts = [
+  {
+    id: 1,
+    title: "Top 5 Investment Opportunities in Uttrakhand Hill Stations",
+    slug: "top-5-investment-opportunities-uttrakhand",
+    excerpt:
+      "Discover the most promising investment opportunities in Uttrakhand's scenic hill stations, from Mussoorie to Nainital.",
+    content:
+      "Uttrakhand's hill stations offer incredible investment potential with their growing tourism industry and spiritual significance...",
+    category: "Investment",
+    tags: ["Investment", "Hill Stations", "Real Estate", "Tourism"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2024-01-20",
+    lastModified: "2024-01-22",
+    views: 1250,
+    featured: true,
+    metaTitle: "Best Investment Opportunities in Uttrakhand Hill Stations 2024",
+    metaDescription:
+      "Explore top investment opportunities in Uttrakhand's hill stations. Complete guide to real estate investment in Mussoorie, Nainital, and more.",
+  },
+  {
+    id: 2,
+    title: "Spiritual Tourism Boom: Why Rishikesh Properties Are in High Demand",
+    slug: "spiritual-tourism-boom-rishikesh-properties",
+    excerpt:
+      "The spiritual tourism industry in Rishikesh is experiencing unprecedented growth, making it a hotspot for property investment.",
+    content: "Rishikesh, known as the Yoga Capital of the World, has seen a massive surge in spiritual tourism...",
+    category: "Market Trends",
+    tags: ["Rishikesh", "Spiritual Tourism", "Property Demand", "Yoga"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2024-01-18",
+    lastModified: "2024-01-19",
+    views: 890,
+    featured: false,
+    metaTitle: "Rishikesh Property Investment: Spiritual Tourism Boom 2024",
+    metaDescription:
+      "Why Rishikesh properties are in high demand due to the spiritual tourism boom. Investment insights and market analysis.",
+  },
+  {
+    id: 3,
+    title: "Hill Station Property Market Trends: What to Expect in 2024",
+    slug: "hill-station-property-market-trends-2024",
+    excerpt: "An in-depth analysis of the hill station property market trends and predictions for 2024.",
+    content: "The hill station property market in Uttrakhand is showing strong growth indicators...",
+    category: "Market Analysis",
+    tags: ["Market Trends", "2024 Predictions", "Hill Stations", "Property Market"],
+    author: "Admin User",
+    status: "Draft",
+    publishedDate: null,
+    lastModified: "2024-01-25",
+    views: 0,
+    featured: false,
+    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
+    metaDescription:
+      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
+  },
+]
 
 const categories = ["Investment", "Market Trends", "Market Analysis", "Destinations", "Spiritual Places", "Tourism"]
 
 function BlogManagementContent() {
-  const { data: blogsData, refetch } = useQuery(apiClient.getBlogs)
-  const posts = blogsData?.blogs || []
-  
-  const [selectedPost, setSelectedPost] = useState<any>(null)
+  const [posts, setPosts] = useState(mockBlogPosts)
+  const [selectedPost, setSelectedPost] = useState<(typeof mockBlogPosts)[0] | null>(null)
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [categoryFilter, setCategoryFilter] = useState("all")
 
-  const createBlogMutation = useMutation(apiClient.createBlog)
-  const updateBlogMutation = useMutation((data: { id: string; blog: any }) => 
-    apiClient.updateBlog(data.id, data.blog)
-  )
-  const deleteBlogMutation = useMutation(apiClient.deleteBlog)
-
-  const filteredPosts = posts.filter((post: any) => {
+  const filteredPosts = posts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (post.tags && post.tags.some((tag: string) => tag.toLowerCase().includes(searchTerm.toLowerCase())))
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
     const matchesStatus = statusFilter === "all" || post.status.toLowerCase() === statusFilter.toLowerCase()
-    // const matchesCategory = categoryFilter === "all" || post.category.toLowerCase() === categoryFilter.toLowerCase()
+    const matchesCategory = categoryFilter === "all" || post.category.toLowerCase() === categoryFilter.toLowerCase()
 
-    return matchesSearch && matchesStatus
+    return matchesSearch && matchesStatus && matchesCategory
   })
 
-  const handleAddPost = async (formData: FormData) => {
-    try {
-      const newPost = {
-        title: formData.get("title") as string,
-        excerpt: formData.get("excerpt") as string,
-        content: formData.get("content") as string,
-        // category: formData.get("category") as string,
-        tags: (formData.get("tags") as string).split(",").map((tag) => tag.trim()),
-        status: formData.get("status") as string,
-        is_featured: formData.get("featured") === "on",
-        meta_title: formData.get("metaTitle") as string,
-        meta_description: formData.get("metaDescription") as string,
-        featured_image: "/placeholder.jpg", // Default image for now
-      }
-      
-      await createBlogMutation.mutateAsync(newPost)
-      refetch()
-      setIsAddDialogOpen(false)
-      toast.success("Blog post created successfully")
-    } catch (error) {
-      console.error('Error creating blog post:', error)
-      toast.error('Error creating blog post')
+  const handleAddPost = (formData: FormData) => {
+    const title = formData.get("title") as string
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+
+    const newPost = {
+      id: posts.length + 1,
+      title,
+      slug,
+      excerpt: formData.get("excerpt") as string,
+      content: formData.get("content") as string,
+      category: formData.get("category") as string,
+      tags: (formData.get("tags") as string).split(",").map((tag) => tag.trim()),
+      author: "Admin User",
+      status: formData.get("status") as string,
+      publishedDate: formData.get("status") === "Published" ? new Date().toISOString().split("T")[0] : null,
+      lastModified: new Date().toISOString().split("T")[0],
+      views: 0,
+      featured: formData.get("featured") === "on",
+      metaTitle: formData.get("metaTitle") as string,
+      metaDescription: formData.get("metaDescription") as string,
     }
+    setPosts([...posts, newPost])
+    setIsAddDialogOpen(false)
   }
 
-  const handleEditPost = async (formData: FormData) => {
-    if (!selectedPost) return
-
-    try {
-      const updatedPost = {
-        title: formData.get("title") as string,
-        excerpt: formData.get("excerpt") as string,
-        content: formData.get("content") as string,
-        tags: (formData.get("tags") as string).split(",").map((tag) => tag.trim()),
-        status: formData.get("status") as string,
-        is_featured: formData.get("featured") === "on",
-        meta_title: formData.get("metaTitle") as string,
-        meta_description: formData.get("metaDescription") as string,
-      }
-
-      await updateBlogMutation.mutateAsync({ id: selectedPost.id, blog: updatedPost })
-      refetch()
-      setIsEditDialogOpen(false)
-      setSelectedPost(null)
-      toast.success("Blog post updated successfully")
-    } catch (error) {
-      console.error('Error updating blog post:', error)
-      toast.error('Error updating blog post')
-    }
+  const handleDeletePost = (postId: number) => {
+    setPosts(posts.filter((post) => post.id !== postId))
   }
 
-  const handleDeletePost = async (postId: string) => {
-    if (window.confirm('Are you sure you want to delete this post?')) {
-      try {
-        await deleteBlogMutation.mutateAsync(postId)
-        refetch()
-        toast.success("Blog post deleted successfully")
-      } catch (error) {
-        console.error('Error deleting blog post:', error)
-        toast.error('Error deleting blog post')
-      }
-    }
-  }
-
-  const handleToggleStatus = async (post: any) => {
-    try {
-      const newStatus = post.status === "published" ? "draft" : "published"
-      await updateBlogMutation.mutateAsync({ 
-        id: post.id, 
-        blog: { status: newStatus } 
-      })
-      refetch()
-      toast.success(`Post ${newStatus === 'published' ? 'published' : 'unpublished'} successfully`)
-    } catch (error) {
-      console.error('Error updating status:', error)
-      toast.error('Error updating status')
-    }
-  }
-
-  const openEditDialog = (post: any) => {
-    setSelectedPost(post)
-    setIsEditDialogOpen(true)
+  const handleToggleStatus = (postId: number) => {
+    setPosts(
+      posts.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              status: post.status === "Published" ? "Draft" : "Published",
+              publishedDate: post.status === "Draft" ? new Date().toISOString().split("T")[0] : post.publishedDate,
+            }
+          : post,
+      ),
+    )
   }
 
   const getStatusColor = (status: string) => {
-    return status === "published" ? "default" : "secondary"
+    return status === "Published" ? "default" : "secondary"
   }
 
   return (
@@ -155,11 +167,11 @@ function BlogManagementContent() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Image
-              src="/property-in-uk-logo.png"
+              src="/images/mascot.png"
               alt="Property in Uttrakhand"
-              width={140}
-              height={45}
-              className="h-10 w-auto"
+              width={40}
+              height={40}
+              className="rounded-lg"
             />
             <div>
               <h1 className="font-serif font-black text-lg text-primary">Blog Management</h1>
@@ -196,6 +208,19 @@ function BlogManagementContent() {
                 <SelectItem value="all">All Status</SelectItem>
                 <SelectItem value="published">Published</SelectItem>
                 <SelectItem value="draft">Draft</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger className="w-40">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category.toLowerCase()}>
+                    {category}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -243,14 +268,29 @@ function BlogManagementContent() {
                   <TabsContent value="settings" className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
+                        <Label htmlFor="category">Category</Label>
+                        <Select name="category" required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories.map((category) => (
+                              <SelectItem key={category} value={category}>
+                                {category}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
                         <Label htmlFor="status">Status</Label>
-                        <Select name="status" defaultValue="draft">
+                        <Select name="status" defaultValue="Draft">
                           <SelectTrigger>
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="draft">Draft</SelectItem>
-                            <SelectItem value="published">Published</SelectItem>
+                            <SelectItem value="Draft">Draft</SelectItem>
+                            <SelectItem value="Published">Published</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -288,92 +328,6 @@ function BlogManagementContent() {
               </form>
             </DialogContent>
           </Dialog>
-
-          <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle>Edit Blog Post</DialogTitle>
-                <DialogDescription>Update your blog post</DialogDescription>
-              </DialogHeader>
-              {selectedPost && (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    handleEditPost(new FormData(e.currentTarget))
-                  }}
-                  className="space-y-6"
-                >
-                  <Tabs defaultValue="content" className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="content">Content</TabsTrigger>
-                      <TabsTrigger value="settings">Settings</TabsTrigger>
-                      <TabsTrigger value="seo">SEO</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="content" className="space-y-4">
-                      <div>
-                        <Label htmlFor="edit-title">Title</Label>
-                        <Input id="edit-title" name="title" defaultValue={selectedPost.title} required />
-                      </div>
-                      <div>
-                        <Label htmlFor="edit-excerpt">Excerpt</Label>
-                        <Textarea id="edit-excerpt" name="excerpt" defaultValue={selectedPost.excerpt} rows={2} required />
-                      </div>
-                      <div>
-                        <Label htmlFor="edit-content">Content</Label>
-                        <Textarea id="edit-content" name="content" defaultValue={selectedPost.content} rows={12} required />
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="settings" className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="edit-status">Status</Label>
-                          <Select name="status" defaultValue={selectedPost.status}>
-                            <SelectTrigger>
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="draft">Draft</SelectItem>
-                              <SelectItem value="published">Published</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-                      <div>
-                        <Label htmlFor="edit-tags">Tags (comma separated)</Label>
-                        <Input id="edit-tags" name="tags" defaultValue={selectedPost.tags?.join(", ")} placeholder="e.g., Investment, Hill Stations, Real Estate" />
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="edit-featured" name="featured" defaultChecked={selectedPost.is_featured} className="rounded" />
-                        <Label htmlFor="edit-featured">Featured Post</Label>
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="seo" className="space-y-4">
-                      <div>
-                        <Label htmlFor="edit-metaTitle">Meta Title</Label>
-                        <Input id="edit-metaTitle" name="metaTitle" defaultValue={selectedPost.meta_title} />
-                      </div>
-                      <div>
-                        <Label htmlFor="edit-metaDescription">Meta Description</Label>
-                        <Textarea id="edit-metaDescription" name="metaDescription" defaultValue={selectedPost.meta_description} rows={3} />
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-
-                  <div className="flex justify-end gap-2">
-                    <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>
-                      Cancel
-                    </Button>
-                    <Button type="submit" className="bg-primary hover:bg-primary/90">
-                      Update Post
-                    </Button>
-                  </div>
-                </form>
-              )}
-            </DialogContent>
-          </Dialog>
         </div>
 
         {/* Stats Cards */}
@@ -395,7 +349,7 @@ function BlogManagementContent() {
                 <div>
                   <p className="text-sm text-muted-foreground">Published</p>
                   <p className="text-2xl font-bold text-green-600">
-                    {posts.filter((p: any) => p.status === "published").length}
+                    {posts.filter((p) => p.status === "Published").length}
                   </p>
                 </div>
                 <Globe className="h-8 w-8 text-green-600" />
@@ -408,7 +362,7 @@ function BlogManagementContent() {
                 <div>
                   <p className="text-sm text-muted-foreground">Drafts</p>
                   <p className="text-2xl font-bold text-yellow-600">
-                    {posts.filter((p: any) => p.status === "draft").length}
+                    {posts.filter((p) => p.status === "Draft").length}
                   </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-600" />
@@ -421,7 +375,7 @@ function BlogManagementContent() {
                 <div>
                   <p className="text-sm text-muted-foreground">Total Views</p>
                   <p className="text-2xl font-bold">
-                    {posts.reduce((sum: number, post: any) => sum + (post.views_count || 0), 0).toLocaleString()}
+                    {posts.reduce((sum, post) => sum + post.views, 0).toLocaleString()}
                   </p>
                 </div>
                 <Eye className="h-8 w-8 text-primary" />
@@ -441,7 +395,7 @@ function BlogManagementContent() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Title</TableHead>
-                  {/* <TableHead>Category</TableHead> */}
+                  <TableHead>Category</TableHead>
                   <TableHead>Author</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Views</TableHead>
@@ -450,40 +404,86 @@ function BlogManagementContent() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredPosts.map((post: any) => (
+                {filteredPosts.map((post) => (
                   <TableRow key={post.id}>
                     <TableCell>
                       <div>
                         <p className="font-medium">{post.title}</p>
                         <p className="text-sm text-muted-foreground line-clamp-1">{post.excerpt}</p>
-                        {post.is_featured && (
+                        {post.featured && (
                           <Badge variant="outline" className="mt-1">
                             Featured
                           </Badge>
                         )}
                       </div>
                     </TableCell>
-                    {/* <TableCell>
+                    <TableCell>
                       <Badge variant="outline">{post.category}</Badge>
-                    </TableCell> */}
-                    <TableCell className="text-sm">Admin</TableCell>
+                    </TableCell>
+                    <TableCell className="text-sm">{post.author}</TableCell>
                     <TableCell>
                       <Badge variant={getStatusColor(post.status) as any}>{post.status}</Badge>
                     </TableCell>
-                    <TableCell>{(post.views_count || 0).toLocaleString()}</TableCell>
-                    <TableCell className="text-sm">{post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}</TableCell>
+                    <TableCell>{post.views.toLocaleString()}</TableCell>
+                    <TableCell className="text-sm">{post.publishedDate || "—"}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <Button size="sm" variant="outline" onClick={() => openEditDialog(post)}>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button size="sm" variant="outline" onClick={() => setSelectedPost(post)}>
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>{selectedPost?.title}</DialogTitle>
+                              <DialogDescription>
+                                {selectedPost?.category} • {selectedPost?.publishedDate || "Draft"}
+                              </DialogDescription>
+                            </DialogHeader>
+                            {selectedPost && (
+                              <div className="space-y-4">
+                                <div>
+                                  <h4 className="font-semibold mb-2">Excerpt</h4>
+                                  <p className="text-sm text-muted-foreground">{selectedPost.excerpt}</p>
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold mb-2">Content</h4>
+                                  <div className="text-sm max-h-60 overflow-y-auto border rounded p-3">
+                                    {selectedPost.content}
+                                  </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div>
+                                    <h4 className="font-semibold mb-2">Tags</h4>
+                                    <div className="flex flex-wrap gap-1">
+                                      {selectedPost.tags.map((tag, index) => (
+                                        <Badge key={index} variant="outline" className="text-xs">
+                                          {tag}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <h4 className="font-semibold mb-2">Stats</h4>
+                                    <p className="text-sm">Views: {selectedPost.views.toLocaleString()}</p>
+                                    <p className="text-sm">Last Modified: {selectedPost.lastModified}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </DialogContent>
+                        </Dialog>
+                        <Button size="sm" variant="outline">
                           <Edit className="w-4 h-4" />
                         </Button>
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => handleToggleStatus(post)}
-                          className={post.status === "published" ? "text-yellow-600" : "text-green-600"}
+                          onClick={() => handleToggleStatus(post.id)}
+                          className={post.status === "Published" ? "text-yellow-600" : "text-green-600"}
                         >
-                          {post.status === "published" ? "Unpublish" : "Publish"}
+                          {post.status === "Published" ? "Unpublish" : "Publish"}
                         </Button>
                         <Button
                           size="sm"
