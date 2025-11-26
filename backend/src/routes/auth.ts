@@ -95,4 +95,47 @@ router.post('/signin', async (req, res) => {
   }
 });
 
+// Alias endpoint for login
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    const token = generateToken({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    });
+
+    res.json({
+      message: 'Signed in successfully',
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;

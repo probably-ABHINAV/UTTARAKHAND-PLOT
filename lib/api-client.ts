@@ -1,15 +1,12 @@
 // API Client for backend communication
-const getApiBaseUrl = () => {
-  // Use environment variable if set, otherwise default to localhost
-  if (typeof window !== 'undefined') {
-    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-  }
-  
-  // Server-side
-  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-};
+let API_BASE_URL = 'http://0.0.0.0:8000';
 
-const API_BASE_URL = getApiBaseUrl();
+if (typeof window !== 'undefined') {
+  // Client-side: build URL using current location but with port 8000
+  const protocol = window.location.protocol;
+  const hostname = window.location.hostname;
+  API_BASE_URL = `${protocol}//${hostname}:8000`;
+}
 
 class ApiClient {
   private baseURL: string;
@@ -142,6 +139,39 @@ class ApiClient {
       method: 'DELETE',
     });
   }
+
+  // Blogs API
+  async getBlogs() {
+    return this.request<{ blogs: BlogPost[] }>('/api/blogs');
+  }
+
+  async getBlog(id: string) {
+    return this.request<{ blog: BlogPost }>(`/api/blogs/${id}`);
+  }
+
+  async getBlogBySlug(slug: string) {
+    return this.request<{ blog: BlogPost }>(`/api/blogs/slug/${slug}`);
+  }
+
+  async createBlog(blogData: Partial<BlogPost>) {
+    return this.request<{ blog: BlogPost; message: string }>('/api/blogs', {
+      method: 'POST',
+      body: JSON.stringify(blogData),
+    });
+  }
+
+  async updateBlog(id: string, blogData: Partial<BlogPost>) {
+    return this.request<{ blog: BlogPost; message: string }>(`/api/blogs/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(blogData),
+    });
+  }
+
+  async deleteBlog(id: string) {
+    return this.request<{ message: string }>(`/api/blogs/${id}`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 // Export singleton instance
@@ -182,4 +212,24 @@ export interface AuthSession {
     id: string;
     email: string;
   };
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  content: string;
+  featured_image?: string;
+  author_id?: number;
+  category_id?: number;
+  tags?: string[];
+  meta_title?: string;
+  meta_description?: string;
+  status: 'draft' | 'published';
+  views_count: number;
+  is_featured: boolean;
+  published_at?: string;
+  created_at: string;
+  updated_at: string;
 }

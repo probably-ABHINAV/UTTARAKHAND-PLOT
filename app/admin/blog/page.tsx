@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -23,143 +23,108 @@ import Image from "next/image"
 import Link from "next/link"
 import { AuthGuard } from "@/components/auth-guard"
 import { LogoutButton } from "@/components/logout-button"
-
-// Mock blog data
-const mockBlogPosts = [
-  {
-    id: 1,
-    title: "Top 5 Investment Opportunities in Uttrakhand Hill Stations",
-    slug: "top-5-investment-opportunities-uttrakhand",
-    excerpt:
-      "Discover the most promising investment opportunities in Uttrakhand's scenic hill stations, from Mussoorie to Nainital.",
-    content:
-      "Uttrakhand's hill stations offer incredible investment potential with their growing tourism industry and spiritual significance...",
-    category: "Investment",
-    tags: ["Investment", "Hill Stations", "Real Estate", "Tourism"],
-    author: "Admin User",
-    status: "Published",
-    publishedDate: "2024-01-20",
-    lastModified: "2024-01-22",
-    views: 1250,
-    featured: true,
-    metaTitle: "Best Investment Opportunities in Uttrakhand Hill Stations 2024",
-    metaDescription:
-      "Explore top investment opportunities in Uttrakhand's hill stations. Complete guide to real estate investment in Mussoorie, Nainital, and more.",
-  },
-  {
-    id: 2,
-    title: "Spiritual Tourism Boom: Why Rishikesh Properties Are in High Demand",
-    slug: "spiritual-tourism-boom-rishikesh-properties",
-    excerpt:
-      "The spiritual tourism industry in Rishikesh is experiencing unprecedented growth, making it a hotspot for property investment.",
-    content: "Rishikesh, known as the Yoga Capital of the World, has seen a massive surge in spiritual tourism...",
-    category: "Market Trends",
-    tags: ["Rishikesh", "Spiritual Tourism", "Property Demand", "Yoga"],
-    author: "Property Manager",
-    status: "Published",
-    publishedDate: "2024-01-18",
-    lastModified: "2024-01-19",
-    views: 890,
-    featured: false,
-    metaTitle: "Rishikesh Property Investment: Spiritual Tourism Boom 2024",
-    metaDescription:
-      "Why Rishikesh properties are in high demand due to the spiritual tourism boom. Investment insights and market analysis.",
-  },
-  {
-    id: 3,
-    title: "Hill Station Property Market Trends: What to Expect in 2024",
-    slug: "hill-station-property-market-trends-2024",
-    excerpt: "An in-depth analysis of the hill station property market trends and predictions for 2024.",
-    content: "The hill station property market in Uttrakhand is showing strong growth indicators...",
-    category: "Market Analysis",
-    tags: ["Market Trends", "2024 Predictions", "Hill Stations", "Property Market"],
-    author: "Admin User",
-    status: "Draft",
-    publishedDate: null,
-    lastModified: "2024-01-25",
-    views: 0,
-    featured: false,
-    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
-    metaDescription:
-      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
-  },
-]
+import { apiClient, BlogPost } from "@/lib/api-client"
+import { toast } from "sonner"
 
 const categories = ["Investment", "Market Trends", "Market Analysis", "Destinations", "Spiritual Places", "Tourism"]
 
 function BlogManagementContent() {
-  const [posts, setPosts] = useState(mockBlogPosts)
-  const [selectedPost, setSelectedPost] = useState<(typeof mockBlogPosts)[0] | null>(null)
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [categoryFilter, setCategoryFilter] = useState("all")
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    loadBlogs()
+  }, [])
+
+  const loadBlogs = async () => {
+    try {
+      setLoading(true)
+      const response = await apiClient.getBlogs()
+      setPosts(response.blogs || [])
+    } catch (error) {
+      toast.error("Failed to load blogs")
+      console.error("Error loading blogs:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const filteredPosts = posts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (post.tags && post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())))
     const matchesStatus = statusFilter === "all" || post.status.toLowerCase() === statusFilter.toLowerCase()
-    const matchesCategory = categoryFilter === "all" || post.category.toLowerCase() === categoryFilter.toLowerCase()
 
-    return matchesSearch && matchesStatus && matchesCategory
+    return matchesSearch && matchesStatus
   })
 
-  const handleAddPost = (formData: FormData) => {
-    const title = formData.get("title") as string
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")
+  const handleAddPost = async (formData: FormData) => {
+    try {
+      const title = formData.get("title") as string
+      const slug = title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "")
 
-    const newPost = {
-      id: posts.length + 1,
-      title,
-      slug,
-      excerpt: formData.get("excerpt") as string,
-      content: formData.get("content") as string,
-      category: formData.get("category") as string,
-      tags: (formData.get("tags") as string).split(",").map((tag) => tag.trim()),
-      author: "Admin User",
-      status: formData.get("status") as string,
-      publishedDate: formData.get("status") === "Published" ? new Date().toISOString().split("T")[0] : null,
-      lastModified: new Date().toISOString().split("T")[0],
-      views: 0,
-      featured: formData.get("featured") === "on",
-      metaTitle: formData.get("metaTitle") as string,
-      metaDescription: formData.get("metaDescription") as string,
+      const newPost = {
+        title,
+        slug,
+        excerpt: formData.get("excerpt") as string,
+        content: formData.get("content") as string,
+        category_id: 1,
+        tags: (formData.get("tags") as string).split(",").map((tag) => tag.trim()),
+        status: formData.get("status") as "draft" | "published",
+        is_featured: formData.get("featured") === "on",
+        meta_title: formData.get("metaTitle") as string,
+        meta_description: formData.get("metaDescription") as string,
+      }
+
+      const response = await apiClient.createBlog(newPost as any)
+      setPosts([response.blog, ...posts])
+      toast.success("Blog created successfully")
+      setIsAddDialogOpen(false)
+    } catch (error) {
+      toast.error("Failed to create blog")
+      console.error("Error creating blog:", error)
     }
-    setPosts([...posts, newPost])
-    setIsAddDialogOpen(false)
   }
 
-  const handleDeletePost = (postId: number) => {
-    setPosts(posts.filter((post) => post.id !== postId))
+  const handleDeletePost = async (postId: number) => {
+    if (!confirm("Are you sure you want to delete this blog?")) return
+    try {
+      await apiClient.deleteBlog(postId.toString())
+      setPosts(posts.filter((post) => post.id !== postId))
+      toast.success("Blog deleted successfully")
+    } catch (error) {
+      toast.error("Failed to delete blog")
+      console.error("Error deleting blog:", error)
+    }
   }
 
-  const handleToggleStatus = (postId: number) => {
-    setPosts(
-      posts.map((post) =>
-        post.id === postId
-          ? {
-              ...post,
-              status: post.status === "Published" ? "Draft" : "Published",
-              publishedDate: post.status === "Draft" ? new Date().toISOString().split("T")[0] : post.publishedDate,
-            }
-          : post,
-      ),
-    )
+  const handleToggleStatus = async (postId: number, currentStatus: string) => {
+    try {
+      const newStatus = currentStatus === "published" ? "draft" : "published"
+      const response = await apiClient.updateBlog(postId.toString(), { status: newStatus as any })
+      setPosts(posts.map((post) => (post.id === postId ? response.blog : post)))
+      toast.success(`Blog ${newStatus}`)
+    } catch (error) {
+      toast.error("Failed to update blog status")
+      console.error("Error updating blog:", error)
+    }
   }
 
   const getStatusColor = (status: string) => {
-    return status === "Published" ? "default" : "secondary"
+    return status === "published" ? "default" : "secondary"
   }
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -188,7 +153,6 @@ function BlogManagementContent() {
       </header>
 
       <div className="container mx-auto px-4 py-6">
-        {/* Filters and Actions */}
         <div className="flex flex-col lg:flex-row gap-4 mb-6">
           <div className="flex-1 flex gap-4">
             <div className="relative flex-1">
@@ -208,19 +172,6 @@ function BlogManagementContent() {
                 <SelectItem value="all">All Status</SelectItem>
                 <SelectItem value="published">Published</SelectItem>
                 <SelectItem value="draft">Draft</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="w-40">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category.toLowerCase()}>
-                    {category}
-                  </SelectItem>
-                ))}
               </SelectContent>
             </Select>
           </div>
@@ -268,29 +219,14 @@ function BlogManagementContent() {
                   <TabsContent value="settings" className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="category">Category</Label>
-                        <Select name="category" required>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {categories.map((category) => (
-                              <SelectItem key={category} value={category}>
-                                {category}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
                         <Label htmlFor="status">Status</Label>
-                        <Select name="status" defaultValue="Draft">
+                        <Select name="status" defaultValue="draft">
                           <SelectTrigger>
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="Draft">Draft</SelectItem>
-                            <SelectItem value="Published">Published</SelectItem>
+                            <SelectItem value="draft">Draft</SelectItem>
+                            <SelectItem value="published">Published</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -330,7 +266,6 @@ function BlogManagementContent() {
           </Dialog>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <Card>
             <CardContent className="p-4">
@@ -348,9 +283,7 @@ function BlogManagementContent() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Published</p>
-                  <p className="text-2xl font-bold text-green-600">
-                    {posts.filter((p) => p.status === "Published").length}
-                  </p>
+                  <p className="text-2xl font-bold text-green-600">{posts.filter((p) => p.status === "published").length}</p>
                 </div>
                 <Globe className="h-8 w-8 text-green-600" />
               </div>
@@ -361,9 +294,7 @@ function BlogManagementContent() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Drafts</p>
-                  <p className="text-2xl font-bold text-yellow-600">
-                    {posts.filter((p) => p.status === "Draft").length}
-                  </p>
+                  <p className="text-2xl font-bold text-yellow-600">{posts.filter((p) => p.status === "draft").length}</p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-600" />
               </div>
@@ -374,9 +305,7 @@ function BlogManagementContent() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Total Views</p>
-                  <p className="text-2xl font-bold">
-                    {posts.reduce((sum, post) => sum + post.views, 0).toLocaleString()}
-                  </p>
+                  <p className="text-2xl font-bold">{posts.reduce((sum, post) => sum + post.views_count, 0).toLocaleString()}</p>
                 </div>
                 <Eye className="h-8 w-8 text-primary" />
               </div>
@@ -384,121 +313,66 @@ function BlogManagementContent() {
           </Card>
         </div>
 
-        {/* Posts Table */}
         <Card>
           <CardHeader>
             <CardTitle>Blog Posts ({filteredPosts.length})</CardTitle>
             <CardDescription>Manage your blog content and publications</CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Author</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Views</TableHead>
-                  <TableHead>Published</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredPosts.map((post) => (
-                  <TableRow key={post.id}>
-                    <TableCell>
-                      <div>
-                        <p className="font-medium">{post.title}</p>
-                        <p className="text-sm text-muted-foreground line-clamp-1">{post.excerpt}</p>
-                        {post.featured && (
-                          <Badge variant="outline" className="mt-1">
-                            Featured
-                          </Badge>
-                        )}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="outline">{post.category}</Badge>
-                    </TableCell>
-                    <TableCell className="text-sm">{post.author}</TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusColor(post.status) as any}>{post.status}</Badge>
-                    </TableCell>
-                    <TableCell>{post.views.toLocaleString()}</TableCell>
-                    <TableCell className="text-sm">{post.publishedDate || "—"}</TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button size="sm" variant="outline" onClick={() => setSelectedPost(post)}>
-                              <Eye className="w-4 h-4" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>{selectedPost?.title}</DialogTitle>
-                              <DialogDescription>
-                                {selectedPost?.category} • {selectedPost?.publishedDate || "Draft"}
-                              </DialogDescription>
-                            </DialogHeader>
-                            {selectedPost && (
-                              <div className="space-y-4">
-                                <div>
-                                  <h4 className="font-semibold mb-2">Excerpt</h4>
-                                  <p className="text-sm text-muted-foreground">{selectedPost.excerpt}</p>
-                                </div>
-                                <div>
-                                  <h4 className="font-semibold mb-2">Content</h4>
-                                  <div className="text-sm max-h-60 overflow-y-auto border rounded p-3">
-                                    {selectedPost.content}
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                  <div>
-                                    <h4 className="font-semibold mb-2">Tags</h4>
-                                    <div className="flex flex-wrap gap-1">
-                                      {selectedPost.tags.map((tag, index) => (
-                                        <Badge key={index} variant="outline" className="text-xs">
-                                          {tag}
-                                        </Badge>
-                                      ))}
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <h4 className="font-semibold mb-2">Stats</h4>
-                                    <p className="text-sm">Views: {selectedPost.views.toLocaleString()}</p>
-                                    <p className="text-sm">Last Modified: {selectedPost.lastModified}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </DialogContent>
-                        </Dialog>
-                        <Button size="sm" variant="outline">
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleToggleStatus(post.id)}
-                          className={post.status === "Published" ? "text-yellow-600" : "text-green-600"}
-                        >
-                          {post.status === "Published" ? "Unpublish" : "Publish"}
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleDeletePost(post.id)}
-                          className="text-destructive hover:text-destructive"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </TableCell>
+            {loading ? (
+              <div className="text-center py-8">Loading blogs...</div>
+            ) : filteredPosts.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">No blogs found</div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Title</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Views</TableHead>
+                    <TableHead>Published</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {filteredPosts.map((post) => (
+                    <TableRow key={post.id}>
+                      <TableCell>
+                        <div>
+                          <p className="font-medium">{post.title}</p>
+                          <p className="text-sm text-muted-foreground line-clamp-1">{post.excerpt}</p>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={getStatusColor(post.status) as any}>{post.status}</Badge>
+                      </TableCell>
+                      <TableCell>{post.views_count.toLocaleString()}</TableCell>
+                      <TableCell className="text-sm">{post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleToggleStatus(post.id, post.status)}
+                            className={post.status === "published" ? "text-yellow-600" : "text-green-600"}
+                          >
+                            {post.status === "published" ? "Unpublish" : "Publish"}
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleDeletePost(post.id)}
+                            className="text-destructive hover:text-destructive"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
           </CardContent>
         </Card>
       </div>

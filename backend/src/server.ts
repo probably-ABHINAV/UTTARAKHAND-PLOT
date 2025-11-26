@@ -6,6 +6,7 @@ import adminAuthRoutes from './routes/admin-auth';
 import adminRoutes from './routes/admin';
 import plotRoutes from './routes/plots';
 import inquiryRoutes from './routes/inquiries';
+import blogRoutes from './routes/blogs';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use('/api/admin-auth', adminAuthRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/plots', plotRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/blogs', blogRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({ 
