@@ -15,6 +15,57 @@ import { useState } from "react"
 // Blog posts data (same as admin section)
 const blogPosts = [
  {
+  id: 2,
+  title: "Smart Land Investment Near Rishikesh: A Buyer’s Guide",
+  slug: "smart-land-investment-near-rishikesh-buyers-guide",
+  excerpt: "How to choose the right plot near Rishikesh for lifestyle and profit",
+  content: `
+    <p>Rishikesh has transformed from a spiritual retreat into one of North India’s most desirable real-estate micro-markets. Known for yoga tourism, adventure activities and wellness resorts, the town now attracts homebuyers, retirees and investors seeking peaceful living with solid appreciation potential. This guide explains what makes land near Rishikesh attractive, which areas deserve attention, and how to purchase safely.</p>
+
+    <h2>1. Why Rishikesh is gaining investor attention</h2>
+    <p>Improved connectivity through all-weather highways, expanding tourism and increased wellness tourism have strongly pushed real estate demand. Weekend travelers from Delhi NCR drive short-stay rentals, while long-term interest comes from yoga centers, eco-resorts and boutique homestays. These factors combine to create a stable rental market alongside steady price growth.</p>
+
+    <h2>2. Best locations to explore</h2>
+    <p>Investors typically focus on zones near Tapovan, Shivpuri, Narendra Nagar Road and outskirts toward Raiwala. These locations balance accessibility, scenic value and development potential. Avoid overly remote hill tracts that lack clear road access or utility connections, as maintenance and resale become difficult.</p>
+
+    <h2>3. Legal rules you must know</h2>
+    <p>Uttarakhand has specific land-purchase laws, particularly for non-residents of the state. Agricultural land may require conversion approval before residential construction. Always verify land classification, mutation records and ensure the land is outside forest or eco-sensitive zones. Construction near the Ganga must follow strict setback regulations.</p>
+
+    <h2>4. Infrastructure evaluation</h2>
+    <p>Before purchase, confirm year-round road access, availability of electricity connections, water supply options, and mobile internet coverage. Reliable infrastructure is essential for both livability and rental income potential. Plots lacking these facilities usually cost less but involve high future development risk.</p>
+
+    <h2>5. Rental and tourism income opportunities</h2>
+    <p>Rishikesh supports profitable homestays, river-view cottages and yoga retreat rentals. Properties near yoga centers, rafting hubs or peaceful forest edges often enjoy high weekend occupancy. With professional management, short-term rentals can generate consistent earnings while property values gradually rise.</p>
+
+    <h2>6. Environment and topography checks</h2>
+    <p>Plots on steep slopes or river-facing cliffs require additional structural engineering and higher construction budgets. Drainage, soil testing and hillside reinforcement must be planned in advance to avoid erosion or foundation issues, especially during the monsoon season.</p>
+
+    <h2>7. Buyer’s safety checklist</h2>
+    <ul>
+      <li>Confirm clean title and updated revenue records.</li>
+      <li>Check zoning permissions and construction rules.</li>
+      <li>Verify road ownership and right-of-way access.</li>
+      <li>Ensure distance compliance from river setbacks and forest zones.</li>
+      <li>Consult a local lawyer before agreement registration.</li>
+      <li>Inspect physical boundaries through professional surveying.</li>
+    </ul>
+
+    <h2>Final thoughts</h2>
+    <p>Land investment near Rishikesh can provide a balanced mix of peace, tourism-based income and long-term appreciation. Success depends on choosing accessible micro-locations, securing airtight legal documentation and planning eco-friendly construction. Buyers who approach purchases carefully can enjoy both lifestyle benefits and strong financial gains.</p>
+  `,
+  category: "Real Estate",
+  tags: ["Rishikesh Property", "Land Investment", "Uttarakhand Real Estate", "Homestay Investment"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-11-29",
+  lastModified: "2025-11-29",
+  views: 97,
+  featured: false,
+  metaTitle: "Land Investment Guide Near Rishikesh 2025",
+  metaDescription: "Complete buyer’s guide to investing in land near Rishikesh — location tips, legal rules, tourism rental income and safety checks.",
+  image: "/images/rishikesh-land-investment.jpg"
+},
+{
   id: 1,
   title: "Property in Uttarakhand: Invest Wisely in Hill Plots",
   slug: "property-in-uttarakhand-invest-wisely-in-hill-plots",
