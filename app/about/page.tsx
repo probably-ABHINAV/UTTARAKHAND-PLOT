@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -98,18 +97,36 @@ const values = [
   }
 ]
 
+/**
+ * NOTE:
+ * This file relies on CSS variables defined in your global stylesheet:
+ * --primary   -> orange (e.g. #FF7A00)
+ * --secondary -> green  (e.g. #C6EC2A)
+ *
+ * Make sure `app/globals.css` or `:root` contains those variables.
+ */
+
 export default function AboutPage() {
+  // reusable gradient style using CSS variables
+  const themeGradient = {
+    background: "linear-gradient(90deg, var(--primary), var(--secondary))",
+  } as React.CSSProperties
+
+  const themeGradientReversed = {
+    background: "linear-gradient(90deg, var(--secondary), var(--primary))",
+  } as React.CSSProperties
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 via-white to-[#F7931E]/10">
+    <div className="min-h-screen" style={{ background: "var(--color-background, #fff)" }}>
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20">
+      <section className="relative py-24" style={{ background: "linear-gradient(180deg, rgba(255,122,0,0.06), rgba(198,236,42,0.03))" }}>
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 bg-clip-text text-transparent">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6" style={{ color: "var(--foreground, #272211)" }}>
             About Property in Uttarakhand
           </h1>
-          <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8">
+          <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8" style={{ color: "var(--muted-foreground, #7a5a2a)" }}>
             Your trusted partner for premium land plots in Uttarakhand's most beautiful hill stations. 
             With over 15 years of experience, we specialize in legal clarity, prime locations, and exceptional growth potential.
           </p>
@@ -117,13 +134,13 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[var(--color-card, #fff)]">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-bold text-4xl mb-6 text-gray-800">Our Story</h2>
-                <div className="space-y-4 text-gray-700 leading-relaxed">
+                <h2 className="font-bold text-4xl mb-6" style={{ color: "var(--foreground, #272211)" }}>Our Story</h2>
+                <div className="space-y-4 leading-relaxed" style={{ color: "var(--muted-foreground, #7a5a2a)" }}>
                   <p className="text-lg">
                     Property in Uttarakhand is your trusted real estate partner dedicated to helping you find the perfect land, plots, and properties across the most promising locations in Uttarakhand. We specialize in offering affordable, legally verified, and investment-worthy plots that fit every budget - whether you’re looking for a peaceful residential site or a high-return investment opportunity.
                   </p>
@@ -131,15 +148,14 @@ export default function AboutPage() {
                     With years of experience in the real estate industry, we understand that buying property isn’t just a transaction - it’s an emotional and financial milestone. That’s why our focus is on transparency, trust, and customer satisfaction. From the first consultation to the final registration, our team ensures a smooth, secure, and hassle-free experience for every client.
                   </p>
                   <p>
-                   At Property in Uttarakhand, we take pride in our honest guidance, clear documentation, and ethical business practices. Our aim is not just to sell plots, but to build long-term relationships and help you make the best decision for your future.
-
-Whether you’re planning to build your dream home, invest in growing areas like Friends Colony Phase 1 or Bajrang Vatika, or simply want expert advice - we’re here to guide you every step of the way.
+                    At Property in Uttarakhand, we take pride in our honest guidance, clear documentation, and ethical business practices. Our aim is not just to sell plots, but to build long-term relationships and help you make the best decision for your future.
+                    Whether you’re planning to build your dream home, invest in growing areas like Friends Colony Phase 1 or Bajrang Vatika, or simply want expert advice - we’re here to guide you every step of the way.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Badge className="bg-[#FF6B35] text-white px-4 py-2 text-sm">Est. 2008</Badge>
-                  <Badge className="bg-[#F7931E] text-white px-4 py-2 text-sm">15+ Years Experience</Badge>
-                  <Badge className="bg-[#F7931E] text-white px-4 py-2 text-sm">5000+ Happy Customers</Badge>
+                  <Badge className="px-4 py-2 text-sm" style={{ background: "var(--primary)", color: "white" }}>Est. 2008</Badge>
+                  <Badge className="px-4 py-2 text-sm" style={{ background: "var(--primary)", color: "white" }}>15+ Years Experience</Badge>
+                  <Badge className="px-4 py-2 text-sm" style={{ background: "var(--secondary)", color: "black" }}>5000+ Happy Customers</Badge>
                 </div>
               </div>
               <div className="relative">
@@ -150,9 +166,9 @@ Whether you’re planning to build your dream home, invest in growing areas like
                   height={400}
                   className="w-full h-80 object-cover rounded-2xl shadow-2xl"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
-                  <div className="text-3xl font-bold text-[#FF6B35]">15+</div>
-                  <div className="text-sm text-gray-600">Years of Excellence</div>
+                <div className="absolute -bottom-6 -left-6 bg-[var(--color-card, #fff)] p-6 rounded-xl shadow-lg">
+                  <div className="text-3xl font-bold" style={{ color: "var(--primary)" }}>15+</div>
+                  <div className="text-sm" style={{ color: "var(--muted-foreground, #7a5a2a)" }}>Years of Excellence</div>
                 </div>
               </div>
             </div>
@@ -161,11 +177,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Our Values Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-[#F7931E] 50">
+      <section className="py-16" style={{ background: "var(--color-muted, #fff7ef)" }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-bold text-4xl mb-6">Our Core Values</h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+            <h2 className="font-bold text-4xl mb-6" style={{ color: "var(--foreground)" }}>Our Core Values</h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "var(--muted-foreground)" }}>
               The principles that guide everything we do and shape our relationships with customers
             </p>
           </div>
@@ -173,11 +189,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="w-16 h-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={themeGradient}>
                   <value.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3 className="font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>{value.title}</h3>
+                <p className="leading-relaxed" style={{ color: "var(--muted-foreground)" }}>{value.description}</p>
               </Card>
             ))}
           </div>
@@ -185,11 +201,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Achievements Section */}
-      <section className="py-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
+      <section className="py-16" style={themeGradient}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-bold text-4xl mb-6">Our Achievements</h2>
-            <p className="text-[#FF6B35] 100 text-lg max-w-3xl mx-auto">
+            <h2 className="font-bold text-4xl mb-6" style={{ color: "white" }}>Our Achievements</h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "rgba(255,255,255,0.9)" }}>
               Milestones that reflect our commitment to excellence and customer satisfaction
             </p>
           </div>
@@ -200,9 +216,9 @@ Whether you’re planning to build your dream home, invest in growing areas like
                 <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <achievement.icon className="h-10 w-10 text-white" />
                 </div>
-                <div className="text-4xl font-bold mb-2">{achievement.number}</div>
-                <div className="text-xl font-semibold mb-2">{achievement.label}</div>
-                <p className="text-[#FF6B35] 100 text-sm">{achievement.description}</p>
+                <div className="text-4xl font-bold mb-2" style={{ color: "white" }}>{achievement.number}</div>
+                <div className="text-xl font-semibold mb-2" style={{ color: "white" }}>{achievement.label}</div>
+                <p style={{ color: "rgba(255,255,255,0.9)" }}>{achievement.description}</p>
               </Card>
             ))}
           </div>
@@ -210,11 +226,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[var(--color-card, #fff)]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-bold text-4xl mb-6">Meet Our Team</h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+            <h2 className="font-bold text-4xl mb-6" style={{ color: "var(--foreground)" }}>Meet Our Team</h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "var(--muted-foreground)" }}>
               Experienced professionals dedicated to helping you find your perfect property investment
             </p>
           </div>
@@ -222,19 +238,19 @@ Whether you’re planning to build your dream home, invest in growing areas like
           <div className="grid md:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="w-24 h-24 bg-gradient-to-r from-[#FF6B35] 400 to-[#F7931E] 400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6" style={themeGradientReversed}>
                   <Users className="h-12 w-12 text-white" />
                 </div>
-                <h3 className="font-bold text-xl mb-2">{member.name}</h3>
-                <Badge className="bg-[#FF6B35] mb-3">{member.position}</Badge>
-                <div className="space-y-2 text-sm text-gray-600 mb-4">
+                <h3 className="font-bold text-xl mb-2" style={{ color: "var(--foreground)" }}>{member.name}</h3>
+                <Badge className="mb-3" style={{ background: "var(--primary)", color: "white" }}>{member.position}</Badge>
+                <div className="space-y-2 text-sm mb-4" style={{ color: "var(--muted-foreground)" }}>
                   <div className="flex items-center justify-center gap-2">
                     <Clock className="h-4 w-4" />
                     {member.experience}
                   </div>
-                  <div className="font-medium text-[#FF6B35]">{member.expertise}</div>
+                  <div className="font-medium" style={{ color: "var(--primary)" }}>{member.expertise}</div>
                 </div>
-                <p className="text-gray-700 leading-relaxed">{member.description}</p>
+                <p style={{ color: "var(--muted-foreground)" }}>{member.description}</p>
               </Card>
             ))}
           </div>
@@ -242,11 +258,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-[#FF6B35] 50">
+      <section className="py-16" style={{ background: "var(--color-muted, #fff7ef)" }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-bold text-4xl mb-6">Why Choose Us?</h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+            <h2 className="font-bold text-4xl mb-6" style={{ color: "var(--foreground)" }}>Why Choose Us?</h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "var(--muted-foreground)" }}>
               What sets us apart as Uttarakhand's trusted property developer
             </p>
           </div>
@@ -285,11 +301,11 @@ Whether you’re planning to build your dream home, invest in growing areas like
               }
             ].map((feature, index) => (
               <Card key={index} className="p-6 hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="w-14 h-14 bg-gradient-to-r from-[#F7931E] to-[#FF6B35] rounded-full flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4" style={{ background: "linear-gradient(90deg,var(--secondary),var(--primary))" }}>
                   <feature.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className="font-bold text-xl mb-3" style={{ color: "var(--foreground)" }}>{feature.title}</h3>
+                <p style={{ color: "var(--muted-foreground)" }}>{feature.description}</p>
               </Card>
             ))}
           </div>
@@ -297,16 +313,17 @@ Whether you’re planning to build your dream home, invest in growing areas like
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
+      <section className="py-16" style={themeGradient}>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-bold text-4xl mb-6">Ready to Start Your Journey?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+          <h2 className="font-bold text-4xl mb-6" style={{ color: "white" }}>Ready to Start Your Journey?</h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90" style={{ color: "rgba(255,255,255,0.95)" }}>
             Get in touch with our experienced team to find your perfect plot in Uttarakhand's beautiful hill stations.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-[#F7931E] hover:bg-gray-100 text-xl px-8 py-4 shadow-xl"
+              className="text-xl px-8 py-4 shadow-xl"
+              style={{ background: "white", color: "var(--primary)" }}
               onClick={() => window.open('tel:+917870231314', '_self')}
             >
               <Phone className="mr-2 h-6 w-6" />
@@ -315,7 +332,8 @@ Whether you’re planning to build your dream home, invest in growing areas like
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white/10 text-xl px-8 py-4"
+              className="text-xl px-8 py-4"
+              style={{ border: "2px solid rgba(255,255,255,0.9)", color: "white" }}
               onClick={() => window.open('mailto:info@propertyinuttarakhand.com', '_self')}
             >
               <Mail className="mr-2 h-6 w-6" />
