@@ -106,7 +106,8 @@ const plotData = [
     id: 1,
     title: "Bajrang Vatika Premium",
     location: "Badripur, Dehradun",
-    locationLink: "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
+    locationLink:
+      "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
     size: "900-2400 sq yd",
     type: "Residential Project",
     price: "₹16500 per sq/yd",
@@ -121,7 +122,12 @@ const plotData = [
     reviews: 156,
     available: 12,
     isPopular: true,
-    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
+    amenities: [
+      "24×7 security & CCTV surveillance",
+      "Wide internal paved roads",
+      "Children’s play area",
+      "Direct Highway Access",
+    ],
   },
   {
     id: 2,
@@ -131,21 +137,18 @@ const plotData = [
     size: "1000-1800 sq yd",
     type: "Residential Project",
     price: "₹16500 per sq/yard",
-    features: [
-      "Green Parks",
-      "24x7 Security",
-      "Wide Roads",
-      "Modern Infrastructure",
-    ],
-    images: [
-      "/images/design1.png",
-      "/images/naturegreenvalley6.jpeg",
-    ],
+    features: ["Green Parks", "24x7 Security", "Wide Roads", "Modern Infrastructure"],
+    images: ["/images/design1.png", "/images/naturegreenvalley6.jpeg"],
     rating: 4.7,
     reviews: 89,
     available: 8,
     isPopular: false,
-    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
+    amenities: [
+      "24×7 security & CCTV surveillance",
+      "Wide internal paved roads",
+      "Children’s play area",
+      "Direct Highway Access",
+    ],
   },
   {
     id: 3,
@@ -155,12 +158,7 @@ const plotData = [
     size: "800-1500 sq yd",
     type: "Residential Project",
     price: "₹16000 per sq/yard",
-    features: [
-      "Smart Investment",
-      "Excellent Connectivity",
-      "Premium Community",
-      "24x7 Security",
-    ],
+    features: ["Smart Investment", "Excellent Connectivity", "Premium Community", "24x7 Security"],
     images: [
       "/images/WhatsApp Image 2025-10-13 at 23.57.03_02316e06.jpg",
       "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
@@ -169,7 +167,12 @@ const plotData = [
     reviews: 67,
     available: 5,
     isPopular: false,
-    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
+    amenities: [
+      "24×7 security & CCTV surveillance",
+      "Wide internal paved roads",
+      "Children’s play area",
+      "Direct Highway Access",
+    ],
   },
 ] as const;
 
@@ -185,7 +188,12 @@ const locationData = [
     image: "/images/badripur-plots.jpg",
     growth: "+35%",
     connectivity: "Excellent",
-    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
+    amenities: [
+      "24×7 security & CCTV surveillance",
+      "Wide internal paved roads",
+      "Children’s play area",
+      "Direct Highway Access",
+    ],
   },
   {
     name: "Ganeshpur",
@@ -195,7 +203,12 @@ const locationData = [
     image: "/images/ganeshpur-plots.jpg",
     growth: "+42%",
     connectivity: "Good",
-    amenities: ["24×7 security & CCTV surveillance", "Wide internal paved roads", "Children’s play area", "Direct Highway Access"],
+    amenities: [
+      "24×7 security & CCTV surveillance",
+      "Wide internal paved roads",
+      "Children’s play area",
+      "Direct Highway Access",
+    ],
   },
   {
     name: "Sundarpur",
@@ -383,6 +396,11 @@ export default function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // gradient style helper using CSS variables
+  const themeGradient = {
+    background: "linear-gradient(90deg, var(--primary), var(--secondary))",
+  } as React.CSSProperties;
+
   return (
     <>
       {/* Optional header */}
@@ -390,27 +408,47 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20" />
-        <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.02), transparent)" }} />
+        <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center opacity-18" />
 
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-          <div className="absolute top-40 right-10 w-96 h-96 bg-[#F7931E]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-          <div className="absolute -bottom-32 left-20 w-80 h-80 bg-[#FF6B35]/30 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+          <div
+            className="absolute top-20 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
+            style={{ background: "var(--primary)", opacity: 0.16 }}
+          />
+          <div
+            className="absolute top-40 right-10 w-96 h-96 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
+            style={{ background: "var(--secondary)", opacity: 0.12 }}
+          />
+          <div
+            className="absolute -bottom-32 left-20 w-80 h-80 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
+            style={{ background: "var(--primary)", opacity: 0.14 }}
+          />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-6xl mx-auto">
-            <Badge className="mb-8 text-lg font-semibold px-6 py-3 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce">
+            <Badge
+              className="mb-8 text-lg font-semibold px-6 py-3 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce"
+              style={themeGradient}
+            >
               Premium Verified Plots in Uttarakhand
             </Badge>
 
-            <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl leading-tight mb-8 bg-gradient-to-r from-[#FF6B35] via-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
-              Premium Plots in
-              <br />
-              <span className="bg-gradient-to-r from-[#FF6B35] via-[#F7931E] to-[#FF6B35] bg-clip-text text-transparent">
-                Uttarakhand's
+            <h1 className="font-extrabold leading-tight mb-8">
+              <span
+                className="block text-5xl md:text-7xl lg:text-[96px] xl:text-[120px] tracking-tight"
+                style={{ color: "var(--secondary)" }}
+              >
+                Premium Plots in
+              </span>
+
+              <span
+                className="block text-5xl md:text-7xl lg:text-[96px] xl:text-[120px] tracking-tight"
+                style={{ color: "var(--secondary)" }}
+              >
+                Uttarakhand
               </span>
             </h1>
 
@@ -421,16 +459,19 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <Button
                 size="lg"
-                className="text-xl px-10 py-6 min-w-[250px] bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35] shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="text-xl px-10 py-6 min-w-[250px] shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                style={themeGradient}
                 onClick={() => scrollToSection("plots")}
               >
-                <Search className="mr-2 h-5 w-5" />
-                Explore Available Plots
+                <Search className="mr-2 h-5 w-5 text-white" />
+                <span className="text-white">Explore Available Plots</span>
               </Button>
+
               <Button
                 variant="outline"
                 size="lg"
-                className="text-xl px-10 py-6 min-w-[250px] border-2 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="text-xl px-10 py-6 min-w-[250px] border-2 hover:bg-[var(--primary)]/10 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                style={{ borderColor: "var(--primary)", color: "var(--primary)" }}
                 onClick={() => scrollToSection("contact")}
               >
                 <Calendar className="mr-2 h-5 w-5" />
@@ -442,21 +483,21 @@ export default function HomePage() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="text-lg px-8 py-4 text-gray-700 hover:text-[#FF6B35] hover:bg-[#FF6B35]/10"
+                className="text-lg px-8 py-4"
                 onClick={() => scrollToSection("contact")}
               >
-                Have Questions? Contact Us
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <span className="text-gray-700">Have Questions? Contact Us</span>
+                <ArrowRight className="ml-2 h-4 w-4 text-gray-700" />
               </Button>
             </div>
 
             {/* Animated Trust Indicators */}
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { icon: CheckCircle, title: "Approved Plots", color: "text-[#FF6B35]" },
-                { icon: Shield, title: "Legal Clarity", color: "text-[#F7931E]" },
-                { icon: TrendingUp, title: "High ROI", color: "text-[#FF6B35]" },
-                { icon: Award, title: "Award Winning", color: "text-[#F7931E]" },
+                { icon: CheckCircle, title: "Approved Plots", colorClass: "text-[var(--primary)]" },
+                { icon: Shield, title: "Legal Clarity", colorClass: "text-[var(--primary)]" },
+                { icon: TrendingUp, title: "High ROI", colorClass: "text-[var(--primary)]" },
+                { icon: Award, title: "Award Winning", colorClass: "text-[var(--primary)]" },
               ].map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -465,7 +506,7 @@ export default function HomePage() {
                     className="flex flex-col items-center group hover:transform hover:scale-110 transition-all duration-300"
                   >
                     <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl">
-                      <Icon className={`h-8 w-8 ${item.color}`} />
+                      <Icon className={`h-8 w-8 ${item.colorClass}`} />
                     </div>
                     <p className="text-lg font-semibold text-gray-700">{item.title}</p>
                   </div>
