@@ -439,14 +439,20 @@ export default function HomePage() {
             <h1 className="font-extrabold leading-tight mb-8">
               <span
                 className="block text-5xl md:text-7xl lg:text-[96px] xl:text-[120px] tracking-tight"
-                style={{ color: "var(--secondary)" }}
+                style={{
+                  color: "var(--secondary)",
+                  WebkitTextStroke: "1px black",
+                }}
               >
                 Premium Plots in
               </span>
 
               <span
                 className="block text-5xl md:text-7xl lg:text-[96px] xl:text-[120px] tracking-tight"
-                style={{ color: "var(--secondary)" }}
+                style={{
+                  color: "var(--secondary)",
+                  WebkitTextStroke: "1px black",
+                }}
               >
                 Uttarakhand
               </span>
