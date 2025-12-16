@@ -477,11 +477,13 @@ export default function HomePage() {
       </section>
 
       {/* Plots Section */}
-      <section id="plots" className="py-24 bg-gradient-to-br from-gray-50 to-[#FF6B35]/10">
+      <section id="plots" className="py-24 bg-[var(--muted)]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
-              Premium Residential Plots
+            <h2 className="font-bold text-5xl md:text-6xl mb-8">
+              <span style={{ background: "linear-gradient(90deg,var(--primary),var(--secondary))", WebkitBackgroundClip: "text", color: "transparent" }}>
+                Premium Residential Plots
+              </span>
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
               Property in Uttarakhand helps serious buyers and investors find well-located, verified plots across Uttarakhand’s most promising pockets. We list only freehold plots after strict checks for title, boundaries and basic infrastructure.
@@ -496,7 +498,8 @@ export default function HomePage() {
                 placeholder="Search plots by name or location..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-3 text-lg border-2 focus:border-[#FF6B35] rounded-xl"
+                className="pl-10 py-3 text-lg border-2 focus:border-[var(--primary)] rounded-xl"
+                style={{ borderColor: "transparent" }}
               />
             </div>
 
@@ -506,7 +509,8 @@ export default function HomePage() {
                   key={filter}
                   variant={selectedFilter === filter ? "default" : "outline"}
                   onClick={() => setSelectedFilter(filter)}
-                  className="px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+                  className={`px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 ${selectedFilter === filter ? "bg-[var(--primary)] text-white" : ""}`}
+                  style={selectedFilter === filter ? { background: "var(--primary)", color: "#fff" } : undefined}
                 >
                   <Filter className="mr-2 h-4 w-4" />
                   {filter}
@@ -546,8 +550,8 @@ export default function HomePage() {
 
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <Badge className="bg-blue-500 shadow-lg">{plot.type}</Badge>
-                    {plot.isPopular && <Badge className="bg-orange-500 shadow-lg">Popular</Badge>}
+                    <Badge className="bg-[var(--secondary)] text-[var(--secondary-foreground)] shadow-lg">{plot.type}</Badge>
+                    {plot.isPopular && <Badge className="bg-[var(--primary)] text-white shadow-lg">Popular</Badge>}
                   </div>
 
                   {/* Action buttons */}
@@ -572,7 +576,7 @@ export default function HomePage() {
 
                   {/* Availability indicator */}
                   <div className="absolute bottom-4 left-4">
-                    <Badge variant="secondary" className="bg-white/90">
+                    <Badge variant="secondary" className="bg-white/90 text-[var(--primary)]">
                       <Users className="mr-1 h-3 w-3" />
                       {plot.available} plots left
                     </Badge>
@@ -581,7 +585,7 @@ export default function HomePage() {
 
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl group-hover:text-blue-600 transition-colors">
+                    <CardTitle className="text-xl group-hover:text-[var(--primary)] transition-colors">
                       {plot.title}
                     </CardTitle>
                     <div className="flex items-center gap-1">
@@ -591,7 +595,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <CardDescription className="flex items-center gap-2 text-base">
-                    <MapPin className="h-4 w-4 text-blue-500" />
+                    <MapPin className="h-4 w-4 text-[var(--primary)]" />
                     {plot.location}
                   </CardDescription>
                 </CardHeader>
@@ -626,35 +630,39 @@ export default function HomePage() {
 
                   <div className="space-y-3 pt-2">
                     <div className="flex gap-3">
-                      <Button 
-                        className="flex-1 bg-blue-500 hover:bg-blue-600 shadow-lg" 
+                      <Button
+                        className="flex-1 bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-white shadow-lg"
                         asChild
                       >
-                        <Link href={
-                          plot.id === 1 ? "/plots/bajrang-vatika" :
-                          plot.id === 2 ? "/plots/nature-green-valley-phase5" :
-                          plot.id === 3 ? "/plots/friends-colony-phase-1" :
-                          "#"
-                        }>
+                        <Link
+                          href={
+                            plot.id === 1 ? "/plots/bajrang-vatika" :
+                            plot.id === 2 ? "/plots/nature-green-valley-phase5" :
+                            plot.id === 3 ? "/plots/friends-colony-phase-1" :
+                            "#"
+                          }
+                        >
                           View Details
                         </Link>
                       </Button>
 
                       <Button
                         variant="outline"
-                        className="flex-1 border-blue-500 text-blue-600 hover:bg-blue-50"
+                        className="flex-1 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)]/10"
                         onClick={() => scrollToSection("contact")}
+                        style={{ borderColor: "var(--primary)" }}
                       >
                         <Phone className="mr-2 h-4 w-4" />
                         Contact Us
                       </Button>
                     </div>
-                    
+
                     {plot.locationLink && (
                       <Button
                         variant="outline"
-                        className="w-full border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10"
-                        onClick={() => window.open(plot.locationLink, '_blank')}
+                        className="w-full border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)]/10"
+                        onClick={() => window.open(plot.locationLink, "_blank")}
+                        style={{ borderColor: "var(--primary)" }}
                       >
                         <MapPin className="mr-2 h-4 w-4" />
                         View Location on Map
@@ -672,8 +680,10 @@ export default function HomePage() {
       <section id="gallery" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
-              Plots Gallery
+            <h2 className="font-bold text-5xl md:text-6xl mb-8">
+              <span style={{ background: "linear-gradient(90deg,var(--primary),var(--secondary))", WebkitBackgroundClip: "text", color: "transparent" }}>
+                Plots Gallery
+              </span>
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
               Explore our collection of premium plots across Uttarakhand's most desirable locations
@@ -706,7 +716,7 @@ export default function HomePage() {
                     <p className="text-white font-semibold text-sm">{image.title}</p>
                   </div>
                   <div className="bg-white/90 rounded-full p-3">
-                    <MapPin className="h-6 w-6 text-[#FF6B35]" />
+                    <MapPin className="h-6 w-6 text-[var(--primary)]" />
                   </div>
                 </div>
               </div>
@@ -715,92 +725,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Locations Section */}
-      <section id="locations" className="py-24 bg-gradient-to-br from-gray-50 to-[#FF6B35]/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
-              Prime Locations Across Uttarakhand
-            </h2>
-            <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
-              Prime locations across Uttarakhand offer well-connected, verified plots near major highways and urban hubs. These pockets provide easy access to schools, hospitals, markets and transport, making them ideal for secure investments or building a family home with long-term appreciation.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {locationData.slice(0, 3).map((location, index) => (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white border-0 shadow-lg hover:transform hover:scale-105">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={location.image}
-                    alt={location.name}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <Badge className="bg-green-500/90 mb-2">{location.plotsAvailable}</Badge>
-                    <h3 className="font-bold text-xl">{location.name}</h3>
-                  </div>
-
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-white/90 text-green-600 font-semibold">
-                      <TrendingUp className="mr-1 h-3 w-3" />
-                      {location.growth}
-                    </Badge>
-                  </div>
-                </div>
-
-                <CardHeader className="text-center space-y-4">
-                  <CardDescription className="text-base">{location.description}</CardDescription>
-
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Price Range</span>
-                      <span className="font-semibold text-blue-600">{location.priceRange}</span>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Connectivity</span>
-                      <Badge variant={location.connectivity === "Excellent" ? "default" : "secondary"}>
-                        {location.connectivity}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm">Key Amenities</h4>
-                    <div className="flex flex-wrap gap-1 justify-center">
-                      {location.amenities.map((amenity, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
-                          {amenity}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Button className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35]" onClick={() => scrollToSection("contact")}>
-                    <MapPin className="mr-2 h-4 w-4" />
-                    Explore This Location
-                  </Button>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+ 
 
       {/* Location map */}
       <LocationMap />
 
       {/* Calculator */}
-      <section id="calculator" className="py-24 bg-gradient-to-br from-[#FF6B35]/10 to-[#F7931E]/10">
+      <section id="calculator" className="py-24 bg-[var(--muted)]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
-              Smart Investment Calculator
+            <h2 className="font-bold text-5xl md:text-6xl mb-8">
+              <span style={{ background: "linear-gradient(90deg,var(--primary),var(--secondary))", WebkitBackgroundClip: "text", color: "transparent" }}>
+                Smart Investment Calculator
+              </span>
             </h2>
             <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed">
               Calculate your potential returns and construction costs with our advanced investment calculator.
@@ -821,14 +758,14 @@ export default function HomePage() {
                           placeholder="Enter plot size"
                           value={calculatorData.plotSize}
                           onChange={(e) => setCalculatorData((prev) => ({ ...prev, plotSize: e.target.value }))}
-                          className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl"
+                          className="text-lg p-4 border-2 focus:border-[var(--primary)] rounded-xl"
                         />
                       </div>
 
                       <div>
                         <Label className="text-lg font-medium mb-3 block">Location</Label>
                         <Select value={calculatorData.location} onValueChange={(value) => setCalculatorData((prev) => ({ ...prev, location: value }))}>
-                          <SelectTrigger className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl">
+                          <SelectTrigger className="text-lg p-4 border-2 focus:border-[var(--primary)] rounded-xl">
                             <SelectValue placeholder="Select Location" />
                           </SelectTrigger>
                           <SelectContent>
@@ -844,7 +781,7 @@ export default function HomePage() {
                       <div>
                         <Label className="text-lg font-medium mb-3 block">Investment Timeline</Label>
                         <Select value={calculatorData.timeline} onValueChange={(value) => setCalculatorData((prev) => ({ ...prev, timeline: value }))}>
-                          <SelectTrigger className="text-lg p-4 border-2 focus:border-blue-500 rounded-xl">
+                          <SelectTrigger className="text-lg p-4 border-2 focus:border-[var(--primary)] rounded-xl">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -856,9 +793,9 @@ export default function HomePage() {
                         </Select>
                       </div>
 
-                      <Button onClick={calculateInvestment} className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-[#F7931E] hover:to-[#FF6B35] text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                        <Calculator className="mr-2 h-5 w-5" />
-                        Calculate Investment Returns
+                      <Button onClick={calculateInvestment} className="w-full text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" style={themeGradient}>
+                        <Calculator className="mr-2 h-5 w-5 text-white" />
+                        <span className="text-white">Calculate Investment Returns</span>
                       </Button>
                     </div>
                   </div>
@@ -868,15 +805,15 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-2xl font-bold mb-6 text-gray-800">Projected Returns</h3>
                     <div className="space-y-6">
-                      <Card className="p-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0">
-                        <div className="text-center">
+                      <Card className="p-6" style={themeGradient}>
+                        <div className="text-center text-white">
                           <div className="text-sm opacity-90 mb-2">Current Plot Value</div>
                           <div className="text-3xl font-bold">₹{calculatorData.plotValue ? (calculatorData.plotValue / 100000).toFixed(1) : "0"} Lakhs</div>
                         </div>
                       </Card>
 
-                      <Card className="p-6 bg-gradient-to-r from-[#F7931E] to-[#FF6B35] text-white border-0">
-                        <div className="text-center">
+                      <Card className="p-6" style={{ background: "linear-gradient(90deg,var(--secondary),var(--primary))", color: "white" }}>
+                        <div className="text-center text-white">
                           <div className="text-sm opacity-90 mb-2">Expected Value in {calculatorData.timeline} Years</div>
                           <div className="text-3xl font-bold">₹{calculatorData.expectedGrowth ? (calculatorData.expectedGrowth / 100000).toFixed(1) : "0"} Lakhs</div>
                           <div className="text-sm opacity-90 mt-2">
@@ -916,7 +853,7 @@ export default function HomePage() {
       </section>
 
       {/* Statistics */}
-      <section className="py-24 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white">
+      <section className="py-24" style={{ background: "linear-gradient(90deg,var(--primary),var(--secondary))", color: "white" }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-bold text-5xl md:text-6xl mb-8">Trusted by Thousands</h2>
@@ -951,12 +888,14 @@ export default function HomePage() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-[#FF6B35]/10">
+      <section id="contact" className="py-24 bg-[var(--muted)]">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-bold text-5xl md:text-6xl mb-8 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] bg-clip-text text-transparent">
-                Ready to Start Your Journey?
+              <h2 className="font-bold text-5xl md:text-6xl mb-8">
+                <span style={{ background: "linear-gradient(90deg,var(--primary),var(--secondary))", WebkitBackgroundClip: "text", color: "transparent" }}>
+                  Ready to Start Your Journey?
+                </span>
               </h2>
               <p className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto">
                 Connect with our property experts for personalized guidance, site visits, and complete assistance from selection to registration.
@@ -975,7 +914,7 @@ export default function HomePage() {
                         placeholder="Your full name"
                         value={contactForm.name}
                         onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))}
-                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        className="p-3 border-2 focus:border-[var(--primary)] rounded-lg"
                         required
                       />
                     </div>
@@ -985,7 +924,7 @@ export default function HomePage() {
                         placeholder="Your phone number"
                         value={contactForm.phone}
                         onChange={(e) => setContactForm((prev) => ({ ...prev, phone: e.target.value }))}
-                        className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                        className="p-3 border-2 focus:border-[var(--primary)] rounded-lg"
                         required
                       />
                     </div>
@@ -998,14 +937,14 @@ export default function HomePage() {
                       placeholder="your.email@example.com"
                       value={contactForm.email}
                       onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))}
-                      className="p-3 border-2 focus:border-blue-500 rounded-lg"
+                      className="p-3 border-2 focus:border-[var(--primary)] rounded-lg"
                     />
                   </div>
 
                   <div>
                     <Label className="text-sm font-medium mb-2 block">Interested Plot</Label>
                     <Select value={contactForm.plotInterest} onValueChange={(value) => setContactForm((prev) => ({ ...prev, plotInterest: value }))}>
-                      <SelectTrigger className="p-3 border-2 focus:border-blue-500 rounded-lg">
+                      <SelectTrigger className="p-3 border-2 focus:border-[var(--primary)] rounded-lg">
                         <SelectValue placeholder="Select a plot or location" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1024,13 +963,13 @@ export default function HomePage() {
                       placeholder="Tell us about your requirements, preferred location, budget range, or any questions you have..."
                       value={contactForm.message}
                       onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))}
-                      className="p-3 border-2 focus:border-blue-500 rounded-lg min-h-[100px]"
+                      className="p-3 border-2 focus:border-[var(--primary)] rounded-lg min-h-[100px]"
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-600 hover:to-purple-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                    <Mail className="mr-2 h-5 w-5" />
-                    Send Message
+                  <Button type="submit" className="w-full text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" style={themeGradient}>
+                    <Mail className="mr-2 h-5 w-5 text-white" />
+                    <span className="text-white">Send Message</span>
                   </Button>
                 </form>
               </Card>
@@ -1046,7 +985,7 @@ export default function HomePage() {
                       description: "Call or message us anytime",
                       action: "7870231314",
                       href: "tel:+917870231314",
-                      color: "from-[#F7931E] to-[#FF6B35]",
+                      colorStyle: { background: "linear-gradient(90deg,var(--secondary),var(--primary))" },
                     },
                     {
                       icon: Mail,
@@ -1054,7 +993,7 @@ export default function HomePage() {
                       description: "Send us your queries",
                       action: "info@propertyinuttarakhand.com",
                       href: "mailto:info@propertyinuttarakhand.com",
-                      color: "from-[#FF6B35] to-[#F7931E]",
+                      colorStyle: { background: "linear-gradient(90deg,var(--primary),var(--secondary))" },
                     },
                     {
                       icon: MapPin,
@@ -1062,14 +1001,14 @@ export default function HomePage() {
                       description: "Visit our office",
                       action: "Badripur & Ganeshpur, Dehradun",
                       href: "#",
-                      color: "from-[#FF6B35] to-[#F7931E]",
+                      colorStyle: { background: "linear-gradient(90deg,var(--primary),var(--secondary))" },
                     },
                   ].map((contact, index) => {
                     const Icon = contact.icon;
                     return (
                       <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md">
                         <div className="flex items-center gap-4">
-                          <div className={`w-12 h-12 bg-gradient-to-r ${contact.color} rounded-full flex items-center justify-center`}>
+                          <div className="w-12 h-12 rounded-full flex items-center justify-center" style={contact.colorStyle}>
                             <Icon className="h-6 w-6 text-white" />
                           </div>
                           <div className="flex-1">
@@ -1085,7 +1024,8 @@ export default function HomePage() {
                                   window.open(contact.href, "_blank");
                                 }
                               }}
-                              className="text-blue-600 border-blue-500 hover:bg-blue-50"
+                              className="text-[var(--primary)] border-[var(--primary)] hover:bg-[var(--primary)]/10"
+                              style={{ borderColor: "var(--primary)", color: "var(--primary)" }}
                             >
                               {contact.action}
                             </Button>
