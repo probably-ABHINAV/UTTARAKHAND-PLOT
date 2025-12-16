@@ -100,10 +100,18 @@ export function SiteFooter() {
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="text-sm opacity-90 text-center md:text-left">
                 © 2025 Property in Uttarakhand. All rights reserved.
-              </p>
               <p className="text-xs opacity-75">
-                Designed By Sumirayan Design
-              </p>
+  Designed By{" "}
+  <a
+    href="https://www.sumirayandesign.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-medium hover:underline hover:opacity-100 transition-opacity"
+  >
+    Sumirayan Design
+  </a>
+</p>
+
             </div>
             
             <div className="flex flex-col items-center gap-4">
