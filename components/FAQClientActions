@@ -1,0 +1,58 @@
+"use client";
+
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Phone, Mail, MessageCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+/**
+ * Client-side CTA buttons for the FAQ page.
+ * Keeps all event handlers inside a client component to avoid Next.js error.
+ */
+export default function FAQClientActions() {
+  const router = useRouter();
+
+  return (
+    <div className="flex flex-wrap justify-center gap-4">
+      <Button
+        size="lg"
+        className="px-8 py-3"
+        style={{ background: "var(--primary, #FF7A00)", color: "#fff" }}
+        onClick={() => {
+          // phone must use window location
+          window.location.href = "tel:+917870231314";
+        }}
+      >
+        <Phone className="mr-2 h-5 w-5 inline" />
+        Call Us Now
+      </Button>
+
+      <Button
+        size="lg"
+        variant="outline"
+        className="px-8 py-3"
+        style={{ borderColor: "var(--primary, #FF7A00)", color: "var(--primary, #FF7A00)" }}
+        onClick={() => {
+          // client-side navigate to contact page
+          router.push("/contact");
+        }}
+      >
+        <Mail className="mr-2 h-5 w-5 inline" />
+        Send Message
+      </Button>
+
+      <Button
+        size="lg"
+        variant="outline"
+        className="px-8 py-3"
+        style={{ borderColor: "var(--secondary, #C6EC2A)", color: "var(--secondary, #C6EC2A)" }}
+        onClick={() => {
+          router.push("/chatbot");
+        }}
+      >
+        <MessageCircle className="mr-2 h-5 w-5 inline" />
+        Try Chatbot
+      </Button>
+    </div>
+  );
+}
