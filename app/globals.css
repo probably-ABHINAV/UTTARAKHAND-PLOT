@@ -3,7 +3,7 @@
 /* ------------------------------
    THEME COLORS – ORANGE + LIME (image-matched)
    Primary (Orange): #FF7A00
-   Highlight (Lime): #C6EC2A
+   Highlight (Lime): var(--secondary)
 --------------------------------*/
 
 /* ------------------------------
@@ -40,7 +40,7 @@
 
   /* Chart palette */
   --chart-1: #FF7A00;   /* orange */
-  --chart-2: #C6EC2A;   /* lime */
+  --chart-2: var(--secondary);   /* lime */
   --chart-3: #FFA54D;   /* orange-light */
   --chart-4: #FF5500;   /* deep orange */
   --chart-5: #E6FF66;   /* lime-light */
@@ -168,7 +168,7 @@
    (Orange → Lime)
 --------------------------------*/
 .text-gradient {
-  background: linear-gradient(90deg, #FF7A00, #C6EC2A);
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -249,7 +249,7 @@ html { scroll-behavior: smooth; }
    (Orange → Lime gradient)
 --------------------------------*/
 .construction-cost-card {
-  background: linear-gradient(90deg, #FF7A00, #C6EC2A);
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;
