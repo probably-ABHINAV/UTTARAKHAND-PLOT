@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -83,7 +82,7 @@ export default function ContactPage() {
       description: "Call or message us anytime",
       action: "+91 7870231314",
       href: "tel:+917870231314",
-      color: "from-[#F7931E] to-[#FF6B35]",
+      color: "gradient-primary", // replaced with css class usage below
       available: "24/7 Available"
     },
     {
@@ -92,7 +91,7 @@ export default function ContactPage() {
       description: "Send us your queries",
       action: "info@propertyinuttarakhand.com",
       href: "mailto:info@propertyinuttarakhand.com",
-      color: "from-[#FF6B35] to-[#F7931E]",
+      color: "gradient-primary",
       available: "Response within 6 hours"
     },
     {
@@ -101,7 +100,7 @@ export default function ContactPage() {
       description: "Visit our offices",
       action: "Badripur & Ganeshpur, Dehradun",
       href: "#",
-      color: "from-purple-500 to-pink-500",
+      color: "gradient-secondary",
       available: "Mon-Sat 9AM-7PM"
     },
     {
@@ -110,7 +109,7 @@ export default function ContactPage() {
       description: "Chat with our experts",
       action: "Start WhatsApp Chat",
       href: "https://wa.me/917870231314?text=Hi, I need information about plots in Uttarakhand",
-      color: "from-orange-500 to-red-500",
+      color: "gradient-primary",
       available: "Instant Response"
     }
   ]
@@ -122,14 +121,19 @@ export default function ContactPage() {
     { day: "Emergency", hours: "24/7 Available" }
   ]
 
+  /* Theme colours used:
+     primary (orange) -> #FF7A00
+     secondary (lime/green) -> #C6EC2A
+  */
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FF6B35]/10 via-white to-[#F7931E]/10">
+    <div className="min-h-screen" style={{ background: "linear-gradient(180deg, rgba(255,122,0,0.06), rgba(198,236,42,0.02))" }}>
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-[#FF6B35]/20 via-[#F7931E]/10 to-[#FF6B35]/20">
+      <section className="relative py-24" style={{ background: "linear-gradient(180deg, rgba(255,122,0,0.12), rgba(198,236,42,0.04))" }}>
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 bg-gradient-to-r from-[#FF6B35]/60 to-[#FF6B35]/60 bg-clip-text text-transparent">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6" style={{ color: "#C6EC2A" }}>
             Get in Touch
           </h1>
           <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed mb-8">
@@ -142,7 +146,7 @@ export default function ContactPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-bold text-4xl mb-6">Multiple Ways to Reach Us</h2>
+            <h2 className="font-bold text-4xl mb-6" style={{ color: "#FF7A00" }}>Multiple Ways to Reach Us</h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
               Choose your preferred method of communication and get instant assistance from our property experts
             </p>
@@ -151,18 +155,27 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {contactMethods.map((method, index) => (
               <Card key={index} className="p-6 hover:shadow-xl transition-all duration-300 border-0 shadow-lg text-center">
-                <div className={`w-16 h-16 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                <div
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${method.color}`}
+                  style={{
+                    // inline fallback gradient: primary -> secondary (orange to lime)
+                    background: method.color === "gradient-secondary"
+                      ? "linear-gradient(90deg, #C6EC2A, #9EE83D)"
+                      : "linear-gradient(90deg, #FF7A00, #C6EC2A)"
+                  }}
+                >
                   <method.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="font-bold text-xl mb-2">{method.title}</h3>
+                <h3 className="font-bold text-xl mb-2" style={{ color: "#272211" }}>{method.title}</h3>
                 <p className="text-gray-600 text-sm mb-3">{method.description}</p>
                 <Button
                   className="w-full mb-3"
                   onClick={() => window.open(method.href, method.href.startsWith('tel:') || method.href.startsWith('mailto:') ? '_self' : '_blank')}
+                  style={{ background: "#FF7A00", color: "#fff" }}
                 >
                   {method.action}
                 </Button>
-                <div className="text-xs text-[#F7931E] font-medium">
+                <div className="text-xs font-medium" style={{ color: "#FF7A00" }}>
                   <Clock className="h-3 w-3 inline mr-1" />
                   {method.available}
                 </div>
@@ -173,7 +186,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-[#F7931E] 50">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
@@ -181,7 +194,7 @@ export default function ContactPage() {
               <Card className="p-8 bg-white shadow-2xl border-0">
                 <CardHeader className="px-0">
                   <CardTitle className="text-2xl flex items-center gap-2">
-                    <Send className="h-6 w-6 text-[#FF6B35]" />
+                    <Send className="h-6 w-6" style={{ color: "#FF7A00" }} />
                     Send Us a Message
                   </CardTitle>
                   <CardDescription className="text-lg">
@@ -197,7 +210,8 @@ export default function ContactPage() {
                         placeholder="Enter your full name"
                         value={contactForm.name}
                         onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
-                        className="p-3 border-2 focus:border-[#FF6B35] rounded-lg"
+                        className="p-3 border-2 rounded-lg"
+                        style={{ borderColor: "#FF7A00" }}
                         required
                       />
                     </div>
@@ -207,7 +221,8 @@ export default function ContactPage() {
                         placeholder="Your phone number"
                         value={contactForm.phone}
                         onChange={(e) => setContactForm(prev => ({ ...prev, phone: e.target.value }))}
-                        className="p-3 border-2 focus:border-[#FF6B35] rounded-lg"
+                        className="p-3 border-2 rounded-lg"
+                        style={{ borderColor: "#FF7A00" }}
                         required
                       />
                     </div>
@@ -220,7 +235,8 @@ export default function ContactPage() {
                       placeholder="your.email@example.com"
                       value={contactForm.email}
                       onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
-                      className="p-3 border-2 focus:border-[#FF6B35] rounded-lg"
+                      className="p-3 border-2 rounded-lg"
+                      style={{ borderColor: "#FF7A00" }}
                     />
                   </div>
 
@@ -230,7 +246,7 @@ export default function ContactPage() {
                       value={contactForm.subject}
                       onValueChange={(value) => setContactForm(prev => ({ ...prev, subject: value }))}
                     >
-                      <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
+                      <SelectTrigger className="p-3 border-2 rounded-lg" style={{ borderColor: "#FF7A00" }}>
                         <SelectValue placeholder="Select inquiry type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -250,7 +266,7 @@ export default function ContactPage() {
                         value={contactForm.plotInterest}
                         onValueChange={(value) => setContactForm(prev => ({ ...prev, plotInterest: value }))}
                       >
-                        <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
+                        <SelectTrigger className="p-3 border-2 rounded-lg" style={{ borderColor: "#FF7A00" }}>
                           <SelectValue placeholder="Select location" />
                         </SelectTrigger>
                         <SelectContent>
@@ -268,7 +284,7 @@ export default function ContactPage() {
                         value={contactForm.budget}
                         onValueChange={(value) => setContactForm(prev => ({ ...prev, budget: value }))}
                       >
-                        <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
+                        <SelectTrigger className="p-3 border-2 rounded-lg" style={{ borderColor: "#FF7A00" }}>
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
@@ -288,7 +304,7 @@ export default function ContactPage() {
                       value={contactForm.preferredContact}
                       onValueChange={(value) => setContactForm(prev => ({ ...prev, preferredContact: value }))}
                     >
-                      <SelectTrigger className="p-3 border-2 focus:border-[#FF6B35] rounded-lg">
+                      <SelectTrigger className="p-3 border-2 rounded-lg" style={{ borderColor: "#FF7A00" }}>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -305,14 +321,16 @@ export default function ContactPage() {
                       placeholder="Tell us about your requirements, preferred location, timeline, or any questions you have..."
                       value={contactForm.message}
                       onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
-                      className="p-3 border-2 focus:border-[#FF6B35] rounded-lg min-h-[120px]"
+                      className="p-3 border-2 rounded-lg min-h-[120px]"
+                      style={{ borderColor: "#FF7A00" }}
                     />
                   </div>
                   
                   <Button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-[#FF6B35] to-[#F7931E] hover:from-blue-600 hover:to-green-600 text-lg py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    className="w-full text-lg py-3 rounded-lg shadow-lg transform transition-all duration-300"
+                    style={{ background: "linear-gradient(90deg, #FF7A00, #C6EC2A)", color: "#111" }}
                   >
                     {isSubmitting ? (
                       <>Sending Message...</>
@@ -332,7 +350,7 @@ export default function ContactPage() {
                 <Card className="p-6 border-0 shadow-lg">
                   <CardHeader className="px-0">
                     <CardTitle className="flex items-center gap-2 text-xl">
-                      <Clock className="h-5 w-5 text-[#FF6B35]" />
+                      <Clock className="h-5 w-5" style={{ color: "#FF7A00" }} />
                       Office Hours
                     </CardTitle>
                   </CardHeader>
@@ -349,29 +367,32 @@ export default function ContactPage() {
                 </Card>
 
                 {/* Quick Actions */}
-                <Card className="p-6 bg-gradient-to-r from-[#FF6B35] to-[#F7931E] text-white border-0">
+                <Card className="p-6" style={{ background: "linear-gradient(90deg,#FF7A00,#C6EC2A)", color: "#111", border: "0" }}>
                   <CardHeader className="px-0">
                     <CardTitle className="text-xl">Quick Actions</CardTitle>
                   </CardHeader>
                   <CardContent className="px-0">
                     <div className="space-y-3">
                       <Button 
-                        className="w-full bg-white/20 hover:bg-white/30 border-0"
+                        className="w-full"
                         onClick={() => window.open('https://wa.me/917870231314?text=Hi, I would like to schedule a site visit for plots in Uttarakhand', '_blank')}
+                        style={{ background: "rgba(255,255,255,0.12)", color: "#fff" }}
                       >
                         <Calendar className="mr-2 h-4 w-4" />
                         Schedule Site Visit via WhatsApp
                       </Button>
                       <Button 
-                        className="w-full bg-white/20 hover:bg-white/30 border-0"
+                        className="w-full"
                         onClick={() => window.location.href = '/calculator'}
+                        style={{ background: "rgba(255,255,255,0.12)", color: "#fff" }}
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Calculate Investment Returns
                       </Button>
                       <Button 
-                        className="w-full bg-white/20 hover:bg-white/30 border-0"
+                        className="w-full"
                         onClick={() => window.location.href = '/plots'}
+                        style={{ background: "rgba(255,255,255,0.12)", color: "#fff" }}
                       >
                         <Navigation className="mr-2 h-4 w-4" />
                         Browse Available Plots
@@ -381,20 +402,21 @@ export default function ContactPage() {
                 </Card>
 
                 {/* Emergency Contact */}
-                <Card className="p-6 bg-red-50 border-red-200 border-2">
+                <Card className="p-6 border-2" style={{ borderColor: "#FF7A00", background: "#fff9f6" }}>
                   <CardHeader className="px-0">
-                    <CardTitle className="flex items-center gap-2 text-xl text-red-700">
+                    <CardTitle className="flex items-center gap-2 text-xl" style={{ color: "#FF7A00" }}>
                       <Headphones className="h-5 w-5" />
                       Emergency Contact
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="px-0">
-                    <p className="text-red-600 mb-4">
+                    <p className="mb-4" style={{ color: "#FF7A00" }}>
                       For urgent property matters or site visit emergencies, contact us directly:
                     </p>
                     <Button 
-                      className="w-full bg-red-500 hover:bg-red-600 text-white"
+                      className="w-full text-white"
                       onClick={() => window.open('tel:+917870231314', '_self')}
+                      style={{ background: "#FF7A00" }}
                     >
                       <Phone className="mr-2 h-4 w-4" />
                       Emergency Hotline: +91 7870231314
@@ -408,34 +430,37 @@ export default function ContactPage() {
       </section>
 
       {/* Social Media Section */}
-      <section className="py-12 bg-gradient-to-r from-[#FF6B35] to-[#F7931E]">
+      <section className="py-12" style={{ background: "linear-gradient(90deg,#FF7A00,#C6EC2A)" }}>
         <div className="container mx-auto px-4">
-          <div className="text-center text-white">
+          <div className="text-center" style={{ color: "#111" }}>
             <h2 className="font-bold text-3xl mb-4">Connect With Us on Social Media</h2>
-            <p className="text-[#FF6B35] 100 mb-8 max-w-2xl mx-auto">
+            <p className="mb-8 max-w-2xl mx-auto" style={{ color: "#111" }}>
               Follow us for property updates, investment tips, and beautiful Uttarakhand destinations
             </p>
             <div className="flex justify-center gap-6">
               <Button
                 size="lg"
-                className="bg-white/20 hover:bg-white/30 border-2 border-white text-white"
+                className="border-2 px-6 py-3"
                 onClick={() => window.open('https://facebook.com', '_blank')}
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.3)" }}
               >
                 <Facebook className="mr-2 h-5 w-5" />
                 Facebook
               </Button>
               <Button
                 size="lg"
-                className="bg-white/20 hover:bg-white/30 border-2 border-white text-white"
+                className="border-2 px-6 py-3"
                 onClick={() => window.open('https://instagram.com', '_blank')}
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.3)" }}
               >
                 <Instagram className="mr-2 h-5 w-5" />
                 Instagram
               </Button>
               <Button
                 size="lg"
-                className="bg-white/20 hover:bg-white/30 border-2 border-white text-white"
+                className="border-2 px-6 py-3"
                 onClick={() => window.open('https://youtube.com', '_blank')}
+                style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.3)" }}
               >
                 <Youtube className="mr-2 h-5 w-5" />
                 YouTube
@@ -449,7 +474,7 @@ export default function ContactPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-bold text-4xl mb-6">Frequently Asked Questions</h2>
+            <h2 className="font-bold text-4xl mb-6" style={{ color: "#FF7A00" }}>Frequently Asked Questions</h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
               Quick answers to common questions about our properties and services
             </p>
@@ -483,7 +508,7 @@ export default function ContactPage() {
               }
             ].map((faq, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300">
-                <h3 className="font-bold text-lg mb-3 text-[#FF6B35]">{faq.question}</h3>
+                <h3 className="font-bold text-lg mb-3" style={{ color: "#FF7A00" }}>{faq.question}</h3>
                 <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
               </Card>
             ))}
