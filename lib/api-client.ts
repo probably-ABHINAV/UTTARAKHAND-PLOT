@@ -1,235 +1,108 @@
-// API Client for backend communication
-let API_BASE_URL = 'http://0.0.0.0:8000';
+// API Client for Next.js (Vercel-compatible)
 
-if (typeof window !== 'undefined') {
-  // Client-side: build URL using current location but with port 8000
-  const protocol = window.location.protocol;
-  const hostname = window.location.hostname;
-  API_BASE_URL = `${protocol}//${hostname}:8000`;
-}
-
-class ApiClient {
-  private baseURL: string;
-
-  constructor(baseURL: string = API_BASE_URL) {
-    this.baseURL = baseURL;
-  }
-
-  private async request<T>(
-    endpoint: string, 
-    options: RequestInit = {}
-  ): Promise<T> {
-    const url = `${this.baseURL}${endpoint}`;
-    
-    // Get auth token from localStorage
-    const token = typeof window !== 'undefined' 
-      ? localStorage.getItem('authToken') 
-      : null;
-
-    const config: RequestInit = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }),
-        ...options.headers,
-      },
-      ...options,
-      // Add timeout and error handling
-      signal: AbortSignal.timeout(30000), // 30 second timeout
-    };
-
-    try {
-      const response = await fetch(url, config);
-      
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ 
-          error: `HTTP ${response.status}: ${response.statusText}` 
-        }));
-        throw new Error(errorData.error || `Request failed: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('API Request failed:', {
-        url,
-        error: error instanceof Error ? error.message : 'Unknown error',
-        baseURL: this.baseURL
-      });
-      
-      // Provide more specific error messages
-      if (error instanceof Error) {
-        if (error.name === 'AbortError') {
-          throw new Error('Request timeout - please check your connection');
-        }
-        if (error.message.includes('Failed to fetch')) {
-          throw new Error('Cannot connect to server - please check if backend is running');
-        }
-      }
-      
-      throw error;
-    }
-  }
-
-  // Health check
-  async healthCheck() {
-    return this.request<{ status: string; services: any }>('/health');
-  }
-
-  // Authentication
-  async login(email: string, password: string) {
-    return this.request<{ session: any; message: string }>('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    });
-  }
-
-  // Plots API
-  async getPlots() {
-    return this.request<{ plots: any[] }>('/api/plots');
-  }
-
-  async getPlot(id: string) {
-    return this.request<{ plot: any }>(`/api/plots/${id}`);
-  }
-
-  async createPlot(plotData: any) {
-    return this.request<{ plot: any }>('/api/plots', {
-      method: 'POST',
-      body: JSON.stringify(plotData),
-    });
-  }
-
-  async updatePlot(id: string, plotData: any) {
-    return this.request<{ plot: any }>(`/api/plots/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(plotData),
-    });
-  }
-
-  async deletePlot(id: string) {
-    return this.request<{ message: string }>(`/api/plots/${id}`, {
-      method: 'DELETE',
-    });
-  }
-
-  // Inquiries API
-  async getInquiries() {
-    return this.request<{ inquiries: any[] }>('/api/inquiries');
-  }
-
-  async getInquiry(id: string) {
-    return this.request<{ inquiry: any }>(`/api/inquiries/${id}`);
-  }
-
-  async createInquiry(inquiryData: any) {
-    return this.request<{ inquiry: any; message: string }>('/api/inquiries', {
-      method: 'POST',
-      body: JSON.stringify(inquiryData),
-    });
-  }
-
-  async updateInquiry(id: string, inquiryData: any) {
-    return this.request<{ inquiry: any }>(`/api/inquiries/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(inquiryData),
-    });
-  }
-
-  async deleteInquiry(id: string) {
-    return this.request<{ message: string }>(`/api/inquiries/${id}`, {
-      method: 'DELETE',
-    });
-  }
-
-  // Blogs API
-  async getBlogs() {
-    return this.request<{ blogs: BlogPost[] }>('/api/blogs');
-  }
-
-  async getBlog(id: string) {
-    return this.request<{ blog: BlogPost }>(`/api/blogs/${id}`);
-  }
-
-  async getBlogBySlug(slug: string) {
-    return this.request<{ blog: BlogPost }>(`/api/blogs/slug/${slug}`);
-  }
-
-  async createBlog(blogData: Partial<BlogPost>) {
-    return this.request<{ blog: BlogPost; message: string }>('/api/blogs', {
-      method: 'POST',
-      body: JSON.stringify(blogData),
-    });
-  }
-
-  async updateBlog(id: string, blogData: Partial<BlogPost>) {
-    return this.request<{ blog: BlogPost; message: string }>(`/api/blogs/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(blogData),
-    });
-  }
-
-  async deleteBlog(id: string) {
-    return this.request<{ message: string }>(`/api/blogs/${id}`, {
-      method: 'DELETE',
-    });
-  }
-}
-
-// Export singleton instance
-export const apiClient = new ApiClient();
-
-// Export types for better TypeScript support
 export interface Plot {
-  id: number;
-  title: string;
-  slug: string;
-  description: string;
-  location: string;
-  price: number;
-  size_sqyd: number;
-  is_published: boolean;
-  created_at: string;
-  updated_at: string;
-  plot_images?: { url: string }[];
+  id: number
+  title: string
+  slug: string
+  description: string
+  location: string
+  price: number
+  size_sqyd: number
+  is_published: boolean
+  created_at: string
+  updated_at: string
+  plot_images?: { url: string }[]
 }
 
 export interface Inquiry {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  status: 'NEW' | 'CONTACTED' | 'CLOSED';
-  plot_id?: number;
-  created_at: string;
-  plots?: { title: string; location: string };
-}
-
-export interface AuthSession {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-  user: {
-    id: string;
-    email: string;
-  };
+  id: number
+  name: string
+  email: string
+  phone: string
+  message: string
+  status: "NEW" | "CONTACTED" | "CLOSED"
+  plot_id?: number
+  created_at: string
+  plots?: { title: string; location: string }
 }
 
 export interface BlogPost {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt?: string;
-  content: string;
-  featured_image?: string;
-  author_id?: number;
-  category_id?: number;
-  tags?: string[];
-  meta_title?: string;
-  meta_description?: string;
-  status: 'draft' | 'published';
-  views_count: number;
-  is_featured: boolean;
-  published_at?: string;
-  created_at: string;
-  updated_at: string;
+  id: number
+  title: string
+  slug: string
+  content: string
+  status: "draft" | "published"
+  created_at: string
+  updated_at: string
+}
+
+// ---------- INTERNAL REQUEST ----------
+async function request<T>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("authToken")
+      : null
+
+  const res = await fetch(`/api${endpoint}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...options.headers,
+    },
+  })
+
+  const text = await res.text()
+
+  let data
+  try {
+    data = JSON.parse(text)
+  } catch {
+    throw new Error("API returned HTML instead of JSON")
+  }
+
+  if (!res.ok) {
+    throw new Error(data.error || "API request failed")
+  }
+
+  return data
+}
+
+// ---------- API CLIENT ----------
+export const apiClient = {
+  // AUTH
+  login: (email: string, password: string) =>
+    request<{ token: string; admin: any }>("/admin-auth/signin", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    }),
+
+  // PLOTS
+  getPlots: () => request<{ plots: Plot[] }>("/plots"),
+  getPlot: (id: string) => request<{ plot: Plot }>(`/plots/${id}`),
+  createPlot: (data: Partial<Plot>) =>
+    request("/plots", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+  updatePlot: (id: string, data: Partial<Plot>) =>
+    request(`/plots/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
+  deletePlot: (id: string) =>
+    request(`/plots/${id}`, { method: "DELETE" }),
+
+  // INQUIRIES
+  getInquiries: () => request<{ inquiries: Inquiry[] }>("/inquiries"),
+  getInquiry: (id: string) =>
+    request<{ inquiry: Inquiry }>(`/inquiries/${id}`),
+
+  // BLOGS
+  getBlogs: () => request<{ blogs: BlogPost[] }>("/blogs"),
+  getBlog: (id: string) =>
+    request<{ blog: BlogPost }>(`/blogs/${id}`),
 }
