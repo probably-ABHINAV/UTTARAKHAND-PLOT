@@ -98,7 +98,7 @@ const AnimatedCounter = ({
  */
 const plotData = [
   {
-    id: 1,
+    id: bajrang-vatika,
     title: "Bajrang Vatika Premium",
     location: "Badripur, Dehradun",
     locationLink: "https://www.google.com/maps/@30.402437,77.750105,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
