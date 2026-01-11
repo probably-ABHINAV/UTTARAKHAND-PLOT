@@ -1,62 +1,43 @@
+"use client"
+
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 interface MainNavProps {
   className?: string
 }
 
 export function MainNav({ className }: MainNavProps) {
-  const navItems = [
-  {
-    title: "Properties",
-    items: [
-      { title: "All Plots", href: "/plots" },
-      { title: "Locations", href: "/locations" },
-      { title: "Investment Calculator", href: "/calculator" }
-    ]
-  },
-  {
-    title: "Services", 
-    items: [
-      { title: "Contact", href: "/contact" },
-      { title: "FAQ", href: "/faq" },
-      { title: "About", href: "/about" },
-      { title: "Blog", href: "/blog" }
-    ]
-  }
-]
+  const pathname = usePathname()
+
+  const links = [
+    { href: "/plots", label: "Our Plots" },
+    { href: "/locations", label: "Locations" },
+    { href: "/investment", label: "Why Invest" },
+    { href: "/calculator", label: "Calculator" },
+    { href: "/blog", label: "Blog" },
+    { href: "/about", label: "About" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/contact", label: "Contact" },
+  ]
+
   return (
-    <nav className={`hidden md:flex items-center gap-6 ${className}`}>
-      <Link href="/plots" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-        Our Plots
-      </Link>
-      <Link
-        href="/locations"
-        className="text-foreground hover:text-primary transition-colors font-medium text-sm"
-      >
-        Locations
-      </Link>
-      <Link
-        href="/investment"
-        className="text-foreground hover:text-primary transition-colors font-medium text-sm"
-      >
-        Why Invest
-      </Link>
-      <Link href="/calculator" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-        Calculator
-      </Link>
-      <Link href="/blog" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-        Blog
-      </Link>
-      <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-        About Us
-      </Link>
-      <Link href="/faq" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-        FAQ
-      </Link>
-      <Link href="/contact" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-        Contact
-      </Link>
+    <nav className={cn("hidden md:flex items-center gap-6 lg:gap-8", className)}>
+      {links.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          className={cn(
+            "text-sm font-medium transition-colors hover:text-primary",
+            pathname === link.href 
+              ? "text-primary font-semibold" 
+              : "text-muted-foreground"
+          )}
+        >
+          {link.label}
+        </Link>
+      ))}
     </nav>
   )
 }
