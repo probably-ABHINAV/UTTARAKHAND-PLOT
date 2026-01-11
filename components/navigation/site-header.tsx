@@ -17,7 +17,7 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
           <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-md bg-white shadow-sm p-0.5">
             <Image
-              src="/property-in-uk-logo.png"
+              src="/property in UK logo-1.png"
               alt="Property in UK Logo"
               width={40}
               height={40}
