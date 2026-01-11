@@ -33,11 +33,22 @@ export default function AdminSignInPage() {
         body: JSON.stringify({ email, password }),
       })
 
-      const data = await res.json()
+      const text = await res.text()
+      let data
 
-      if (!res.ok) throw new Error(data.error)
+      try {
+        data = JSON.parse(text)
+      } catch {
+        throw new Error("Server error (API not returning JSON)")
+      }
 
-      localStorage.setItem("adminToken", data.token)
+      if (!res.ok) throw new Error(data.error || "Login failed")
+
+      // ✅ SINGLE SOURCE OF TRUTH (IMPORTANT)
+      localStorage.setItem("isAuthenticated", "true")
+      localStorage.setItem("authToken", data.token)
+      localStorage.setItem("userData", JSON.stringify(data.admin))
+      localStorage.setItem("userName", data.admin.email)
 
       toast({
         title: "Login Successful",
@@ -76,7 +87,8 @@ export default function AdminSignInPage() {
             <div>
               <Label className="text-gray-300">Email</Label>
               <Input
-                type="admin@gmail.com"
+                type="email"          // ✅ FIXED
+                placeholder="admin@gmail.com"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -88,6 +100,7 @@ export default function AdminSignInPage() {
               <Label className="text-gray-300">Password</Label>
               <Input
                 type="password"
+                placeholder="••••••••"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
