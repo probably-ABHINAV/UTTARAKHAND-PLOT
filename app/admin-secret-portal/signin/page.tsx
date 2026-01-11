@@ -78,7 +78,7 @@ export default function AdminSignInPage() {
               <Input
                 type="email"
                 required
-                value={email}
+                value={admin@propertinuk.com}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-gray-700 text-white"
               />
