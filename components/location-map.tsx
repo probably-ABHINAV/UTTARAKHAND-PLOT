@@ -1,8 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-// 1. Dynamic imports prevent the "window is not defined" error on Vercel
-import dynamic from 'next/dynamic'
+import { useState } from 'react'
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
 
@@ -17,58 +15,8 @@ import {
   Navigation, 
   Maximize2,
   ExternalLink,
-  Loader2
+  Map as MapIcon
 } from "lucide-react"
-
-// Import Leaflet CSS (Crucial for the map to look right)
-useEffect(() => {
-    setIsClient(true)
-    
-    (async () => {
-      const L = (await import('leaflet')).default
-      
-      // ... existing icon code ...
-
-      // ⬇️ ADD THIS TO FIX CSS BUILD ERROR
-      if (!document.getElementById('leaflet-css')) {
-        const link = document.createElement("link");
-        link.id = 'leaflet-css';
-        link.rel = "stylesheet";
-        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-        document.head.appendChild(link);
-      }
-    })();
-  }, [])
-
-// --- DYNAMIC COMPONENT LOADING ---
-const MapContainer = dynamic(
-  () => import('react-leaflet').then((mod) => mod.MapContainer),
-  { ssr: false }
-)
-const TileLayer = dynamic(
-  () => import('react-leaflet').then((mod) => mod.TileLayer),
-  { ssr: false }
-)
-const Marker = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Marker),
-  { ssr: false }
-)
-const Popup = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Popup),
-  { ssr: false }
-)
-// Special component to handle map movement
-const MapUpdater = dynamic(
-  () => import('react-leaflet').then((mod) => {
-    const { useMap } = mod;
-    return function MapUpdater({ center }: { center: [number, number] }) {
-      const map = useMap();
-      map.flyTo(center, 14, { duration: 2 });
-      return null;
-    };
-  }),
-  { ssr: false }
-)
 
 // --- DATA ---
 const locations = [
@@ -100,41 +48,9 @@ const locations = [
 
 export function LocationMap() {
   const [activeLocation, setActiveLocation] = useState(locations[0])
-  const [isClient, setIsClient] = useState(false)
-  const [customIcon, setCustomIcon] = useState<any>(null)
-
-  // --- CLIENT SIDE INIT ---
-  useEffect(() => {
-    setIsClient(true)
-    
-    // Fix for missing marker icons in Next.js
-    const initLeaflet = async () => {
-      const L = (await import('leaflet')).default
-      
-      const icon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/markers/marker-icon-2x-orange.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-      })
-      setCustomIcon(icon)
-    }
-    initLeaflet()
-  }, [])
 
   const openGoogleMaps = (lat: number, lng: number) => {
-    window.open(`http://googleusercontent.com/maps.google.com/6{lat},${lng}`, '_blank')
-  }
-
-  // Fallback while loading
-  if (!isClient) {
-    return (
-      <div className="h-[500px] w-full flex items-center justify-center bg-muted/30">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
-      </div>
-    )
+    window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank')
   }
 
   return (
@@ -158,48 +74,28 @@ export function LocationMap() {
         <Card className="border-0 shadow-2xl overflow-hidden bg-background">
           <div className="grid lg:grid-cols-3 h-auto lg:h-[600px]">
             
-            {/* Left: The Map (OpenStreetMap) */}
-            <div className="lg:col-span-2 h-[400px] lg:h-full relative z-0">
-              <MapContainer 
-                center={[activeLocation.lat, activeLocation.lng]} 
-                zoom={13} 
-                scrollWheelZoom={false}
-                style={{ height: "100%", width: "100%", zIndex: 1 }}
-              >
-                {/* 1. The Map Tiles (Free OpenStreetMap) */}
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                
-                {/* 2. Map Controller (Handles animation) */}
-                <MapUpdater center={[activeLocation.lat, activeLocation.lng]} />
-
-                {/* 3. Markers */}
-                {customIcon && locations.map((loc) => (
-                  <Marker 
-                    key={loc.id} 
-                    position={[loc.lat, loc.lng]} 
-                    icon={customIcon}
-                    eventHandlers={{
-                      click: () => setActiveLocation(loc),
-                    }}
-                  >
-                    <Popup className="font-sans">
-                      <div className="p-1">
-                        <h3 className="font-bold text-sm mb-1 text-black">{loc.title}</h3>
-                        <p className="text-xs text-gray-600 mb-2">{loc.desc}</p>
-                        <button 
-                          onClick={() => openGoogleMaps(loc.lat, loc.lng)}
-                          className="text-xs text-[#FF7A00] font-bold hover:underline flex items-center gap-1"
-                        >
-                          Get Directions <ExternalLink className="h-3 w-3" />
-                        </button>
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
-              </MapContainer>
+            {/* Left: Visual Map Placeholder */}
+            <div className="lg:col-span-2 h-[400px] lg:h-full relative bg-slate-100 flex flex-col items-center justify-center text-center p-8 bg-[url('https://maps.wikimedia.org/img/osm-intl,13,30.3280,78.0400,300x200.png')] bg-cover">
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]" />
+              
+              <div className="relative z-10 max-w-md">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-primary/20">
+                  <MapIcon className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  {activeLocation.title}
+                </h3>
+                <p className="text-muted-foreground mb-8">
+                  {activeLocation.desc}
+                </p>
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-white shadow-xl hover:scale-105 transition-transform"
+                  onClick={() => openGoogleMaps(activeLocation.lat, activeLocation.lng)}
+                >
+                  View on Google Maps <ExternalLink className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
             </div>
 
             {/* Right: Location List */}
@@ -238,7 +134,7 @@ export function LocationMap() {
                       </code>
                       {activeLocation.id === location.id && (
                         <div className="text-xs font-medium text-primary flex items-center animate-in fade-in">
-                          Active <div className="w-2 h-2 rounded-full bg-primary ml-2 animate-pulse" />
+                          Selected <div className="w-2 h-2 rounded-full bg-primary ml-2 animate-pulse" />
                         </div>
                       )}
                     </div>
@@ -251,7 +147,7 @@ export function LocationMap() {
                   className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg h-12 text-base" 
                   onClick={() => openGoogleMaps(activeLocation.lat, activeLocation.lng)}
                 >
-                  <Maximize2 className="mr-2 h-4 w-4" /> Open in Google Maps
+                  <Maximize2 className="mr-2 h-4 w-4" /> Open Directions
                 </Button>
               </div>
             </div>
