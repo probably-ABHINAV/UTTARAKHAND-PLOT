@@ -365,53 +365,39 @@ export default function HomePage() {
       </section>
 
       {/* --- PLOTS SECTION --- */}
-      <section id="plots" className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
-              Featured <span className="text-primary">Inventory</span>
-            </h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-              Handpicked plots across the most promising locations in Uttarakhand.
-            </p>
-          </div>
+    <section className="py-20 bg-slate-50">
+  <div className="container mx-auto px-4">
 
-          {/* Search & Filter Bar */}
-          <div className="flex flex-col md:flex-row gap-4 mb-12 items-center justify-between bg-white p-4 rounded-2xl shadow-sm border">
-            <div className="relative w-full md:max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 h-5 w-5" />
-              <Input
-                placeholder="Search by location..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-12 text-base rounded-xl border-slate-200 focus-visible:ring-primary"
-              />
-            </div>
-            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
-              {["All Plots", "Popular", "Residential", "Investment"].map((filter) => (
-                <Button
-                  key={filter}
-                  variant={selectedFilter === filter ? "default" : "outline"}
-                  onClick={() => setSelectedFilter(filter)}
-                  className={`rounded-full px-6 ${
-                    selectedFilter === filter ? "bg-primary text-white" : "border-slate-300 text-slate-600"
-                  }`}
-                >
-                  <Filter className="mr-2 h-4 w-4" />
-                  {filter}
-                </Button>
-              ))}
-            </div>
-          </div>
+    {/* SECTION HEADING */}
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+        Featured Plots
+      </h2>
+      <p className="text-slate-600 mt-3 max-w-2xl mx-auto">
+        Discover premium residential and commercial plots with verified
+        documents and prime locations.
+      </p>
+    </div>
 
-          {/* Plots Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPlots.map((plot) => (
+    {/* SLUG MAP (IMPORTANT) */}
+    {(() => {
+      const plotSlugMap = {
+        1: "bajrang-vatika",
+        2: "nature-green-valley-phase5",
+        3: "friends-colony-phase-1",
+      };
+
+      return (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredPlots.map((plot) => {
+            const slug = plotSlugMap[plot.id];
+
+            return (
               <Card
                 key={plot.id}
                 className="group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden bg-white flex flex-col h-full"
               >
-                {/* Image Area */}
+                {/* IMAGE AREA */}
                 <div className="relative h-64 overflow-hidden">
                   <Image
                     src={plot.images[currentImageIndex[plot.id] || 0]}
@@ -420,63 +406,84 @@ export default function HomePage() {
                     height={350}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                  
-                  {/* Floating Badges */}
+
+                  {/* BADGES */}
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <Badge className="bg-secondary text-white hover:bg-secondary">{plot.type}</Badge>
-                    {plot.isPopular && <Badge className="bg-primary text-white hover:bg-primary">Popular</Badge>}
+                    <Badge className="bg-secondary text-white">
+                      {plot.type}
+                    </Badge>
+                    {plot.isPopular && (
+                      <Badge className="bg-primary text-white">
+                        Popular
+                      </Badge>
+                    )}
                   </div>
 
-                  {/* Action Buttons */}
+                  {/* ACTION BUTTONS */}
                   <div className="absolute top-4 right-4 flex gap-2">
                     <Button
                       size="icon"
                       variant="secondary"
                       onClick={() => toggleFavorite(plot.id)}
-                      className="rounded-full bg-white/90 hover:bg-white text-slate-700"
+                      className="rounded-full bg-white/90 hover:bg-white"
                     >
-                      <Heart className={`h-4 w-4 ${favorites.includes(plot.id) ? "fill-red-500 text-red-500" : ""}`} />
+                      <Heart
+                        className={`h-4 w-4 ${
+                          favorites.includes(plot.id)
+                            ? "fill-red-500 text-red-500"
+                            : "text-slate-700"
+                        }`}
+                      />
                     </Button>
+
                     <Button
                       size="icon"
                       variant="secondary"
                       onClick={() => sharePlot(plot)}
-                      className="rounded-full bg-white/90 hover:bg-white text-slate-700"
+                      className="rounded-full bg-white/90 hover:bg-white"
                     >
-                      <Share2 className="h-4 w-4" />
+                      <Share2 className="h-4 w-4 text-slate-700" />
                     </Button>
                   </div>
 
-                  {/* Quick View Button */}
+                  {/* QUICK VIEW */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                     <Button
-                       variant="secondary"
-                       className="rounded-full bg-white/90 hover:bg-white text-slate-900"
-                       onClick={() => setSelectedPlot(plot)}
-                     >
-                        <Play className="mr-2 h-4 w-4 fill-current" /> Quick View
-                     </Button>
+                    <Button
+                      variant="secondary"
+                      className="rounded-full bg-white/90 hover:bg-white"
+                      onClick={() => setSelectedPlot(plot)}
+                    >
+                      <Play className="mr-2 h-4 w-4" />
+                      Quick View
+                    </Button>
                   </div>
 
+                  {/* AVAILABILITY */}
                   <div className="absolute bottom-3 right-3">
-                     <Badge variant="outline" className="bg-black/60 text-white border-0 backdrop-blur-sm">
-                       <Users className="mr-1 h-3 w-3" /> {plot.available} Units Left
-                     </Badge>
+                    <Badge className="bg-black/60 text-white border-0 backdrop-blur-sm">
+                      <Users className="mr-1 h-3 w-3" />
+                      {plot.available} Units Left
+                    </Badge>
                   </div>
                 </div>
 
-                {/* Content Area */}
+                {/* CONTENT AREA */}
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
                       {plot.title}
                     </CardTitle>
+
                     <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded text-yellow-700">
                       <Star className="h-3 w-3 fill-current" />
-                      <span className="text-xs font-bold">{plot.rating}</span>
+                      <span className="text-xs font-bold">
+                        {plot.rating}
+                      </span>
                     </div>
                   </div>
+
                   <CardDescription className="flex items-center gap-1 text-slate-500">
                     <MapPin className="h-4 w-4 text-primary" />
                     {plot.location}
@@ -484,39 +491,74 @@ export default function HomePage() {
                 </CardHeader>
 
                 <CardContent className="flex-grow space-y-4">
+                  {/* SIZE & PRICE */}
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                      <p className="text-slate-500 text-xs uppercase font-semibold">Size</p>
-                      <p className="font-medium text-slate-900">{plot.size}</p>
+                    <div className="bg-slate-50 p-3 rounded-lg">
+                      <p className="text-xs uppercase text-slate-500 font-semibold">
+                        Size
+                      </p>
+                      <p className="font-medium text-slate-900">
+                        {plot.size}
+                      </p>
                     </div>
-                    <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
-                      <p className="text-blue-500 text-xs uppercase font-semibold">Price</p>
-                      <p className="font-medium text-blue-700">{plot.price}</p>
+
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      <p className="text-xs uppercase text-blue-500 font-semibold">
+                        Price
+                      </p>
+                      <p className="font-medium text-blue-700">
+                        {plot.price}
+                      </p>
                     </div>
                   </div>
 
+                  {/* FEATURES */}
                   <div className="flex flex-wrap gap-2">
                     {plot.features.slice(0, 3).map((feature, i) => (
-                      <span key={i} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md">
+                      <span
+                        key={i}
+                        className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md"
+                      >
                         {feature}
                       </span>
                     ))}
                   </div>
 
-                  <div className="pt-2 flex gap-3 mt-auto">
-                     <Button className="flex-1 bg-primary hover:bg-primary/90" asChild>
-                        <Link href={`/plots/${plot.id}`}>View Details</Link>
-                     </Button>
-                     <Button variant="outline" className="border-primary text-primary hover:bg-primary/5" onClick={() => scrollToSection("contact")}>
-                        Enquire
-                     </Button>
+                  {/* CTA BUTTONS */}
+                  <div className="flex gap-3 pt-2 mt-auto">
+                    {slug ? (
+                      <Button
+                        className="flex-1 bg-primary hover:bg-primary/90"
+                        asChild
+                      >
+                        <Link href={`/plots/${slug}`}>
+                          View Details
+                        </Link>
+                      </Button>
+                    ) : (
+                      <Button className="flex-1" disabled>
+                        Coming Soon
+                      </Button>
+                    )}
+
+                    <Button
+                      variant="outline"
+                      className="border-primary text-primary hover:bg-primary/5"
+                      onClick={() => scrollToSection("contact")}
+                    >
+                      Enquire
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </section>
+      );
+    })()}
+  </div>
+</section>
+
 
       {/* --- GALLERY SECTION --- */}
       <section id="gallery" className="py-24 bg-white">
