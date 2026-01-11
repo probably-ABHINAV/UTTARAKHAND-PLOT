@@ -76,9 +76,9 @@ export default function AdminSignInPage() {
             <div>
               <Label className="text-gray-300">Email</Label>
               <Input
-                type="email"
+                type="admin@gmail.com"
                 required
-                value={admin@propertinuk.com}
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-gray-700 text-white"
               />
