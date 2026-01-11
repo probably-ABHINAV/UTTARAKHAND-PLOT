@@ -21,7 +21,24 @@ import {
 } from "lucide-react"
 
 // Import Leaflet CSS (Crucial for the map to look right)
-import "leaflet/dist/leaflet.css"
+useEffect(() => {
+    setIsClient(true)
+    
+    (async () => {
+      const L = (await import('leaflet')).default
+      
+      // ... existing icon code ...
+
+      // ⬇️ ADD THIS TO FIX CSS BUILD ERROR
+      if (!document.getElementById('leaflet-css')) {
+        const link = document.createElement("link");
+        link.id = 'leaflet-css';
+        link.rel = "stylesheet";
+        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(link);
+      }
+    })();
+  }, [])
 
 // --- DYNAMIC COMPONENT LOADING ---
 const MapContainer = dynamic(
