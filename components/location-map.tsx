@@ -1,44 +1,74 @@
 "use client"
 
-import React, { useState } from 'react'
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
+import { useState, useEffect } from 'react'
+// 1. Dynamic imports prevent the "window is not defined" error on Vercel
+import dynamic from 'next/dynamic'
+import { SiteHeader } from "@/components/navigation/site-header"
+import { SiteFooter } from "@/components/navigation/footer"
+
+// UI Components
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+
+// Icons
 import { 
   MapPin, 
   Navigation, 
-  ExternalLink, 
-  Maximize2 
-} from 'lucide-react'
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+  Maximize2,
+  ExternalLink,
+  Loader2
+} from "lucide-react"
 
-// --- MAP CONFIGURATION ---
-const mapContainerStyle = {
-  width: '100%',
-  height: '100%',
-  borderRadius: '1rem'
-}
+// Import Leaflet CSS (Crucial for the map to look right)
+import "leaflet/dist/leaflet.css"
 
-const center = {
-  lat: 30.402437,
-  lng: 77.750105
-}
+// --- DYNAMIC COMPONENT LOADING ---
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+)
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+)
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+)
+const Popup = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Popup),
+  { ssr: false }
+)
+// Special component to handle map movement
+const MapUpdater = dynamic(
+  () => import('react-leaflet').then((mod) => {
+    const { useMap } = mod;
+    return function MapUpdater({ center }: { center: [number, number] }) {
+      const map = useMap();
+      map.flyTo(center, 14, { duration: 2 });
+      return null;
+    };
+  }),
+  { ssr: false }
+)
 
+// --- DATA ---
 const locations = [
   { 
     id: 1, 
     lat: 30.3280, 
     lng: 78.0400, 
     title: "Badripur Premium", 
-    desc: "Residential Plots",
-    type: "Investment"
+    desc: "Residential Investment Plots",
+    type: "High Growth"
   },
   { 
     id: 2, 
     lat: 30.3350, 
     lng: 78.0450, 
     title: "Ganeshpur Valley", 
-    desc: "Gated Community",
+    desc: "Gated Community Phase 5",
     type: "Residential"
   },
   { 
@@ -51,35 +81,43 @@ const locations = [
   }
 ]
 
-// Custom map style to remove clutter (POIs) and make it look professional
-const mapStyles = [
-  {
-    featureType: "poi",
-    elementType: "labels",
-    stylers: [{ visibility: "off" }],
-  },
-  {
-    featureType: "transit",
-    elementType: "labels.icon",
-    stylers: [{ visibility: "off" }],
-  }
-]
-
 export function LocationMap() {
-  const [activeMarker, setActiveMarker] = useState<number | null>(null)
-  const [mapError, setMapError] = useState(false)
+  const [activeLocation, setActiveLocation] = useState(locations[0])
+  const [isClient, setIsClient] = useState(false)
+  const [customIcon, setCustomIcon] = useState<any>(null)
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-
-  const handleActiveMarker = (marker: number) => {
-    if (marker === activeMarker) {
-      return setActiveMarker(null)
+  // --- CLIENT SIDE INIT ---
+  useEffect(() => {
+    setIsClient(true)
+    
+    // Fix for missing marker icons in Next.js
+    const initLeaflet = async () => {
+      const L = (await import('leaflet')).default
+      
+      const icon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/markers/marker-icon-2x-orange.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      })
+      setCustomIcon(icon)
     }
-    setActiveMarker(marker)
-  }
+    initLeaflet()
+  }, [])
 
   const openGoogleMaps = (lat: number, lng: number) => {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank')
+    window.open(`http://googleusercontent.com/maps.google.com/6{lat},${lng}`, '_blank')
+  }
+
+  // Fallback while loading
+  if (!isClient) {
+    return (
+      <div className="h-[500px] w-full flex items-center justify-center bg-muted/30">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    )
   }
 
   return (
@@ -88,11 +126,11 @@ export function LocationMap() {
         
         {/* Header */}
         <div className="text-center mb-12 max-w-3xl mx-auto">
-          <Badge variant="outline" className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5">
-            <MapPin className="mr-2 h-3 w-3" /> Project Locations
+          <Badge variant="outline" className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm shadow-sm">
+            <MapPin className="mr-2 h-3 w-3" /> Prime Locations
           </Badge>
           <h2 className="font-extrabold text-4xl md:text-5xl mb-6 text-foreground">
-            Explore Prime <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Locations</span>
+            Explore Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Projects</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Strategically located plots offering the perfect balance of connectivity and serenity across Uttarakhand.
@@ -101,113 +139,102 @@ export function LocationMap() {
 
         {/* Map Container */}
         <Card className="border-0 shadow-2xl overflow-hidden bg-background">
-          <div className="grid lg:grid-cols-3">
+          <div className="grid lg:grid-cols-3 h-auto lg:h-[600px]">
             
-            {/* Left: The Map */}
-            <div className="lg:col-span-2 h-[500px] relative bg-slate-100">
-              {apiKey ? (
-                <LoadScript 
-                  googleMapsApiKey={apiKey}
-                  onError={() => setMapError(true)}
-                >
-                  <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    center={center}
-                    zoom={13}
-                    options={{
-                      styles: mapStyles,
-                      zoomControl: true,
-                      streetViewControl: false,
-                      mapTypeControl: false,
-                      fullscreenControl: true,
+            {/* Left: The Map (OpenStreetMap) */}
+            <div className="lg:col-span-2 h-[400px] lg:h-full relative z-0">
+              <MapContainer 
+                center={[activeLocation.lat, activeLocation.lng]} 
+                zoom={13} 
+                scrollWheelZoom={false}
+                style={{ height: "100%", width: "100%", zIndex: 1 }}
+              >
+                {/* 1. The Map Tiles (Free OpenStreetMap) */}
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                
+                {/* 2. Map Controller (Handles animation) */}
+                <MapUpdater center={[activeLocation.lat, activeLocation.lng]} />
+
+                {/* 3. Markers */}
+                {customIcon && locations.map((loc) => (
+                  <Marker 
+                    key={loc.id} 
+                    position={[loc.lat, loc.lng]} 
+                    icon={customIcon}
+                    eventHandlers={{
+                      click: () => setActiveLocation(loc),
                     }}
                   >
-                    {locations.map((loc) => (
-                      <Marker
-                        key={loc.id}
-                        position={{ lat: loc.lat, lng: loc.lng }}
-                        onClick={() => handleActiveMarker(loc.id)}
-                        animation={typeof google !== 'undefined' ? google.maps.Animation.DROP : undefined}
-                      >
-                        {activeMarker === loc.id && (
-                          <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                            <div className="p-2 min-w-[150px]">
-                              <h3 className="font-bold text-black">{loc.title}</h3>
-                              <p className="text-xs text-gray-600 mb-2">{loc.desc}</p>
-                              <button 
-                                onClick={() => openGoogleMaps(loc.lat, loc.lng)}
-                                className="text-xs text-blue-600 font-semibold underline flex items-center gap-1"
-                              >
-                                Get Directions <ExternalLink className="h-3 w-3" />
-                              </button>
-                            </div>
-                          </InfoWindow>
-                        )}
-                      </Marker>
-                    ))}
-                  </GoogleMap>
-                </LoadScript>
-              ) : (
-                /* Fallback if no API key is present */
-                <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                  <div className="text-center p-6">
-                    <MapPin className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-foreground">Map Unavailable</h3>
-                    <p className="text-muted-foreground mb-4">Interactive map requires an API key.</p>
-                    <Button 
-                      variant="outline"
-                      onClick={() => openGoogleMaps(center.lat, center.lng)}
-                    >
-                      View on Google Maps <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              )}
+                    <Popup className="font-sans">
+                      <div className="p-1">
+                        <h3 className="font-bold text-sm mb-1 text-black">{loc.title}</h3>
+                        <p className="text-xs text-gray-600 mb-2">{loc.desc}</p>
+                        <button 
+                          onClick={() => openGoogleMaps(loc.lat, loc.lng)}
+                          className="text-xs text-[#FF7A00] font-bold hover:underline flex items-center gap-1"
+                        >
+                          Get Directions <ExternalLink className="h-3 w-3" />
+                        </button>
+                      </div>
+                    </Popup>
+                  </Marker>
+                ))}
+              </MapContainer>
             </div>
 
             {/* Right: Location List */}
-            <div className="lg:col-span-1 border-l border-border bg-card p-6 flex flex-col h-[500px]">
-              <h3 className="font-bold text-xl mb-6 flex items-center gap-2">
-                <Navigation className="h-5 w-5 text-primary" /> Key Landmarks
+            <div className="lg:col-span-1 border-l border-border bg-card p-6 flex flex-col h-full overflow-hidden">
+              <h3 className="font-bold text-xl mb-6 flex items-center gap-2 text-foreground">
+                <Navigation className="h-5 w-5 text-primary" /> Select Location
               </h3>
               
-              <div className="space-y-4 overflow-y-auto pr-2 custom-scrollbar flex-1">
+              <div className="space-y-4 overflow-y-auto pr-2 flex-1 custom-scrollbar">
                 {locations.map((location, index) => (
                   <div 
                     key={index} 
-                    className="group p-4 rounded-xl border border-border hover:border-primary/50 hover:shadow-md transition-all cursor-pointer bg-background"
-                    onClick={() => {
-                      setActiveMarker(location.id);
-                      if (!apiKey) openGoogleMaps(location.lat, location.lng);
-                    }}
+                    className={`
+                      group p-4 rounded-xl border transition-all cursor-pointer relative
+                      ${activeLocation.id === location.id 
+                        ? 'border-primary bg-primary/5 shadow-md' 
+                        : 'border-border hover:border-primary/50 bg-background hover:bg-muted/50'}
+                    `}
+                    onClick={() => setActiveLocation(location)}
                   >
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <h4 className="font-bold text-foreground group-hover:text-primary transition-colors">
+                        <h4 className={`font-bold transition-colors ${activeLocation.id === location.id ? 'text-primary' : 'text-foreground'}`}>
                           {location.title}
                         </h4>
                         <p className="text-sm text-muted-foreground">{location.desc}</p>
                       </div>
-                      <Badge variant="secondary" className="text-[10px] uppercase tracking-wider">
+                      <Badge variant={activeLocation.id === location.id ? "default" : "secondary"} className="text-[10px] uppercase tracking-wider">
                         {location.type}
                       </Badge>
                     </div>
                     
                     <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/50">
-                      <code className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
+                      <code className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded font-mono">
                         {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
                       </code>
-                      <Button size="icon" variant="ghost" className="h-8 w-8 text-primary">
-                        <Navigation className="h-4 w-4" />
-                      </Button>
+                      {activeLocation.id === location.id && (
+                        <div className="text-xs font-medium text-primary flex items-center animate-in fade-in">
+                          Active <div className="w-2 h-2 rounded-full bg-primary ml-2 animate-pulse" />
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-6 pt-6 border-t border-border">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg" onClick={() => openGoogleMaps(center.lat, center.lng)}>
-                  <Maximize2 className="mr-2 h-4 w-4" /> Open Full Map
+                <Button 
+                  className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg h-12 text-base" 
+                  onClick={() => openGoogleMaps(activeLocation.lat, activeLocation.lng)}
+                >
+                  <Maximize2 className="mr-2 h-4 w-4" /> Open in Google Maps
                 </Button>
               </div>
             </div>
