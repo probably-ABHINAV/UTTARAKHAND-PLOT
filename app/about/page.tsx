@@ -121,7 +121,7 @@ export default function AboutPage() {
              Est. 2008 • 15+ Years of Trust
           </Badge>
           <h1 className="font-extrabold text-5xl md:text-6xl mb-6 tracking-tight text-foreground">
-            Building Trust in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Devbhoomi</span>
+            Building Trust in <span className="font-extrabold text-5xl md:text-6xl mb-6 tracking-tight text-foreground">Devbhoomi</span>
           </h1>
           <p className="text-muted-foreground text-xl leading-relaxed max-w-3xl mx-auto">
             Your trusted partner for premium land plots in Uttarakhand's most beautiful hill stations. 
