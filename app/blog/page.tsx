@@ -161,7 +161,7 @@ export default function BlogPage() {
              <BookOpen className="mr-2 h-3 w-3" /> Knowledge Hub
           </Badge>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            Property Investment <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Insights</span>
+            Property Investment <span className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Insights</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Expert guides, market trends, and location analysis to help you make informed real estate decisions in Uttarakhand.
