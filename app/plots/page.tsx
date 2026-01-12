@@ -287,7 +287,7 @@ export default function PlotsPage() {
             verified • legal • ready
           </Badge>
           <h1 className="font-extrabold text-5xl md:text-6xl lg:text-7xl mb-6 tracking-tight">
-            Premium Residential <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Plots</span>
+            Premium Residential <span className="font-extrabold text-5xl md:text-6xl lg:text-7xl mb-6 tracking-tight">Plots</span>
           </h1>
           <p className="text-slate-600 text-xl max-w-2xl mx-auto leading-relaxed mb-8">
             Handpicked properties offering excellent connectivity, utility access, and guaranteed legal clarity in Uttarakhand.
