@@ -317,7 +317,7 @@ export default function HomePage() {
 
             <h1 className="font-extrabold text-5xl md:text-7xl lg:text-8xl tracking-tight text-white drop-shadow-2xl">
               Build Your Dream <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+              <span className="font-extrabold text-5xl md:text-7xl lg:text-8xl tracking-tight text-white drop-shadow-2xl">
                  in Devbhoomi
               </span>
             </h1>
@@ -565,7 +565,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Project <span className="text-primary">Gallery</span>
+              Project <span className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Gallery</span>
             </h2>
             <p className="text-slate-600">Visuals from our actual development sites.</p>
           </div>
@@ -606,7 +606,7 @@ export default function HomePage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">ROI <span className="text-primary">Calculator</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">ROI <span className="text-4xl md:text-5xl font-bold mb-4">Calculator</span></h2>
             <p className="text-slate-600">Estimate your future returns with our proprietary algorithm.</p>
           </div>
 
