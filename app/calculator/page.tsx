@@ -134,7 +134,7 @@ export default function CalculatorPage() {
              <TrendingUp className="mr-2 h-3 w-3" /> ROI Calculator
           </Badge>
           <h1 className="font-extrabold text-5xl md:text-7xl mb-6 tracking-tight">
-            Smart Investment <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Tool</span>
+            Smart Investment <span className="font-extrabold text-5xl md:text-7xl mb-6 tracking-tight">Tool</span>
           </h1>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
             Calculate your potential returns and make informed investment decisions with our advanced property algorithm.
