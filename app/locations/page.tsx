@@ -129,7 +129,7 @@ export default function LocationsPage() {
             Top Investment Hubs
           </Badge>
           <h1 className="font-extrabold text-5xl md:text-6xl mb-6 tracking-tight text-slate-900">
-            Prime Locations in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Uttarakhand</span>
+            Prime Locations in <span className="font-extrabold text-5xl md:text-6xl mb-6 tracking-tight text-slate-900">Uttarakhand</span>
           </h1>
           <p className="text-slate-600 text-xl leading-relaxed">
             From the bustling outskirts of Dehradun to the serene Himalayan foothills, explore neighborhoods that promise both lifestyle upgrades and solid asset appreciation.
