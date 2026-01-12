@@ -128,7 +128,7 @@ export default function FAQPage() {
           </div>
           
           <h1 className="font-extrabold text-5xl md:text-6xl mb-6 tracking-tight text-foreground">
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Questions</span>
+            Frequently Asked <span className="font-extrabold text-5xl md:text-6xl mb-6 tracking-tight text-foreground">Questions</span>
           </h1>
           
           <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed mb-8">
