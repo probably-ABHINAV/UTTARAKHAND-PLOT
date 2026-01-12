@@ -110,7 +110,7 @@ export default function InvestmentPage() {
              <TrendingUp className="mr-2 h-3 w-3" /> Investment Guide
           </Badge>
           <h1 className="font-extrabold text-5xl md:text-7xl mb-6 tracking-tight text-foreground">
-            Why Invest in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Uttarakhand?</span>
+            Why Invest in <span className="font-extrabold text-5xl md:text-7xl mb-6 tracking-tight text-foreground">Uttarakhand?</span>
           </h1>
           <p className="text-muted-foreground text-xl leading-relaxed max-w-3xl mx-auto mb-10">
             Discover the compelling reasons why Uttarakhand real estate offers exceptional investment opportunities with high returns, legal security, and strategic growth potential.
