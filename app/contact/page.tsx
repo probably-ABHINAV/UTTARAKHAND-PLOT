@@ -155,7 +155,7 @@ export default function ContactPage() {
              <MessageSquare className="mr-2 h-3 w-3" /> We'd love to hear from you
           </Badge>
           <h1 className="font-extrabold text-5xl md:text-7xl mb-6 tracking-tight">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Touch</span>
+            Get in <span className="font-extrabold text-5xl md:text-7xl mb-6 tracking-tight">Touch</span>
           </h1>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
             Ready to start your property investment journey? Our experienced team is here to help you find the perfect plot in Uttarakhand.
