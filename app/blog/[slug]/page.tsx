@@ -121,7 +121,7 @@ const blogPosts = [
       estate decision hai.
     </p>
   `
-}
+},
 {
   id: 4,
   title: "Why Buy Affordable Property in Uttarakhand — 7 Clear Reasons",
