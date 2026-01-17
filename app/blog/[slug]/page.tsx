@@ -133,7 +133,7 @@ const blogPosts = [
   metaTitle: "Why Buy Affordable Property in Uttarakhand",
   metaDescription:
     "Explore 7 clear reasons to buy affordable property in Uttarakhand, including tourism demand, connectivity, and long-term ROI.",
-  image: "/images/affordable-uttarakhand.png",
+  image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg",
 },
 {
   id: 4,
