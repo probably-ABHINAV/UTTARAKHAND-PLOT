@@ -52,7 +52,7 @@ const blogPosts = [
     lastModified: "2026-01-17",
     views: 1205,
     featured: true,
-    image: "/images/affordable-uttarakhand.png",
+    image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg ",
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ const blogPosts = [
     lastModified: "2025-11-30",
     views: 1205,
     featured: true,
-    image: "/images/affordable-uttarakhand.png",
+    image: "/images/E_1760471281368.jpg",
   },
   {
     id: 3,
@@ -84,7 +84,7 @@ const blogPosts = [
     lastModified: "2025-11-30",
     views: 980,
     featured: false,
-    image: "/images/uttarakhand-property.png",
+    image: "/images/dehradun-outskirts-plots.jpg",
   },
   {
     id: 2,
@@ -100,7 +100,7 @@ const blogPosts = [
     lastModified: "2025-11-29",
     views: 850,
     featured: false,
-    image: "/images/rishikesh-land-investment.jpg"
+    image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_af26fc11.jpg"
   },
   {
     id: 1,
