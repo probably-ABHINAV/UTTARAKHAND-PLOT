@@ -39,6 +39,22 @@ import {
 // --- BLOG DATA ---
 const blogPosts = [
   {
+    id: 5,
+    title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
+    slug: "why-investing-in-dehradun-residential-plots-is-a-smart-move-2025",
+    excerpt: "Affordable property in Uttarakhand offers flexibility, strong tourism demand, improving infrastructure, and long-term appreciation potential.",
+    content: `...`, // (Truncated for brevity in code block, keep your full content)
+    category: "Market Trends",
+    tags: ["Affordable Property", "Uttarakhand Investment", "Dehradun Plots"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-17",
+    lastModified: "2026-01-17",
+    views: 1205,
+    featured: true,
+    image: "/images/affordable-uttarakhand.png",
+  },
+  {
     id: 4,
     title: "Why Buy Affordable Property in Uttarakhand — 7 Clear Reasons",
     slug: "why-buy-affordable-property-in-uttarakhand",
