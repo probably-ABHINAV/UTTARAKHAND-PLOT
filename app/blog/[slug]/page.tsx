@@ -11,7 +11,7 @@ import { notFound } from "next/navigation"
 // Blog posts data (same as admin section)
 const blogPosts = [
   {
-  id: "6",
+  id: "5",
   title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
   slug: "why-investing-in-dehradun-residential-plots-is-a-smart-move-2025",
   created_at: "2025-12-05",
@@ -120,7 +120,20 @@ const blogPosts = [
       banana chahte ho ya long-term investment, yeh ek stable aur smart real
       estate decision hai.
     </p>
-  `
+  `,
+  
+  category: "Market Trends",
+  tags: ["Affordable Property", "Uttarakhand Investment", "Dehradun Plots"],
+  author: "Property Manager",
+  status: "Published",
+  publishedDate: "2026-01-17",
+  lastModified: "2026-01-17",
+  views: 0,
+  featured: false,
+  metaTitle: "Why Buy Affordable Property in Uttarakhand",
+  metaDescription:
+    "Explore 7 clear reasons to buy affordable property in Uttarakhand, including tourism demand, connectivity, and long-term ROI.",
+  image: "/images/affordable-uttarakhand.png",
 },
 {
   id: 4,
