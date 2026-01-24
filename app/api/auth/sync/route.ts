@@ -4,6 +4,8 @@ import { users } from "@/db/schema";
 import { stackServerApp } from "@/stack";
 import { eq } from "drizzle-orm";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
     try {
         const user = await stackServerApp.getUser();
