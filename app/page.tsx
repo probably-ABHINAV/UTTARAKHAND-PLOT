@@ -6,7 +6,13 @@ import { eq } from "drizzle-orm";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const allPlots = await db.select().from(plots).where(eq(plots.is_published, true));
+  let allPlots = [];
+  try {
+    allPlots = await db.select().from(plots).where(eq(plots.is_published, true));
+  } catch (error) {
+    console.error("Critical Error fetching plots:", error);
+    // Continue with empty array so site doesn't crash completely
+  }
 
   return <HomeClient initialPlots={allPlots} />;
 }
