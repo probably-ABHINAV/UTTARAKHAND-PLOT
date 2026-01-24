@@ -7,12 +7,15 @@ import { MainNav } from "./main-nav"
 import { MobileNav } from "./mobile-nav"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Phone, User } from "lucide-react"
+import { useUser } from "@stackframe/stack"
 
 export function SiteHeader() {
+  const user = useUser();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        
+
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
           <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-md bg-white shadow-sm p-0.5">
@@ -30,28 +33,34 @@ export function SiteHeader() {
             <span className="text-lg font-bold text-primary tracking-tight">Uttarakhand</span>
           </div>
         </Link>
-        
+
         {/* Desktop Navigation */}
         <MainNav />
-        
+
         {/* Right Side Actions */}
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-2">
-            <LanguageSwitcher />
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            {/* LanguageSwitcher removed as per request */}
+
+            <Button
+              variant="ghost"
+              size="sm"
               className="text-muted-foreground hover:text-foreground"
               asChild
             >
-              <Link href="/signin">
-                <User className="mr-2 h-4 w-4" /> Sign in
-              </Link>
+              {user ? (
+                <Link href={user.primaryEmail && ["your-admin-email@example.com", "admin@propertyinuttrakhand.com"].includes(user.primaryEmail) ? "/admin" : "/handler/account-settings"}>
+                  <User className="mr-2 h-4 w-4" /> {user.displayName || "Account"}
+                </Link>
+              ) : (
+                <Link href="/handler/sign-in">
+                  <User className="mr-2 h-4 w-4" /> Sign in
+                </Link>
+              )}
             </Button>
 
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className="bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 shadow-md transition-all"
               onClick={() => window.open('tel:+917870231314', '_self')}
             >

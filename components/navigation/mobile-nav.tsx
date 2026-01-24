@@ -7,22 +7,25 @@ import { usePathname } from "next/navigation"
 
 // UI Components
 import { Button } from "@/components/ui/button"
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetTrigger, 
-  SheetHeader, 
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
   SheetTitle,
-  SheetDescription 
+  SheetDescription
 } from "@/components/ui/sheet"
 import { Separator } from "@/components/ui/separator"
 
 // Icons
 import { Menu, Phone, ArrowRight } from "lucide-react"
 
+import { useUser } from "@stackframe/stack"
+
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const user = useUser()
 
   const closeSheet = () => setIsOpen(false)
 
@@ -35,7 +38,8 @@ export function MobileNav() {
     { title: "Blog", href: "/blog" },
     { title: "About Us", href: "/about" },
     { title: "FAQ", href: "/faq" },
-    { title: "Contact", href: "/contact" }
+    { title: "Contact", href: "/contact" },
+    ...(user ? [{ title: user.displayName || "My Account", href: user.primaryEmail && ["your-admin-email@example.com", "admin@propertyinuttrakhand.com"].includes(user.primaryEmail) ? "/admin" : "/handler/account-settings" }] : [{ title: "Sign In", href: "/handler/sign-in" }])
   ]
 
   return (
@@ -46,9 +50,9 @@ export function MobileNav() {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      
+
       <SheetContent side="left" className="w-[300px] sm:w-[350px] p-0 flex flex-col">
-        
+
         {/* Header Section */}
         <SheetHeader className="p-6 text-left border-b border-border bg-muted/20">
           <div className="flex items-center gap-3 mb-2">
@@ -61,7 +65,7 @@ export function MobileNav() {
                 className="h-full w-full object-contain"
               />
             </div>
-            <SheetTitle className="text-lg font-bold text-foreground">Property in <br/><span className="text-primary">Uttarakhand</span></SheetTitle>
+            <SheetTitle className="text-lg font-bold text-foreground">Property in <br /><span className="text-primary">Uttarakhand</span></SheetTitle>
           </div>
           <SheetDescription className="text-xs text-muted-foreground">
             Premium plots & land investments.
@@ -80,8 +84,8 @@ export function MobileNav() {
                   onClick={closeSheet}
                   className={`
                     flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium transition-all
-                    ${isActive 
-                      ? "bg-primary/10 text-primary" 
+                    ${isActive
+                      ? "bg-primary/10 text-primary"
                       : "text-foreground/80 hover:bg-muted hover:text-foreground"
                     }
                   `}
@@ -96,15 +100,15 @@ export function MobileNav() {
 
         {/* Footer Actions */}
         <div className="p-6 border-t border-border bg-muted/20 mt-auto">
-          <Button 
+          <Button
             className="w-full bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-md mb-3"
             onClick={() => window.open('tel:+917870231314', '_self')}
           >
             <Phone className="mr-2 h-4 w-4" /> Call Now
           </Button>
-          
-          <Button 
-            variant="outline" 
+
+          <Button
+            variant="outline"
             className="w-full justify-between group"
             onClick={() => {
               window.open('/contact', '_self')

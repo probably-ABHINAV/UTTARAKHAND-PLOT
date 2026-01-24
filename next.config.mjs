@@ -21,20 +21,6 @@ const nextConfig = {
     ];
   },
   // API routes rewrite
-  async rewrites() {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://0.0.0.0:8000';
-    
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${backendUrl}/api/:path*`,
-      },
-      {
-        source: '/health',
-        destination: `${backendUrl}/health`,
-      },
-    ];
-  },
   images: {
     remotePatterns: [
       {
@@ -46,6 +32,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
         port: '',
         pathname: '/**',
       },

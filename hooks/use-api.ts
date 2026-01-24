@@ -1,142 +1,168 @@
-// Custom hooks for API operations with React Query-like functionality
-import { useState, useEffect, useCallback } from 'react';
-import { apiClient, Plot, Inquiry } from '@/lib/api-client';
+import { useState, useEffect, useCallback } from "react";
+import { plots } from "@/db/schema";
+import { InferSelectModel } from "drizzle-orm";
 
-// Generic hook for API calls
-export function useApi<T>(
-  apiCall: () => Promise<T>,
-  dependencies: any[] = []
-) {
-  const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export type Plot = InferSelectModel<typeof plots>;
 
-  const refetch = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const result = await apiCall();
-      setData(result);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      setData(null);
-    } finally {
-      setLoading(false);
-    }
-  }, dependencies);
-
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
-
-  return { data, loading, error, refetch };
-}
-
-// Plots hooks
 export function usePlots() {
-  return useApi(() => apiClient.getPlots());
-}
-
-export function usePlot(id: string) {
-  return useApi(() => apiClient.getPlot(id), [id]);
-}
-
-// Inquiries hooks  
-export function useInquiries() {
-  return useApi(() => apiClient.getInquiries());
-}
-
-export function useInquiry(id: string) {
-  return useApi(() => apiClient.getInquiry(id), [id]);
-}
-
-// Mutation hook for create/update/delete operations
-export function useMutation<T, U>(
-  mutationFn: (variables: U) => Promise<T>
-) {
-  const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<{ plots: Plot[] }>({ plots: [] });
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const mutate = useCallback(async (variables: U) => {
+  const fetchPlots = useCallback(async () => {
     try {
       setLoading(true);
-      setError(null);
-      const result = await mutationFn(variables);
-      setData(result);
-      return result;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
-      setError(errorMessage);
-      throw err;
+      const res = await fetch("/api/plots");
+      if (!res.ok) throw new Error("Failed to fetch plots");
+      const json = await res.json();
+      setData(json);
+    } catch (err: any) {
+      setError(err.message);
     } finally {
       setLoading(false);
     }
-  }, [mutationFn]);
-
-  return { data, loading, error, mutate };
-}
-
-// Authentication hook
-export function useAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if user is authenticated
-    const authStatus = localStorage.getItem('isAuthenticated');
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('userData');
-
-    if (authStatus === 'true' && token) {
-      setIsAuthenticated(true);
-      if (userData) {
-        try {
-          setUser(JSON.parse(userData));
-        } catch {
-          setUser(null);
-        }
-      }
-    } else {
-      setIsAuthenticated(false);
-    }
-    setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  useEffect(() => {
+    fetchPlots();
+  }, [fetchPlots]);
+
+  return { data, loading, error, refetch: fetchPlots };
+}
+
+export function useInquiries() {
+  const [data, setData] = useState({ inquiries: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchInquiries = useCallback(async () => {
     try {
-      const response = await apiClient.login(email, password);
-      
-      // Store auth data
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('authToken', response.session.access_token);
-      localStorage.setItem('userData', JSON.stringify(response.session.user));
-      
-      setIsAuthenticated(true);
-      setUser(response.session.user);
-      
-      return response;
+      setLoading(true);
+      const res = await fetch("/api/inquiries");
+      if (!res.ok) throw new Error("Failed to fetch inquiries");
+      const json = await res.json();
+      setData(json);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchInquiries();
+  }, [fetchInquiries]);
+
+  return { data, loading, error, refetch: fetchInquiries };
+}
+
+export function usePosts() {
+  const [data, setData] = useState({ posts: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchPosts = useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/posts?admin=true");
+      if (!res.ok) throw new Error("Failed to fetch posts");
+      const json = await res.json();
+      setData(json);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
+  return { data, loading, error, refetch: fetchPosts };
+}
+
+export function useLocations() {
+  const [data, setData] = useState<{ locations: any[] }>({ locations: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchLocations = useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/locations");
+      if (!res.ok) throw new Error("Failed to fetch locations");
+      const json = await res.json();
+      setData(json);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchLocations();
+  }, [fetchLocations]);
+
+  return { data, loading, error, refetch: fetchLocations };
+}
+
+export function useUsers(query?: string) {
+  const [data, setData] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  const fetchData = async () => {
+    try {
+      const q = query ? `?q=${query}` : ""
+      const res = await fetch(`/api/users${q}`)
+      if (!res.ok) throw new Error("Failed to fetch")
+      const json = await res.json()
+      setData(json)
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [query])
+
+  return { data, loading, error, refetch: fetchData }
+}
+
+export function useMutation() {
+  // Basic mutation helper
+  const [loading, setLoading] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const mutate = async (url: string, method: string, body: any) => {
+    setLoading(true);
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      return await res.json();
     } catch (error) {
+      console.error(error);
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userData');
-    localStorage.removeItem('userName');
-    
-    setIsAuthenticated(false);
-    setUser(null);
-  };
+  return { mutate, loading };
+}
 
-  return {
-    isAuthenticated,
-    user,
-    loading,
-    login,
-    logout
-  };
+import { useUser } from "@stackframe/stack";
+
+export function useAuth() {
+  const user = useUser();
+  return { user, isSignedIn: !!user };
 }

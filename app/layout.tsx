@@ -5,6 +5,8 @@ import { Open_Sans } from "next/font/google"
 import { Suspense } from "react"
 import { Toaster } from "@/components/ui/toaster"
 import { FloatingActions } from "@/components/floating-actions"
+import { StackProvider, StackTheme } from "@stackframe/stack"
+import { stackServerApp } from "@/stack"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -62,9 +64,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${montserrat.variable} ${openSans.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
-        <FloatingActions />
-        <Toaster />
+        <StackProvider app={stackServerApp}>
+          <StackTheme>
+            <Suspense fallback={null}>{children}</Suspense>
+            <FloatingActions />
+            <Toaster />
+          </StackTheme>
+        </StackProvider>
       </body>
     </html>
   )

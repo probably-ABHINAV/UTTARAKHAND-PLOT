@@ -1,56 +1,57 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { Card, CardContent } from "@/components/ui/card"
-import { Loader2 } from "lucide-react"
+import { useEffect, useState } from "react";
+import { useUser, useStackApp } from "@stackframe/stack";
+import { useRouter } from "next/navigation";
+import { ADMIN_EMAILS } from "@/lib/constants";
 
 interface AuthGuardProps {
-  children: React.ReactNode
-  requireAuth?: boolean
+  children: React.ReactNode;
+  requireAuth?: boolean;
+  requireAdmin?: boolean;
 }
 
-export function AuthGuard({ children, requireAuth = true }: AuthGuardProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter()
+export function AuthGuard({ children, requireAuth = true, requireAdmin = false }: AuthGuardProps) {
+  const router = useRouter();
+  const user = useUser();
+  const app = useStackApp();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    const checkAuth = () => {
-      const authStatus = localStorage.getItem("isAuthenticated")
-      const authenticated = authStatus === "true"
+    if (requireAuth) {
+      if (!user) {
+        // Redirect to login if user is not authenticated
+        router.push("/handler/sign-in");
+      } else {
+        // Trigger Sync (Fire and forget)
+        fetch('/api/auth/sync', { method: 'POST' }).catch(err => console.error("Sync failed", err));
 
-      setIsAuthenticated(authenticated)
-      setIsLoading(false)
+        if (requireAdmin) {
+          // Check for admin role
+          // Assuming user.roles contains the role list or user.selectedTeam.roles
+          // We will check both for robustness, or checking if the user object has a helper
+          const u = user as any;
+          const hasAdminRole = u.roles?.some((r: any) => r.name === 'admin' || r === 'admin')
+            || u.selectedTeam?.roles?.some((r: any) => r.name === 'admin' || r === 'admin');
 
-      if (requireAuth && !authenticated) {
-        router.push("/login")
+          if (hasAdminRole) {
+            setIsAuthorized(true);
+          } else {
+            // Redirect to home if user is not an admin
+            router.push("/");
+          }
+        } else {
+          setIsAuthorized(true);
+        }
       }
+    } else {
+      setIsAuthorized(true);
     }
+  }, [user, requireAuth, requireAdmin, router]);
 
-    checkAuth()
-  }, [requireAuth, router])
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardContent className="flex items-center justify-center p-8">
-            <div className="text-center space-y-4">
-              <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
-              <p className="text-muted-foreground">Checking authentication...</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    )
+  if (!isAuthorized) {
+    return null; // Or a loading spinner
   }
 
-  if (requireAuth && !isAuthenticated) {
-    return null // Will redirect to login
-  }
-
-  return <>{children}</>
+  return <>{children}</>;
 }
