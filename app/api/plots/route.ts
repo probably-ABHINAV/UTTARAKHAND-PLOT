@@ -11,12 +11,23 @@ export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
         // implement filtering if needed using searchParams
+        console.log("Fetching plots...");
 
-        const allPlots = await db.select().from(plots).orderBy(desc(plots.created_at));
-        return NextResponse.json({ plots: allPlots });
-    } catch (error) {
-        console.error("Error fetching plots:", error);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        try {
+            const allPlots = await db.select().from(plots).orderBy(desc(plots.created_at));
+            console.log(`Successfully fetched ${allPlots.length} plots`);
+            return NextResponse.json({ plots: allPlots });
+        } catch (dbError: any) {
+            console.error("Database error fetching plots:", dbError);
+            console.error("DB Connection String Present:", !!process.env.DATABASE_URL);
+            throw dbError; // Re-throw to be caught by outer catch
+        }
+    } catch (error: any) {
+        console.error("General error in GET /api/plots:", error);
+        return NextResponse.json({
+            error: "Internal Server Error",
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        }, { status: 500 });
     }
 }
 
