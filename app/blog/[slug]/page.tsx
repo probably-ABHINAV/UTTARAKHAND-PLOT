@@ -10,6 +10,7 @@ import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
+  [
   {
     id: "blog-jan-15",
     title: "Why 2026 is the Best Year to Invest in Dehradun Real Estate",
@@ -453,131 +454,6 @@ const blogPosts = [
     status: "Published",
     image: "/images/jan-market-wrap.jpg"
   },
-  {
-  id: "5",
-  title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
-  slug: "why-investing-in-dehradun-residential-plots-is-a-smart-move-2025",
-  created_at: "2025-12-05",
-  content: `
-    <p><strong>Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons</strong></p>
-
-    <p><strong>1) Rapid Urban Expansion Beyond City Core</strong></p>
-    <p>
-      Dehradun ka urban footprint fast expand ho raha hai. City core ke bahar
-      planned residential zones develop ho rahe hain jahan land abhi affordable
-      hai. Jaise-jaise city limits grow kar rahi hain, in areas ki demand aur
-      value dono increase hone wali hai.
-    </p>
-
-    <p><strong>2) Strong Connectivity with Highways & Airport</strong></p>
-    <p>
-      National highways, improved internal roads aur Jolly Grant Airport ki
-      proximity Dehradun plots ko highly accessible banati hai. Yeh connectivity
-      daily living ke saath-saath future resale aur rental demand ko bhi support
-      karti hai.
-    </p>
-
-    <p><strong>3) Rising Demand from End-Users</strong></p>
-    <p>
-      Retirees, working professionals, aur remote workers Dehradun ko ek peaceful
-      residential destination ke roop me choose kar rahe hain. End-user driven
-      demand long-term price stability aur appreciation ko ensure karti hai.
-    </p>
-
-    <p><strong>4) Planned Colonies & Better Infrastructure</strong></p>
-    <p>
-      Naye residential projects wide roads, proper drainage, electricity aur
-      water supply ke saath develop ho rahe hain. Planned infrastructure se
-      construction easy hoti hai aur overall living experience better hota hai.
-    </p>
-
-    <p><strong>5) Affordable Entry with Future Appreciation</strong></p>
-    <p>
-      Metro cities ke comparison me Dehradun me land prices abhi bhi affordable
-      hain. Infrastructure growth aur population shift ke saath early investors
-      ko strong appreciation ka benefit mil sakta hai.
-    </p>
-
-    <p><strong>6) Flexible Usage Options</strong></p>
-    <p>
-      Residential plot ka use aap personal home, rental house, retirement villa
-      ya sirf long-term investment ke liye kar sakte hain. Ek hi asset multiple
-      strategies support karta hai, jo risk ko kam karta hai.
-    </p>
-
-    <p><strong>7) Better Lifestyle & Lower Living Costs</strong></p>
-    <p>
-      Dehradun ka peaceful environment, better air quality aur metro cities se
-      lower living cost families aur long-term residents ke liye strong lifestyle
-      advantage create karta hai.
-    </p>
-
-    <p><strong>Things to Check Before Buying a Plot</strong></p>
-    <ul>
-      <li>Clear title aur registered sale deed</li>
-      <li>Residential land-use approval</li>
-      <li>Road access aur internal connectivity</li>
-      <li>Availability of water and electricity</li>
-      <li>Nearby schools, hospitals, and markets</li>
-      <li>Future development and municipal plans</li>
-    </ul>
-
-    <p><strong>Recommended Residential Plot Options in Dehradun</strong></p>
-
-    <p><strong>1. Sai Vatika — Dehradun</strong></p>
-    <p>
-      <strong>Plot Size:</strong> 900–2000 sq yd<br/>
-      <strong>Price Range:</strong> Competitive & affordable<br/>
-      <strong>Key Features:</strong> Planned layout, wide roads, residential zoning
-    </p>
-    <p>
-      Sai Vatika is suitable for buyers looking for long-term residential living
-      or gradual construction. The project offers balanced pricing with strong
-      future appreciation potential.
-    </p>
-
-    <p><strong>2. Bajrang Vatika — Dehradun</strong></p>
-    <p>
-      <strong>Plot Size:</strong> 800–2400 sq yd<br/>
-      <strong>Key Features:</strong> Secure surroundings, good connectivity,
-      ready-to-build plots
-    </p>
-    <p>
-      Bajrang Vatika fits both end-users and investors who want larger plot sizes
-      with flexibility for phased development or multiple housing units.
-    </p>
-
-    <p><strong>How to Improve Returns on Your Plot Investment</strong></p>
-    <ul>
-      <li>Choose locations close to upcoming roads and infrastructure</li>
-      <li>Prefer plots with clear utilities and approvals</li>
-      <li>Plan construction in phases to manage capital</li>
-      <li>Hold the land for medium to long term</li>
-      <li>Track nearby development and government projects</li>
-    </ul>
-
-    <p><strong>Conclusion</strong></p>
-    <p>
-      Dehradun residential plots offer affordability, connectivity, lifestyle
-      benefits, aur strong future growth ka perfect combination. Chahe aap ghar
-      banana chahte ho ya long-term investment, yeh ek stable aur smart real
-      estate decision hai.
-    </p>
-  `,
-  
-  category: "Market Trends",
-  tags: ["Affordable Property", "Uttarakhand Investment", "Dehradun Plots"],
-  author: "Property Manager",
-  status: "Published",
-  publishedDate: "2026-01-17",
-  lastModified: "2026-01-17",
-  views: 0,
-  featured: false,
-  metaTitle: "Why Buy Affordable Property in Uttarakhand",
-  metaDescription:
-    "Explore 7 clear reasons to buy affordable property in Uttarakhand, including tourism demand, connectivity, and long-term ROI.",
-  image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg",
-},
 {
   id: 4,
   title: "Why Buy Affordable Property in Uttarakhand — 7 Clear Reasons",
@@ -1362,7 +1238,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
 
 ]
 
-type BlogPostPageProps = {
+interface BlogPostPageProps {
   params: {
     slug: string
   }
