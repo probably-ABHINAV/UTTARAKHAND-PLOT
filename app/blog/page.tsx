@@ -1,103 +1,20 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { SiteHeader } from "@/components/navigation/site-header"
+import { SiteFooter } from "@/components/navigation/footer"
+import { Calendar, Clock, Eye, User, Search, Filter } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
 
-// UI Components
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-
-// Hooks & Custom Components
-import { useToast } from "@/hooks/use-toast";
-import { LocationMap } from "@/components/location-map";
-import { FloatingActions } from "@/components/floating-actions";
-import { SiteHeader } from "@/components/navigation/site-header";
-import { SiteFooter } from "@/components/navigation/footer";
-
-// Icons
-import {
-  MapPin,
-  TrendingUp,
-  Shield,
-  Award,
-  Phone,
-  Mail,
-  Calendar,
-  Calculator,
-  Star,
-  CheckCircle,
-  ArrowRight,
-  Heart,
-  Share2,
-  Filter,
-  Search,
-  Play,
-  Users,
-  Building,
-  Zap,
-} from "lucide-react";
-
-/**
- * Helper: smooth scroll to section
- */
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
-/**
- * Animated counter (client-side)
- */
-const AnimatedCounter = ({
-  end,
-  duration = 2000,
-}: {
-  end: number;
-  duration?: number;
-}) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let startTimestamp: number | undefined = undefined;
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
-  }, [end, duration]);
-
-  return <span>{count}</span>;
-};
-
-/**
- * Static Data
- */
-const plotData = [
-{
+// Blog posts data (same as admin section)
+const blogPosts = [
+  {
     id: 5,
     title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
     slug: "why-investing-in-dehradun-residential-plots-is-a-smart-move-2025",
@@ -514,689 +431,445 @@ const plotData = [
     available: 5,
     isPopular: false,
   },
-] as const;
+ {
+  id: 2,
+  title: "Top Mistakes to Avoid When Buying Land in Uttarakhand",
+  slug: "top-mistakes-to-avoid-when-buying-land-in-uttarakhand",
+  excerpt: "Avoid these costly mistakes before investing in Uttarakhand plots",
+  content: `
+    <p>Buying land in Uttarakhand can be one of the most rewarding decisions you make—both emotionally and financially. However, many buyers jump in without understanding the regional laws, terrain challenges, and hidden costs. To help you make a secure and profitable purchase, here’s a list of the most common mistakes investors and homebuyers make when buying property in the hills, and how to avoid them.</p>
 
-const locationData = [
-  { name: "Badripur", baseRate: 3000 },
-  { name: "Ganeshpur", baseRate: 2500 },
-  { name: "Sundarpur", baseRate: 2000 },
-  { name: "Dehradun Outskirts", baseRate: 1500 },
-] as const;
+    <h2>1. Ignoring Land Classification and Use Restrictions</h2>
+    <p>Not every piece of land in Uttarakhand is legally buildable. Many areas fall under agricultural, forest, or restricted eco-zones where residential construction is prohibited. Before paying an advance, confirm the land’s classification through the local revenue office. Ensure you have clear permission for residential or commercial use—especially in protected or green-belt zones.</p>
 
-/**
- * HomePage Component
- */
-export default function HomePage() {
-  const { toast } = useToast();
+    <h2>2. Skipping Proper Title and Legal Verification</h2>
+    <p>Buyers often rely on verbal assurances or incomplete documentation. Always demand original title deeds, mutation entries, and the encumbrance certificate for the past 30 years. Cross-check records at the tehsil office and verify there are no liens, inheritance disputes, or government notifications. Legal verification through a local property lawyer is non-negotiable in hill regions.</p>
 
-  // UI States
-  const [selectedFilter, setSelectedFilter] = useState<string>("All Plots");
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [, setSelectedPlot] = useState<typeof plotData[number] | null>(null);
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState<Record<number, number>>({});
+    <h2>3. Overlooking Slope, Drainage and Access Roads</h2>
+    <p>Plots in hilly areas can look beautiful but may pose construction challenges. A steep or uneven slope may require expensive retaining walls or soil stabilization. Also, some plots have approach roads that are private or seasonal. Inspect access routes personally and confirm they remain open to the public throughout the year, including during monsoon.</p>
 
-  // Calculator State
-  const [calculatorData, setCalculatorData] = useState({
-    plotSize: "",
-    location: "",
-    timeline: "5",
-    plotValue: 0,
-    expectedGrowth: 0,
-    constructionCost: 0,
-  });
+    <h2>4. Underestimating Environmental and Climate Factors</h2>
+    <p>In Uttarakhand, environmental conditions vary drastically with altitude. Landslide-prone zones, unstable slopes, and water scarcity are real issues. Always check the site’s drainage, soil quality, and previous flood or slide records. Avoid heavy cutting into hillsides, and follow eco-friendly construction guidelines to stay compliant and safe.</p>
 
-  // Contact Form State
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-    plotInterest: "",
-  });
+    <h2>5. Forgetting to Budget for Hidden Costs</h2>
+    <p>Land cost is just the beginning. Buyers often forget about stamp duty, registration fees, boundary fencing, site leveling, and road access charges. In some areas, connecting water or electricity lines can also cost significantly. Add at least 10–15% of the property value to cover these extras so you don’t strain your budget later.</p>
 
-  // Logic: Filter Plots
-  const filteredPlots = plotData.filter((plot) => {
-    const matchesSearch =
-      plot.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      plot.location.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesFilter =
-      selectedFilter === "All Plots" ||
-      (selectedFilter === "Popular" && plot.isPopular) ||
-      plot.type.includes(selectedFilter);
-    return matchesSearch && matchesFilter;
-  });
+    <h2>6. Not Conducting a Site Visit or Local Inquiry</h2>
+    <p>Never finalize a deal without visiting the plot in person. Photos can be misleading, and sellers may omit issues like poor road access or nearby encroachments. Speak to neighbours, check the terrain after rain, and observe sunlight direction. Local feedback is the most reliable way to confirm if a plot is genuinely suitable for your needs.</p>
 
-  // Logic: Toggle Favorite
-  const toggleFavorite = (plotId: number) => {
-    const currentlyFavorite = favorites.includes(plotId);
-    if (currentlyFavorite) {
-      setFavorites((prev) => prev.filter((id) => id !== plotId));
-      toast({ title: "Removed from favorites" });
-    } else {
-      setFavorites((prev) => [...prev, plotId]);
-      toast({ title: "Added to favorites" });
-    }
-  };
+    <h2>7. Ignoring Government Notifications and Future Projects</h2>
+    <p>Uttarakhand’s development plans often include new highways, eco-zones, and restricted belts. Overlooking these can affect construction rights or resale value. Check district master plans and ongoing infrastructure projects before purchase. Proximity to upcoming roads or tourism corridors can raise land value, while being too close to restricted zones can limit usage.</p>
 
-  // Logic: Share
-  const sharePlot = (plot: typeof plotData[number]) => {
-    const shareText = `${plot.title} - ${plot.location}`;
-    if (navigator.share) {
-      navigator.share({
-        title: plot.title,
-        text: shareText,
-        url: window.location.href,
-      }).catch(() => {});
-    } else {
-      navigator.clipboard.writeText(shareText);
-      toast({ title: "Link copied to clipboard!" });
-    }
-  };
+    <h2>Final Takeaway</h2>
+    <p>Buying land in Uttarakhand is an exciting opportunity, but success depends on awareness and due diligence. Avoid emotional decisions, verify every document, and understand the geography before committing funds. With professional legal and engineering advice, your investment in the hills can remain both safe and profitable for years to come.</p>
+  `,
+  category: "Real Estate",
+  tags: ["Uttarakhand", "Property Buying", "Land Investment", "Legal Tips"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-11-06",
+  lastModified: "2025-11-06",
+  views: 0,
+  featured: true,
+  metaTitle: "Top Mistakes to Avoid When Buying Land in Uttarakhand — 2025 Guide",
+  metaDescription: "Learn the key mistakes to avoid before buying plots or land in Uttarakhand. Covers legal checks, slope evaluation, road access, and environmental safety tips.",
+  image: "/images/badripur-plots.jpg"
+},
 
-  // Logic: Calculator
-  const calculateInvestment = () => {
-    if (!calculatorData.plotSize || !calculatorData.location) {
-      toast({
-        title: "Missing Information",
-        description: "Please enter plot size and location.",
-        variant: "destructive",
-      });
-      return;
-    }
+ {
+  id: 1,
+  title: "Property in Uttarakhand: Invest Wisely in Hill Plots",
+  slug: "property-in-uttarakhand-invest-wisely-in-hill-plots",
+  excerpt: "Why Uttarakhand is a smart property bet",
+  content: `
+    <p>Uttarakhand’s scenic valleys, cool climate and rising tourism make it one of India’s most attractive regions for property investment. From weekend getaways near Dehradun and Nainital to development pockets around Rishikesh and Haridwar, buying land or a plot in this Himalayan state can offer both lifestyle value and strong long-term returns—if you do it right. This article walks you through the key reasons to invest in Uttarakhand, the local risks to watch for, and a practical checklist to buy safely.</p>
 
-    const size = parseInt(calculatorData.plotSize || "0", 10) || 0;
-    const locData = locationData.find((l) => l.name === calculatorData.location);
-    const baseRate = locData ? locData.baseRate : 2000;
+    <h2>1. Why Uttarakhand? Beauty, tourism and steady demand</h2>
+    <p>Uttarakhand combines natural beauty with growing tourist footfall: hill stations such as Mussoorie, Nainital, Kausani, and emerging destinations near Haridwar and Rishikesh attract domestic and international visitors. Post-pandemic demand for second homes, wellness retreats, and short-stay rentals has strengthened. Moreover, improved road connectivity and interest in micro‑town developments draw builders and buyers, helping land values appreciate steadily in many corridors.</p>
 
-    const plotValue = size * baseRate;
-    const years = parseInt(calculatorData.timeline || "5", 10);
-    const growthRate = 0.2; // 20% annual
-    const expectedGrowth = plotValue * Math.pow(1 + growthRate, years);
-    const constructionCost = size * 1800;
+    <h2>2. Location matters: micro-markets to prioritise</h2>
+    <p>Not all Uttarakhand land is equal. Prioritise plots close to: (a) major access roads or state highways, (b) established town centres with utilities, (c) reliable public transport nodes, and (d) popular tourist circuits. Proximity to an all-weather road and a nearby market vastly increases resale and rental potential compared to remote mountain plots that face seasonal access issues.</p>
 
-    setCalculatorData((prev) => ({
-      ...prev,
-      plotValue,
-      expectedGrowth,
-      constructionCost,
-    }));
+    <h2>3. Seasonal and environmental realities</h2>
+    <p>Hill properties come with seasonal realities—monsoon risks, landslides, and snow in higher altitudes. Check slope gradient, drainage, soil stability and local history of landslides. For plots on steep slopes, prefer terraces or reinforced foundations and avoid cutting into natural contour lines which increases erosion risk.</p>
 
-    toast({ title: "Calculation Complete!" });
-  };
+    <h2>4. Crucial legal & ecological checks</h2>
+    <p>Uttarakhand has strict laws regarding forest land, river setbacks and environmental clearances. Always verify the land’s classification: agricultural, revenue, private, or forest. Get the 7/12 or equivalent revenue records, mutation history, and an up-to-date encumbrance certificate. Confirm there’s no pending litigation or revenue demand. For plots near protected areas or rivers, ensure compliance with environmental norms and watch for notifications that may restrict construction.</p>
 
-  // Logic: Contact Form
-  const submitContactForm = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!contactForm.name || !contactForm.phone) {
-      toast({ title: "Name and Phone are required." });
-      return;
-    }
-    toast({
-      title: "Request Received!",
-      description: "Our team will contact you within 24 hours.",
-    });
-    setContactForm({
-      name: "",
-      phone: "",
-      email: "",
-      message: "",
-      plotInterest: "",
-    });
-  };
+    <h2>5. Infrastructure & utility readiness</h2>
+    <p>Ensure basic services—electricity, potable water, approach road, and broadband—are either present or scheduled in municipal plans. Properties with assured utility connections attract better short-term rental guests and reduce development surprises. Confirm whether septic, rainwater harvesting, and wastewater management are feasible on site.</p>
 
-  // Logic: Auto Rotate Images
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => {
-        const newIndex: Record<number, number> = { ...prev };
-        plotData.forEach((plot) => {
-          newIndex[plot.id] =
-            plot.images.length > 0 ? ((prev[plot.id] || 0) + 1) % plot.images.length : 0;
-        });
-        return newIndex;
-      });
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+    <h2>6. Short-term income and tourism rentals</h2>
+    <p>Well-located plots near tourist nodes can be developed into homestays, guesthouses or serviced cottages. With proper design and local permits, short-term rentals can produce attractive yields while you wait for capital appreciation—especially in areas with steady weekend demand from nearby metros like Delhi and Dehradun.</p>
+
+    <h2>7. Practical checklist before buying</h2>
+    <ul>
+      <li>Verify title chain, obtain encumbrance certificate; confirm no forest or revenue disputes.</li>
+      <li>Survey slope, soil and drainage; consult a geotechnical engineer for steep plots.</li>
+      <li>Confirm access roads remain public and aren’t private tracks that can be blocked.</li>
+      <li>Check local zoning and FAR rules; verify building permissions and likely timelines for approvals.</li>
+      <li>Understand seasonal access and maintenance costs (roads, retaining walls, water supply).</li>
+      <li>Engage a local lawyer and a trusted surveyor—local expertise is invaluable.</li>
+    </ul>
+
+    <h2>Final thoughts</h2>
+    <p>Property in Uttarakhand offers a rare mix of lifestyle and investment upside—but success depends on disciplined due diligence. Focus on accessible micro-markets, respect environmental and slope constraints, and prioritise clear titles and infrastructure-ready plots. With careful selection and professional help, buying in Uttarakhand can be both a smart financial move and a gateway to a peaceful mountain life.</p>
+  `,
+  category: "Investment",
+  tags: ["Uttarakhand", "Hill Stations", "Real Estate", "Investment"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-11-03",
+  lastModified: "2025-11-03",
+  views: 208,
+  featured: true,
+  metaTitle: "Smart Guide to Buying Property in Uttarakhand 2025",
+  metaDescription: "Comprehensive checklist and practical advice for buying land and plots in Uttarakhand — legal checks, environmental risks, location tips and rental potential.",
+  image: "/images/friends-colony-phase1.jpg"
+},
+  {
+    id: 1,
+    title: "Land Near Highways: Buy Today, Profit Tomorrow!",
+    slug: "Land-Near-Highways-Buy-Today-Profit-Tomorrow!",
+    excerpt:
+      "Real estate investment in India is no longer just about buying a home-it has become a long-term source of financial security. Especially when it comes to land located near highways, investors see it as a golden opportunity. The reasons are clear: better connectivity, rapid development, and strong price appreciation in the future. In this article, we’ll explore in detail why investing in land near highways is a smart and safe decision.",
+    content:
+      "Land near highways is always well-connected to transport and infrastructure. Areas along national and state highways develop quickly because both the government and private companies prioritize such locations. Shopping complexes, hospitals, schools, and industrial parks emerge faster, pushing up property values. Additionally, basic amenities like road lighting, drainage, water supply, and electricity infrastructure are developed swiftly in these regions, making them even more attractive. This is why highway-adjacent land has become a safe and profitable option for investors....",
+    category: "Investment",
+    tags: ["Investment", "Hill Stations", "Real Estate", "Tourism"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2025-10-24",
+    lastModified: "2025-10-24",
+    views: 1250,
+    featured: true,
+    metaTitle: "Best Investment Opportunities in Uttrakhand Hill Stations 2024",
+    metaDescription:
+      "Explore top investment opportunities in Uttrakhand's hill stations. Complete guide to real estate investment in Mussoorie, Nainital, and more.",
+    image: "/images/E_1760471281368.jpg",
+  },
+  {
+    id: 2,
+    title: "Real Estate से पैसा कैसे कमाएं: पूरी रणनीति",
+    slug: "spiritual-tourism-boom-rishikesh-properties",
+    excerpt:
+      "रियल एस्टेट केवल एक घर या संपत्ति खरीदने और बेचने का जरिया नहीं है, बल्कि यह एक ऐसा क्षेत्र है जो आपको दीर्घकालिक वित्तीय स्वतंत्रता दिला सकता है। सही समय, सही जगह और समझदारी से लिया गया निर्णय आपको अच्छा रिटर्न और स्थिर आय दे सकता है। आइए विस्तार से जानते हैं कि कैसे आप रियल एस्टेट के विभिन्न तरीकों से पैसा कमा सकते हैं।",
+    content: "Rishikesh, known as the Yoga Capital of the World, has seen a massive surge in spiritual tourism...",
+    category: "Market Trends",
+    tags: ["High-profit", "Market trend", "Property Demand", "investment"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2025-10-24",
+    lastModified: "2025-10-24",
+    views: 890,
+    featured: false,
+    metaTitle: "Rishikesh Property Investment: Spiritual Tourism Boom 2024",
+    metaDescription:
+      "Why Rishikesh properties are in high demand due to the spiritual tourism boom. Investment insights and market analysis.",
+    image: "/images/design1.png",
+  },
+  {
+    id: 3,
+    title: "सही प्रॉपर्टी पहचानने के 5 दमदार तरीके – एक समझदार निवेशक बनने की गाइड",
+    slug: "hill-station-property-market-trends-2024",
+    excerpt: "आज की तेज़ रफ्तार ज़िंदगी में हर कोई अपने सपनों का घर चाहता है या फिर किसी ऐसी प्रॉपर्टी में निवेश करना चाहता है, जो भविष्य में बड़ा रिटर्न दे सके। लेकिन प्रॉपर्टी खरीदना एक आम लेन-देन नहीं होता। यह आपके जीवन की सबसे बड़ी खरीद में से एक होती है। इसलिए जरूरी है कि आप हर कदम सोच-समझकर उठाएं।",
+    content: "लोकेशन – प्रॉपर्टी की जान होती है",
+    category: "Market Analysis",
+    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2025-10-24",
+    lastModified: "2025-10-24",
+    views: 945,
+    featured: false,
+    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
+    metaDescription:
+      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
+    image: "/images/friends-colony-phase1.jpg",
+  },
+  {
+    id: 4,
+    title: "Why Buying a Plot Is Better Than Buying a Flat in 2025",
+    slug: "hill-station-property-market-trends-2025",
+    excerpt: "The Growing Trend of Plot Investment in 2025",
+    content: "Complete Freedom to Design and Build Your Dream Home",
+    category: "Market Analysis",
+    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2025-10-27",
+    lastModified: "2025-10-27",
+    views: 1202,
+    featured: false,
+    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
+    metaDescription:
+      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
+    image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
+  },
+  {
+    id: 5,
+    title: "How to Choose the Right Plot in Uttarakhand: A Practical Checklist",
+    slug: "hill-station-property-market-trends-2027",
+    excerpt: "Legal Title & Encumbrances",
+    content: "Land-Use & Zoning",
+    category: "Market Analysis",
+    tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2025-10-29",
+    lastModified: "2025-10-29",
+    views: 780,
+    featured: false,
+    metaTitle: "Hill Station Property Market Trends & Predictions 2024",
+    metaDescription:
+      "Complete analysis of hill station property market trends in Uttrakhand. Expert predictions and investment insights for 2024.",
+    image: "/images/C_1760471281370.jpg",
+  },
+  {
+  id: 6,
+  title: "How to Choose the Right Plot in Uttarakhand: A Practical Checklist",
+  slug: "choose-right-plot-uttarakhand-checklist-2025",
+  excerpt: "Legal Title & Encumbrances",
+  content: `
+    <p><strong>How to Choose the Right Plot in Uttarakhand: A Practical Checklist</strong></p>
+    <p>Buying a plot in Uttarakhand can be one of the most fulfilling investments you make — combining natural beauty with strong appreciation potential. But success depends on careful planning and awareness of local factors that impact property value and legality. This practical checklist will help you evaluate plots effectively and avoid costly mistakes.</p>
+    <p><strong>1. Legal Title & Encumbrances:</strong> Start by verifying the land title thoroughly. Request certified copies of ownership documents, mutation records, and the latest tax receipts. Ensure there are no encumbrances, disputes, or pending litigations attached to the property. A clear title is essential for loan eligibility and resale in the future.</p>
+    <p><strong>2. Land-Use & Zoning:</strong> Uttarakhand has distinct land-use regulations depending on the district and proximity to forest or eco-sensitive areas. Confirm the plot’s zoning with the local development authority or Tehsil office. Agricultural, residential, and commercial lands have different permissions, and misclassification can lead to legal complications later.</p>
+    <p><strong>3. Connectivity & Infrastructure:</strong> Always assess the approach road, water supply, power connection, and drainage facilities. Proximity to highways, schools, and hospitals enhances usability and resale value. Areas around Dehradun, Nainital, and Ranikhet are particularly promising due to ongoing infrastructure improvements and tourism-driven growth.</p>
+    <p><strong>4. Terrain & Soil Suitability:</strong> In hill regions, plot gradient, soil stability, and drainage are crucial. Hire a local civil engineer or surveyor to check for erosion risk and slope strength. Proper site evaluation ensures safe construction and prevents foundation issues or landslide risks later.</p>
+    <p><strong>5. Work with Verified Platforms:</strong> To simplify your search, use trusted property platforms like <strong>Property in Uttarakhand</strong>. They list verified plots, provide clarity on legal documents, and connect you with experts who understand local terrain and regulations. This saves time and minimizes risk while helping you find a plot that truly fits your goals.</p>
+  `,
+  category: "Market Analysis",
+  tags: ["Market Trends", "2025 Predictions", "Hill Stations", "Property Market"],
+  author: "Admin User",
+  status: "Published",
+  publishedDate: "2025-10-31",
+  lastModified: "2025-10 -31",
+  views: 598,
+  featured: false,
+  metaTitle: "How to Choose the Right Plot in Uttarakhand – Complete Buyer’s Checklist 2025",
+  metaDescription:
+    "A detailed buyer’s checklist for selecting the right plot in Uttarakhand. Learn about legal verification, zoning, terrain evaluation, and infrastructure factors before investing.",
+  image: "/images/design1.png",
+}
+
+]
+
+const categories = ["All", "Investment", "Market Trends", "Market Analysis", "Property Tips", "Location Guide"]
+
+export default function BlogPage() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+
+  // Filter posts
+  const filteredPosts = blogPosts.filter((post) => {
+    const matchesSearch = 
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory
+    
+    return matchesSearch && matchesCategory && post.status === "Published"
+  })
+
+  const featuredPosts = filteredPosts.filter(post => post.featured)
+  const regularPosts = filteredPosts.filter(post => !post.featured)
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-background">
       <SiteHeader />
+      
+      {/* Hero Section */}
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="absolute inset-0 bg-grid-white/10 bg-grid-16 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
+        <div className="container relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-serif font-black text-foreground mb-6">
+              Property Investment
+              <span className="block text-primary">Insights & Guides</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Expert insights on Uttrakhand property investment, market trends, and location guides 
+              to help you make informed decisions.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-slate-50 z-10" />
-          <div className="absolute inset-0 bg-[url('/uttarakhand-mountains-landscape-spiritual-hills.jpg')] bg-cover bg-center bg-no-repeat" />
+      <div className="container py-16">
+        {/* Search and Filter */}
+        <div className="flex flex-col md:flex-row gap-4 mb-12">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <Input
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-full md:w-48">
+              <Filter className="w-4 h-4 mr-2" />
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-20 container mx-auto px-4 text-center">
-          <div className="max-w-5xl mx-auto space-y-8">
-            <Badge className="bg-gradient-to-r from-primary to-secondary text-white border-0 px-6 py-2 text-sm md:text-base uppercase tracking-wider shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-700">
-              Verified Properties in Uttarakhand
-            </Badge>
-
-            <h1 className="font-extrabold text-5xl md:text-7xl lg:text-8xl tracking-tight text-white drop-shadow-2xl">
-              Build Your Dream <br />
-              <span className="font-extrabold text-5xl md:text-7xl lg:text-8xl tracking-tight text-white drop-shadow-2xl">
-                 in Devbhoomi
-              </span>
-            </h1>
-
-            <p className="text-slate-200 text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-              Freehold plots with verified documents, ready infrastructure, and exceptional investment potential.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <Button
-                size="lg"
-                onClick={() => scrollToSection("plots")}
-                className="bg-primary hover:bg-primary/90 text-white text-lg h-14 px-8 rounded-full shadow-xl transition-transform hover:scale-105"
-              >
-                <Search className="mr-2 h-5 w-5" />
-                Explore Plots
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => scrollToSection("contact")}
-                className="bg-white/10 backdrop-blur-md border-white/40 text-white hover:bg-white hover:text-primary text-lg h-14 px-8 rounded-full transition-all"
-              >
-                <Calendar className="mr-2 h-5 w-5" />
-                Book Site Visit
-              </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-white/90">
-              {[
-                { icon: CheckCircle, label: "RERA Approved" },
-                { icon: Shield, label: "Clear Title" },
-                { icon: TrendingUp, label: "High ROI" },
-                { icon: Award, label: "Premium Locations" },
-              ].map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center gap-2 group cursor-default">
-                  <item.icon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="font-medium text-sm md:text-base">{item.label}</span>
-                </div>
+        {/* Featured Posts */}
+        {featuredPosts.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-3xl font-serif font-bold mb-8">Featured Articles</h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {featuredPosts.map((post) => (
+                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <div className="aspect-video relative overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-primary text-primary-foreground">Featured</Badge>
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary">{post.category}</Badge>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Eye className="w-3 h-3 mr-1" />
+                        {post.views.toLocaleString()}
+                      </div>
+                    </div>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center">
+                        <User className="w-3 h-3 mr-1" />
+                        {post.author}
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        {formatDate(post.publishedDate)}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Button asChild className="w-full">
+                      <Link href={`/blog/${post.slug}`}>
+                        Read More
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* --- PLOTS SECTION --- */}
-    <section className="py-20 bg-slate-50">
-  <div className="container mx-auto px-4">
-
-    {/* SECTION HEADING */}
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-        Featured Plots
-      </h2>
-      <p className="text-slate-600 mt-3 max-w-2xl mx-auto">
-        Discover premium residential and commercial plots with verified
-        documents and prime locations.
-      </p>
-    </div>
-
-    {/* SLUG MAP (IMPORTANT) */}
-    {(() => {
-      const plotSlugMap = {
-        1: "bajrang-vatika",
-        2: "nature-green-valley-phase5",
-        3: "friends-colony-phase-1",
-      };
-
-      return (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPlots.map((plot) => {
-            const slug = plotSlugMap[plot.id];
-
-            return (
-              <Card
-                key={plot.id}
-                className="group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden bg-white flex flex-col h-full"
-              >
-                {/* IMAGE AREA */}
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={plot.images[currentImageIndex[plot.id] || 0]}
-                    alt={plot.title}
-                    width={500}
-                    height={350}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-
-                  {/* BADGES */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <Badge className="bg-secondary text-white">
-                      {plot.type}
-                    </Badge>
-                    {plot.isPopular && (
-                      <Badge className="bg-primary text-white">
-                        Popular
-                      </Badge>
-                    )}
-                  </div>
-
-                  {/* ACTION BUTTONS */}
-                  <div className="absolute top-4 right-4 flex gap-2">
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      onClick={() => toggleFavorite(plot.id)}
-                      className="rounded-full bg-white/90 hover:bg-white"
-                    >
-                      <Heart
-                        className={`h-4 w-4 ${
-                          favorites.includes(plot.id)
-                            ? "fill-red-500 text-red-500"
-                            : "text-slate-700"
-                        }`}
-                      />
-                    </Button>
-
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      onClick={() => sharePlot(plot)}
-                      className="rounded-full bg-white/90 hover:bg-white"
-                    >
-                      <Share2 className="h-4 w-4 text-slate-700" />
-                    </Button>
-                  </div>
-
-                  {/* QUICK VIEW */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Button
-                      variant="secondary"
-                      className="rounded-full bg-white/90 hover:bg-white"
-                      onClick={() => setSelectedPlot(plot)}
-                    >
-                      <Play className="mr-2 h-4 w-4" />
-                      Quick View
-                    </Button>
-                  </div>
-
-                  {/* AVAILABILITY */}
-                  <div className="absolute bottom-3 right-3">
-                    <Badge className="bg-black/60 text-white border-0 backdrop-blur-sm">
-                      <Users className="mr-1 h-3 w-3" />
-                      {plot.available} Units Left
-                    </Badge>
-                  </div>
+        {/* Regular Posts */}
+        <div>
+          <h2 className="text-3xl font-serif font-bold mb-8">
+            {featuredPosts.length > 0 ? "All Articles" : "Latest Articles"}
+          </h2>
+          
+          {filteredPosts.length === 0 ? (
+            <Card className="p-12 text-center">
+              <CardContent>
+                <div className="text-muted-foreground">
+                  <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                  <h3 className="text-xl font-semibold mb-2">No articles found</h3>
+                  <p>Try adjusting your search terms or category filter.</p>
                 </div>
-
-                {/* CONTENT AREA */}
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
-                      {plot.title}
-                    </CardTitle>
-
-                    <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded text-yellow-700">
-                      <Star className="h-3 w-3 fill-current" />
-                      <span className="text-xs font-bold">
-                        {plot.rating}
-                      </span>
-                    </div>
-                  </div>
-
-                  <CardDescription className="flex items-center gap-1 text-slate-500">
-                    <MapPin className="h-4 w-4 text-primary" />
-                    {plot.location}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="flex-grow space-y-4">
-                  {/* SIZE & PRICE */}
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="bg-slate-50 p-3 rounded-lg">
-                      <p className="text-xs uppercase text-slate-500 font-semibold">
-                        Size
-                      </p>
-                      <p className="font-medium text-slate-900">
-                        {plot.size}
-                      </p>
-                    </div>
-
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xs uppercase text-blue-500 font-semibold">
-                        Price
-                      </p>
-                      <p className="font-medium text-blue-700">
-                        {plot.price}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* FEATURES */}
-                  <div className="flex flex-wrap gap-2">
-                    {plot.features.slice(0, 3).map((feature, i) => (
-                      <span
-                        key={i}
-                        className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA BUTTONS */}
-                  <div className="flex gap-3 pt-2 mt-auto">
-                    {slug ? (
-                      <Button
-                        className="flex-1 bg-primary hover:bg-primary/90"
-                        asChild
-                      >
-                        <Link href={`/plots/${slug}`}>
-                          View Details
-                        </Link>
-                      </Button>
-                    ) : (
-                      <Button className="flex-1" disabled>
-                        Coming Soon
-                      </Button>
-                    )}
-
-                    <Button
-                      variant="outline"
-                      className="border-primary text-primary hover:bg-primary/5"
-                      onClick={() => scrollToSection("contact")}
-                    >
-                      Enquire
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      );
-    })()}
-  </div>
-</section>
-
-
-      {/* --- GALLERY SECTION --- */}
-      <section id="gallery" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Project <span className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Gallery</span>
-            </h2>
-            <p className="text-slate-600">Visuals from our actual development sites.</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              "/images/A_1760471281370.jpg",
-              "/images/B_1760471281370.jpg",
-              "/images/C_1760471281370.jpg",
-              "/images/D_1760471281369.jpg",
-              "/images/E_1760471281368.jpg",
-              "/images/F_1760471281369.jpg",
-            ].map((src, idx) => (
-              <div key={idx} className="relative group overflow-hidden rounded-xl cursor-pointer shadow-sm aspect-[4/3]">
-                <Image
-                  src={src}
-                  alt={`Gallery Image ${idx + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">
-                    <Play className="h-6 w-6 text-white fill-current" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- MAP SECTION --- */}
-      <LocationMap />
-
-      {/* --- CALCULATOR SECTION --- */}
-      <section id="calculator" className="py-24 bg-slate-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">ROI <span className="text-4xl md:text-5xl font-bold mb-4">Calculator</span></h2>
-            <p className="text-slate-600">Estimate your future returns with our proprietary algorithm.</p>
-          </div>
-
-          <Card className="max-w-5xl mx-auto shadow-2xl border-0 bg-white/80 backdrop-blur-sm overflow-hidden">
-            <div className="grid lg:grid-cols-2">
-              {/* Inputs */}
-              <div className="p-8 lg:p-12 space-y-6">
-                <h3 className="text-2xl font-semibold text-slate-800">Parameters</h3>
-                
-                <div className="space-y-2">
-                  <Label>Plot Size (sq. ft)</Label>
-                  <Input 
-                    type="number" 
-                    placeholder="e.g. 1500" 
-                    className="h-12 text-lg"
-                    value={calculatorData.plotSize}
-                    onChange={(e) => setCalculatorData(prev => ({...prev, plotSize: e.target.value}))} 
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Preferred Location</Label>
-                  <Select value={calculatorData.location} onValueChange={(v) => setCalculatorData(prev => ({...prev, location: v}))}>
-                    <SelectTrigger className="h-12"><SelectValue placeholder="Select Area" /></SelectTrigger>
-                    <SelectContent>
-                      {locationData.map((l) => <SelectItem key={l.name} value={l.name}>{l.name}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Hold Duration (Years)</Label>
-                  <Select value={calculatorData.timeline} onValueChange={(v) => setCalculatorData(prev => ({...prev, timeline: v}))}>
-                    <SelectTrigger className="h-12"><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      {[2, 5, 10, 15].map(y => <SelectItem key={y} value={y.toString()}>{y} Years</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <Button 
-                  onClick={calculateInvestment} 
-                  className="w-full h-12 text-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
-                >
-                  <Calculator className="mr-2 h-5 w-5" /> Calculate Returns
-                </Button>
-              </div>
-
-              {/* Results */}
-              <div className="bg-slate-900 p-8 lg:p-12 text-white flex flex-col justify-center space-y-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary rounded-full blur-3xl opacity-20" />
-                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-secondary rounded-full blur-3xl opacity-20" />
-
-                <div className="relative z-10 space-y-6">
-                  <div>
-                    <p className="text-slate-400 text-sm uppercase tracking-wider mb-1">Current Valuation</p>
-                    <p className="text-4xl font-bold">₹{calculatorData.plotValue ? (calculatorData.plotValue / 100000).toFixed(2) : "0.00"} L</p>
-                  </div>
-                  
-                  <div className="h-px bg-white/10" />
-
-                  <div>
-                    <p className="text-slate-400 text-sm uppercase tracking-wider mb-1">Projected Value ({calculatorData.timeline} Years)</p>
-                    <p className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">
-                      ₹{calculatorData.expectedGrowth ? (calculatorData.expectedGrowth / 100000).toFixed(2) : "0.00"} L
-                    </p>
-                    {calculatorData.expectedGrowth > 0 && (
-                      <div className="mt-2 inline-flex items-center gap-1 text-green-400 text-sm bg-green-400/10 px-2 py-1 rounded">
-                        <TrendingUp className="h-3 w-3" />
-                        <span>+{(((calculatorData.expectedGrowth - calculatorData.plotValue) / calculatorData.plotValue) * 100).toFixed(0)}% Growth</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="bg-white/10 p-4 rounded-lg">
-                     <div className="flex items-center gap-2 text-yellow-400 mb-1">
-                        <Zap className="h-4 w-4" />
-                        <span className="font-semibold text-sm">Est. Construction Cost</span>
-                     </div>
-                     <p className="text-2xl font-semibold">₹{calculatorData.constructionCost ? (calculatorData.constructionCost / 100000).toFixed(2) : "0.00"} L</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* --- STATISTICS --- */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { num: 5000, label: "Happy Families", icon: Users },
-              { num: 50, label: "Completed Projects", icon: Building },
-              { num: 100, label: "Title Clear", icon: Shield },
-              { num: 48, label: "Ratings (4.8/5)", icon: Star },
-            ].map((stat, i) => (
-              <div key={i} className="space-y-2">
-                <stat.icon className="h-8 w-8 mx-auto text-white/60 mb-4" />
-                <div className="text-4xl md:text-5xl font-bold">
-                  <AnimatedCounter end={stat.num} />{i !== 3 ? "+" : ""}
-                </div>
-                <p className="text-primary-foreground/80 font-medium">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- CONTACT SECTION --- */}
-      <section id="contact" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-4xl font-bold mb-4 text-slate-900">Get In Touch</h2>
-                <p className="text-lg text-slate-600">
-                  Ready to invest? Our experts are here to guide you through site visits, documentation, and registration.
-                </p>
-              </div>
-
-              <div className="grid gap-6">
-                <Card className="flex items-center p-6 gap-4 border-0 shadow-lg bg-slate-50">
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">Call Us</p>
-                    <a href="tel:+917870231314" className="text-lg text-slate-600 hover:text-primary">+91 7870 231 314</a>
-                  </div>
-                </Card>
-                <Card className="flex items-center p-6 gap-4 border-0 shadow-lg bg-slate-50">
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">Email Us</p>
-                    <a href="mailto:info@property.com" className="text-lg text-slate-600 hover:text-primary">info@propertyinuttarakhand.com</a>
-                  </div>
-                </Card>
-                <Card className="flex items-center p-6 gap-4 border-0 shadow-lg bg-slate-50">
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">Visit Office</p>
-                    <p className="text-lg text-slate-600">Badripur & Ganeshpur, Dehradun</p>
-                  </div>
-                </Card>
-              </div>
-            </div>
-
-            {/* Form */}
-            <Card className="p-8 shadow-2xl border-t-4 border-t-primary">
-              <form onSubmit={submitContactForm} className="space-y-6">
-                <h3 className="text-2xl font-bold text-slate-900">Send an Inquiry</h3>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Name</Label>
-                    <Input 
-                      placeholder="John Doe" 
-                      required 
-                      className="h-12"
-                      value={contactForm.name}
-                      onChange={(e) => setContactForm(p => ({...p, name: e.target.value}))}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Phone</Label>
-                    <Input 
-                      placeholder="+91..." 
-                      required 
-                      className="h-12"
-                      value={contactForm.phone}
-                      onChange={(e) => setContactForm(p => ({...p, phone: e.target.value}))}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Email (Optional)</Label>
-                  <Input 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    className="h-12"
-                    value={contactForm.email}
-                    onChange={(e) => setContactForm(p => ({...p, email: e.target.value}))}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Interested In</Label>
-                  <Select value={contactForm.plotInterest} onValueChange={(v) => setContactForm(p => ({...p, plotInterest: v}))}>
-                    <SelectTrigger className="h-12"><SelectValue placeholder="Select Project" /></SelectTrigger>
-                    <SelectContent>
-                      {plotData.map(p => <SelectItem key={p.id} value={p.title}>{p.title}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Message</Label>
-                  <Textarea 
-                    placeholder="I am interested in..." 
-                    className="min-h-[120px]"
-                    value={contactForm.message}
-                    onChange={(e) => setContactForm(p => ({...p, message: e.target.value}))}
-                  />
-                </div>
-
-                <Button type="submit" className="w-full h-12 text-lg bg-primary hover:bg-primary/90">
-                  <Mail className="mr-2 h-5 w-5" /> Send Message
-                </Button>
-              </form>
+              </CardContent>
             </Card>
-
-          </div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {(featuredPosts.length > 0 ? regularPosts : filteredPosts).map((post) => (
+                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <div className="aspect-video relative overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary">{post.category}</Badge>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Eye className="w-3 h-3 mr-1" />
+                        {post.views.toLocaleString()}
+                      </div>
+                    </div>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center">
+                        <User className="w-3 h-3 mr-1" />
+                        {post.author}
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        {formatDate(post.publishedDate)}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href={`/blog/${post.slug}`}>
+                        Read More
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
-      </section>
+      </div>
 
-      <FloatingActions />
       <SiteFooter />
     </div>
-  );
+  )
 }
