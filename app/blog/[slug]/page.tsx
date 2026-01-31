@@ -10,6 +10,450 @@ import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
+  [
+  {
+    id: "blog-jan-15",
+    title: "Why 2026 is the Best Year to Invest in Dehradun Real Estate",
+    slug: "why-2026-is-best-year-invest-dehradun",
+    created_at: "2026-01-15",
+    publishedDate: "2026-01-15",
+    content: `
+      <h2>Introduction</h2>
+      <p>As we step into 2026, the real estate landscape in Uttarakhand is shifting rapidly. Dehradun, once a quiet retirement town, is now a bustling economic hub. If you have been waiting on the sidelines, here is why 2026 is the critical year to make your move.</p>
+
+      <h2>1. The Expressway Effect</h2>
+      <p>With the Delhi-Dehradun Expressway now fully operational and integrated, travel time has dropped drastically. This has led to a surge in weekend homeowners from NCR. Buying now ensures you catch the wave before prices peak further in mid-2026.</p>
+
+      <h2>2. Saturation of City Centers</h2>
+      <p>Central Dehradun is becoming saturated. The growth is moving towards the periphery—areas like Shimla Bypass, Sahastradhara Road, and Badripur. Investing here now is like buying in Gurgaon in the early 2000s.</p>
+
+      <h2>3. Rise of Remote Work Culture</h2>
+      <p>Companies are permanently adopting hybrid models. Professionals are looking for "Zoom-ready" homes in the hills. Plots that offer high-speed connectivity and scenic views are in higher demand than ever.</p>
+
+      <h2>Conclusion</h2>
+      <p>The window for affordable entry in prime developing zones is closing. 2026 offers the last distinct opportunity to buy large plots at reasonable rates before they become premium assets.</p>
+    `,
+    category: "Market Trends",
+    tags: ["Investment 2026", "Dehradun Real Estate", "Future Trends"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/dehradun-2026-outlook.jpg"
+  },
+  {
+    id: "blog-jan-16",
+    title: "Plot vs. Flat: Dehradun Me Aapke Liye Kya Sahi Hai?",
+    slug: "plot-vs-flat-dehradun-comparison-hinglish",
+    created_at: "2026-01-16",
+    publishedDate: "2026-01-16",
+    content: `
+      <p><strong>Plot vs. Flat: Dehradun Me Aapke Liye Kya Sahi Hai?</strong></p>
+
+      <p>Dehradun me property kharidte waqt sabse bada sawal yahi hota hai: <em>Plot lein ya Flat?</em> Dona ke apne fayde hain, lekin long-term wealth creation ke liye kya behtar hai, aayiye dekhte hain.</p>
+
+      <p><strong>1. Appreciation (Keemat Badhna)</strong></p>
+      <p>Zameen (Plot) ki value hamesha badhti hai. Flats purane hone par depreciate ho sakte hain, lekin Dehradun jaise expand ho raha hai, wahan zameen ka tukda sona ban sakta hai.</p>
+
+      <p><strong>2. Freedom of Design</strong></p>
+      <p>Plot lene par aap apni marzi ka ghar bana sakte hain. Chahe duplex banayein ya cottage style villa. Flats me aapko builder ke design ke saath hi rehna padta hai.</p>
+
+      <p><strong>3. Maintenance Cost</strong></p>
+      <p>Flats me monthly maintenance dena padta hai. Plots me recurring kharcha bahut kam hota hai. Agar aap abhi shift nahi hona chahte, toh plot lekar chhodna ek smart financial decision hai.</p>
+
+      <p><strong>Nishkarsh (Conclusion)</strong></p>
+      <p>Agar aap turant rehna chahte hain aur security chahiye, toh Flat lein. Lekin agar aap investment aur future returns dekh rahe hain, toh Dehradun me Plot lena hi sabse bada samajhdari ka kaam hai.</p>
+    `,
+    category: "Guides",
+    tags: ["Plot vs Flat", "Hinglish Guide", "Investment Tips"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/plot-vs-flat.jpg"
+  },
+  {
+    id: "blog-jan-17",
+    title: "The Golden Circle: Top 5 Emerging Locations in Dehradun",
+    slug: "top-5-emerging-locations-dehradun-2026",
+    created_at: "2026-01-17",
+    publishedDate: "2026-01-17",
+    content: `
+      <h2>Where Should You Buy in 2026?</h2>
+      <p>Dehradun is expanding, but not all areas offer the same Return on Investment (ROI). Based on current infrastructure projects, here are the top 5 emerging locations.</p>
+
+      <h3>1. Shimla Bypass Road</h3>
+      <p>Known for its connectivity to the master plan city expansion. Land rates here are still competitive but rising fast due to new educational institutions.</p>
+
+      <h3>2. Badripur & Jogiwala</h3>
+      <p>Close to the city yet peaceful. Projects like <strong>Bajrang Vatika</strong> have shown how demand is shifting here for residential colonies.</p>
+
+      <h3>3. Sahastradhara Road Extension</h3>
+      <p>The premium belt. Ideal for those looking for luxury living, IT Park proximity, and high-end cafes.</p>
+
+      <h3>4. Jolly Grant / Airport Area</h3>
+      <p>With the airport expansion, this area is a goldmine for commercial plots and rental housing for airport staff and travelers.</p>
+
+      <h3>5. Prem Nagar & Nanda Ki Chowki</h3>
+      <p>Driven by student population and universities. excellent for building rental hostels or PGs.</p>
+    `,
+    category: "Location Analysis",
+    tags: ["Dehradun Locations", "Property Hotspots", "Shimla Bypass"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/dehradun-map-locations.jpg"
+  },
+  {
+    id: "blog-jan-18",
+    title: "Retiring in the Hills: Why Dehradun is India’s Florida",
+    slug: "retiring-in-hills-dehradun-guide",
+    created_at: "2026-01-18",
+    publishedDate: "2026-01-18",
+    content: `
+      <p><strong>Retirement Planning with Real Estate</strong></p>
+      <p>Retirement is no longer about sitting idle; it's about active living in a healthy environment. Dehradun has emerged as the 'Florida of India' for retirees. Here is why.</p>
+
+      <ul>
+        <li><strong>Climate:</strong> Moderate weather year-round, unlike the extreme heat of the plains or freezing cold of higher altitudes.</li>
+        <li><strong>Healthcare:</strong> Home to top hospitals like Max and Synergy, ensuring medical safety for seniors.</li>
+        <li><strong>Community:</strong> A large community of retired defence personnel and civil servants creates a safe, like-minded social circle.</li>
+      </ul>
+
+      <p><strong>Recommendation:</strong> Look for plots in gated societies like <em>Sai Vatika</em> where security and wide roads make morning walks and daily living hassle-free.</p>
+    `,
+    category: "Lifestyle",
+    tags: ["Retirement", "Senior Living", "Dehradun Life"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/retirement-dehradun.jpg"
+  },
+  {
+    id: "blog-jan-19",
+    title: "Investment Checklist: 6 Documents You Must Check Before Buying Land",
+    slug: "investment-checklist-documents-land-uttarakhand",
+    created_at: "2026-01-19",
+    publishedDate: "2026-01-19",
+    content: `
+      <h2>Don't Get Scammed: Legal Checklist</h2>
+      <p>Buying land in Uttarakhand requires due diligence. Before you sign any check, ensure these 6 documents are in order.</p>
+
+      <ol>
+        <li><strong>Khatauni (Mutation Record):</strong> Proves the seller is the current legal owner in government records.</li>
+        <li><strong>Registry (Sale Deed):</strong> Check the chain of previous registries to ensure clean transfer of title.</li>
+        <li><strong>Land Use Certificate (143 Conversion):</strong> Crucial! Ensure the land is converted from agricultural to residential use (Section 143) if you plan to build a house.</li>
+        <li><strong>Encumbrance Certificate:</strong> Ensures the land has no pending loans or legal dues.</li>
+        <li><strong>Approved Map (if applicable):</strong> For colony plots, check if the layout is MDDA approved or RERA registered.</li>
+        <li><strong>Road Access:</strong> Ensure the road shown to you is a public "sarkari" road, not a private passage.</li>
+      </ol>
+    `,
+    category: "Legal Guide",
+    tags: ["Legal Checks", "Land Registry", "Safe Investment"],
+    author: "Legal Advisor",
+    status: "Published",
+    image: "/images/legal-docs.jpg"
+  },
+  {
+    id: "blog-jan-20",
+    title: "Dehradun Real Estate: Commercial vs. Residential Plots",
+    slug: "commercial-vs-residential-plots-dehradun",
+    created_at: "2026-01-20",
+    publishedDate: "2026-01-20",
+    content: `
+      <p>Investors often get confused: Should I buy a shop plot or a house plot? Let's break down the math.</p>
+      
+      <h3>Residential Plots</h3>
+      <p><strong>Pros:</strong> Lower entry cost, easier to sell later, high demand from families.</p>
+      <p><strong>Cons:</strong> Lower rental yield unless you build a multi-story building.</p>
+
+      <h3>Commercial Plots</h3>
+      <p><strong>Pros:</strong> High rental income, long-term leases with businesses, rapid value appreciation in main markets.</p>
+      <p><strong>Cons:</strong> Much higher entry price, higher taxes, and dependent on economic activity.</p>
+
+      <p><strong>Verdict:</strong> For a budget under 50 Lakhs, stick to Residential. If your budget exceeds 1 Cr, Commercial on main roads offers better monthly returns.</p>
+    `,
+    category: "Investment Analysis",
+    tags: ["Commercial Property", "Residential Plots", "ROI"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/commercial-vs-residential.jpg"
+  },
+  {
+    id: "blog-jan-21",
+    title: "Earn Passive Income: The 'Homestay' Model in Uttarakhand",
+    slug: "earn-passive-income-homestay-model",
+    created_at: "2026-01-21",
+    publishedDate: "2026-01-21",
+    content: `
+      <h2>Your Land Can Pay Your EMI</h2>
+      <p>With tourism in Rishikesh and Dehradun booming, the 'Homestay' model is the smartest way to invest. Instead of just holding a vacant plot, many investors are building cottage-style homes to list on Airbnb.</p>
+
+      <p><strong>Why it works in Dehradun:</strong></p>
+      <ul>
+        <li>Tourists prefer the privacy of a home over hotels.</li>
+        <li>Dehradun serves as a base camp for Mussoorie and Rishikesh.</li>
+        <li>A 2-room cottage can earn ₹30k-₹50k per month in rental income.</li>
+      </ul>
+
+      <p><em>Tip: Look for plots with a view. A scenic view increases nightly rental rates by 40%.</em></p>
+    `,
+    category: "Business Ideas",
+    tags: ["Passive Income", "Airbnb", "Homestay Business"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/homestay-design.jpg"
+  },
+  {
+    id: "blog-jan-22",
+    title: "Gated Societies vs. Independent Land: What to Choose?",
+    slug: "gated-societies-vs-independent-land",
+    created_at: "2026-01-22",
+    publishedDate: "2026-01-22",
+    content: `
+      <p><strong>Security vs. Freedom</strong></p>
+      <p>When buying land, you have two choices: A plot in a gated colony (like Friend's Colony) or independent land on a generic road. Here is the comparison.</p>
+
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Gated Society</th>
+          <th>Independent Land</th>
+        </tr>
+        <tr>
+          <td>Security</td>
+          <td>High (Guards/CCTV)</td>
+          <td>Owner's Responsibility</td>
+        </tr>
+        <tr>
+          <td>Community</td>
+          <td>Established Neighbors</td>
+          <td>Isolated</td>
+        </tr>
+        <tr>
+          <td>Utilities</td>
+          <td>Ready (Water/Elec)</td>
+          <td>Must Apply Yourself</td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td>Slightly Premium</td>
+          <td>Cheaper</td>
+        </tr>
+      </table>
+
+      <p>For families and absentees (NRIs), Gated Societies are strictly recommended to avoid encroachment issues.</p>
+    `,
+    category: "Buyer Guide",
+    tags: ["Gated Community", "Land Safety", "Buying Tips"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/gated-community.jpg"
+  },
+  {
+    id: "blog-jan-23",
+    title: "Smart Cities Mission: How Dehradun Infrastructure is Changing",
+    slug: "smart-cities-mission-dehradun-infrastructure",
+    created_at: "2026-01-23",
+    publishedDate: "2026-01-23",
+    content: `
+      <h2>The New Face of Dehradun</h2>
+      <p>The Smart City project is reshaping the capital. From smart electric buses to underground cabling and road widening, the infrastructure is getting a massive upgrade.</p>
+
+      <p><strong>Impact on Real Estate:</strong></p>
+      <p>Areas receiving smart infrastructure upgrades are seeing a 15-20% annual price appreciation. Better drainage and wide roads make these specific zones highly desirable for upper-middle-class families.</p>
+
+      <p><strong>Key Insight:</strong> Follow the government's development map. Buying land near upcoming "Smart Zones" guarantees better livability and higher resale value.</p>
+    `,
+    category: "Infrastructure",
+    tags: ["Smart City", "Dehradun Development", "Urban Planning"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/smart-city-dehradun.jpg"
+  },
+  {
+    id: "blog-jan-24",
+    title: "Budget Investment: Plots Under 20 Lakhs in Dehradun",
+    slug: "budget-investment-plots-under-20-lakhs",
+    created_at: "2026-01-24",
+    publishedDate: "2026-01-24",
+    content: `
+      <p><strong>Is it still possible to buy cheap land in Dehradun?</strong></p>
+      <p>Yes, but you have to move away from the city center. The sub-20 Lakh budget is perfect for long-term investors willing to hold for 5-7 years.</p>
+
+      <p><strong>Where to look:</strong></p>
+      <ul>
+        <li><strong>Bhauwala / Dudhli:</strong> Emerging green belts with affordable rates.</li>
+        <li><strong>Raiwala Outskirts:</strong> Good for those connecting towards Haridwar/Rishikesh.</li>
+        <li><strong>Shimla Bypass Interiors:</strong> Moving 2-3 km off the main highway drops prices significantly.</li>
+      </ul>
+
+      <p>These areas are currently "raw" but are on the path of urbanization. Buy low, wait, and sell high.</p>
+    `,
+    category: "Budget Buys",
+    tags: ["Affordable Housing", "Cheap Plots", "Investment"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/budget-plots.jpg"
+  },
+  {
+    id: "blog-jan-25",
+    title: "NRI Guide: Buying Property in Uttarakhand from Abroad",
+    slug: "nri-guide-buying-property-uttarakhand",
+    created_at: "2026-01-25",
+    publishedDate: "2026-01-25",
+    content: `
+      <h2>Calling Uttarakhand Home</h2>
+      <p>For NRIs, Uttarakhand is not just an investment; it's an emotional connection to their roots. However, managing property from abroad can be tricky.</p>
+
+      <h3>Key Tips for NRIs:</h3>
+      <ul>
+        <li><strong>Power of Attorney (PoA):</strong> Ensure you have a specific PoA for property execution if you cannot be physically present.</li>
+        <li><strong>FEMA Regulations:</strong> Ensure payments are made through NRE/NRO accounts to comply with RBI rules.</li>
+        <li><strong>Digital Verification:</strong> Use video calls and geo-tagging to verify plot boundaries before transferring funds.</li>
+        <li><strong>Asset Management:</strong> Hire a local property management agency to fence the land and pay annual taxes to prevent encroachment.</li>
+      </ul>
+    `,
+    category: "NRI Corner",
+    tags: ["NRI Investment", "FEMA Rules", "Remote Buying"],
+    author: "Legal Advisor",
+    status: "Published",
+    image: "/images/nri-investment.jpg"
+  },
+  {
+    id: "blog-jan-26",
+    title: "Republic Day Special: The Freedom of Owning Your Own Land",
+    slug: "republic-day-freedom-owning-land",
+    created_at: "2026-01-26",
+    publishedDate: "2026-01-26",
+    content: `
+      <p><strong>This Republic Day, Celebrate Financial Freedom.</strong></p>
+      <p>True freedom comes from security. And nothing offers financial security like a freehold residential plot. Unlike stocks that fluctuate wildly, land is a tangible asset that anchors your portfolio.</p>
+
+      <p> owning a plot in Uttarakhand gives you the freedom to:</p>
+      <ul>
+        <li>Build whenever you want.</li>
+        <li>Design whatever you want.</li>
+        <li>Secure your next generation's future.</li>
+      </ul>
+      <p><strong>Take a pledge today to start your journey towards property ownership. Jai Hind!</strong></p>
+    `,
+    category: "Editorial",
+    tags: ["Republic Day", "Financial Freedom", "Real Estate Motivation"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/republic-day-prop.jpg"
+  },
+  {
+    id: "blog-jan-27",
+    title: "Dehradun Weather & Lifestyle: Why It Matters for Property Buyers",
+    slug: "dehradun-weather-lifestyle-property-impact",
+    created_at: "2026-01-27",
+    publishedDate: "2026-01-27",
+    content: `
+      <h2>It's Not Just Land, It's the Air You Breathe</h2>
+      <p>When you buy property in Dehradun, you are paying for the AQI (Air Quality Index) as much as the square footage. With metro cities gasping for breath, Dehradun's clean air is its biggest selling point.</p>
+
+      <p><strong>Lifestyle Benefits:</strong></p>
+      <ul>
+        <li><strong>Outdoor Living:</strong> Homes here are designed with balconies and terraces to enjoy the weather.</li>
+        <li><strong>Health:</strong> Lower pollution levels mean fewer respiratory issues for children and elders.</li>
+        <li><strong>Mental Peace:</strong> The view of the Mussoorie hills provides a daily mental detox.</li>
+      </ul>
+      <p>Property in green belts (Tea Estate areas, Rajpur Road) commands a premium for this exact reason.</p>
+    `,
+    category: "Lifestyle",
+    tags: ["Health", "Environment", "Green Living"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/dehradun-nature.jpg"
+  },
+  {
+    id: "blog-jan-28",
+    title: "Resale Value: How to Ensure Your Plot Sells for a Profit",
+    slug: "resale-value-tips-plot-investment",
+    created_at: "2026-01-28",
+    publishedDate: "2026-01-28",
+    content: `
+      <p><strong>Buying is easy. Selling for a profit requires strategy.</strong></p>
+      <p>If you are buying purely for investment, follow these rules to ensure a high resale value later:</p>
+
+      <ol>
+        <li><strong>Corner Plots:</strong> Always fetch a 10-15% premium. Grab them if available.</li>
+        <li><strong>Road Width:</strong> Never buy on a road narrower than 20-25 feet. Cars need to pass easily.</li>
+        <li><strong>Direction:</strong> East-facing and North-facing plots are considered auspicious (Vastu) and sell faster in the Indian market.</li>
+        <li><strong>Shape:</strong> Stick to rectangular or square plots. Irregular shapes (Gaumukhi/Shermukhi) limit buyer interest.</li>
+      </ol>
+    `,
+    category: "Selling Tips",
+    tags: ["Resale Value", "Vastu", "Investment Strategy"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/resale-profit.jpg"
+  },
+  {
+    id: "blog-jan-29",
+    title: "Student Housing: A Hidden Real Estate Goldmine in Dehradun",
+    slug: "student-housing-investment-dehradun",
+    created_at: "2026-01-29",
+    publishedDate: "2026-01-29",
+    content: `
+      <h2>The Education Hub Advantage</h2>
+      <p>Dehradun is the 'School Capital of India' and a growing hub for universities (UPES, Graphic Era, Uttaranchal University). This creates a massive demand for student housing.</p>
+
+      <p><strong>The Strategy:</strong></p>
+      <p>Buy a plot near these universities (Bidholi, Clement Town, Prem Nagar). Construct a G+2 building with studio apartments. Rent to students.</p>
+
+      <p><strong>The Numbers:</strong></p>
+      <p>Student housing yields 7-9% rental returns compared to the standard 2-3% for residential family homes. It is recession-proof and high demand.</p>
+    `,
+    category: "Market Niches",
+    tags: ["Student Housing", "Rental Yield", "Education Hub"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/student-housing.jpg"
+  },
+  {
+    id: "blog-jan-30",
+    title: "Common Mistakes First-Time Land Buyers Make",
+    slug: "common-mistakes-first-time-land-buyers",
+    created_at: "2026-01-30",
+    publishedDate: "2026-01-30",
+    content: `
+      <p><strong>Avoid These Blunders!</strong></p>
+      <p>Buying your first plot is emotional, but don't let emotions override logic.</p>
+
+      <ul>
+        <li><strong>Mistake 1: Judging by distance, not time.</strong> A plot might look far on a map, but if it's near a highway, it's closer than you think.</li>
+        <li><strong>Mistake 2: Ignoring topography.</strong> In Uttarakhand, a plot might be cheap because it is in a low-lying water logging area or on a steep cliff. Visit during the day.</li>
+        <li><strong>Mistake 3: Verbal promises.</strong> "Road ban jayegi" (Road will be built) is the most common lie. Only trust what is on the approved map.</li>
+        <li><strong>Mistake 4: Skipping the boundary.</strong> Always demarcate your land with pillars/fencing immediately after purchase.</li>
+      </ul>
+    `,
+    category: "Education",
+    tags: ["Buyer Mistakes", "Real Estate Tips", "Caution"],
+    author: "Admin User",
+    status: "Published",
+    image: "/images/mistakes-to-avoid.jpg"
+  },
+  {
+    id: "blog-jan-31",
+    title: "January 2026 Market Wrap: Prices Rising, Demand Steady",
+    slug: "january-2026-market-wrap-report",
+    created_at: "2026-01-31",
+    publishedDate: "2026-01-31",
+    content: `
+      <h2>Monthly Market Update</h2>
+      <p>As we close January 2026, the Dehradun real estate market has shown resilience. Here are the key takeaways from this month:</p>
+
+      <ul>
+        <li><strong>Price Trends:</strong> Land rates in Badripur and Shimla Bypass saw a marginal increase of 2% this month alone.</li>
+        <li><strong>Demand:</strong> High inquiry volume for plots in the ₹25L - ₹40L bracket.</li>
+        <li><strong>Inventory:</strong> Ready-to-move plots in gated societies are selling out fast.</li>
+      </ul>
+
+      <p><strong>Outlook for February:</strong> We expect a surge in site visits as the weather becomes warmer. If you are planning to buy, February is the time to finalize deals before the spring price hike.</p>
+    `,
+    category: "Market Report",
+    tags: ["Market Analysis", "Monthly Report", "Price Trends"],
+    author: "Property Manager",
+    status: "Published",
+    image: "/images/jan-market-wrap.jpg"
+  },
   {
   id: "5",
   title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
