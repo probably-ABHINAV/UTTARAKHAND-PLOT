@@ -1,36 +1,20 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { Calendar, Clock, Eye, User, ArrowLeft } from "lucide-react"
+import { Calendar, Clock, Eye, User, Search, Filter } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { notFound } from "next/navigation"
+import { useState } from "react"
 
-// Standardized Blog Post Interface
-interface BlogPost {
-  id: string | number;
-  title: string;
-  slug: string;
-  created_at: string;
-  publishedDate: string;
-  content: string;
-  category: string;
-  tags: string[];
-  author: string;
-  status: string;
-  image: string;
-  excerpt?: string;
-  views: number;
-  lastModified?: string;
-  metaTitle?: string;
-  metaDescription?: string;
-  featured?: boolean;
-}
-
-const blogPosts: BlogPost[] = [
- {
+// Blog posts data (same as admin section)
+const blogPosts = [
+{
 
     id: "blog-jan-15",
 
@@ -2477,140 +2461,223 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
   image: "/images/design1.png",
 
 }
-];
+]
 
-interface BlogPostPageProps {
-  params: {
-    slug: string
-  }
-}
+const categories = ["All", "Investment", "Market Trends", "Market Analysis", "Property Tips", "Location Guide"]
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  
-  if (!post) notFound()
+export default function BlogPage() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
 
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString("en-IN", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+  // Filter posts
+  const filteredPosts = blogPosts.filter((post) => {
+    const matchesSearch = 
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory
+    
+    return matchesSearch && matchesCategory && post.status === "Published"
+  })
+
+  const featuredPosts = filteredPosts.filter(post => post.featured)
+  const regularPosts = filteredPosts.filter(post => !post.featured)
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     })
+  }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col">
+    <div className="min-h-screen bg-background">
       <SiteHeader />
-
+      
       {/* Hero Section */}
-      <div className="relative w-full h-64 md:h-[28rem]">
-        <Image 
-          src={post.image || "/images/placeholder.jpg"} 
-          alt={post.title} 
-          fill 
-          className="object-cover" 
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-end justify-start p-6 md:p-12">
-          <Button asChild variant="secondary" size="sm" className="z-10">
-            <Link href="/blog">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Blog
-            </Link>
-          </Button>
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="absolute inset-0 bg-grid-white/10 bg-grid-16 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
+        <div className="container relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-serif font-black text-foreground mb-6">
+              Property Investment
+              <span className="block text-primary">Insights & Guides</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Expert insights on Uttrakhand property investment, market trends, and location guides 
+              to help you make informed decisions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-16">
+        {/* Search and Filter */}
+        <div className="flex flex-col md:flex-row gap-4 mb-12">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <Input
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-full md:w-48">
+              <Filter className="w-4 h-4 mr-2" />
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Featured Posts */}
+        {featuredPosts.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-3xl font-serif font-bold mb-8">Featured Articles</h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {featuredPosts.map((post) => (
+                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <div className="aspect-video relative overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-primary text-primary-foreground">Featured</Badge>
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary">{post.category}</Badge>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Eye className="w-3 h-3 mr-1" />
+                        {post.views.toLocaleString()}
+                      </div>
+                    </div>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center">
+                        <User className="w-3 h-3 mr-1" />
+                        {post.author}
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        {formatDate(post.publishedDate)}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Button asChild className="w-full">
+                      <Link href={`/blog/${post.slug}`}>
+                        Read More
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Regular Posts */}
+        <div>
+          <h2 className="text-3xl font-serif font-bold mb-8">
+            {featuredPosts.length > 0 ? "All Articles" : "Latest Articles"}
+          </h2>
+          
+          {filteredPosts.length === 0 ? (
+            <Card className="p-12 text-center">
+              <CardContent>
+                <div className="text-muted-foreground">
+                  <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                  <h3 className="text-xl font-semibold mb-2">No articles found</h3>
+                  <p>Try adjusting your search terms or category filter.</p>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {(featuredPosts.length > 0 ? regularPosts : filteredPosts).map((post) => (
+                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <div className="aspect-video relative overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary">{post.category}</Badge>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Eye className="w-3 h-3 mr-1" />
+                        {post.views.toLocaleString()}
+                      </div>
+                    </div>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center">
+                        <User className="w-3 h-3 mr-1" />
+                        {post.author}
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        {formatDate(post.publishedDate)}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href={`/blog/${post.slug}`}>
+                        Read More
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Blog Content */}
-      <article className="flex-grow container mx-auto px-4 md:px-6 py-12 max-w-4xl text-left">
-        <header className="mb-10">
-          <div className="flex flex-wrap justify-start items-center gap-3 mb-4 text-sm text-gray-600">
-            <Badge variant="secondary">{post.category}</Badge>
-            <div className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" /> {(post.views || 0).toLocaleString()} views
-            </div>
-            <div className="flex items-center">
-              <User className="w-4 h-4 mr-1" /> {post.author}
-            </div>
-            <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.publishedDate)}
-            </div>
-            <div className="flex items-center">
-              <Clock className="w-4 h-4 mr-1" /> 5 min read
-            </div>
-          </div>
-
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900">
-            {post.title}
-          </h1>
-
-          {post.excerpt && (
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
-              {post.excerpt}
-            </p>
-          )}
-
-          <div className="flex flex-wrap gap-2 mt-5">
-            {post.tags?.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-gray-700">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </header>
-
-        <div
-          className="prose prose-lg md:prose-xl mx-auto text-left leading-relaxed prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-black"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-
-        {/* CTA Card */}
-        <Card className="mt-16 bg-orange-50 border border-orange-200 shadow-sm">
-          <CardContent className="p-8 text-left">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-              Ready to Invest in Uttarakhand Properties?
-            </h3>
-            <p className="text-gray-700 mb-6">
-              Explore our curated selection of premium plots in Uttarakhand's most sought-after hill locations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white">
-                <Link href="/plots">View Available Plots</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/contact">Get Expert Consultation</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </article>
 
       <SiteFooter />
     </div>
   )
-}
-
-export async function generateStaticParams() {
-  return blogPosts
-    .filter((post) => post.status === "Published")
-    .map((post) => ({ slug: post.slug }))
-}
-
-export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  if (!post) return { title: "Post Not Found" }
-
-  return {
-    title: post.metaTitle || post.title,
-    description: post.metaDescription || post.excerpt,
-    keywords: post.tags?.join(", "),
-    openGraph: {
-      title: post.metaTitle || post.title,
-      description: post.metaDescription || post.excerpt,
-      images: [post.image],
-      type: "article",
-      publishedTime: post.publishedDate,
-      authors: [post.author],
-      tags: post.tags,
-    },
-  }
 }
