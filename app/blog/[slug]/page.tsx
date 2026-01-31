@@ -1362,7 +1362,7 @@ Such government initiatives also enhance nearby infrastructure-like schools, col
 
 ]
 
-interface BlogPostPageProps {
+type BlogPostPageProps = {
   params: {
     slug: string
   }
