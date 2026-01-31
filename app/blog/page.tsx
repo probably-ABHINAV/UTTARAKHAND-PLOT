@@ -38,12 +38,13 @@ import {
 
 // --- BLOG DATA ---
 const blogPosts = [
+  // --- EXISTING POSTS ---
   {
     id: 5,
     title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
     slug: "why-investing-in-dehradun-residential-plots-is-a-smart-move-2025",
     excerpt: "Affordable property in Uttarakhand offers flexibility, strong tourism demand, improving infrastructure, and long-term appreciation potential.",
-    content: `...`, // (Truncated for brevity in code block, keep your full content)
+    content: `...`, 
     category: "Market Trends",
     tags: ["Affordable Property", "Uttarakhand Investment", "Dehradun Plots"],
     author: "Property Manager",
@@ -52,14 +53,14 @@ const blogPosts = [
     lastModified: "2026-01-17",
     views: 1205,
     featured: true,
-    image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg ",
+    image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg",
   },
   {
     id: 4,
     title: "Why Buy Affordable Property in Uttarakhand — 7 Clear Reasons",
     slug: "why-buy-affordable-property-in-uttarakhand",
     excerpt: "Affordable property in Uttarakhand offers flexibility, strong tourism demand, improving infrastructure, and long-term appreciation potential.",
-    content: `...`, // (Truncated for brevity in code block, keep your full content)
+    content: `...`,
     category: "Market Trends",
     tags: ["Affordable Property", "Uttarakhand Investment", "Dehradun Plots"],
     author: "Property Manager",
@@ -133,6 +134,279 @@ const blogPosts = [
     views: 600,
     featured: false,
     image: "/images/design1.png",
+  },
+  // --- NEW ADDED POSTS (JAN 15-31 2026) ---
+  {
+    id: "blog-jan-31",
+    title: "January 2026 Market Wrap: Prices Rising, Demand Steady",
+    slug: "january-2026-market-wrap-report",
+    excerpt: "Land rates in Badripur and Shimla Bypass saw a marginal increase of 2% this month. See the full report.",
+    content: `...`,
+    category: "Market Trends",
+    tags: ["Market Analysis", "Monthly Report", "Price Trends"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-31",
+    lastModified: "2026-01-31",
+    views: 120,
+    featured: false,
+    image: "/images/jan-market-wrap.jpg"
+  },
+  {
+    id: "blog-jan-30",
+    title: "Common Mistakes First-Time Land Buyers Make",
+    slug: "common-mistakes-first-time-land-buyers",
+    excerpt: "Buying your first plot is emotional, but don't let emotions override logic. Avoid these 4 common blunders.",
+    content: `...`,
+    category: "Property Tips",
+    tags: ["Buyer Mistakes", "Real Estate Tips", "Caution"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-30",
+    lastModified: "2026-01-30",
+    views: 145,
+    featured: false,
+    image: "/images/mistakes-to-avoid.jpg"
+  },
+  {
+    id: "blog-jan-29",
+    title: "Student Housing: A Hidden Real Estate Goldmine in Dehradun",
+    slug: "student-housing-investment-dehradun",
+    excerpt: "Dehradun is the 'School Capital of India'. Learn how student housing yields 7-9% rental returns compared to standard residential.",
+    content: `...`,
+    category: "Investment",
+    tags: ["Student Housing", "Rental Yield", "Education Hub"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-29",
+    lastModified: "2026-01-29",
+    views: 210,
+    featured: false,
+    image: "/images/student-housing.jpg"
+  },
+  {
+    id: "blog-jan-28",
+    title: "Resale Value: How to Ensure Your Plot Sells for a Profit",
+    slug: "resale-value-tips-plot-investment",
+    excerpt: "Buying is easy, selling for a profit requires strategy. Learn about corner plots, road width, and Vastu impacts.",
+    content: `...`,
+    category: "Investment",
+    tags: ["Resale Value", "Vastu", "Investment Strategy"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-28",
+    lastModified: "2026-01-28",
+    views: 180,
+    featured: false,
+    image: "/images/resale-profit.jpg"
+  },
+  {
+    id: "blog-jan-27",
+    title: "Dehradun Weather & Lifestyle: Why It Matters for Property Buyers",
+    slug: "dehradun-weather-lifestyle-property-impact",
+    excerpt: "You are paying for the AQI as much as the square footage. Discover why Dehradun's clean air is a primary asset.",
+    content: `...`,
+    category: "Location Guide",
+    tags: ["Health", "Environment", "Green Living"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-27",
+    lastModified: "2026-01-27",
+    views: 300,
+    featured: false,
+    image: "/images/dehradun-nature.jpg"
+  },
+  {
+    id: "blog-jan-26",
+    title: "Republic Day Special: The Freedom of Owning Your Own Land",
+    slug: "republic-day-freedom-owning-land",
+    excerpt: "True freedom comes from security. Unlike volatile stocks, a freehold residential plot anchors your portfolio.",
+    content: `...`,
+    category: "Market Trends",
+    tags: ["Republic Day", "Financial Freedom", "Real Estate Motivation"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-26",
+    lastModified: "2026-01-26",
+    views: 450,
+    featured: false,
+    image: "/images/republic-day-prop.jpg"
+  },
+  {
+    id: "blog-jan-25",
+    title: "NRI Guide: Buying Property in Uttarakhand from Abroad",
+    slug: "nri-guide-buying-property-uttarakhand",
+    excerpt: "Managing property from abroad can be tricky. Here are key tips on PoA, FEMA regulations, and digital verification.",
+    content: `...`,
+    category: "Property Tips",
+    tags: ["NRI Investment", "FEMA Rules", "Remote Buying"],
+    author: "Legal Advisor",
+    status: "Published",
+    publishedDate: "2026-01-25",
+    lastModified: "2026-01-25",
+    views: 520,
+    featured: true,
+    image: "/images/nri-investment.jpg"
+  },
+  {
+    id: "blog-jan-24",
+    title: "Budget Investment: Plots Under 20 Lakhs in Dehradun",
+    slug: "budget-investment-plots-under-20-lakhs",
+    excerpt: "Is it still possible to buy cheap land in Dehradun? Yes, if you look at Bhauwala, Raiwala, and Shimla Bypass interiors.",
+    content: `...`,
+    category: "Investment",
+    tags: ["Affordable Housing", "Cheap Plots", "Investment"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-24",
+    lastModified: "2026-01-24",
+    views: 890,
+    featured: true,
+    image: "/images/budget-plots.jpg"
+  },
+  {
+    id: "blog-jan-23",
+    title: "Smart Cities Mission: How Dehradun Infrastructure is Changing",
+    slug: "smart-cities-mission-dehradun-infrastructure",
+    excerpt: "The Smart City project is reshaping the capital. Areas receiving smart infrastructure upgrades are seeing a 15-20% annual appreciation.",
+    content: `...`,
+    category: "Market Trends",
+    tags: ["Smart City", "Dehradun Development", "Urban Planning"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-23",
+    lastModified: "2026-01-23",
+    views: 340,
+    featured: false,
+    image: "/images/smart-city-dehradun.jpg"
+  },
+  {
+    id: "blog-jan-22",
+    title: "Gated Societies vs. Independent Land: What to Choose?",
+    slug: "gated-societies-vs-independent-land",
+    excerpt: "Security vs. Freedom. A detailed comparison table for families and absentees (NRIs) looking to invest.",
+    content: `...`,
+    category: "Property Tips",
+    tags: ["Gated Community", "Land Safety", "Buying Tips"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-22",
+    lastModified: "2026-01-22",
+    views: 410,
+    featured: false,
+    image: "/images/gated-community.jpg"
+  },
+  {
+    id: "blog-jan-21",
+    title: "Earn Passive Income: The 'Homestay' Model in Uttarakhand",
+    slug: "earn-passive-income-homestay-model",
+    excerpt: "Don't just hold a vacant plot. Learn how a 2-room cottage can earn ₹30k-₹50k per month in rental income.",
+    content: `...`,
+    category: "Investment",
+    tags: ["Passive Income", "Airbnb", "Homestay Business"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-21",
+    lastModified: "2026-01-21",
+    views: 600,
+    featured: true,
+    image: "/images/homestay-design.jpg"
+  },
+  {
+    id: "blog-jan-20",
+    title: "Dehradun Real Estate: Commercial vs. Residential Plots",
+    slug: "commercial-vs-residential-plots-dehradun",
+    excerpt: "Should you buy a shop plot or a house plot? We break down the pros, cons, and ROI for budgets under 50 Lakhs.",
+    content: `...`,
+    category: "Investment",
+    tags: ["Commercial Property", "Residential Plots", "ROI"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-20",
+    lastModified: "2026-01-20",
+    views: 280,
+    featured: false,
+    image: "/images/commercial-vs-residential.jpg"
+  },
+  {
+    id: "blog-jan-19",
+    title: "Investment Checklist: 6 Documents You Must Check Before Buying Land",
+    slug: "investment-checklist-documents-land-uttarakhand",
+    excerpt: "Don't get scammed. Before you sign any check, ensure Khatauni, Registry, and Land Use Certificates are in order.",
+    content: `...`,
+    category: "Property Tips",
+    tags: ["Legal Checks", "Land Registry", "Safe Investment"],
+    author: "Legal Advisor",
+    status: "Published",
+    publishedDate: "2026-01-19",
+    lastModified: "2026-01-19",
+    views: 750,
+    featured: false,
+    image: "/images/legal-docs.jpg"
+  },
+  {
+    id: "blog-jan-18",
+    title: "Retiring in the Hills: Why Dehradun is India’s Florida",
+    slug: "retiring-in-hills-dehradun-guide",
+    excerpt: "Retirement is about active living. Discover why Dehradun's healthcare and community make it the top choice for seniors.",
+    content: `...`,
+    category: "Location Guide",
+    tags: ["Retirement", "Senior Living", "Dehradun Life"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-18",
+    lastModified: "2026-01-18",
+    views: 390,
+    featured: false,
+    image: "/images/retirement-dehradun.jpg"
+  },
+  {
+    id: "blog-jan-17",
+    title: "The Golden Circle: Top 5 Emerging Locations in Dehradun",
+    slug: "top-5-emerging-locations-dehradun-2026",
+    excerpt: "Not all areas offer the same ROI. We analyze Shimla Bypass, Badripur, and Sahastradhara Road extensions.",
+    content: `...`,
+    category: "Location Guide",
+    tags: ["Dehradun Locations", "Property Hotspots", "Shimla Bypass"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-17",
+    lastModified: "2026-01-17",
+    views: 920,
+    featured: true,
+    image: "/images/dehradun-map-locations.jpg"
+  },
+  {
+    id: "blog-jan-16",
+    title: "Plot vs. Flat: Dehradun Me Aapke Liye Kya Sahi Hai?",
+    slug: "plot-vs-flat-dehradun-comparison-hinglish",
+    excerpt: "Dehradun me property kharidte waqt sabse bada sawal: Plot lein ya Flat? Hinglish guide for smart investors.",
+    content: `...`,
+    category: "Property Tips",
+    tags: ["Plot vs Flat", "Hinglish Guide", "Investment Tips"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-16",
+    lastModified: "2026-01-16",
+    views: 670,
+    featured: false,
+    image: "/images/plot-vs-flat.jpg"
+  },
+  {
+    id: "blog-jan-15",
+    title: "Why 2026 is the Best Year to Invest in Dehradun Real Estate",
+    slug: "why-2026-is-best-year-invest-dehradun",
+    excerpt: "The Delhi-Dehradun Expressway is operational. Find out why 2026 is the critical year to make your move before prices peak.",
+    content: `...`,
+    category: "Market Trends",
+    tags: ["Investment 2026", "Dehradun Real Estate", "Future Trends"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-15",
+    lastModified: "2026-01-15",
+    views: 1100,
+    featured: true,
+    image: "/images/dehradun-2026-outlook.jpg"
   }
 ]
 
@@ -177,7 +451,7 @@ export default function BlogPage() {
              <BookOpen className="mr-2 h-3 w-3" /> Knowledge Hub
           </Badge>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            Property Investment <span className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Insights</span>
+            Property Investment <span className="text-primary">Insights</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Expert guides, market trends, and location analysis to help you make informed real estate decisions in Uttarakhand.
@@ -238,7 +512,7 @@ export default function BlogPage() {
                     <div className="flex justify-between items-center mb-2">
                       <Badge variant="outline" className="text-xs font-normal">{post.category}</Badge>
                       <span className="text-xs text-muted-foreground flex items-center">
-                         <Calendar className="w-3 h-3 mr-1" /> {formatDate(post.publishedDate)}
+                          <Calendar className="w-3 h-3 mr-1" /> {formatDate(post.publishedDate)}
                       </span>
                     </div>
                     <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
@@ -249,9 +523,9 @@ export default function BlogPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="mt-auto pt-0">
-                     <Button variant="link" className="px-0 text-primary group-hover:translate-x-1 transition-transform" asChild>
-                        <Link href={`/blog/${post.slug}`}>Read Article <ArrowRight className="ml-1 h-4 w-4" /></Link>
-                     </Button>
+                      <Button variant="link" className="px-0 text-primary group-hover:translate-x-1 transition-transform" asChild>
+                         <Link href={`/blog/${post.slug}`}>Read Article <ArrowRight className="ml-1 h-4 w-4" /></Link>
+                      </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -302,20 +576,20 @@ export default function BlogPage() {
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {post.tags.slice(0, 2).map(tag => (
-                         <Badge key={tag} variant="secondary" className="text-[10px] px-1.5 py-0 h-5 font-normal bg-muted text-muted-foreground">
+                          <Badge key={tag} variant="secondary" className="text-[10px] px-1.5 py-0 h-5 font-normal bg-muted text-muted-foreground">
                             #{tag}
-                         </Badge>
+                          </Badge>
                       ))}
                     </div>
                     
                     <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                       <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                             <User className="w-3 h-3 text-primary" />
-                          </div>
-                          <span className="text-xs font-medium text-muted-foreground">{post.author}</span>
-                       </div>
-                       <span className="text-xs text-muted-foreground">{formatDate(post.publishedDate)}</span>
+                        <div className="flex items-center gap-2">
+                           <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                              <User className="w-3 h-3 text-primary" />
+                           </div>
+                           <span className="text-xs font-medium text-muted-foreground">{post.author}</span>
+                        </div>
+                        <span className="text-xs text-muted-foreground">{formatDate(post.publishedDate)}</span>
                     </div>
                   </CardContent>
                 </Card>
