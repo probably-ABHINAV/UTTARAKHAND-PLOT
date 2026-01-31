@@ -10,7 +10,6 @@ import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
-  [
   {
     id: "blog-jan-15",
     title: "Why 2026 is the Best Year to Invest in Dehradun Real Estate",
