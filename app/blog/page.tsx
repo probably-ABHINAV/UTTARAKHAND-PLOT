@@ -474,12 +474,7 @@ const plotData = [
     size: "900-2400 sq yd",
     type: "Residential Project",
     price: "₹16,500 per sq/yd",
-    features: [
-      "24x7 Security",
-      "Wide Roads",
-      "Gated Community",
-      "Premium Location",
-    ],
+    features: ["Green Parks", "24x7 Security", "Wide Roads", "Modern Infra"],
     images: ["/images/D_1760471281369.jpg", "/images/E_1760471281368.jpg"],
     rating: 4.8,
     reviews: 156,
