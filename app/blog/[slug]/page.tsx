@@ -14,6 +14,81 @@ import { useState } from "react"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
+    {
+  id: "blog-bajrang-vatika-01",
+
+  title: "Why Bajrang Vatika is the Perfect Blend of Spiritual Living and Smart Investment",
+
+  slug: "why-bajrang-vatika-spiritual-living-smart-investment",
+
+  created_at: "2026-02-02",
+
+  publishedDate: "2026-02-02",
+
+  content: `
+
+    <h2>Introduction</h2>
+
+    <p>In today’s fast-paced world, homebuyers are no longer looking for just land or construction—they are searching for peace, security, and long-term value. Bajrang Vatika stands out as a unique residential project that blends spiritual essence with modern living. Inspired by devotion to Lord Hanuman and designed for peaceful community life, Bajrang Vatika offers an ideal opportunity for both end-users and investors.</p>
+
+
+
+    <h2>1. Spiritually Inspired Living Environment</h2>
+
+    <p>Bajrang Vatika is not just a residential project; it is a thoughtfully planned spiritual habitat. Rooted in the values of strength, protection, and positivity symbolized by Lord Hanuman, the project promotes calm living away from urban chaos. Such spiritually themed communities are gaining popularity among families seeking mental peace, harmony, and a strong cultural connection.</p>
+
+
+
+    <h2>2. Strategic Location Advantage</h2>
+
+    <p>Location is the backbone of real estate value, and Bajrang Vatika delivers strongly on this front. The project is well-connected to major roads and nearby urban centers while still maintaining a peaceful environment. This balance of accessibility and serenity makes Bajrang Vatika ideal for residential living as well as future appreciation.</p>
+
+    <p>As nearby infrastructure continues to develop, land value in surrounding areas is expected to rise steadily, making early investment a smart decision.</p>
+
+
+
+    <h2>3. Secure Gated Community</h2>
+
+    <p>Bajrang Vatika is designed as a secure gated community, ensuring safety for residents of all age groups. Proper entry points, boundary planning, and organized internal layouts create a safe and structured living environment.</p>
+
+    <p>Security-focused planning not only enhances quality of life but also increases the resale and rental value of the property over time.</p>
+
+
+
+    <h2>4. Modern Infrastructure & Amenities</h2>
+
+    <p>The project combines spiritual living with modern infrastructure. Wide internal roads, proper drainage systems, designated green spaces, and well-planned plots ensure comfortable daily living.</p>
+
+    <p>Open areas and greenery within Bajrang Vatika provide a refreshing atmosphere, encouraging healthy community interaction and a balanced lifestyle.</p>
+
+
+
+    <h2>5. High Investment & Appreciation Potential</h2>
+
+    <p>Residential plots in spiritually themed and gated communities are witnessing rising demand. Bajrang Vatika benefits from this trend, offering strong long-term appreciation potential. As land availability reduces and demand increases, plotted developments like Bajrang Vatika become premium assets.</p>
+
+    <p>Whether you plan to build your home now or hold the plot for future returns, this project offers flexibility and financial security.</p>
+
+
+
+    <h2>Conclusion</h2>
+
+    <p>Bajrang Vatika is more than a real estate project—it is a lifestyle choice rooted in peace, faith, and smart planning. With its spiritual foundation, strategic location, secure environment, and strong investment potential, Bajrang Vatika is an ideal destination for families and investors alike.</p>
+
+    <p>Choosing Bajrang Vatika today means investing in a future that offers both emotional satisfaction and financial growth.</p>
+
+  `,
+
+  category: "Real Estate Projects",
+
+  tags: ["Bajrang Vatika", "Spiritual Living", "Residential Plots", "Property Investment"],
+
+  author: "Property Manager",
+
+  status: "Published",
+
+  image: "/images/bajrang-vatika-project.jpg"
+},
 {
 
     id: "blog-jan-15",
