@@ -15,6 +15,22 @@ import { useState } from "react"
 // Blog posts data (same as admin section)
 const blogPosts = [
   {
+  id: 5,
+  title: "Why Bajrang Vatika Is a Smart Choice for Peaceful Living and Long-Term Investment",
+  slug: "why-bajrang-vatika-is-smart-choice-peaceful-living-investment",
+  excerpt: "Bajrang Vatika offers a unique blend of spiritual living, secure gated planning, modern infrastructure, and strong long-term appreciation potential.",
+  content: `...`,
+  category: "Real Estate Projects",
+  tags: ["Bajrang Vatika", "Residential Plots", "Spiritual Living", "Property Investment"],
+  author: "Property Manager",
+  status: "Published",
+  publishedDate: "2026-02-02",
+  lastModified: "2026-02-02",
+  views: 1205,
+  featured: true,
+  image: "/images/bajrang-vatika-project.jpg",
+},
+  {
     id: 5,
     title: "Why Investing in Dehradun Residential Plots Is a Smart Move — 7 Solid Reasons",
     slug: "why-investing-in-dehradun-residential-plots-is-a-smart-move-2025",
