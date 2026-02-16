@@ -1,12 +1,15 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { Calendar, Clock, Eye, User, ArrowLeft } from "lucide-react"
-import Image from "next/image"
+import { Calendar, Search, User, ArrowRight, Clock, Eye } from "lucide-react"
 import Link from "next/link"
-import { notFound } from "next/navigation"
+import Image from "next/image"
 
 // --- TYPES ---
 interface BlogPost {
@@ -28,7 +31,7 @@ interface BlogPost {
   metaDescription?: string;
 }
 
-// --- DATA: Expanded to ~500 words each, scheduled Jan 1 - Feb 16 ---
+// --- DATA ---
 const blogPosts: BlogPost[] = [
   {
     id: "1",
@@ -71,8 +74,6 @@ const blogPosts: BlogPost[] = [
     views: 1205,
     featured: true,
     image: "/images/WhatsApp Image 2025-10-13 at 23.57.02_0cf5591a.jpg",
-    metaTitle: "7 Reasons to Invest in Dehradun Plots",
-    metaDescription: "Why buying land in Dehradun is better than flats. Analysis of connectivity, price trends, and lifestyle benefits."
   },
   {
     id: "2",
@@ -113,8 +114,6 @@ const blogPosts: BlogPost[] = [
     views: 980,
     featured: false,
     image: "/images/rishikesh-land-investment.jpg",
-    metaTitle: "Rishikesh Land Buying Guide 2026",
-    metaDescription: "A complete guide to buying land in Rishikesh for yoga retreats, homestays, or residential living."
   },
   {
     id: "3",
@@ -142,7 +141,7 @@ const blogPosts: BlogPost[] = [
       <h3>6. Multiple Use-Cases</h3>
       <p>An affordable plot is a versatile asset. You can use it for:
       <ul>
-        <li><strong>Retirement:</strong> Build a small home for your parents.</li>
+        <li><strong>Retirement:</strong> Build a small home for your parents.
         <li><strong>Farming:</strong> Practice organic kitchen gardening.</li>
         <li><strong>Storage/Warehousing:</strong> If near a highway, lease it for logistics.</li>
         <li><strong>Investment:</strong> simply hold and sell.</li>
@@ -164,8 +163,6 @@ const blogPosts: BlogPost[] = [
     views: 850,
     featured: false,
     image: "/images/affordable-uttarakhand.png",
-    metaTitle: "7 Reasons to Buy Affordable Plots in Uttarakhand",
-    metaDescription: "Low entry cost, high appreciation. Discover why budget-friendly plots in Uttarakhand are the best investment in 2026."
   },
   {
     id: "4",
@@ -211,8 +208,6 @@ const blogPosts: BlogPost[] = [
     views: 1300,
     featured: true,
     image: "/images/highway-infra.jpg",
-    metaTitle: "Why Buy Land Near Highways?",
-    metaDescription: "Highway properties offer the best ROI. Understand the economics of ribbon development and connectivity."
   },
   {
     id: "5",
@@ -255,8 +250,6 @@ const blogPosts: BlogPost[] = [
     views: 1500,
     featured: true,
     image: "/images/design1.png",
-    metaTitle: "Real Estate Se Paisa Kaise Kamaye",
-    metaDescription: "Learn 5 proven ways to earn money from real estate in India. Hindi guide covering plots, rental, and commercial investment."
   },
   {
     id: "6",
@@ -305,8 +298,6 @@ const blogPosts: BlogPost[] = [
     views: 645,
     featured: false,
     image: "/images/design1.png",
-    metaTitle: "Checklist for Buying Plots in Uttarakhand",
-    metaDescription: "Legal, physical, and zoning checklist for buying land in Uttarakhand. Avoid scams and bad terrain with this guide."
   },
   {
     id: "7",
@@ -343,8 +334,6 @@ const blogPosts: BlogPost[] = [
     views: 800,
     featured: false,
     image: "/images/WhatsApp Image 2025-10-13 at 23.57.03_a5777e2d.jpg",
-    metaTitle: "Plot vs Flat Investment Analysis 2026",
-    metaDescription: "Why plots offer better ROI than flats. Detailed comparison of appreciation, maintenance, and freedom."
   },
   {
     id: "8",
@@ -395,8 +384,6 @@ const blogPosts: BlogPost[] = [
     views: 645,
     featured: false,
     image: "/images/friends-colony-phase1.jpg",
-    metaTitle: "Sahi Property Kaise Pahchane - 5 Tips",
-    metaDescription: "5 tips to identify the right property investment in Hindi. Location, legal checks, and future value explained."
   },
   {
     id: "9",
@@ -439,8 +426,6 @@ const blogPosts: BlogPost[] = [
     views: 450,
     featured: false,
     image: "/images/friends-colony-phase1.jpg",
-    metaTitle: "Eco-Friendly Home Construction Tips Uttarakhand",
-    metaDescription: "Guide to sustainable building in the hills. Stilt construction, water harvesting, and local materials."
   },
   {
     id: "10",
@@ -480,149 +465,670 @@ const blogPosts: BlogPost[] = [
     views: 1500,
     featured: true,
     image: "/images/friends-colony-phase1.jpg",
-    metaTitle: "Invest Wisely in Uttarakhand Hill Plots",
-    metaDescription: "Expert advice on buying hill plots. Seasonal risks, legal units (Nali), and location strategy."
+  },
+  {
+    id: "17",
+    title: "The Rise of Haridwar: Investment Beyond Spirituality",
+    slug: "haridwar-real-estate-investment-growth-2026",
+    excerpt: "Haridwar is evolving into an industrial and residential hub. Why smart investors are looking towards SIIDCUL and bypass areas.",
+    content: `
+      <p>For centuries, Haridwar has been synonymous with the Ganges and spiritual moksha. However, in 2026, the city is undergoing a metamorphosis. Driven by the massive SIIDCUL industrial park and improved connectivity to Delhi, Haridwar is emerging as Uttarakhand's most promising industrial and residential real estate hub. It offers a unique dual-benefit: robust industrial rental demand and high tourist footfall.</p>
+      
+      <h3>1. The SIIDCUL Effect</h3>
+      <p>The State Infrastructure and Industrial Development Corporation of Uttarakhand Ltd (SIIDCUL) has brought giants like Hero MotoCorp, ITC, and Mahindra to Haridwar. This has created thousands of jobs, leading to a massive housing shortage for factory executives and workers. Investing in residential apartments or plots near the industrial estate ensures near-zero vacancy rates for landlords. Rental yields here often surpass those of Dehradun due to the steady influx of the workforce.</p>
+      
+      <h3>2. Infrastructure: The Ring Road and Highways</h3>
+      <p>The new Haridwar Ring Road and the Delhi-Dehradun Expressway have decongested the city. Areas along the NH-58 bypass are witnessing rapid 'ribbon development.' Commercial properties here are goldmines. As logistics and transport companies set up warehouses along the highway, land prices in these peripheral zones are appreciating faster than the city center.</p>
+      
+      <h3>3. Affordable Entry Points</h3>
+      <p>Compared to the saturated markets of Rishikesh and Dehradun, Haridwar remains affordable. You can still find premium residential plots for under ₹25,000 per sq yard in developing colonies. This lower entry point allows small investors to enter the market with manageable capital while expecting double-digit annual appreciation.</p>
+      
+      <h3>4. Tourism Beyond Kumbh</h3>
+      <p>While industry drives long-term rentals, spirituality drives short-term gains. Properties near <em>Har Ki Pauri</em> or the calm ashram zones of Kankhal are perfect for converting into budget hotels or dharamshalas. With religious tourism being recession-proof, these assets provide a safety net during economic downturns.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Haridwar is no longer just a place to visit in old age; it is a place to invest in your youth. The combination of industrial muscle and spiritual pull makes it a balanced, high-growth market for the savvy investor.</p>
+    `,
+    category: "Market Trends",
+    tags: ["Haridwar", "Industrial Hub", "Investment"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-21",
+    lastModified: "2026-01-21",
+    views: 550,
+    featured: false,
+    image: "/images/haridwar-ghat.jpg"
+  },
+  {
+    id: "18",
+    title: "Winter Maintenance Guide for Your Hill Property",
+    slug: "winter-maintenance-guide-hill-property-2026",
+    excerpt: "Protecting your pipes and roof during the cold months. Essential maintenance tips for absentee landlords.",
+    content: `
+      <p>Owning a cottage in the hills is romantic until the first pipe bursts. Winter in Uttarakhand, especially in high-altitude zones like Mussoorie or Nainital, can be harsh on infrastructure. For absentee landlords who only visit in summer, neglecting winter maintenance can lead to expensive repairs in spring. Here is your essential guide to winter-proofing your hill property.</p>
+      
+      <h3>1. The Water Pipe Crisis</h3>
+      <p>When water freezes, it expands. This expansion can shatter PVC and even metal pipes, leading to flooding when the ice melts.
+      <br/><strong>The Fix:</strong> If you are leaving the house empty, drain the entire water system. Open all taps and flush the toilets after turning off the main supply. For exposed outdoor pipes, lag them with foam insulation to prevent freezing.</p>
+      
+      <h3>2. Roof and Gutter Care</h3>
+      <p>Snow is heavy. Accumulated snow can damage roof trusses, while frozen leaves in gutters can cause ice dams that force water under your shingles, causing leaks.
+      <br/><strong>The Fix:</strong> Clean all gutters before December. Inspect the roof for loose tiles. If your area receives heavy snow, install snow guards to prevent avalanches from damaging the patio below.</p>
+      
+      <h3>3. Dampness and Mold</h3>
+      <p>Closed houses in winter breed mold due to condensation.
+      <br/><strong>The Fix:</strong> Pull furniture away from walls to allow air circulation. Place moisture absorbers (silica gel packs or commercial dehumidifier buckets) in every room. Ensure all ventilation points are clear but screened to keep pests out.</p>
+      
+      <h3>4. Pests Looking for Warmth</h3>
+      <p>Rats and insects seek warmth in winter. A small crack under the door is an open invitation.
+      <br/><strong>The Fix:</strong> Seal all entry points with steel wool (rats can't chew through it) and caulk. Store all bedding in vacuum-sealed bags to prevent nesting.</p>
+      
+      <h3>Conclusion</h3>
+      <p>A little preparation goes a long way. By spending a weekend in November winter-proofing your home, you ensure that your property welcomes you back in spring with warmth, not water damage.</p>
+    `,
+    category: "Property Management",
+    tags: ["Maintenance", "Winter", "Property Care"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-23",
+    lastModified: "2026-01-23",
+    views: 280,
+    featured: false,
+    image: "/images/winter-house.jpg"
+  },
+  {
+    id: "19",
+    title: "Republic Day Special: Infrastructure Projects Transforming Uttarakhand",
+    slug: "infrastructure-projects-transforming-uttarakhand-2026",
+    excerpt: "A look at the state's massive infrastructure push, from rail connectivity in the hills to smart city projects.",
+    content: `
+      <p>As India celebrates Republic Day, Uttarakhand is celebrating a new era of connectivity. The state, once defined by its difficult terrain, is being transformed by a series of mega-infrastructure projects. These developments are not just engineering marvels; they are economic multipliers that are rewriting the real estate map of the region. Here is a look at the projects changing the face of the state in 2026.</p>
+      
+      <h3>1. The Rishikesh-Karnaprayag Railway Line</h3>
+      <p>This is perhaps the most ambitious project in the Himalayas. Connecting the plains to the high hills by rail will slash travel time and boost tourism and trade.
+      <br/><strong>Real Estate Impact:</strong> Towns along the route like Srinagar and Rudraprayag are seeing a surge in land prices. Warehousing and budget hotels near these new railway stations are the hot investment tickets.</p>
+      
+      <h3>2. The Delhi-Dehradun Expressway</h3>
+      <p>Cutting travel time to 2.5 hours has effectively made the Doon Valley a suburb of Delhi. This has led to a spike in 'weekend home' buyers who can now drive up on Friday evening and return Monday morning.
+      <br/><strong>Real Estate Impact:</strong> The entry points into Dehradun (near the tunnel) and the Dat Kali temple area are witnessing premium residential developments targeting NCR buyers.</p>
+      
+      <h3>3. Dehradun Smart City Project</h3>
+      <p>With smart roads, underground cabling, and electric bus networks, the core of Dehradun is getting a facelift.
+      <br/><strong>Real Estate Impact:</strong> While construction causes short-term chaos, the long-term value of properties in the Smart City zones (like Rajpur Road) is cemented. Better livability indices attract high-paying tenants.</p>
+      
+      <h3>4. The Ropeway Projects</h3>
+      <p>From the Dehradun-Mussoorie ropeway to smaller connectivity projects in Kedarnath, aerial connectivity is reducing the load on roads.
+      <br/><strong>Real Estate Impact:</strong> Areas near the base stations of these ropeways are becoming prime commercial hubs for parking, retail, and hospitality.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Infrastructure leads, and real estate follows. For investors, the strategy is simple: follow the concrete. Investing in areas benefiting from these mega-projects ensures capital appreciation that outpaces the market average.</p>
+    `,
+    category: "Infrastructure",
+    tags: ["Development", "Smart City", "Rail Projects"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-25",
+    lastModified: "2026-01-25",
+    views: 700,
+    featured: false,
+    image: "/images/train-bridge.jpg"
+  },
+  {
+    id: "20",
+    title: "Plot vs. Apartment: What Resells Faster in Dehradun?",
+    slug: "plot-vs-apartment-resale-value-dehradun-2026",
+    excerpt: "Liquidity matters. We analyze historical data to see whether land or flats offer a quicker exit strategy.",
+    content: `
+      <p>When investing in real estate, 'Entry Strategy' is easy, but 'Exit Strategy' is crucial. Liquidity—how fast you can convert your asset back to cash—is often overlooked. In a unique market like Dehradun, the battle between Plots and Apartments yields surprising results regarding resale speed. Let's dive into the market realities of 2026.</p>
+      
+      <h3>1. The Case for Plots: High Demand, Low Supply</h3>
+      <p>Dehradun has a finite amount of buildable land. As the city expands, land becomes scarcer.
+      <br/><strong>Resale Speed:</strong> <em>High.</em> A clear-title plot in a gated colony like Friend's Colony often sells within weeks. Investors and end-users alike value the freedom to build their own design. Land never goes out of fashion, and there is no 'old building' depreciation factor.</p>
+      
+      <h3>2. The Case for Apartments: Convenience vs. Depreciation</h3>
+      <p>Apartments offer security and amenities, appealing to the elderly and small families.
+      <br/><strong>Resale Speed:</strong> <em>Moderate to Low.</em> Apartments compete with newer launches. A 10-year-old flat looks dated compared to a new project with modern amenities. To sell an older flat, sellers often have to compromise on price, reducing the liquidity.</p>
+      
+      <h3>3. The Documentation Factor</h3>
+      <p>Plots with clear mutation (Dakhil-Kharij) are the gold standard. However, unapproved layouts can get stuck in legal limbo, making them impossible to sell. Apartments in RERA-registered projects are easier to transfer legally, which can speed up the paperwork process compared to land deals that require heavy due diligence.</p>
+      
+      <h3>4. The Investor vs. End-User Buyer Profile</h3>
+      <p>Plots attract investors who have cash and can close deals quickly. Apartments often attract end-users who depend on home loans. Loan processing takes time, which slows down the actual closing of an apartment sale. Therefore, for a quick cash exit, plots usually win.</p>
+      
+      <h3>Conclusion</h3>
+      <p>If your goal is long-term wealth creation and a quick exit, a residential plot in a developed colony is the winner. While apartments offer rental income, plots offer superior capital appreciation and liquidity in the Dehradun market.</p>
+    `,
+    category: "Investment",
+    tags: ["Resale Value", "Apartments", "Plots"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-27",
+    lastModified: "2026-01-27",
+    views: 880,
+    featured: false,
+    image: "/images/apt-building.jpg"
+  },
+  {
+    id: "21",
+    title: "Water Scarcity Checks Before Buying Hill Plots",
+    slug: "water-scarcity-checks-hill-plots-2026",
+    excerpt: "A view is useless without water. How to verify municipal supply vs. borewell feasibility in high-altitude plots.",
+    content: `
+      <p>You found the perfect plot. The view of the Himalayas is breathtaking, the price is right, and the air is crisp. But before you sign the check, ask the most critical question in the mountains: "Where is the water?" Water scarcity is the silent deal-breaker in hill real estate. A stunning cottage is uninhabitable if you have to buy water tankers every week. Here is how to verify water security before buying.</p>
+      
+      <h3>1. Municipal Supply vs. Reality</h3>
+      <p>Just because a pipeline passes near the plot doesn't mean there is water in it.
+      <br/><strong>The Check:</strong> Talk to the neighbors. Ask specifically about the summer months (May-June). Does the municipal supply come daily, weekly, or rarely? In many hill stations, supply is rationed to once a week during peak tourist season.</p>
+      
+      <h3>2. The Borewell Gamble</h3>
+      <p>In the plains, you dig 100 feet and find water. In the hills, you strike rock.
+      <br/><strong>The Check:</strong> Hire a hydro-geologist or a local dowser. Understand the water table depth. In some rocky terrains (like parts of Mussoorie), drilling a borewell is geologically impossible or prohibitively expensive. Never assume you can just "dig a well."</p>
+      
+      <h3>3. Natural Springs (Naula/Dhara)</h3>
+      <p>Traditional hill homes relied on natural springs.
+      <br/><strong>The Check:</strong> If the seller claims there is a spring on the land, verify its flow in the dry season. Climate change and construction have dried up many ancient springs. Ensure you have legal rights to access that water source, as water rights can be a source of village conflict.</p>
+      
+      <h3>4. Rainwater Harvesting Potential</h3>
+      <p>If ground water is scarce, the sky is your only option.
+      <br/><strong>The Check:</strong> Does the plot have space for a large underground storage tank? A 20,000-liter tank can sustain a small family through the dry months if coupled with an efficient roof harvesting system. Factor the cost of building this tank into your land price.</p>
+      
+      <h3>Conclusion</h3>
+      <p>A view feeds the soul, but water sustains life. Never compromise on water security. It is better to buy a plot with a mediocre view and good water than a plot with a sunset view and dry taps.</p>
+    `,
+    category: "Property Tips",
+    tags: ["Water Supply", "Due Diligence", "Utilities"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-01-29",
+    lastModified: "2026-01-29",
+    views: 600,
+    featured: true,
+    image: "/images/water-source.jpg"
+  },
+  {
+    id: "22",
+    title: "Commercial Real Estate: Shop Spaces in Dehradun",
+    slug: "commercial-real-estate-shop-spaces-dehradun-2026",
+    excerpt: "Where to buy commercial space? Rajpur Road vs. GMS Road vs. Sahastradhara Road analysis.",
+    content: `
+      <p>While residential real estate offers emotional value, commercial real estate offers hard cash flow. Dehradun's retail sector is booming, driven by a young population and rising disposable incomes. But for an investor looking to buy a shop or showroom, the location puzzle is tricky. Should you stick to the expensive Rajpur Road or bet on the emerging GMS Road? Let's analyze the top commercial corridors.</p>
+      
+      <h3>1. Rajpur Road: The Premium Legacy</h3>
+      <p>This is the high street of Dehradun. Top brands, fine dining, and heavy footfall define it.
+      <br/><strong>Pros:</strong> Guaranteed rentals, premium tenants, high visibility.
+      <br/><strong>Cons:</strong> Extremely high entry cost. Parking is a nightmare, which is slowly driving shoppers away. Growth is saturated; you are buying for safety, not rapid appreciation.</p>
+      
+      <h3>2. GMS Road: The New Artery</h3>
+      <p>General Mahadev Singh (GMS) Road connects the city to the highway. It has transformed into a hub for showrooms (cars, furniture, electronics).
+      <br/><strong>Pros:</strong> Wide roads, ample parking space, and modern buildings. It attracts destination shoppers.
+      <br/><strong>Cons:</strong> Lower spontaneous footfall than Rajpur Road. Tenants are price-sensitive.</p>
+      
+      <h3>3. Sahastradhara Road: The IT and Residential Hub</h3>
+      <p>Surrounded by the IT Park and massive residential societies, this road caters to daily needs and lifestyle shopping.
+      <br/><strong>Pros:</strong> Rapidly growing catchment area. Perfect for grocery chains, gyms, cafes, and clinics. Entry prices are still reasonable.
+      <br/><strong>Cons:</strong> Traffic congestion is increasing. Development is somewhat scattered.</p>
+      
+      <h3>4. Haridwar Bypass: The Logistics Hub</h3>
+      <p>Best for warehousing and wholesale businesses rather than retail.
+      <br/><strong>Investment Tip:</strong> Buying land here for building a pre-leased warehouse offers higher yields (8-9%) compared to a retail shop (4-5%).</p>
+      
+      <h3>Conclusion</h3>
+      <p>For high-yield retail, look at <strong>Sahastradhara Road</strong>. For safe, trophy assets, stick to <strong>Rajpur Road</strong>. But for the highest growth potential, <strong>GMS Road</strong> offers the best balance of infrastructure and future demand.</p>
+    `,
+    category: "Commercial",
+    tags: ["Commercial", "Retail", "Office Space"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-01-31",
+    lastModified: "2026-01-31",
+    views: 410,
+    featured: false,
+    image: "/images/commercial-complex.jpg"
+  },
+  {
+    id: "23",
+    title: "Retirement Havens: Best Localities for Senior Citizens",
+    slug: "best-retirement-localities-dehradun-2026",
+    excerpt: "Peace, healthcare access, and flat terrain. We pick the top 3 localities best suited for post-retirement living.",
+    content: `
+      <p>Dehradun was originally famous as a "Pensioner's Paradise." In 2026, despite the urbanization, it remains a top choice for retirees. However, the requirements for senior living are specific: flat terrain for walking, proximity to top-tier hospitals, and quiet neighborhoods. Based on these criteria, here are the top 3 localities for retirement living in Dehradun.</p>
+      
+      <h3>1. Vasant Vihar: The Classic Choice</h3>
+      <p>Vasant Vihar remains the gold standard for peaceful living.
+      <br/><strong>Why:</strong> It has wide, tree-lined avenues perfect for evening walks. The terrain is perfectly flat. It is close to the Sethi Hospital and has its own self-sufficient market.
+      <br/><strong>Drawback:</strong> Property prices are high, and availability is low.</p>
+      
+      <h3>2. Dalanwala: Old World Charm</h3>
+      <p>Known for its colonial bungalows and lychee orchards.
+      <br/><strong>Why:</strong> It is the greenest part of the city. Being in the center, it is close to the best healthcare facilities like Max Hospital and Synergy. The community is comprised of educated, retired professionals.
+      <br/><strong>Drawback:</strong> Some internal roads can get busy with school traffic.</p>
+      
+      <h3>3. Sahastradhara Road (Near IT Park)</h3>
+      <p>The new contender for modern senior living.
+      <br/><strong>Why:</strong> Several new gated societies here offer senior-friendly amenities like elevators, parks, and clubhouses. The air is cleaner as it is closer to the hills.
+      <br/><strong>Drawback:</strong> It is a bit further from the main city center, so having a car is essential.</p>
+      
+      <h3>Factors to Ignore</h3>
+      <p>Retirees should avoid areas like <strong>Mussoorie Road</strong> (too steep for walking, landslide risks) and <strong>ISBT area</strong> (too noisy and polluted). </p>
+      
+      <h3>Conclusion</h3>
+      <p>For a retirement home, prioritize <strong>accessibility to healthcare</strong> over a scenic view. Vasant Vihar offers the best balance of independence, safety, and medical security for the golden years.</p>
+    `,
+    category: "Lifestyle",
+    tags: ["Retirement", "Senior Living", "Healthcare"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-02-02",
+    lastModified: "2026-02-02",
+    views: 530,
+    featured: false,
+    image: "/images/senior-couple.jpg"
+  },
+  {
+    id: "24",
+    title: "Soil Testing and Slope Stability: A Buyer's Responsibility",
+    slug: "soil-testing-slope-stability-checklist-2026",
+    excerpt: "Don't build on loose soil. Why a geotechnical survey is essential before buying land on a steep incline.",
+    content: `
+      <p>In the plains, you check the Vaastu. In the hills, you check the Soil. The recent geological events in the Himalayas serve as a stark reminder: the ground beneath you matters more than the view in front of you. Buying land without a geotechnical assessment is gambling. Here is why every buyer needs to understand soil testing and slope stability.</p>
+      
+      <h3>1. The Danger of "Fill" Land</h3>
+      <p>Many developers create flat plots on hillsides by cutting the mountain and dumping the loose soil (debris) on the edge to extend the land. This is called "Fill" land.
+      <br/><strong>The Risk:</strong> This loose soil settles over time, causing cracks in foundations. In heavy rains, it can slide away completely.
+      <br/><strong>The Test:</strong> A soil test reveals if the ground is 'virgin soil' (stable) or 'fill' (unstable).</p>
+      
+      <h3>2. Understanding Rock vs. Clay</h3>
+      <p><strong>Rocky Soil:</strong> Excellent for stability but expensive to excavate.
+      <br/><strong>Clay/Loamy Soil:</strong> Good for gardening but retains water, which can cause 'soil liquefaction' during earthquakes.
+      <br/><strong>The Strategy:</strong> Your structural engineer needs this data to design the right foundation depth.</p>
+      
+      <h3>3. The Angle of Repose</h3>
+      <p>Every soil type has a natural angle at which it remains stable. Cutting a slope steeper than this angle invites a landslide.
+      <br/><strong>The Fix:</strong> If you buy a steep plot, budget for Retaining Walls. These are concrete or stone walls with 'weep holes' to let water out, holding the hill back.</p>
+      
+      <h3>4. Drainage Mapping</h3>
+      <p>Water is the enemy of soil stability. A soil test report will often include drainage patterns. It tells you where the underground water flows. Building directly over a subterranean stream guarantees a damp, unstable house.</p>
+      
+      <h3>Conclusion</h3>
+      <p>A soil test costs a fraction of the land price (approx ₹20k-₹50k). It is a small price to pay for the assurance that your dream home won't slide down the hill. Make the sale deed conditional on a satisfactory soil report.</p>
+    `,
+    category: "Construction",
+    tags: ["Safety", "Soil Test", "Technical"],
+    author: "Architect Team",
+    status: "Published",
+    publishedDate: "2026-02-04",
+    lastModified: "2026-02-04",
+    views: 290,
+    featured: false,
+    image: "/images/soil-test.jpg"
+  },
+  {
+    id: "25",
+    title: "The Charm of Colonial Bungalows: Restoration Costs",
+    slug: "restoring-colonial-bungalows-uttarakhand-2026",
+    excerpt: "Buying an old heritage property? We estimate the costs of restoring colonial-era cottages in Landour and Dehradun.",
+    content: `
+      <p>There is nothing quite like the romance of a colonial bungalow—high ceilings, fireplaces, verandas, and a history that whispers from the walls. In towns like Dehradun, Mussoorie, and Landour, these heritage properties are prized assets. However, buying one is not just a purchase; it is a project. Restoration is an art and a money pit. Here is a realistic look at what it takes to bring a colonial beauty back to life in 2026.</p>
+      
+      <h3>1. The Roof: The First Defense</h3>
+      <p>Most colonial bungalows have CGI (Corrugated Galvanized Iron) sheets or slate roofs that are decades old.
+      <br/><strong>The Cost:</strong> replacing a rusted roof with high-quality insulated sheets and waterproofing the trusses can cost between ₹5-8 Lakhs. Don't patch it; replace it.</p>
+      
+      <h3>2. Electrical and Plumbing Overhaul</h3>
+      <p>Old wiring is a fire hazard, and old iron pipes are rusted arteries.
+      <br/><strong>The Cost:</strong> You cannot use the existing lines. You need a complete rewire and replumb. Expect to spend ₹150-₹200 per sq ft. This is invasive work that requires chipping plaster.</p>
+      
+      <h3>3. Dampness: The Eternal Struggle</h3>
+      <p>These houses were built without modern damp-proof courses (DPC).
+      <br/><strong>The Fix:</strong> Injecting chemical damp-proofing into walls and applying breathable lime plaster instead of cement (which traps moisture) is essential. Budget at least ₹3-5 Lakhs for specialized damp treatment.</p>
+      
+      <h3>4. Woodwork Restoration</h3>
+      <p>The Burma Teak or Sal wood used in old houses is irreplaceable today.
+      <br/><strong>The Strategy:</strong> Don't replace the wood; restore it. Sanding, treating for termites, and polishing old doors and windows is labor-intensive but adds immense value. Replacing them with modern wood would cost 5x more and kill the charm.</p>
+      
+      <h3>5. The "Heritage" Premium</h3>
+      <p>finding artisans who understand lime mortar, stone masonry, and jack-arch roofs is difficult. Their labor rates are double that of standard masons.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Restoring a colonial bungalow typically costs 40-50% of the purchase price of the structure (excluding land). But once finished, you possess an asset that is unique, historical, and commands a premium far above any modern concrete box.</p>
+    `,
+    category: "Lifestyle",
+    tags: ["Heritage", "Restoration", "Luxury"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-02-06",
+    lastModified: "2026-02-06",
+    views: 760,
+    featured: true,
+    image: "/images/old-bungalow.jpg"
+  },
+  {
+    id: "26",
+    title: "Investing in Tehri: The Next Big Lake Destination",
+    slug: "investing-in-tehri-lake-property-2026",
+    excerpt: "With water sports and tourism booming, is Tehri the new Rishikesh? Analyzing land potential around the lake.",
+    content: `
+      <p>While Rishikesh and Nainital are saturated, a new star is rising on the Uttarakhand tourism map: Tehri. The massive Tehri Lake, formed by the dam, has become a hub for water sports, luxury houseboats, and eco-tourism. For real estate investors, Tehri represents the "early mover advantage" that Rishikesh offered 15 years ago. Here is why you should look at the lake.</p>
+      
+      <h3>1. The Tourism Boom</h3>
+      <p>The government is aggressively promoting Tehri as an international water sports destination. From jet skiing to the floating huts project, the infrastructure is being built to attract high-spending tourists.
+      <br/><strong>Investment Angle:</strong> Buying land for resorts, glamping sites, or adventure camps near the lake periphery is the primary play here.</p>
+      
+      <h3>2. The View Premium</h3>
+      <p>Property in the hills is all about the view. Tehri offers a rare combination: snow-capped peaks <em>and</em> a massive blue water body. Plots with a direct lake view command a premium and are immune to market downturns because such locations are finite.</p>
+      
+      <h3>3. Connectivity Improvements</h3>
+      <p>The all-weather Char Dham road has made reaching Tehri easier. The proposed tunnel projects and improved road width mean tourists can reach Tehri from Dehradun in under 2.5 hours.</p>
+      
+      <h3>4. Challenges to Watch</h3>
+      <p><strong>Zoning:</strong> Much of the land around the lake is under the Tehri Lake Special Area Development Authority (TADA). Construction rules are strict to prevent pollution. Ensure your plot allows commercial tourism activity.
+      <br/><strong>Stability:</strong> The reservoir banks can be unstable. Ensure you are buying on solid rock, not on shifting soil near the water line.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Tehri is not for the short-term flipper. It is for the patient investor who wants to build a hospitality asset. The land prices are still 30-40% lower than Nainital, offering significant headroom for growth as the destination matures.</p>
+    `,
+    category: "Location Guide",
+    tags: ["Tehri", "Tourism", "Lake View"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-02-08",
+    lastModified: "2026-02-08",
+    views: 950,
+    featured: false,
+    image: "/images/tehri-lake.jpg"
+  },
+  {
+    id: "27",
+    title: "Vastu Shastra Tips for Hill Homes",
+    slug: "vastu-tips-for-hill-homes-uttarakhand-2026",
+    excerpt: "Slope direction matters in Vastu. Simple tips for selecting a plot that aligns with traditional architectural principles.",
+    content: `
+      <p>Vastu Shastra in the plains is straightforward (North is good, South is tricky). But in the hills, the terrain complicates everything. The slope of the land creates energy flows that can override cardinal directions. If you are a believer in Vastu, applying standard rules to a mountain plot can be a mistake. Here are the specific Vastu principles for hill homes.</p>
+      
+      <h3>1. The Slope Direction (Sher-Mukhi vs. Gau-Mukhi)</h3>
+      <p>The most critical factor is the slope.
+      <br/><strong>Ideal:</strong> A plot sloping down towards the North or East is considered auspicious (bringing prosperity and health).
+      <br/><strong>Avoid:</strong> A plot sloping down towards the South or West is believed to drain energy and wealth. If you have such a plot, you need heavy earthwork to correct the energy balance.</p>
+      
+      <h3>2. Mountain Placement</h3>
+      <p>The mountain acts as a support or a barrier.
+      <br/><strong>Good:</strong> Having a high mountain in the South or West provides stability and protection.
+      <br/><strong>Bad:</strong> A mountain blocking the North or East blocks the morning sun and positive energy.</p>
+      
+      <h3>3. Water Flow</h3>
+      <p>Natural streams or rivers should ideally flow in the North or East of the property. A river flowing in the South is considered inauspicious. Never build <em>over</em> a stream, as it disturbs the earth's energy lines (and structural stability).</p>
+      
+      <h3>4. The Entrance</h3>
+      <p>In the hills, the road often dictates the entrance. However, try to place the main gate in the North-East or East. If the road is in the South, use Vastu corrections like specific heavy plantations or metal pyramids to deflect negative energy.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Vastu in the hills is about harmonizing with the aggressive nature of the terrain. While you shouldn't obsess over every detail, choosing a North-East sloping plot with a mountain back-up in the South-West is the golden rule for peace and prosperity.</p>
+    `,
+    category: "Lifestyle",
+    tags: ["Vastu", "Architecture", "Traditional"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-02-10",
+    lastModified: "2026-02-10",
+    views: 1100,
+    featured: false,
+    image: "/images/vastu-compass.jpg"
+  },
+  {
+    id: "28",
+    title: "Rental Agreements in Uttarakhand: What Landlords Must Know",
+    slug: "rental-agreements-uttarakhand-landlord-guide-2026",
+    excerpt: "Protect your property. Key clauses to include in your lease agreement for 11-month and long-term tenants.",
+    content: `
+      <p>The rental market in Uttarakhand is unique. You have long-term local tenants, seasonal tourists, and digital nomads. Each requires a different legal approach. Many landlords in Dehradun rely on verbal agreements or generic templates, which leads to disputes over eviction or property damage. Here is a guide to drafting a bulletproof rental agreement in 2026.</p>
+      
+      <h3>1. The 11-Month Rule</h3>
+      <p>Like the rest of India, most agreements are for 11 months to avoid mandatory registration.
+      <br/><strong>Advice:</strong> If you plan a longer lease (e.g., for a company guest house), register the deed. It costs a bit more in stamp duty but provides legal protection for eviction that a notary paper does not.</p>
+      
+      <h3>2. Essential Clauses for Hill Properties</h3>
+      <p>Standard templates miss hill-specific issues. Add these clauses:
+      <br/><strong>Maintenance Clause:</strong> Who pays for winter pipe bursts? (Usually landlord). Who cleans the roof gutters? (Tenant/Landlord). Define this clearly.
+      <br/><strong>Mold/Dampness:</strong> State that the tenant must ventilate the property to prevent mold. Damage caused by negligence (keeping the house locked for months) should be deductible from the deposit.</p>
+      
+      <h3>3. Police Verification</h3>
+      <p>Uttarakhand police are strict about tenant verification, especially for outsiders. It is mandatory to submit the tenant's details to the local Thana. Failure to do so can result in fines for the landlord. Make the lease conditional on successful police verification.</p>
+      
+      <h3>4. Sub-letting Clause</h3>
+      <p>With the Airbnb boom, many tenants secretly sub-let rooms to tourists.
+      <br/><strong>Advice:</strong> Explicitly ban sub-letting or commercial use (like running a yoga studio) without written permission. The liability for commercial activity in a residential zone falls on the landlord.</p>
+      
+      <h3>Conclusion</h3>
+      <p>A good agreement is not about mistrust; it is about clarity. Spend a few thousand rupees on a lawyer to draft a custom agreement that addresses the specific realities of your property. It is cheaper than a lawsuit.</p>
+    `,
+    category: "Legal & Advice",
+    tags: ["Rental", "Legal Agreement", "Landlord"],
+    author: "Legal Advisor",
+    status: "Published",
+    publishedDate: "2026-02-12",
+    lastModified: "2026-02-12",
+    views: 400,
+    featured: false,
+    image: "/images/contract-pen.jpg"
+  },
+  {
+    id: "29",
+    title: "Valentine's Special: Best Romantic Cottage Locations to Buy",
+    slug: "romantic-cottage-locations-uttarakhand-buy-2026",
+    excerpt: "Looking for a getaway home? We list the most secluded and scenic spots perfect for a couple's retreat.",
+    content: `
+      <p>This Valentine's season, why buy roses when you can buy a rose garden? For couples looking to invest in a romantic getaway, Uttarakhand offers pockets of seclusion, beauty, and silence. But a romantic location must also be practical. Here are the top 3 locations to buy a cottage where romance meets real estate sense.</p>
+      
+      <h3>1. Landour: The Old World Romance</h3>
+      <p>Above the noise of Mussoorie lies Landour. With its Deodar forests, cobblestone paths, and colonial history, it is the ultimate romantic setting.
+      <br/><strong>The Buy:</strong> Property is scarce and expensive. Look for old cottages needing restoration.
+      <br/><strong>The Vibe:</strong> Walking hand-in-hand in the mist, coffee at Char Dukan, and absolute silence.</p>
+      
+      <h3>2. Mukteshwar: The Apple Orchard Dream</h3>
+      <p>If you want snow views and fruit orchards, Mukteshwar is the place.
+      <br/><strong>The Buy:</strong> You can buy plots within apple orchards. The zoning often allows for small cottages.
+      <br/><strong>The Vibe:</strong> Crisp sun, snowy peaks of Nanda Devi, and evenings by the fireplace.</p>
+      
+      <h3>3. Kanatal: The Secluded Escape</h3>
+      <p>Less commercial than Mussoorie, Kanatal offers raw nature.
+      <br/><strong>The Buy:</strong> Land is still affordable here. Perfect for building a modern A-frame glass cabin.
+      <br/><strong>The Vibe:</strong> Camping under the stars, forest walks, and disconnecting from the world (and the internet).</p>
+      
+      <h3>Investment Note</h3>
+      <p>Romantic locations are also the highest earners on Airbnb. A "Couple's Retreat" cottage commands a 30% premium over a standard family homestay. You are buying an emotion, and emotions sell.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Investing in a romantic cottage is an investment in your relationship and your bank balance. Choose a place that feels like a world away, yet is just a drive away.</p>
+    `,
+    category: "Lifestyle",
+    tags: ["Holiday Home", "Romantic", "Secluded"],
+    author: "Admin User",
+    status: "Published",
+    publishedDate: "2026-02-14",
+    lastModified: "2026-02-14",
+    views: 820,
+    featured: true,
+    image: "/images/sunset-view.jpg"
+  },
+  {
+    id: "30",
+    title: "Preparing for the Spring Real Estate Surge",
+    slug: "spring-real-estate-market-surge-2026",
+    excerpt: "Why March and April see the highest property visits. Getting your listing ready for the upcoming peak season.",
+    content: `
+      <p>In Uttarakhand real estate, seasonality is everything. Winter is the dormant season, but as the snow melts and the flowers bloom, the buyers return. March and April are historically the busiest months for property visits and transactions. If you are a seller or a developer, now (mid-February) is the time to prep. Here is how to catch the Spring Surge.</p>
+      
+      <h3>1. Why Spring?</h3>
+      <p>Families prefer to finalize property deals before the new school session begins. Tourists visiting for the pleasant weather often convert into impulse buyers. The weather is perfect for site visits—neither too cold nor too wet.</p>
+      
+      <h3>2. Curb Appeal: The First Impression</h3>
+      <p>Winter leaves properties looking dull.
+      <br/><strong>The Task:</strong> Clear the dead leaves. Prune the overgrown bushes. Paint the front gate. Plant some seasonal flowers (petunias or marigolds) near the entrance. A vibrant, green entrance signals a well-maintained property.</p>
+      
+      <h3>3. Fix the Winter Damage</h3>
+      <p>Check for damp patches that appeared during winter. Repaint them. Fix any loose roof tiles. Buyers will look for signs of water damage immediately.</p>
+      
+      <h3>4. Update Your Listings</h3>
+      <p>Take fresh photos. A photo of a sunny, flower-filled garden sells much better than a gloomy, foggy winter photo. Update your online descriptions to highlight "Summer Ready" features like fans, ACs, or water backup.</p>
+      
+      <h3>Conclusion</h3>
+      <p>Real estate is a game of timing. By having your property polished and ready by March 1st, you position yourself to capture the highest demand of the year. Don't wait for the buyers to come; be ready for them.</p>
+    `,
+    category: "Market Trends",
+    tags: ["Selling Tips", "Spring Market", "Seasonality"],
+    author: "Property Manager",
+    status: "Published",
+    publishedDate: "2026-02-16",
+    lastModified: "2026-02-16",
+    views: 310,
+    featured: false,
+    image: "/images/spring-flowers.jpg"
   }
 ];
 
-// --- COMPONENT ---
+const categories = ["All", "Investment", "Market Trends", "Property Tips", "Location Guide", "Construction", "Lifestyle", "Legal & Advice", "Infrastructure", "Commercial", "Property Management"]
 
-interface BlogPostPageProps {
-  params: {
-    slug: string
-  }
-}
+export default function BlogPage() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  // Filter for Published posts only
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  
-  if (!post) notFound()
+  const filteredPosts = blogPosts.filter((post) => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory || (selectedCategory === "Guide (Hindi)" && post.category === "Guide (Hindi)")
 
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString("en-IN", {
+    return matchesSearch && matchesCategory
+  })
+
+  // Sort by date (newest first)
+  const sortedPosts = [...filteredPosts].sort(
+    (a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
+  )
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-IN", {
       year: "numeric",
       month: "long",
       day: "numeric",
     })
+  }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col font-sans">
       <SiteHeader />
 
-      {/* Hero Section */}
-      <div className="relative w-full h-64 md:h-[28rem]">
-        <Image 
-          src={post.image} 
-          alt={post.title} 
-          fill 
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-end justify-start p-6 md:p-12">
-          <Button asChild variant="secondary" size="sm" className="z-10">
-            <Link href="/blog">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Blog
-            </Link>
-          </Button>
+      <main className="flex-grow container mx-auto px-4 py-12 md:px-6">
+        {/* Header Section */}
+        <div className="text-center mb-12 space-y-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+            Real Estate Insights
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Expert advice, market trends, and investment guides for the Uttarakhand property market.
+          </p>
         </div>
-      </div>
 
-      {/* Blog Content */}
-      <article className="flex-grow container mx-auto px-4 md:px-6 py-12 max-w-4xl text-left">
-        {/* Header */}
-        <header className="mb-10">
-          <div className="flex flex-wrap justify-start items-center gap-3 mb-4 text-sm text-gray-600">
-            <Badge variant="secondary">{post.category}</Badge>
-            <div className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" /> {post.views.toLocaleString()} views
-            </div>
-            <div className="flex items-center">
-              <User className="w-4 h-4 mr-1" /> {post.author}
-            </div>
-            <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" /> {formatDate(post.publishedDate)}
-            </div>
-            <div className="flex items-center">
-              <Clock className="w-4 h-4 mr-1" /> 5 min read
-            </div>
+        {/* Search and Filter */}
+        <div className="flex flex-col md:flex-row gap-6 mb-12 items-center justify-between">
+          <div className="relative w-full md:w-96">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search articles..."
+              className="pl-10 border-gray-300 focus:border-orange-500 focus:ring-orange-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900">
-            {post.title}
-          </h1>
-
-          {post.excerpt && (
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
-              {post.excerpt}
-            </p>
-          )}
-
-          <div className="flex flex-wrap gap-2 mt-5">
-            {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-gray-700">
-                {tag}
-              </Badge>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                onClick={() => setSelectedCategory(category)}
+                className={`rounded-full text-xs md:text-sm ${
+                  selectedCategory === category
+                    ? "bg-orange-600 hover:bg-orange-700 text-white border-none"
+                    : "border-gray-300 text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {category}
+              </Button>
             ))}
           </div>
-        </header>
+        </div>
 
-        {/* Article Body */}
-        <div
-          className="prose prose-lg md:prose-xl mx-auto text-left leading-relaxed prose-headings:text-gray-900 prose-p:text-gray-800 prose-strong:text-black prose-ul:list-disc prose-li:ml-4"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        {/* Blog Grid */}
+        {sortedPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sortedPosts.map((post) => (
+              <Card key={post.id} className="flex flex-col hover:shadow-xl transition-shadow duration-300 border-gray-200 overflow-hidden group">
+                {/* Image Section */}
+                <div className="relative h-56 w-full overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <Badge variant="secondary" className="bg-white/90 text-gray-900 font-medium backdrop-blur-sm shadow-sm">
+                      {post.category}
+                    </Badge>
+                  </div>
+                </div>
 
-        {/* Call to Action */}
-        <Card className="mt-16 bg-orange-50 border border-orange-200 shadow-sm">
-          <CardContent className="p-8 text-left">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-900">
-              Ready to Invest in Uttarakhand Properties?
-            </h3>
-            <p className="text-gray-700 mb-6">
-              Explore our curated selection of premium plots in Uttarakhand's most sought-after hill locations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg">
-                <Link href="/plots">View Available Plots</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/contact">Get Expert Consultation</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </article>
+                <CardHeader className="pb-3 pt-5 px-6">
+                  <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                    <div className="flex items-center">
+                      <Calendar className="w-3 h-3 mr-1" />
+                      {formatDate(post.publishedDate)}
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-3 h-3 mr-1" />
+                      5 min read
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl font-bold leading-snug text-gray-900 group-hover:text-orange-600 transition-colors line-clamp-2">
+                    <Link href={`/blog/${post.slug}`} className="hover:underline decoration-orange-600 decoration-2 underline-offset-4">
+                        {post.title}
+                    </Link>
+                  </CardTitle>
+                </CardHeader>
+
+                <CardContent className="flex-grow px-6">
+                  <p className="text-gray-600 line-clamp-3 text-sm leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                </CardContent>
+
+                <CardFooter className="px-6 pb-6 pt-0 mt-auto">
+                  <Button asChild variant="link" className="p-0 text-orange-600 font-semibold hover:text-orange-700 group/btn">
+                    <Link href={`/blog/${post.slug}`} className="flex items-center">
+                      Read Article <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+            <p className="text-xl text-gray-500 font-medium">No articles found matching your criteria.</p>
+            <Button 
+              variant="link" 
+              onClick={() => {setSearchTerm(""); setSelectedCategory("All")}}
+              className="mt-2 text-orange-600"
+            >
+              Clear filters
+            </Button>
+          </div>
+        )}
+      </main>
 
       <SiteFooter />
     </div>
   )
-}
-
-export async function generateStaticParams() {
-  return blogPosts
-    .filter((post) => post.status === "Published")
-    .map((post) => ({ slug: post.slug }))
-}
-
-export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug && p.status === "Published")
-  if (!post) return { title: "Post Not Found" }
-
-  return {
-    title: post.metaTitle || post.title,
-    description: post.metaDescription || post.excerpt,
-    keywords: post.tags.join(", "),
-    openGraph: {
-      title: post.metaTitle || post.title,
-      description: post.metaDescription || post.excerpt,
-      images: [post.image],
-      type: "article",
-      publishedTime: post.publishedDate,
-      modifiedTime: post.lastModified,
-      authors: [post.author],
-      tags: post.tags,
-    },
-  }
 }
