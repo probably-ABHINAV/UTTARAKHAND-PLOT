@@ -4,10 +4,10 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { SiteHeader } from "@/components/navigation/site-header"
 import { SiteFooter } from "@/components/navigation/footer"
-import { Calendar, Search, User, ArrowRight, Clock } from "lucide-react"
+import { Calendar, Search, ArrowRight, Clock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -45,7 +45,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-21",
     views: 550,
     featured: false,
-    image: "https://images.unsplash.com/photo-1592352161823-74e2c262ebba?auto=format&fit=crop&w=800&q=80" // Haridwar/Ganga vibe
+    image: "https://images.unsplash.com/photo-1592352161823-74e2c262ebba?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 18,
@@ -61,7 +61,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-23",
     views: 280,
     featured: false,
-    image: "https://images.unsplash.com/photo-1518182170546-0766aa646944?auto=format&fit=crop&w=800&q=80" // Winter/Snow house
+    image: "https://images.unsplash.com/photo-1518182170546-0766aa646944?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 19,
@@ -77,7 +77,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-25",
     views: 700,
     featured: false,
-    image: "https://images.unsplash.com/photo-1474487548417-781cb714d22d?auto=format&fit=crop&w=800&q=80" // Train/Bridge infrastructure
+    image: "https://images.unsplash.com/photo-1474487548417-781cb714d22d?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 20,
@@ -93,7 +93,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-27",
     views: 880,
     featured: false,
-    image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=80" // Apartment building
+    image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 21,
@@ -109,7 +109,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-29",
     views: 600,
     featured: true,
-    image: "https://images.unsplash.com/photo-1533378393606-2c5e533d3175?auto=format&fit=crop&w=800&q=80" // Water/Nature
+    image: "https://images.unsplash.com/photo-1533378393606-2c5e533d3175?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 22,
@@ -125,7 +125,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-31",
     views: 410,
     featured: false,
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" // Modern office/commercial
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 23,
@@ -141,7 +141,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-02",
     views: 530,
     featured: false,
-    image: "https://images.unsplash.com/photo-1541457523724-95f54f7740cc?auto=format&fit=crop&w=800&q=80" // Peaceful bench/park
+    image: "https://images.unsplash.com/photo-1541457523724-95f54f7740cc?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 24,
@@ -157,7 +157,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-04",
     views: 290,
     featured: false,
-    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80" // Soil/Construction site
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 25,
@@ -173,7 +173,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-06",
     views: 760,
     featured: true,
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" // Old house/Bungalow
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 26,
@@ -189,7 +189,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-08",
     views: 950,
     featured: false,
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" // Lake/Mountains
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 27,
@@ -205,7 +205,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-10",
     views: 1100,
     featured: false,
-    image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80" // Compass/Maps
+    image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 28,
@@ -221,7 +221,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-12",
     views: 400,
     featured: false,
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" // Contract/Pen
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 29,
@@ -237,7 +237,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-14",
     views: 820,
     featured: true,
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80" // Scenic cabin/sunset
+    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 30,
@@ -253,7 +253,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-02-16",
     views: 310,
     featured: false,
-    image: "https://images.unsplash.com/photo-1490750967868-58cb75069ed6?auto=format&fit=crop&w=800&q=80" // Spring flowers
+    image: "https://images.unsplash.com/photo-1490750967868-58cb75069ed6?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "1",
@@ -269,7 +269,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-01",
     views: 1205,
     featured: true,
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80", // Green land/Plot
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "2",
@@ -285,7 +285,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-03",
     views: 980,
     featured: false,
-    image: "https://images.unsplash.com/photo-1584282361689-d17e5a7d6571?auto=format&fit=crop&w=800&q=80", // Rishikesh vibes
+    image: "https://images.unsplash.com/photo-1584282361689-d17e5a7d6571?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "3",
@@ -301,7 +301,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-05",
     views: 850,
     featured: false,
-    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80", // Financial growth/Money
+    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "4",
@@ -317,7 +317,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-07",
     views: 1300,
     featured: true,
-    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80", // Highway
+    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "5",
@@ -333,7 +333,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-09",
     views: 1500,
     featured: true,
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", // Business/Analysis
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "6",
@@ -349,7 +349,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-11",
     views: 645,
     featured: false,
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80", // Mountains/Checklist
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "7",
@@ -365,7 +365,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-13",
     views: 800,
     featured: false,
-    image: "https://images.unsplash.com/photo-1464082354059-27db6ce50048?auto=format&fit=crop&w=800&q=80", // Open house/Land
+    image: "https://images.unsplash.com/photo-1464082354059-27db6ce50048?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "8",
@@ -381,7 +381,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-15",
     views: 645,
     featured: false,
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80", // Keys/Property
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "9",
@@ -397,7 +397,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-17",
     views: 450,
     featured: false,
-    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80", // Nature/Forest
+    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "10",
@@ -413,7 +413,7 @@ const blogPosts: BlogPost[] = [
     lastModified: "2026-01-19",
     views: 1500,
     featured: true,
-    image: "https://images.unsplash.com/photo-1519681393798-3828fb4090bb?auto=format&fit=crop&w=800&q=80", // Hills view
+    image: "https://images.unsplash.com/photo-1519681393798-3828fb4090bb?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -427,7 +427,8 @@ export default function BlogPage() {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === "All" || post.category.includes(selectedCategory) || (selectedCategory === "Guide (Hindi)" && post.category === "Guide (Hindi)")
+    
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory || (selectedCategory === "Guide (Hindi)" && post.category === "Guide (Hindi)")
 
     return matchesSearch && matchesCategory
   })
@@ -502,6 +503,7 @@ export default function BlogPage() {
                     src={post.image}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4">
