@@ -13,7 +13,6 @@ import Link from "next/link"
 import { useState } from "react"
 
 const blogPosts = [
-const blogPosts = [
   {
     id: "1",
     title: "Why Buy Affordable Property in Uttarakhand — 7 Clear Reasons",
