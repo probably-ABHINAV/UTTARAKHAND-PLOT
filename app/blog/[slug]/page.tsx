@@ -785,8 +785,7 @@ const blogPosts = [
       <h2>Final Recommendation</h2>
       <p>If your ultimate goal is to build a retirement home, a vacation villa, or generate rental income within the next 5 years, always choose a verified, legally converted Residential Plot. It offers 100% peace of mind. For a transparent, legally secure buying experience, explore the 143-approved listings at <strong>Property in Uttarakhand</strong>.</p>
     `
-  }
-  [
+  },
   {
     id: "21",
     title: "Building a Boutique Resort in the Mountains: A Beginner's Guide",
@@ -971,7 +970,7 @@ const blogPosts = [
       <h2>निष्कर्ष</h2>
       <p>पहाड़ों में निवेश एक बहुत ही सुरक्षित और मुनाफे वाला कदम है, बशर्ते आप इसे सही कानूनी और तकनीकी प्रक्रिया के साथ पूरा करें। किसी भी प्रॉपर्टी को फाइनल करने से पहले हमेशा <strong>Property in Uttarakhand</strong> जैसी प्रमाणित और विश्वसनीय एजेंसी की मदद लें, ताकि आपका मेहनत का पैसा सुरक्षित रहे और आप पहाड़ों की जिंदगी का असली आनंद ले सकें।</p>
     `
-  }
+  },
 ]
 
 interface BlogPostPageProps {
