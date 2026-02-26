@@ -10,7 +10,6 @@ import { notFound } from "next/navigation"
 
 // Blog posts data (same as admin section)
 const blogPosts = [
-[
   {
     id: "1",
     title: "Why Buy Affordable Property in Uttarakhand — 7 Clear Reasons",
